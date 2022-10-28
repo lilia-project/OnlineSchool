@@ -2,7 +2,7 @@ package org.lilia.models;
 
 public class Student {
 
-    private int id;
+    private static int id;
     public static int counter;
 
     public Student() {
