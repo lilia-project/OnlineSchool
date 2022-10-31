@@ -1,7 +1,7 @@
 package org.lilia.models;
 
 public class Lecture {
-    private static int id;
+    private int id;
     public static int counter;
     private Homework homework;
     private AdditionalMaterial additionalMaterial;
