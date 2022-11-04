@@ -17,8 +17,9 @@ public class Main {
         Lecture lecture5 = new Lecture(5, 3);
         Lecture lecture6 = new Lecture(6, 2);
 
-        System.out.println(Lecture.counter);
         System.out.println(lecture6.courseId);
+        System.out.println(Lecture.counter);
+
 
     }
 }
