@@ -19,7 +19,5 @@ public class Main {
 
         System.out.println(lecture6.courseId);
         System.out.println(Lecture.counter);
-
-
     }
 }
