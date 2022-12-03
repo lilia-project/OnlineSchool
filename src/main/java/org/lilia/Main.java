@@ -2,72 +2,108 @@ package org.lilia;
 
 import org.lilia.models.Course;
 import org.lilia.models.Lecture;
-import org.lilia.models.Teacher;
 import org.lilia.service.CourseService;
 import org.lilia.service.LectureService;
-import org.lilia.service.TeacherService;
 
-import java.io.BufferedReader;
 import java.util.Scanner;
 
 public class Main {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        CourseService courseService = new CourseService();
-        Course course1 = courseService.createCourse(1);
+        System.out.println("welcome to Online school!");
+        System.out.println("continue working?\nY - Continue\nN - Exit");
+        String labelCreate = SCANNER.nextLine();
+        labelCreate = checkLabelCreate(labelCreate);
+        if (labelCreate.equalsIgnoreCase("Y")) {
 
-        LectureService lectureService = new LectureService();
+            CourseService courseService = new CourseService();
+            Course course1 = courseService.createCourse(1);
 
+            LectureService lectureService = new LectureService();
+
+            int category = choiceCategory();
+            System.out.println(category);
+
+            switch (category) {
+                case 1 -> System.out.println("you selected category 'Course'");
+                case 2 -> System.out.println("you selected category 'Lecture'");
+                case 3 -> System.out.println("you selected category 'Teacher'");
+                case 4 -> System.out.println("you selected category 'Student'");
+                //default -> System.out.println("No such category exists");
+            }
+            System.out.println("_______________________");
+
+            System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
+
+            labelCreate = SCANNER.nextLine();
+            labelCreate = checkLabelCreate(labelCreate);
+
+            while (labelCreate.equalsIgnoreCase("Y")) {
+
+                System.out.print("input id of lecture ");
+                int id = readInteger();
+
+                System.out.print("input name of lecture ");
+                String nameLecture = SCANNER.nextLine();
+
+                Lecture lecture = lectureService.createLecture(id, course1.id, nameLecture);
+                System.out.println("you created new lecture:");
+                System.out.println("id lecture = " + lecture.id);
+                System.out.println("id course = " + course1.id);
+                System.out.println("name of lecture - " + nameLecture);
+                System.out.println("You created " + Lecture.counter + " lectures");
+                System.out.println("------------------------");
+
+                System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
+
+                labelCreate = SCANNER.nextLine();
+                labelCreate = checkLabelCreate(labelCreate);
+            }
+
+            System.out.println("Total created " + Lecture.counter + " lectures");
+        } else {
+            SCANNER.close();
+        }
+    }
+
+    private static int choiceCategory() {
         System.out.println("select a category:");
-        System.out.println("Course - enter 1");
-        System.out.println("Lecture - enter 2");
-        System.out.println("Teacher - enter 3");
-        System.out.println("Student - enter 4");
+        System.out.println("Course - select 1");
+        System.out.println("Lecture - select 2");
+        System.out.println("Teacher - select 3");
+        System.out.println("Student - select 4");
         System.out.print("enter number: ");
 
-        int category = scanner.nextInt();
+        int category = readInteger();
+        category = checkNumberOfCategory(category);
+        return category;
+    }
 
-        switch (category) {
-            case 1 -> System.out.println("you selected category Course");
-            case 2 -> System.out.println("you selected category Lecture");
-            case 3 -> System.out.println("you selected category Teacher");
-            case 4 -> System.out.println("you selected category Student");
-            default -> System.out.println("No such category exists");
+    private static int checkNumberOfCategory(int category) {
+        while (category < 1 || category > 4) {
+            System.out.println("number is invalid\ntry agan");
+            category = readInteger();
         }
-        System.out.println("_______________________");
+        return category;
+    }
 
-        String labelCreate;
-        System.out.println("would you create a new lecture?");
-        do {
+    private static String checkLabelCreate(String labelCreate) {
+        while (!labelCreate.equalsIgnoreCase("Y") && !labelCreate.equalsIgnoreCase("N")) {
             System.out.println("input Y or N");
-            labelCreate = scanner.next();
-        } while (!labelCreate.equalsIgnoreCase("Y") && !labelCreate.equalsIgnoreCase("N"));
-
-        while (labelCreate.equalsIgnoreCase("Y")) {
-
-            System.out.print("input id of lecture ");
-            int id = scanner.nextInt();
-
-            System.out.print("input name of lecture ");
-            scanner.nextLine();
-            String nameLecture = scanner.nextLine();
-
-            Lecture lecture = lectureService.createLecture(id, course1.id, nameLecture);
-            System.out.println("you created new lecture:");
-            System.out.println("id lecture = " + lecture.id);
-            System.out.println("id course = " + course1.id);
-            System.out.println("name of lecture - " + nameLecture);
-            System.out.println("You created " + Lecture.counter + " lectures");
-            System.out.println("------------------------");
-
-            System.out.println("would you create a new lecture?");
-            System.out.println("input Y or N");
-            scanner.nextLine();
-            labelCreate = scanner.nextLine();
+            labelCreate = SCANNER.nextLine();
         }
-        scanner.close();
-        System.out.println("Total created " + Lecture.counter + " lectures");
+        return labelCreate;
+    }
+
+    private static int readInteger() { //scanner processing for integer
+        int id = SCANNER.nextInt();
+        feedNewLine();
+        return id;
+    }
+
+    private static void feedNewLine() { //scanner processing for enter
+        SCANNER.nextLine();
     }
 }
