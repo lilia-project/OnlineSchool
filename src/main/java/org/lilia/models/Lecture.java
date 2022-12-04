@@ -14,4 +14,8 @@ public class Lecture {
         this.nameLecture = nameLecture;
         counter++;
     }
+
+    public String toString() {
+        return "you created new lecture:\nid lecture = " + id + "\nid course = " + idCourse + "\nname of lecture - " + nameLecture + "\n________________________";
+    }
 }

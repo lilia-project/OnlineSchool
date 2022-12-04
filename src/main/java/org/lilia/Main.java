@@ -12,10 +12,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("welcome to Online school!");
+        System.out.println("Welcome to Online school!");
         System.out.println("continue working?\nY - Continue\nN - Exit");
         String labelCreate = SCANNER.nextLine();
         labelCreate = checkLabelCreate(labelCreate);
+
+
         if (labelCreate.equalsIgnoreCase("Y")) {
 
             CourseService courseService = new CourseService();
@@ -33,6 +35,7 @@ public class Main {
                 case 4 -> System.out.println("you selected category 'Student'");
                 //default -> System.out.println("No such category exists");
             }
+
             System.out.println("_______________________");
 
             System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
@@ -49,23 +52,20 @@ public class Main {
                 String nameLecture = SCANNER.nextLine();
 
                 Lecture lecture = lectureService.createLecture(id, course1.id, nameLecture);
-                System.out.println("you created new lecture:");
-                System.out.println("id lecture = " + lecture.id);
-                System.out.println("id course = " + course1.id);
-                System.out.println("name of lecture - " + nameLecture);
-                System.out.println("You created " + Lecture.counter + " lectures");
-                System.out.println("------------------------");
+                System.out.println(lecture.toString());
 
-                System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
-
-                labelCreate = SCANNER.nextLine();
-                labelCreate = checkLabelCreate(labelCreate);
+                if (Lecture.counter < 8) {
+                    System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
+                    labelCreate = SCANNER.nextLine();
+                    labelCreate = checkLabelCreate(labelCreate);
+                } else break;
             }
-
-            System.out.println("Total created " + Lecture.counter + " lectures");
+            System.out.println("limit has been reached");
         } else {
             SCANNER.close();
         }
+        System.out.println("Total created " + Lecture.counter + " lectures");
+        SCANNER.close();
     }
 
     private static int choiceCategory() {
@@ -103,7 +103,7 @@ public class Main {
         return id;
     }
 
-    private static void feedNewLine() { //scanner processing for enter
+    private static void feedNewLine() { //scanner processing for button enter
         SCANNER.nextLine();
     }
 }
