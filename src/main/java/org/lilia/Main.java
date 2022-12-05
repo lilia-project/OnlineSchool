@@ -54,13 +54,16 @@ public class Main {
                 Lecture lecture = lectureService.createLecture(id, course1.id, nameLecture);
                 System.out.println(lecture.toString());
 
-                if (Lecture.counter < 8) {
+                if (Lecture.counter >= 8) {
+                    System.out.println("limit has been reached");
+                    break;
+                } else {
                     System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
                     labelCreate = SCANNER.nextLine();
                     labelCreate = checkLabelCreate(labelCreate);
-                } else break;
+                }
             }
-            System.out.println("limit has been reached");
+
         } else {
             SCANNER.close();
         }
