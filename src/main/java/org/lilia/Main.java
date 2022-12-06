@@ -14,10 +14,10 @@ public class Main {
 
         System.out.println("Welcome to Online school!");
         System.out.println("continue working?\nY - Continue\nN - Exit");
-        String labelCreate = SCANNER.nextLine();
-        labelCreate = checkLabelCreate(labelCreate); //  check the validity labelCreate (only Y or N)
+        String labelContinueWorking = SCANNER.nextLine();
+        labelContinueWorking = checkYorN(labelContinueWorking); //  check the validity labelContinueWorking (only Y or N)
 
-        if (labelCreate.equalsIgnoreCase("Y")) {
+        if (labelContinueWorking.equalsIgnoreCase("Y")) {
 
             CourseService courseService = new CourseService();
             LectureService lectureService = new LectureService();
@@ -30,9 +30,9 @@ public class Main {
             System.out.println("_______________________");
 
             System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
+            String labelCreate = SCANNER.nextLine();
 
-            labelCreate = SCANNER.nextLine();
-            labelCreate = checkLabelCreate(labelCreate); //  check the validity labelCreate (only Y or N)
+            labelCreate = checkYorN(labelCreate); //  check the validity labelCreate (only Y or N)
 
             while (labelCreate.equalsIgnoreCase("Y")) {
 
@@ -40,6 +40,7 @@ public class Main {
                 String nameLecture = SCANNER.nextLine();
 
                 Lecture lecture = lectureService.createLecture(course1.id, nameLecture);
+
                 System.out.println(lecture.toString());
 
                 //check of limit 'lecture'
@@ -49,7 +50,7 @@ public class Main {
                 } else {
                     System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
                     labelCreate = SCANNER.nextLine();
-                    labelCreate = checkLabelCreate(labelCreate);
+                    labelCreate = checkYorN(labelCreate);
                 }
             }
         } else {
@@ -86,10 +87,7 @@ public class Main {
         System.out.print("enter number of category: ");
 
         int category = readInteger();
-        return checkNumberOfCategory(category);
-    }
 
-    private static int checkNumberOfCategory(int category) {  //check the validity 'category'
         while (category < 1 || category > 4) {
             System.out.println("try agan (number must be from 1 to 4)");
             category = readInteger();
@@ -97,7 +95,7 @@ public class Main {
         return category;
     }
 
-    private static String checkLabelCreate(String labelCreate) {
+    private static String checkYorN(String labelCreate) {
         while (!labelCreate.equalsIgnoreCase("Y") && !labelCreate.equalsIgnoreCase("N")) {
             System.out.println("input Y or N");
             labelCreate = SCANNER.nextLine();
