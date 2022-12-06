@@ -8,6 +8,7 @@ public class Lecture {
     private Homework homework;
     private AdditionalMaterial additionalMaterial;
 
+
     public Lecture(int id, int idCourse, String nameLecture) {
         this.id = id;
         this.idCourse = idCourse;

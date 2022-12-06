@@ -15,8 +15,7 @@ public class Main {
         System.out.println("Welcome to Online school!");
         System.out.println("continue working?\nY - Continue\nN - Exit");
         String labelCreate = SCANNER.nextLine();
-        labelCreate = checkLabelCreate(labelCreate);
-
+        labelCreate = checkLabelCreate(labelCreate); //  check the validity labelCreate (only Y or N)
 
         if (labelCreate.equalsIgnoreCase("Y")) {
 
@@ -25,23 +24,15 @@ public class Main {
 
             LectureService lectureService = new LectureService();
 
-            int category = choiceCategory();
-            System.out.println(category);
-
-            switch (category) {
-                case 1 -> System.out.println("you selected category 'Course'");
-                case 2 -> System.out.println("you selected category 'Lecture'");
-                case 3 -> System.out.println("you selected category 'Teacher'");
-                case 4 -> System.out.println("you selected category 'Student'");
-                //default -> System.out.println("No such category exists");
-            }
+            int category = choiceCategory(); //choice of category
+            outputSelectedCategory(category); //output of category
 
             System.out.println("_______________________");
 
             System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
 
             labelCreate = SCANNER.nextLine();
-            labelCreate = checkLabelCreate(labelCreate);
+            labelCreate = checkLabelCreate(labelCreate); //  check the validity labelCreate (only Y or N)
 
             while (labelCreate.equalsIgnoreCase("Y")) {
 
@@ -54,6 +45,7 @@ public class Main {
                 Lecture lecture = lectureService.createLecture(id, course1.id, nameLecture);
                 System.out.println(lecture.toString());
 
+                //check of limit 'lecture'
                 if (Lecture.counter >= 8) {
                     System.out.println("limit has been reached");
                     break;
@@ -63,12 +55,29 @@ public class Main {
                     labelCreate = checkLabelCreate(labelCreate);
                 }
             }
-
         } else {
             SCANNER.close();
         }
         System.out.println("Total created " + Lecture.counter + " lectures");
         SCANNER.close();
+    }
+
+    private static void outputSelectedCategory(int category) {
+        //default -> System.out.println("No such category exists");
+        switch (category) {
+            case 1:
+                System.out.println("you selected category 'Course'");
+                break;
+            case 2:
+                System.out.println("you selected category 'Lecture'");
+                break;
+            case 3:
+                System.out.println("you selected category 'Teacher'");
+                break;
+            case 4:
+                System.out.println("you selected category 'Student'");
+                break;
+        }
     }
 
     private static int choiceCategory() {
@@ -77,16 +86,15 @@ public class Main {
         System.out.println("Lecture - select 2");
         System.out.println("Teacher - select 3");
         System.out.println("Student - select 4");
-        System.out.print("enter number: ");
+        System.out.print("enter number of category: ");
 
         int category = readInteger();
-        category = checkNumberOfCategory(category);
-        return category;
+        return checkNumberOfCategory(category);
     }
 
-    private static int checkNumberOfCategory(int category) {
+    private static int checkNumberOfCategory(int category) {  //check the validity 'category'
         while (category < 1 || category > 4) {
-            System.out.println("number is invalid\ntry agan");
+            System.out.println("try agan (number must be from 1 to 4)");
             category = readInteger();
         }
         return category;
