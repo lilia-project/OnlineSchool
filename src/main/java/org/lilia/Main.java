@@ -20,9 +20,9 @@ public class Main {
         if (labelCreate.equalsIgnoreCase("Y")) {
 
             CourseService courseService = new CourseService();
-            Course course1 = courseService.createCourse(1);
-
             LectureService lectureService = new LectureService();
+
+            Course course1 = courseService.createCourse(1);
 
             int category = choiceCategory(); //choice of category
             outputSelectedCategory(category); //output of category
@@ -36,13 +36,10 @@ public class Main {
 
             while (labelCreate.equalsIgnoreCase("Y")) {
 
-                System.out.print("input id of lecture ");
-                int id = readInteger();
-
                 System.out.print("input name of lecture ");
                 String nameLecture = SCANNER.nextLine();
 
-                Lecture lecture = lectureService.createLecture(id, course1.id, nameLecture);
+                Lecture lecture = lectureService.createLecture(course1.id, nameLecture);
                 System.out.println(lecture.toString());
 
                 //check of limit 'lecture'
