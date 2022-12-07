@@ -18,48 +18,44 @@ public class Main {
         Course course1 = courseService.createCourse(1);
 
         System.out.println("Welcome to Online school!");
-        System.out.println("continue working?\nY - Continue\nN - Exit");
-        String labelContinueWorking = SCANNER.nextLine();
-        labelContinueWorking = checkYorN(labelContinueWorking); //  check the validity labelContinueWorking (only Y or N)
+        String question = "continue working?\nY - Continue\nN - Exit";
+        String labelContinueWorking = getLabelContinueWorking(question);
 
-        if (labelContinueWorking.equalsIgnoreCase("Y")) {
+        while (labelContinueWorking.equalsIgnoreCase("Y")) {
 
-            int category = choiceCategory(); //choice of category
-            //output of category
-
+            int category = choiceCategory();
             System.out.println("_______________________");
 
             switch (category) {
-                case 1:
-                    System.out.println("you selected category 'Course'");
-                    break;
-                case 2:
+                case 1 -> System.out.println("you selected category 'Course'");
+                case 2 -> {
                     System.out.println("you selected category 'Lecture'");
-
                     workingWithLecture(lectureService, course1);
-                    break;
-                case 3:
-                    System.out.println("you selected category 'Teacher'");
-                    break;
-                case 4:
-                    System.out.println("you selected category 'Student'");
-                    break;
+                }
+                case 3 -> System.out.println("you selected category 'Teacher'");
+                case 4 -> System.out.println("you selected category 'Student'");
             }
-
-        } else {
-            SCANNER.close();
+            question = "continue working?\nY - Continue\nN - Exit";
+            labelContinueWorking = getLabelContinueWorking(question);
         }
-        System.out.println("Total created " + Lecture.counter + " lectures");
         SCANNER.close();
     }
 
+    private static String getLabelContinueWorking(String question) {
+        System.out.println(question);
+        String labelContinueWorking = SCANNER.nextLine();
+        while (!labelContinueWorking.equalsIgnoreCase("Y") && !labelContinueWorking.equalsIgnoreCase("N")) {
+            System.out.println("input Y or N");
+            labelContinueWorking = SCANNER.nextLine();
+        }
+        return labelContinueWorking;
+    }
+
     private static void workingWithLecture(LectureService lectureService, Course course1) {
-        System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
-        String labelCreate = SCANNER.nextLine();
+        String question = "would you create a new lecture?\nY - Yes\nN - No\ninput Y or N";
+        String labelContinueWorking = getLabelContinueWorking(question);
 
-        labelCreate = checkYorN(labelCreate); //  check the validity labelCreate (only Y or N)
-
-        while (labelCreate.equalsIgnoreCase("Y")) {
+        while (labelContinueWorking.equalsIgnoreCase("Y")) {
 
             System.out.print("input name of lecture ");
             String nameLecture = SCANNER.nextLine();
@@ -68,18 +64,15 @@ public class Main {
 
             System.out.println(lecture.toString());
 
-            //check of limit 'lecture'
             if (Lecture.counter >= 8) {
                 System.out.println("limit has been reached");
                 break;
             } else {
-                System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
-                labelCreate = SCANNER.nextLine();
-                labelCreate = checkYorN(labelCreate);
+                labelContinueWorking = getLabelContinueWorking(question);
             }
         }
+        System.out.println("Total created " + Lecture.counter + " lectures");
     }
-
 
     private static int choiceCategory() {
         System.out.println("select a category:");
@@ -96,14 +89,6 @@ public class Main {
             category = readInteger();
         }
         return category;
-    }
-
-    private static String checkYorN(String labelCreate) {
-        while (!labelCreate.equalsIgnoreCase("Y") && !labelCreate.equalsIgnoreCase("N")) {
-            System.out.println("input Y or N");
-            labelCreate = SCANNER.nextLine();
-        }
-        return labelCreate;
     }
 
     private static int readInteger() { //scanner processing for integer
