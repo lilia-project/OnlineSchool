@@ -12,6 +12,11 @@ public class Main {
 
     public static void main(String[] args) {
 
+        CourseService courseService = new CourseService();
+        LectureService lectureService = new LectureService();
+
+        Course course1 = courseService.createCourse(1);
+
         System.out.println("Welcome to Online school!");
         System.out.println("continue working?\nY - Continue\nN - Exit");
         String labelContinueWorking = SCANNER.nextLine();
@@ -19,40 +24,28 @@ public class Main {
 
         if (labelContinueWorking.equalsIgnoreCase("Y")) {
 
-            CourseService courseService = new CourseService();
-            LectureService lectureService = new LectureService();
-
-            Course course1 = courseService.createCourse(1);
-
             int category = choiceCategory(); //choice of category
-            outputSelectedCategory(category); //output of category
+            //output of category
 
             System.out.println("_______________________");
 
-            System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
-            String labelCreate = SCANNER.nextLine();
-
-            labelCreate = checkYorN(labelCreate); //  check the validity labelCreate (only Y or N)
-
-            while (labelCreate.equalsIgnoreCase("Y")) {
-
-                System.out.print("input name of lecture ");
-                String nameLecture = SCANNER.nextLine();
-
-                Lecture lecture = lectureService.createLecture(course1.id, nameLecture);
-
-                System.out.println(lecture.toString());
-
-                //check of limit 'lecture'
-                if (Lecture.counter >= 8) {
-                    System.out.println("limit has been reached");
+            switch (category) {
+                case 1:
+                    System.out.println("you selected category 'Course'");
                     break;
-                } else {
-                    System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
-                    labelCreate = SCANNER.nextLine();
-                    labelCreate = checkYorN(labelCreate);
-                }
+                case 2:
+                    System.out.println("you selected category 'Lecture'");
+
+                    workingWithLecture(lectureService, course1);
+                    break;
+                case 3:
+                    System.out.println("you selected category 'Teacher'");
+                    break;
+                case 4:
+                    System.out.println("you selected category 'Student'");
+                    break;
             }
+
         } else {
             SCANNER.close();
         }
@@ -60,23 +53,33 @@ public class Main {
         SCANNER.close();
     }
 
-    private static void outputSelectedCategory(int category) {
-        //default -> System.out.println("No such category exists");
-        switch (category) {
-            case 1:
-                System.out.println("you selected category 'Course'");
+    private static void workingWithLecture(LectureService lectureService, Course course1) {
+        System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
+        String labelCreate = SCANNER.nextLine();
+
+        labelCreate = checkYorN(labelCreate); //  check the validity labelCreate (only Y or N)
+
+        while (labelCreate.equalsIgnoreCase("Y")) {
+
+            System.out.print("input name of lecture ");
+            String nameLecture = SCANNER.nextLine();
+
+            Lecture lecture = lectureService.createLecture(course1.id, nameLecture);
+
+            System.out.println(lecture.toString());
+
+            //check of limit 'lecture'
+            if (Lecture.counter >= 8) {
+                System.out.println("limit has been reached");
                 break;
-            case 2:
-                System.out.println("you selected category 'Lecture'");
-                break;
-            case 3:
-                System.out.println("you selected category 'Teacher'");
-                break;
-            case 4:
-                System.out.println("you selected category 'Student'");
-                break;
+            } else {
+                System.out.println("would you create a new lecture?\nY - Yes\nN - No\ninput Y or N");
+                labelCreate = SCANNER.nextLine();
+                labelCreate = checkYorN(labelCreate);
+            }
         }
     }
+
 
     private static int choiceCategory() {
         System.out.println("select a category:");
