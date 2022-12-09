@@ -17,7 +17,6 @@ public class Lecture {
     }
 
     public String toString() {
-        return "id lecture = " + id + "\nid course = " + idCourse + "\nname of lecture - " + nameLecture + "\nYou created " + Lecture.counter + " lecture(s)" +
-                "\n________________________";
+        return "Lecture is created: id = " + id + ", course = " + idCourse + ", name - " + nameLecture + "\n___________";
     }
 }

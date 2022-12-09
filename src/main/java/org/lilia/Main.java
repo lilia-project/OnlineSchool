@@ -2,6 +2,7 @@ package org.lilia;
 
 import org.lilia.models.Course;
 import org.lilia.models.Lecture;
+import org.lilia.repository.LectureRepository;
 import org.lilia.service.CourseService;
 import org.lilia.service.LectureService;
 
@@ -13,9 +14,10 @@ public class Main {
     public static void main(String[] args) {
 
         CourseService courseService = new CourseService();
-        LectureService lectureService = new LectureService();
+        LectureRepository lectureRepository = new LectureRepository();
+        LectureService lectureService = new LectureService(lectureRepository);
 
-        Course course1 = courseService.createCourse(1);
+        Course course = courseService.createCourse();
 
         System.out.println("Welcome to Online school!");
         String question = "continue working?\nY - Continue\nN - Exit";
@@ -30,10 +32,11 @@ public class Main {
                 case 1 -> System.out.println("you selected category 'Course'");
                 case 2 -> {
                     System.out.println("you selected category 'Lecture'");
-                    workingWithLecture(lectureService, course1);
+                    workingWithLectures(lectureService, course, lectureRepository);
                 }
                 case 3 -> System.out.println("you selected category 'Teacher'");
                 case 4 -> System.out.println("you selected category 'Student'");
+                case 5 -> System.out.println("you want exit or ");
             }
             question = "continue working?\nY - Continue\nN - Exit";
             labelContinueWorking = getLabelContinueWorking(question);
@@ -51,7 +54,7 @@ public class Main {
         return labelContinueWorking;
     }
 
-    private static void workingWithLecture(LectureService lectureService, Course course1) {
+    private static void workingWithLectures(LectureService lectureService, Course course, LectureRepository lectureRepository) {
         String question = "would you create a new lecture?\nY - Yes\nN - No\ninput Y or N";
         String labelContinueWorking = getLabelContinueWorking(question);
 
@@ -59,10 +62,7 @@ public class Main {
 
             System.out.print("input name of lecture ");
             String nameLecture = SCANNER.nextLine();
-
-            Lecture lecture = lectureService.createLecture(course1.id, nameLecture);
-
-            System.out.println(lecture.toString());
+            lectureService.createLecture(course.id, nameLecture);
 
             if (Lecture.counter >= 8) {
                 System.out.println("limit has been reached");
@@ -80,12 +80,12 @@ public class Main {
         System.out.println("Lecture - select 2");
         System.out.println("Teacher - select 3");
         System.out.println("Student - select 4");
-        System.out.print("enter number of category: ");
+        System.out.println("Exit - select 5");
 
         int category = readInteger();
 
-        while (category < 1 || category > 4) {
-            System.out.println("try agan (number must be from 1 to 4)");
+        while (category < 1 || category > 5) {
+            System.out.println("try agan (number must be from 1 to 5)");
             category = readInteger();
         }
         return category;
