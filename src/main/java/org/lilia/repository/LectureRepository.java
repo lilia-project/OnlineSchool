@@ -11,7 +11,7 @@ public class LectureRepository {
         if (size < 2) {
             data[size] = lecture;
             size++;
-            System.out.println("Created " + lecture.toString());
+            System.out.println(lecture.toString());
         } else {
             System.out.println("Array is full, lecture can not be saved");
         }
