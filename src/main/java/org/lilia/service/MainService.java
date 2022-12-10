@@ -21,7 +21,7 @@ public class MainService {
 
     public String getLabelContinueWorking(String question) {
         System.out.println(question);
-         labelContinueWorking = SCANNER.nextLine();
+        labelContinueWorking = SCANNER.nextLine();
         while (!labelContinueWorking.equalsIgnoreCase("Y") && !labelContinueWorking.equalsIgnoreCase("N")) {
             System.out.println("input Y or N");
             labelContinueWorking = SCANNER.nextLine();
@@ -46,9 +46,9 @@ public class MainService {
         return category;
     }
 
-    public void workingWithLectures(LectureService lectureService, Course course, LectureRepository lectureRepository) {
-         String question = "would you create a new lecture? Y - Yes N - No";
-         labelContinueWorking = getLabelContinueWorking(question);
+    public void workWithLectures(LectureService lectureService, Course course, LectureRepository lectureRepository) {
+        String question = "would you create a new lecture? Y - Yes N - No";
+        labelContinueWorking = getLabelContinueWorking(question);
 
         while (labelContinueWorking.equalsIgnoreCase("Y")) {
 
@@ -64,5 +64,13 @@ public class MainService {
             }
         }
         System.out.println("Total created " + Lecture.counter + " lectures");
+    }
+
+    public void autoCreate(LectureService lectureService, Course course) {
+        int autoCreateLectures = 0;
+        while (autoCreateLectures < 3) {
+            lectureService.createLecture(course.id);
+            autoCreateLectures++;
+        }
     }
 }

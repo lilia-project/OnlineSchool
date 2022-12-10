@@ -15,4 +15,9 @@ public class LectureService {
         lectureRepository.add(lecture);
         return lecture;
     }
+    public Lecture createLecture(int idCourse) {
+        Lecture lecture = new Lecture(idCourse);
+        lectureRepository.add(lecture);
+        return lecture;
+    }
 }

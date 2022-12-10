@@ -1,6 +1,7 @@
 package org.lilia;
 
 import org.lilia.models.Course;
+import org.lilia.models.Lecture;
 import org.lilia.repository.LectureRepository;
 import org.lilia.service.CourseService;
 import org.lilia.service.LectureService;
@@ -20,6 +21,8 @@ public class Main {
 
         Course course = courseService.createCourse();
 
+        mainService.autoCreate(lectureService, course);
+
         System.out.println("Welcome to Online school!");
         String question = "continue working? Y - Continue N - Exit";
         String labelContinueWorking = mainService.getLabelContinueWorking(question);
@@ -33,7 +36,7 @@ public class Main {
                 case 1 -> System.out.println("you selected category 'Course'");
                 case 2 -> {
                     System.out.println("you selected category 'Lecture'");
-                    mainService.workingWithLectures(lectureService, course, lectureRepository);
+                    mainService.workWithLectures(lectureService, course, lectureRepository);
                 }
                 case 3 -> System.out.println("you selected category 'Teacher'");
                 case 4 -> System.out.println("you selected category 'Student'");
@@ -43,4 +46,6 @@ public class Main {
         }
         SCANNER.close();
     }
+
+
 }

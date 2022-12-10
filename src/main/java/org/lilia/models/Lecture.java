@@ -9,6 +9,12 @@ public class Lecture {
     private Homework homework;
     private AdditionalMaterial additionalMaterial;
 
+    public Lecture(int idCourse) {
+        this.idCourse = idCourse;
+        counter++;
+        id = counter;
+    }
+
     @Override
     public String toString() {
         return "lecture: " +
