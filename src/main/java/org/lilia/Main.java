@@ -2,72 +2,102 @@ package org.lilia;
 
 import org.lilia.models.Course;
 import org.lilia.models.Lecture;
-import org.lilia.models.Teacher;
 import org.lilia.service.CourseService;
 import org.lilia.service.LectureService;
-import org.lilia.service.TeacherService;
 
-import java.io.BufferedReader;
 import java.util.Scanner;
 
 public class Main {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         CourseService courseService = new CourseService();
-        Course course1 = courseService.createCourse(1);
-
         LectureService lectureService = new LectureService();
 
-        System.out.println("select a category:");
-        System.out.println("Course - enter 1");
-        System.out.println("Lecture - enter 2");
-        System.out.println("Teacher - enter 3");
-        System.out.println("Student - enter 4");
-        System.out.print("enter number: ");
+        Course course1 = courseService.createCourse(1);
 
-        int category = scanner.nextInt();
+        System.out.println("Welcome to Online school!");
+        String question = "continue working?\nY - Continue\nN - Exit";
+        String labelContinueWorking = getLabelContinueWorking(question);
 
-        switch (category) {
-            case 1 -> System.out.println("you selected category Course");
-            case 2 -> System.out.println("you selected category Lecture");
-            case 3 -> System.out.println("you selected category Teacher");
-            case 4 -> System.out.println("you selected category Student");
-            default -> System.out.println("No such category exists");
+        while (labelContinueWorking.equalsIgnoreCase("Y")) {
+
+            int category = choiceCategory();
+            System.out.println("_______________________");
+
+            switch (category) {
+                case 1 -> System.out.println("you selected category 'Course'");
+                case 2 -> {
+                    System.out.println("you selected category 'Lecture'");
+                    workingWithLecture(lectureService, course1);
+                }
+                case 3 -> System.out.println("you selected category 'Teacher'");
+                case 4 -> System.out.println("you selected category 'Student'");
+            }
+            question = "continue working?\nY - Continue\nN - Exit";
+            labelContinueWorking = getLabelContinueWorking(question);
         }
-        System.out.println("_______________________");
+        SCANNER.close();
+    }
 
-        String labelCreate;
-        System.out.println("would you create a new lecture?");
-        do {
+    private static String getLabelContinueWorking(String question) {
+        System.out.println(question);
+        String labelContinueWorking = SCANNER.nextLine();
+        while (!labelContinueWorking.equalsIgnoreCase("Y") && !labelContinueWorking.equalsIgnoreCase("N")) {
             System.out.println("input Y or N");
-            labelCreate = scanner.next();
-        } while (!labelCreate.equalsIgnoreCase("Y") && !labelCreate.equalsIgnoreCase("N"));
+            labelContinueWorking = SCANNER.nextLine();
+        }
+        return labelContinueWorking;
+    }
 
-        while (labelCreate.equalsIgnoreCase("Y")) {
+    private static void workingWithLecture(LectureService lectureService, Course course1) {
+        String question = "would you create a new lecture?\nY - Yes\nN - No\ninput Y or N";
+        String labelContinueWorking = getLabelContinueWorking(question);
 
-            System.out.print("input id of lecture ");
-            int id = scanner.nextInt();
+        while (labelContinueWorking.equalsIgnoreCase("Y")) {
 
             System.out.print("input name of lecture ");
-            scanner.nextLine();
-            String nameLecture = scanner.nextLine();
+            String nameLecture = SCANNER.nextLine();
 
-            Lecture lecture = lectureService.createLecture(id, course1.id, nameLecture);
-            System.out.println("you created new lecture:");
-            System.out.println("id lecture = " + lecture.id);
-            System.out.println("id course = " + course1.id);
-            System.out.println("name of lecture - " + nameLecture);
-            System.out.println("You created " + Lecture.counter + " lectures");
-            System.out.println("------------------------");
+            Lecture lecture = lectureService.createLecture(course1.id, nameLecture);
 
-            System.out.println("would you create a new lecture?");
-            System.out.println("input Y or N");
-            scanner.nextLine();
-            labelCreate = scanner.nextLine();
+            System.out.println(lecture.toString());
+
+            if (Lecture.counter >= 8) {
+                System.out.println("limit has been reached");
+                break;
+            } else {
+                labelContinueWorking = getLabelContinueWorking(question);
+            }
         }
-        scanner.close();
         System.out.println("Total created " + Lecture.counter + " lectures");
+    }
+
+    private static int choiceCategory() {
+        System.out.println("select a category:");
+        System.out.println("Course - select 1");
+        System.out.println("Lecture - select 2");
+        System.out.println("Teacher - select 3");
+        System.out.println("Student - select 4");
+        System.out.print("enter number of category: ");
+
+        int category = readInteger();
+
+        while (category < 1 || category > 4) {
+            System.out.println("try agan (number must be from 1 to 4)");
+            category = readInteger();
+        }
+        return category;
+    }
+
+    private static int readInteger() { //scanner processing for integer
+        int id = SCANNER.nextInt();
+        feedNewLine();
+        return id;
+    }
+
+    private static void feedNewLine() { //scanner processing for button enter
+        SCANNER.nextLine();
     }
 }
