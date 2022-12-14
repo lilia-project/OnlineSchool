@@ -2,12 +2,20 @@ package org.lilia.service;
 
 import org.lilia.models.Course;
 import org.lilia.models.Lecture;
-import org.lilia.repository.LectureRepository;
 
 import static org.lilia.Main.SCANNER;
 
 public class MainService {
-    String labelContinueWorking;
+
+    private final CourseService courseService; //todo объявление переменной
+    private final LectureService lectureService;
+    private static int checkSymbol;
+
+    String checkContinueWorking;
+    public MainService(CourseService courseService, LectureService lectureService) { //todo конструктор мейнсервиса для
+        this.courseService = courseService;
+        this.lectureService = lectureService;
+    }
 
     private static int readInteger() { //scanner processing for integer
         int id = SCANNER.nextInt();
@@ -19,14 +27,14 @@ public class MainService {
         SCANNER.nextLine();
     }
 
-    public String getLabelContinueWorking(String question) {
+    public String getCheckContinueWorking(String question) {
         System.out.println(question);
-        labelContinueWorking = SCANNER.nextLine();
-        while (!labelContinueWorking.equalsIgnoreCase("Y") && !labelContinueWorking.equalsIgnoreCase("N")) {
+        checkContinueWorking = SCANNER.nextLine();
+        while (!checkContinueWorking.equalsIgnoreCase("Y") && !checkContinueWorking.equalsIgnoreCase("N")) {
             System.out.println("input Y or N");
-            labelContinueWorking = SCANNER.nextLine();
+            checkContinueWorking = SCANNER.nextLine();
         }
-        return labelContinueWorking;
+        return checkContinueWorking;
     }
 
     public int choiceCategory() {
@@ -37,40 +45,74 @@ public class MainService {
         System.out.println("Student - select 4");
         System.out.println("Exit - select 5");
 
-        int category = readInteger();
+        checkSymbol = readInteger();
 
-        while (category < 1 || category > 5) {
-            System.out.println("try agan (number must be from 1 to 5)");
-            category = readInteger();
-        }
-        return category;
+        return getCheckSymbol();
     }
 
-    public void workWithLectures(LectureService lectureService, Course course, LectureRepository lectureRepository) {
-        String question = "would you create a new lecture? Y - Yes N - No";
-        labelContinueWorking = getLabelContinueWorking(question);
+    private int getCheckSymbol() {
+        while (checkSymbol < 1 || checkSymbol > 5) {
+            System.out.println("try agan (number must be from 1 to 5)");
+            checkSymbol = readInteger();
+        }return checkSymbol;
+    }
 
-        while (labelContinueWorking.equalsIgnoreCase("Y")) {
+    public int choiceAction() {
+        System.out.println("1 - create new");
+        System.out.println("2 - edit");
+        System.out.println("3 - delete");
+        System.out.println("4 - output all");
+        System.out.println("5 - exit");
 
-            System.out.print("input name of lecture ");
-            String nameLecture = SCANNER.nextLine();
-            lectureService.createLecture(course.id, nameLecture);
+        checkSymbol = readInteger();
 
-            if (Lecture.counter >= 8) {
-                System.out.println("limit has been reached");
+        return getCheckSymbol();
+    }
+
+    public void workWithLectures(LectureService lectureService, Course course) {
+        switch (choiceAction()) {
+            case 1: {
+                //todo labelContinueWorking = "Y";
+                String question = "would you create a new lecture? Y - Yes N - No";
+                while (checkContinueWorking.equalsIgnoreCase("Y")) {
+
+                    System.out.print("input name of lecture ");
+                    String nameLecture = SCANNER.nextLine();
+                    lectureService.createLecture(course.id, nameLecture);
+
+                    if (Lecture.counter >= 8) {
+                        System.out.println("limit has been reached");
+                        break;
+                    } else {
+                        checkContinueWorking = getCheckContinueWorking(question);
+                    }
+                }
+                System.out.println("Total created " + Lecture.counter + " lectures");
                 break;
-            } else {
-                labelContinueWorking = getLabelContinueWorking(question);
+            }
+            case 2: {
+                System.out.println("edit");
+                break;
+            }
+            case 3: {
+                System.out.println("delete");
+                break;
+            }
+            case 4: {
+                System.out.println("lectures count");
+                lectureService.out();
+                break;
+            }
+            case 5: {
+                System.out.println("exit");
+                break;
             }
         }
-        System.out.println("Total created " + Lecture.counter + " lectures");
     }
-
     public void autoCreate(LectureService lectureService, Course course) {
-        int autoCreateLectures = 0;
-        while (autoCreateLectures < 3) {
+        for (int i = 0; i < 3; i++) {
             lectureService.createLecture(course.id);
-            autoCreateLectures++;
         }
     }
 }
+
