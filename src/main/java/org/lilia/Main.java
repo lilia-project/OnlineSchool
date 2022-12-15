@@ -20,7 +20,7 @@ public class Main {
 
         Course course = courseService.createCourse();
 
-        mainService.autoCreate(lectureService, course);
+        mainService.autoCreateLectures(lectureService, course);
 
         System.out.println("Welcome to Online school!");
         String question = "continue working? Y - Continue N - Exit";
@@ -32,26 +32,15 @@ public class Main {
             System.out.println("_______________________");
 
             switch (category) {
-                case 1:
-                    System.out.println("you selected category 'Course'");
-                    break;
-                case 2:
+                case 1 -> System.out.println("you selected category 'Course'");
+                case 2 -> {
                     System.out.println("you selected category 'Lecture'\nchoice the action");
                     mainService.workWithLectures(lectureService, course);
-                    break;
-                case 3:
-                    System.out.println("you selected category 'Teacher'");
-                    break;
-                case 4:
-                    System.out.println("you selected category 'Student'");
-                    break;
-                case 5:
-                    System.out.print("Do you want finish or ");
-                    break;
-                default:
-
-                   // System.out.println("Error - incompatible symbol");
-                    break;
+                }
+                case 3 -> System.out.println("you selected category 'Teacher'");
+                case 4 -> System.out.println("you selected category 'Student'");
+                case 5 -> System.out.print("Do you want finish or ");
+                default -> System.out.println("Error - incompatible symbol");
             }
             checkContinueWorking = mainService.getCheckContinueWorking(question);
         }

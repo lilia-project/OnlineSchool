@@ -7,7 +7,7 @@ public class CourseService {
         return new Course();
     }
 
-    public Course createCourse(int idTeacher, int idLecture, int idStudent) {
-        return new Course(idTeacher, idLecture, idStudent);
+    public Course createCourse(int idTeacher, int idStudent) {
+        return new Course(idTeacher, idStudent);
     }
 }
