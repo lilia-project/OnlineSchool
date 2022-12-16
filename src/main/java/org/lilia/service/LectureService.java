@@ -26,7 +26,7 @@ public class LectureService {
 
     public void out() {
         for (Lecture lecture : lectureRepository.getAll()) {
-            System.out.println("id = " + lecture.id);
+            System.out.println("id = " + lecture.getId());
 
         }
     }

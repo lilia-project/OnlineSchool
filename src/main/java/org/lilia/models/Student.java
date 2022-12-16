@@ -5,6 +5,10 @@ public class Student {
 
     private final int id;
 
+    public int getId() {
+        return id;
+    }
+
     public Student() {
         counter++;
         id = counter;

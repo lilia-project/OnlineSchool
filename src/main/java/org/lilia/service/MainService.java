@@ -79,7 +79,7 @@ public class MainService {
                 while (checkContinueWorking.equalsIgnoreCase("Y")) {
                     System.out.print("input name of lecture ");
                     String nameLecture = SCANNER.nextLine();
-                    lectureService.createLecture(course.id, nameLecture);
+                    lectureService.createLecture(course.getId(), nameLecture);
 
                     if (Lecture.counter >= 8) {
                         System.out.println("limit has been reached");
@@ -111,7 +111,7 @@ public class MainService {
 
     public void autoCreateLectures(LectureService lectureService, Course course) {
         for (int i = 0; i < 3; i++) {
-            lectureService.createLecture(course.id);
+            lectureService.createLecture(course.getId());
         }
     }
 }

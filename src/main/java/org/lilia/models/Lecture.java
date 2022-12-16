@@ -3,11 +3,23 @@ package org.lilia.models;
 public class Lecture {
     public static int counter = 0;
 
-    public final int id;
-    public String nameLecture;
-    public final int idCourse;
+    private final int id;
+    private final int idCourse;
+    private String nameLecture;
     private Homework homework;
     private AdditionalMaterial additionalMaterial;
+
+    public String getNameLecture() {
+        return nameLecture;
+    }
+
+    public void setNameLecture(String nameLecture) {
+        this.nameLecture = nameLecture;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public Lecture(int idCourse) {
         this.idCourse = idCourse;
