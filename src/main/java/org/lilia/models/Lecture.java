@@ -6,8 +6,6 @@ public class Lecture {
     private final int id;
     private final int idCourse;
     private String nameLecture;
-    private Homework homework;
-    private AdditionalMaterial additionalMaterial;
 
     public String getNameLecture() {
         return nameLecture;
