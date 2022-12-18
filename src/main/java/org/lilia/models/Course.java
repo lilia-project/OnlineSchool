@@ -5,6 +5,14 @@ public class Course {
 
     private final int id;
 
+    public static void setCounter(int counter) {
+        Course.counter = counter;
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
     public int getId() {
         return id;
     }

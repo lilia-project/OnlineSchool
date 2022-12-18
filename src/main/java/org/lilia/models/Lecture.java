@@ -4,19 +4,32 @@ public class Lecture {
     public static int counter = 0;
 
     private final int id;
+
     private final int idCourse;
     private String nameLecture;
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public int getIdCourse() {
+        return idCourse;
+    }
 
     public String getNameLecture() {
         return nameLecture;
     }
 
-    public void setNameLecture(String nameLecture) {
-        this.nameLecture = nameLecture;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public static void setCounter(int counter) {
+        Lecture.counter = counter;
+    }
+
+    public void setNameLecture(String nameLecture) {
+        this.nameLecture = nameLecture;
     }
 
     public Lecture(int idCourse) {

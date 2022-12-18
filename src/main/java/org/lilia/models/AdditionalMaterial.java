@@ -7,8 +7,8 @@ public class AdditionalMaterial {
     private int idLecture;
     private String name;
 
-    public void setName(String name) {
-        this.name = name;
+    public static int getCounter() {
+        return counter;
     }
 
     public String getName() {
@@ -17,6 +17,22 @@ public class AdditionalMaterial {
 
     public int getId() {
         return id;
+    }
+
+    public int getIdLecture() {
+        return idLecture;
+    }
+
+    public static void setCounter(int counter) {
+        AdditionalMaterial.counter = counter;
+    }
+
+    public void setIdLecture(int idLecture) {
+        this.idLecture = idLecture;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public AdditionalMaterial() {

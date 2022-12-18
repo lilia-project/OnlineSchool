@@ -6,18 +6,29 @@ public class Student {
     private final int id;
     private int idCourse;
 
-    public Student(int idCourse) {
-        this.idCourse = idCourse;
-        counter++;
-        id = counter;
+    public static int getCounter() {
+        return counter;
     }
 
-    public Student() {
-        counter++;
-        id = counter;
+    public static void setCounter(int counter) {
+        Student.counter = counter;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getIdCourse() {
+        return idCourse;
+    }
+
+    public void setIdCourse(int idCourse) {
+        this.idCourse = idCourse;
+    }
+
+    public Student(int idCourse) {
+        this.idCourse = idCourse;
+        counter++;
+        id = counter;
     }
 }
