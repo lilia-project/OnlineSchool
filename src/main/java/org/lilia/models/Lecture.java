@@ -13,7 +13,6 @@ public class Lecture extends Model {
         super(name, ++counter);
         this.idCourse = idCourse;
     }
-
     @Override
     public String toString() {
         return "lecture: " +
