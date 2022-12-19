@@ -110,8 +110,9 @@ public class MainService {
     }
 
     public void autoCreateLectures(LectureService lectureService, Course course) {
+        String[] autoName = {"firstLecture", "secondLecture", "thirdLecture"};
         for (int i = 0; i < 3; i++) {
-            lectureService.createLecture(course.getId());
+            lectureService.createLecture(course.getId(), autoName[i]);
         }
     }
 }

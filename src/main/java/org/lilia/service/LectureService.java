@@ -17,13 +17,6 @@ public class LectureService {
         return lecture;
     }
 
-    public Lecture createLecture(int idCourse) {
-        Lecture lecture = new Lecture(idCourse);
-        lectureRepository.add(lecture);
-        System.out.println("Created " + lecture);
-        return lecture;
-    }
-
     public void out() {
         for (Lecture lecture : lectureRepository.getAll()) {
             System.out.println("id = " + lecture.getId());
