@@ -23,8 +23,8 @@ public class LectureRepository {
 
 
     public Lecture[] getAll() { //todo ?
-        Lecture[] resData = new Lecture[lengthArray];
-        for (int i = 0; i < lengthArray; i++) {
+        Lecture[] resData = new Lecture[size];
+        for (int i = 0; i < size; i++) {
             resData[i] = data[i];
         }
         return resData;
