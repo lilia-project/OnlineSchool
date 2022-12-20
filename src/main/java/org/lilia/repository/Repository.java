@@ -5,6 +5,8 @@ import org.lilia.models.Model;
 public class Repository {
     private int lengthArray;
     private int size = 0;
+    //Model model = ;
+   // private int idModel = model.getId();
     private Model[] data = new Model[lengthArray];
 
     public void add(Model model) {
@@ -22,11 +24,25 @@ public class Repository {
         data = newData;
     }
 
-    public Model[] getAll() { //todo ?
+    public Model[] getAll() {
         Model[] resData = new Model[size];
         System.arraycopy(data, 0, resData, 0, size);
         return resData;
     }
+
+    public void getBuild(int idEdit) {
+        Model model = data[idEdit];
+        System.out.println("you selected (from Repository)\n" + model);
+    }
+
+   /* public void deleteBuild() {
+        int idDelete = model.getId();
+        data[idDelete] = null;
+        System.out.println("model" + data[idDelete]);
+        for (int i = idDelete; i < (lengthArray-1); i++){
+            data[i] = data[i+1];
+        }
+    }*/
 
     public Model[] getData() {
         return data;
