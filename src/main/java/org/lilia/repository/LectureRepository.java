@@ -1,39 +1,21 @@
 package org.lilia.repository;
 
-import org.lilia.models.Lecture;
 import org.lilia.models.Model;
-import org.lilia.service.LectureService;
 
 public class LectureRepository extends Repository {
-    private final static int STANDARD_CAPACITY = 5;
-    private final int lengthArray = STANDARD_CAPACITY;
 
     @Override
-
-    public Lecture[] getAll() {
-        Lecture[] resData = (Lecture[]) super.getAll();
-        return resData;
+    public void getBuild(int idOpen) {
+        System.out.println("you selected to open lecture");
+        super.getBuild((idOpen - 1));
     }
 
     @Override
-    public void getBuild(int idEdit) {
-        System.out.println("you selected edit (from LectureRepository)");
-        super.getBuild(idEdit);
-
-
+    public Model[] deleteBuild(int idDelete) {
+        System.out.println("You want delete ");
+        super.deleteBuild((idDelete - 1));
+        return getData();
     }
-
-    /*@Override
-    public void deleteBuild() {
-        System.out.println("You want delete lecture number ");
-        super.deleteBuild();
-
-    }*/
-
-    /* @Override
-    public void add(Lecture lecture) {
-        super.add(lecture);
-    }*/
 }
 
 

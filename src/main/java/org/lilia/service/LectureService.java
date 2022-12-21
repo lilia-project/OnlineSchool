@@ -24,12 +24,14 @@ public class LectureService {
         }
     }
 
-    public int editLecture(int idEdit){
-        lectureRepository.getBuild(idEdit);
-        return idEdit;
+    public int openLecture(int idOpen) {
+        lectureRepository.getBuild(idOpen);
+        return idOpen;
     }
 
-   /* public void deleteLecture(){
-        lectureRepository.deleteBuild();
-    }*/
+    public int deleteLecture(int idDelete) {
+        lectureRepository.deleteBuild(idDelete);
+
+        return idDelete;
+    }
 }

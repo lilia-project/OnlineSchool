@@ -61,7 +61,7 @@ public class MainService {
 
     public int choiceAction() {
         System.out.println("1 - create new");
-        System.out.println("2 - edit");
+        System.out.println("2 - open");
         System.out.println("3 - output all");
         System.out.println("4 - delete");
         System.out.println("5 - exit");
@@ -91,23 +91,19 @@ public class MainService {
                 System.out.println("Total created " + Lecture.counter + " lectures");
                 break;
             case 2:
-                System.out.println("edit (from MainService)");
-                System.out.println("select number of lecture");
-                int idEdit = readInteger();
-                lectureService.editLecture(idEdit);
-                System.out.println("input new name of lecture");
-                String newName = SCANNER.nextLine();
-                lectureService.createLecture(1, newName);
+                System.out.println("open lecture number");
+                int idOpen = readInteger();
+                lectureService.openLecture(idOpen);
                 break;
             case 3:
-                System.out.println("number of lectures");
+                System.out.println("the list of lectures");
                 lectureService.out();
-//                System.out.println("delete");
-//                lectureService.deleteLecture();
                 break;
             case 4:
-                System.out.println("delete");
-               // lectureService.deleteLecture();
+                System.out.println("input lecture number");
+                int idDelete = readInteger();
+                lectureService.deleteLecture(idDelete);
+                lectureService.out();
 
                 break;
             case 5:

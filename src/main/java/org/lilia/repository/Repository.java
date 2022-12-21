@@ -3,10 +3,10 @@ package org.lilia.repository;
 import org.lilia.models.Model;
 
 public class Repository {
-    private int lengthArray;
+    private final static int STANDARD_CAPACITY = 5;
+
+    private int lengthArray = STANDARD_CAPACITY;
     private int size = 0;
-    //Model model = ;
-   // private int idModel = model.getId();
     private Model[] data = new Model[lengthArray];
 
     public void add(Model model) {
@@ -32,17 +32,17 @@ public class Repository {
 
     public void getBuild(int idEdit) {
         Model model = data[idEdit];
-        System.out.println("you selected (from Repository)\n" + model);
+        System.out.println(model);
     }
 
-   /* public void deleteBuild() {
-        int idDelete = model.getId();
-        data[idDelete] = null;
-        System.out.println("model" + data[idDelete]);
-        for (int i = idDelete; i < (lengthArray-1); i++){
-            data[i] = data[i+1];
+    public Model[] deleteBuild(int idDelete) {
+        Model model = data[idDelete];
+        System.out.println(model);
+        for (int i = idDelete; i < (size - 1); i++) {
+            data[i] = data[i + 1];
         }
-    }*/
+        return getData();
+    }
 
     public Model[] getData() {
         return data;
