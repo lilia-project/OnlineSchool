@@ -23,7 +23,6 @@ public class Main {
         Course course = courseService.createCourse("firstCourse");
 
         mainService.autoCreateLectures(lectureService, course);
-        System.out.println("lecture " + lectureRepository);
 
         System.out.println("Welcome to Online school!");
         String question = "continue working? Y - Continue N - Exit";

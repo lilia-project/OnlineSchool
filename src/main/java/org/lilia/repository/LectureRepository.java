@@ -5,15 +5,15 @@ import org.lilia.models.Model;
 public class LectureRepository extends Repository {
 
     @Override
-    public void getBuild(int idOpen) {
+    public void getById(int lectureId) {
         System.out.println("you selected to open lecture");
-        super.getBuild((idOpen - 1));
+        super.getById((lectureId - 1));
     }
 
     @Override
-    public Model[] deleteBuild(int idDelete) {
+    public Model[] deleteById(int lectureId) {
         System.out.println("You want delete ");
-        super.deleteBuild((idDelete - 1));
+        super.deleteById((lectureId - 1));
         return getData();
     }
 }

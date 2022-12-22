@@ -20,18 +20,16 @@ public class LectureService {
 
     public void out() {
         for (Model lecture : lectureRepository.getAll()) {
-            System.out.println("id = " + lecture.getId());
+            System.out.println("idCourse = " + ((Lecture) lecture).getIdCourse() + " id = " + lecture.getId() + " nameLecture = " + lecture.getName());
         }
     }
 
-    public int openLecture(int idOpen) {
-        lectureRepository.getBuild(idOpen);
-        return idOpen;
+    public void getById(int lectureId) {
+        lectureRepository.getById(lectureId);
     }
 
-    public int deleteLecture(int idDelete) {
-        lectureRepository.deleteBuild(idDelete);
-
-        return idDelete;
+    public void deleteById(int lectureId) {
+        lectureRepository.deleteById(lectureId);
+        System.out.println("Lecture " + lectureId + " has been deleted");
     }
 }
