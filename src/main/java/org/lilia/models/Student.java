@@ -1,12 +1,20 @@
 package org.lilia.models;
 
-public class Student {
-    private static int counter;
+public class Student extends Model {
+    private static int counter = 0;
 
-    private final int id;
+    private int idCourse;
 
-    public Student() {
-        counter++;
-        id = counter;
+    public int getIdCourse() {
+        return idCourse;
+    }
+
+    public void setIdCourse(int idCourse) {
+        this.idCourse = idCourse;
+    }
+
+    public Student(String name, int idCourse) {
+        super(name, ++counter);
+        this.idCourse = idCourse;
     }
 }

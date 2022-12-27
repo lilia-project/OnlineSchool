@@ -61,9 +61,9 @@ public class MainService {
 
     public int choiceAction() {
         System.out.println("1 - create new");
-        System.out.println("2 - edit");
-        System.out.println("3 - delete");
-        System.out.println("4 - output all");
+        System.out.println("2 - open/edit");
+        System.out.println("3 - output all");
+        System.out.println("4 - delete");
         System.out.println("5 - exit");
 
         checkIntNumber = readInteger();
@@ -79,7 +79,7 @@ public class MainService {
                 while (checkContinueWorking.equalsIgnoreCase("Y")) {
                     System.out.print("input name of lecture ");
                     String nameLecture = SCANNER.nextLine();
-                    lectureService.createLecture(course.id, nameLecture);
+                    lectureService.createLecture(course.getId(), nameLecture);
 
                     if (Lecture.counter >= 8) {
                         System.out.println("limit has been reached");
@@ -91,14 +91,20 @@ public class MainService {
                 System.out.println("Total created " + Lecture.counter + " lectures");
                 break;
             case 2:
-                System.out.println("edit");
+                System.out.println("open lecture number");
+                int lectureId = readInteger();
+                lectureService.getById(lectureId);
                 break;
             case 3:
-                System.out.println("delete");
+                System.out.println("the list of lectures");
+                lectureService.out();
                 break;
             case 4:
-                System.out.println("number of lectures");
+                System.out.println("input lecture number");
+                lectureId = readInteger();
+                lectureService.deleteById(lectureId);
                 lectureService.out();
+
                 break;
             case 5:
                 System.out.println("exit");
@@ -110,8 +116,9 @@ public class MainService {
     }
 
     public void autoCreateLectures(LectureService lectureService, Course course) {
+        String[] autoName = {"firstLecture", "secondLecture", "thirdLecture"};
         for (int i = 0; i < 3; i++) {
-            lectureService.createLecture(course.id);
+            lectureService.createLecture(course.getId(), autoName[i]);
         }
     }
 }

@@ -1,33 +1,20 @@
 package org.lilia.repository;
 
-import org.lilia.models.Lecture;
-import org.lilia.service.LectureService;
+import org.lilia.models.Model;
 
-public class LectureRepository {
-    private final static int STANDARD_CAPACITY = 5;
-    private int lengthArray = STANDARD_CAPACITY; //todo
-    public Lecture[] data = new Lecture[lengthArray];
-    private int size = 0;
+public class LectureRepository extends Repository {
 
-    public void add(Lecture lecture) {
-        if (lengthArray <= size) { //todo extract method
-            lengthArray = lengthArray * 3 / 2 + 1;
-            Lecture[] newData = new Lecture[lengthArray];
-            System.arraycopy(data, 0, newData, 0, size);
-            data = newData;
-        }
-        data[size] = lecture;
-        size++;
+    @Override
+    public void getById(int lectureId) {
+        System.out.println("you selected to open lecture");
+        super.getById((lectureId - 1));
     }
 
-
-
-    public Lecture[] getAll() { //todo ?
-        Lecture[] resData = new Lecture[lengthArray];
-        for (int i = 0; i < lengthArray; i++) {
-            resData[i] = data[i];
-        }
-        return resData;
+    @Override
+    public Model[] deleteById(int lectureId) {
+        System.out.println("You want delete ");
+        super.deleteById((lectureId - 1));
+        return getData();
     }
 }
 

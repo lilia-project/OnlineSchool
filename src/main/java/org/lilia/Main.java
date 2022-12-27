@@ -1,5 +1,6 @@
 package org.lilia;
 
+import org.lilia.models.Model;
 import org.lilia.models.Course;
 import org.lilia.repository.LectureRepository;
 import org.lilia.service.CourseService;
@@ -18,7 +19,8 @@ public class Main {
         CourseService courseService = new CourseService();
         MainService mainService = new MainService(courseService,lectureService);
 
-        Course course = courseService.createCourse();
+
+        Course course = courseService.createCourse("firstCourse");
 
         mainService.autoCreateLectures(lectureService, course);
 
