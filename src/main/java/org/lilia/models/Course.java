@@ -1,22 +1,20 @@
 package org.lilia.models;
 
 public class Course {
-    public int id;
-    public static int counter;
+    private static int counter = 0;
+    
+    public final int id;
+    private int idStudent;
+    private int idTeacher;
 
-    public int idLecture;
-    public int idStudent;
-    public int idTeacher;
-
-    public Course(int id) {
-        this.id = id;
-        //this.idLecture = idLecture;
+    public Course() {
         counter++;
+        id = counter;
     }
-    public Course(int id, int idTeacher, int idLecture, int idStudent){
-        this.id = id;
+    public Course(int idTeacher, int idStudent){
         this.idTeacher = idTeacher;
-        this.idLecture = idLecture;
         this.idStudent = idStudent;
+        counter++;
+        id = counter;
     }
 }
