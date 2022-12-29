@@ -5,9 +5,16 @@ public class Lecture extends Model {
 
     private final int idCourse;
 
-    public Lecture(int idCourse, String name) {
+    private int personId;
+
+    public Lecture(int idCourse, String name, int personId) {
         super(name, ++counter);
         this.idCourse = idCourse;
+        this.personId = personId;
+    }
+
+    public int getPersonId() {
+        return personId;
     }
 
     public int getIdCourse() {
@@ -16,9 +23,9 @@ public class Lecture extends Model {
 
     @Override
     public String toString() {
-        return "lecture: " +
-                "id = " + getId() +
-                ", nameLecture = '" + getName() + "'," +
-                " idCourse = " + getIdCourse();
+        return "\n idCourse = " + getIdCourse() +
+                "\n idLecture = " + getId() +
+                "\n nameLecture = '" + getName() + "'," +
+                "\n idTeacher = " + personId;
     }
 }

@@ -11,16 +11,18 @@ public class LectureService {
         this.lectureRepository = lectureRepository;
     }
 
-    public Lecture createLecture(int idCourse, String nameLecture) {
-        Lecture lecture = new Lecture(idCourse, nameLecture);
+    public Lecture createLecture(int idCourse, String nameLecture, int personId) {
+        Lecture lecture = new Lecture(idCourse, nameLecture, personId);
         lectureRepository.add(lecture);
-        System.out.println("Created " + lecture);
+        System.out.println("\nthe lecture has been created: " + lecture);
         return lecture;
     }
 
     public void out() {
         for (Model lecture : lectureRepository.getAll()) {
-            System.out.println("idCourse = " + ((Lecture) lecture).getIdCourse() + " id = " + lecture.getId() + " nameLecture = " + lecture.getName());
+            System.out.println("idCourse = " + ((Lecture) lecture).getIdCourse() +
+                    " idLecture = " + lecture.getId() + " nameLecture = " + lecture.getName() +
+                    " idTeacher = " + ((Lecture) lecture).getPersonId());
         }
     }
 

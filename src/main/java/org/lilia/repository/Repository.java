@@ -1,5 +1,6 @@
 package org.lilia.repository;
 
+import org.lilia.models.Lecture;
 import org.lilia.models.Model;
 
 import java.util.Arrays;
@@ -34,13 +35,15 @@ public class Repository {
     public Model[] getAll() {
         Model[] resData = new Model[size];
         System.arraycopy(data, 0, resData, 0, size);
-        System.out.println(Arrays.toString(resData));
+        System.out.println(Arrays.toString(resData));// todo delete sout
         return resData;
     }
 
+
+
     public void getById(int lectureId) {
         Model model = data[lectureId];
-        System.out.println(model);
+        System.out.println((Lecture) model); //todo
     }
 
     public Model[] deleteById(int lectureId) {

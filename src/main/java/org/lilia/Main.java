@@ -1,11 +1,13 @@
 package org.lilia;
 
-import org.lilia.models.Model;
 import org.lilia.models.Course;
+import org.lilia.models.Person;
 import org.lilia.repository.LectureRepository;
+import org.lilia.repository.TeacherRepository;
 import org.lilia.service.CourseService;
 import org.lilia.service.LectureService;
 import org.lilia.service.MainService;
+import org.lilia.service.PersonService;
 
 import java.util.Scanner;
 
@@ -17,14 +19,19 @@ public class Main {
         LectureRepository lectureRepository = new LectureRepository();
         LectureService lectureService = new LectureService(lectureRepository);
         CourseService courseService = new CourseService();
-        MainService mainService = new MainService(courseService,lectureService);
-
+        TeacherRepository teacherRepository = new TeacherRepository();
+        PersonService personService = new PersonService(teacherRepository);
+        MainService mainService = new MainService(courseService, lectureService, personService);
 
         Course course = courseService.createCourse("firstCourse");
 
-        mainService.autoCreateLectures(lectureService, course);
+        Person teacher = personService.createPerson(course.getId(), null);
+        System.out.println("\n from main\n idCourse = " + course.getId() + "\n personId = " + teacher.getId() +
+                "\n nameTeacher is null");
 
-        System.out.println("Welcome to Online school!");
+        mainService.autoCreateLectures(lectureService, course, teacher.getId());
+
+        System.out.println("\nWelcome to Online school!");
         String question = "continue working? Y - Continue N - Exit";
         String checkContinueWorking = mainService.getCheckContinueWorking(question);
 
