@@ -32,8 +32,8 @@ public class Person extends Model {
 
     @Override
     public String toString() {
-        return " idCourse = " + courseId +
+        return " courseId = " + courseId +
                 " personId = " + id +
-                " nameTeacher = " + getName();
+                " teacherName = " + getName();
     }
 }

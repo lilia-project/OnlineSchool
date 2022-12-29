@@ -1,9 +1,7 @@
 package org.lilia.service;
-
 import org.lilia.models.Lecture;
 import org.lilia.models.Model;
 import org.lilia.repository.LectureRepository;
-
 public class LectureService {
     private final LectureRepository lectureRepository;// todo объявление переменной
 
@@ -20,9 +18,10 @@ public class LectureService {
 
     public void out() {
         for (Model lecture : lectureRepository.getAll()) {
-            System.out.println("idCourse = " + ((Lecture) lecture).getIdCourse() +
-                    " idLecture = " + lecture.getId() + " nameLecture = " + lecture.getName() +
-                    " idTeacher = " + ((Lecture) lecture).getPersonId());
+            System.out.println("idCourse = " + ((Lecture) lecture).getCourseId() +
+                             " idTeacher = " + ((Lecture) lecture).getPersonId() +
+                             " idLecture = " + lecture.getId() +
+                             " nameLecture = " + lecture.getName());
         }
     }
 

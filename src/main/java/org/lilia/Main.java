@@ -26,8 +26,9 @@ public class Main {
         Course course = courseService.createCourse("firstCourse");
 
         Person teacher = personService.createPerson(course.getId(), null);
-        System.out.println("\n from main\n idCourse = " + course.getId() + "\n personId = " + teacher.getId() +
-                "\n nameTeacher is null");
+
+//        System.out.println("\n from main\n idCourse = " + course.getId() + "\n personId = " + teacher.getId() +
+//                "\n nameTeacher is null");
 
         mainService.autoCreateLectures(lectureService, course, teacher.getId());
 

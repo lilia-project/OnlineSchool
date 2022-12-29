@@ -3,6 +3,8 @@ package org.lilia.service;
 import org.lilia.models.Course;
 import org.lilia.models.Lecture;
 
+import java.util.Arrays;
+
 import static org.lilia.Main.SCANNER;
 
 public class MainService {
@@ -80,13 +82,16 @@ public class MainService {
             case 1:
                 String question = "would you create a new lecture? Y - Yes N - No";
                 while (checkContinueWorking.equalsIgnoreCase("Y")) {
-                    System.out.print("input name of lecture ");
-                    String lectureName = SCANNER.nextLine();
 
-                    System.out.print("input teacherId ");
-                    System.out.println("available " + personService.getAllTeacherIds());//
+                    System.out.println("input teacherId ");
+                    //System.out.println("available teacherId");
+
+                    System.out.println("available teacherId " + Arrays.toString(personService.getAllTeacherIds()));
+
                     int teacherId = readInteger();
 
+                    System.out.print("input name of lecture ");
+                    String lectureName = SCANNER.nextLine();
                     lectureService.createLecture(course.getId(), lectureName, teacherId);
 
                     if (Lecture.counter >= 8) {

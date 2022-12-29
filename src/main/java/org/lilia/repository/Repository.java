@@ -1,21 +1,14 @@
 package org.lilia.repository;
 
-import org.lilia.models.Lecture;
 import org.lilia.models.Model;
 
 import java.util.Arrays;
-
 public class Repository {
     private final static int STANDARD_CAPACITY = 5;
 
     private int lengthArray = STANDARD_CAPACITY;
-
-    public int getSize() {
-        return size;
-    }
-
-    private int size = 0;
     private Model[] data = new Model[lengthArray];
+    private int size = 0;
 
     public void add(Model model) {
         if (lengthArray <= size) {
@@ -35,15 +28,13 @@ public class Repository {
     public Model[] getAll() {
         Model[] resData = new Model[size];
         System.arraycopy(data, 0, resData, 0, size);
-        System.out.println(Arrays.toString(resData));// todo delete sout
+        System.out.println(Arrays.toString(resData));
         return resData;
     }
 
-
-
     public void getById(int lectureId) {
         Model model = data[lectureId];
-        System.out.println((Lecture) model); //todo
+        System.out.println(model); //todo
     }
 
     public Model[] deleteById(int lectureId) {
@@ -66,5 +57,9 @@ public class Repository {
 
     public void setLengthArray(int lengthArray) {
         this.lengthArray = lengthArray;
+    }
+
+    public int getSize() {
+        return size;
     }
 }

@@ -1,15 +1,13 @@
 package org.lilia.models;
-
 public class Lecture extends Model {
     public static int counter = 0;
 
-    private final int idCourse;
+    private final int courseId;
+    private final int personId;
 
-    private int personId;
-
-    public Lecture(int idCourse, String name, int personId) {
+    public Lecture(int courseId, String name, int personId) {
         super(name, ++counter);
-        this.idCourse = idCourse;
+        this.courseId = courseId;
         this.personId = personId;
     }
 
@@ -17,15 +15,15 @@ public class Lecture extends Model {
         return personId;
     }
 
-    public int getIdCourse() {
-        return idCourse;
+    public int getCourseId() {
+        return courseId;
     }
 
     @Override
     public String toString() {
-        return "\n idCourse = " + getIdCourse() +
+        return "\n idCourse = " + getCourseId() +
+                "\n idTeacher = " + personId +
                 "\n idLecture = " + getId() +
-                "\n nameLecture = '" + getName() + "'," +
-                "\n idTeacher = " + personId;
+                "\n nameLecture = '" + getName() + "',";
     }
 }
