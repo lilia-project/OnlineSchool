@@ -3,6 +3,8 @@ package org.lilia.service;
 import org.lilia.models.Course;
 import org.lilia.models.Lecture;
 
+import java.util.Arrays;
+
 import static org.lilia.Main.SCANNER;
 
 public class MainService {
@@ -12,10 +14,13 @@ public class MainService {
 
     private final CourseService courseService;
     private final LectureService lectureService;
+    private final PersonService personService;
 
-    public MainService(CourseService courseService, LectureService lectureService) {
+
+    public MainService(CourseService courseService, LectureService lectureService, PersonService personService) {
         this.courseService = courseService;
         this.lectureService = lectureService;
+        this.personService = personService;
     }
 
     private static int readInteger() { //scanner processing for integer
@@ -77,9 +82,17 @@ public class MainService {
             case 1:
                 String question = "would you create a new lecture? Y - Yes N - No";
                 while (checkContinueWorking.equalsIgnoreCase("Y")) {
+
+                    System.out.println("input teacherId ");
+                    //System.out.println("available teacherId");
+
+                    System.out.println("available teacherId " + Arrays.toString(personService.getAllTeacherIds()));
+
+                    int teacherId = readInteger();
+
                     System.out.print("input name of lecture ");
-                    String nameLecture = SCANNER.nextLine();
-                    lectureService.createLecture(course.getId(), nameLecture);
+                    String lectureName = SCANNER.nextLine();
+                    lectureService.createLecture(course.getId(), lectureName, teacherId);
 
                     if (Lecture.counter >= 8) {
                         System.out.println("limit has been reached");
@@ -93,6 +106,7 @@ public class MainService {
             case 2:
                 System.out.println("open lecture number");
                 int lectureId = readInteger();
+
                 lectureService.getById(lectureId);
                 break;
             case 3:
@@ -115,10 +129,10 @@ public class MainService {
         }
     }
 
-    public void autoCreateLectures(LectureService lectureService, Course course) {
+    public void autoCreateLectures(LectureService lectureService, Course course, int personId) {
         String[] autoName = {"firstLecture", "secondLecture", "thirdLecture"};
         for (int i = 0; i < 3; i++) {
-            lectureService.createLecture(course.getId(), autoName[i]);
+            lectureService.createLecture(course.getId(), autoName[i], personId);
         }
     }
 }
