@@ -92,7 +92,7 @@ public class MainService {
 
                     System.out.print("input name of lecture ");
                     String lectureName = SCANNER.nextLine();
-                    lectureService.createLecture(course.getId(), lectureName, teacherId);
+                    lectureService.createLecture(course.getId(), lectureName, teacherId, "descriptionLecture");
 
                     if (Lecture.counter >= 8) {
                         System.out.println("limit has been reached");
@@ -132,7 +132,7 @@ public class MainService {
     public void autoCreateLectures(LectureService lectureService, Course course, int personId) {
         String[] autoName = {"firstLecture", "secondLecture", "thirdLecture"};
         for (int i = 0; i < 3; i++) {
-            lectureService.createLecture(course.getId(), autoName[i], personId);
+            lectureService.createLecture(course.getId(), autoName[i], personId, "descriptionLecture");
         }
     }
 }

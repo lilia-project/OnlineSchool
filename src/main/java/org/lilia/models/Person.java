@@ -7,18 +7,25 @@ public class Person extends Model {
 
     private final int courseId;
     private final int id;
+    private final String lastName;
+    private final int phone;
+    private final String email;
 
     private final Role role;
 
-    private Person(int courseId, String name, Role role) {
-        super(name, ++counter);
+    private Person(int courseId, String firstName, Role role, String lastName,
+                   int phone, String email) {
+        super(firstName, ++counter);
         this.courseId = courseId;
         this.id = counter++;
         this.role = role;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
     }
 
-    public static Person createTeacher(int courseId, String name) { // todo забыла прописат параметры
-        Person teacher = new Person(courseId, name, TEACHER);
+    public static Person createTeacher(int courseId, String firstName, String lastName, int phone, String email) {
+        Person teacher = new Person(courseId, firstName, TEACHER, lastName, phone, email);
         return teacher;
     }
 
@@ -33,7 +40,10 @@ public class Person extends Model {
     @Override
     public String toString() {
         return " courseId = " + courseId +
-                " personId = " + id +
-                " teacherName = " + getName();
+                " teacherId = " + id +
+                " teacherFirstName = " + getName() +
+                " teacherLastName = " + lastName +
+                " teacherPhone = " + phone +
+                " teacherEmail = " + email;
     }
 }

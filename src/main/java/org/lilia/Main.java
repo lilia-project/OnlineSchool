@@ -23,12 +23,13 @@ public class Main {
         PersonService personService = new PersonService(teacherRepository);
         MainService mainService = new MainService(courseService, lectureService, personService);
 
-        Course course = courseService.createCourse("firstCourse");
+        System.out.println("input courseName\n");
+        String courseName = SCANNER.nextLine();
 
-        Person teacher = personService.createPerson(course.getId(), null);
+        Course course = courseService.createCourse(courseName);
 
-//        System.out.println("\n from main\n idCourse = " + course.getId() + "\n personId = " + teacher.getId() +
-//                "\n nameTeacher is null");
+        Person teacher = personService.createPerson(course.getId(), "null", "null",
+                959999777, "you@gmail.com");
 
         mainService.autoCreateLectures(lectureService, course, teacher.getId());
 
