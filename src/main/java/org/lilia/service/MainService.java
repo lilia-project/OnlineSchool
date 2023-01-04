@@ -9,12 +9,13 @@ import static org.lilia.Main.SCANNER;
 
 public class MainService {
 
-    private static String checkContinueWorking;
+    private static String userChoice;
     private static int checkIntNumber;
 
     private final CourseService courseService;
     private final LectureService lectureService;
     private final PersonService personService;
+    private String pattern;
 
 
     public MainService(CourseService courseService, LectureService lectureService, PersonService personService) {
@@ -33,14 +34,14 @@ public class MainService {
         SCANNER.nextLine();
     }
 
-    public String getCheckContinueWorking(String question) {
-        System.out.println(question);
-        checkContinueWorking = SCANNER.nextLine();
-        while (!checkContinueWorking.equalsIgnoreCase("Y") && !checkContinueWorking.equalsIgnoreCase("N")) {
-            System.out.println("input Y or N");
-            checkContinueWorking = SCANNER.nextLine();
+    public String checkContinueWork(String userChoice, String pattern, String question) {
+        boolean b = userChoice.matches(pattern);
+        while (!b) {
+            System.out.println(question + "\ninput Y or N");
+            userChoice = SCANNER.nextLine();
+            b = userChoice.matches(pattern);
         }
-        return checkContinueWorking;
+        return userChoice;
     }
 
     public int choiceCategory() {
@@ -81,32 +82,34 @@ public class MainService {
         switch (choiceAction()) {
             case 1:
                 String question = "would you create a new lecture? Y - Yes N - No";
-                while (checkContinueWorking.equalsIgnoreCase("Y")) {
+                System.out.println(question);
+                userChoice = SCANNER.nextLine();
+                pattern = "[y|Y|n|N]";
+                checkContinueWork(userChoice, pattern, question);
+                while (userChoice.equalsIgnoreCase("Y")) {
 
                     System.out.println("input teacherId ");
-                    //System.out.println("available teacherId");
 
                     System.out.println("available teacherId " + Arrays.toString(personService.getAllTeacherIds()));
 
-                    int teacherId = readInteger();
+                    int teacherId = readInteger();// todo validation [1-9]
 
                     System.out.print("input name of lecture ");
-                    String lectureName = SCANNER.nextLine();
+                    String lectureName = SCANNER.nextLine();// todo validation \\w+\\d*
+                    pattern = "\\w+\\d*";
+                    validate(lectureName, pattern);
                     lectureService.createLecture(course.getId(), lectureName, teacherId, "descriptionLecture");
 
-                    if (Lecture.counter >= 8) {
-                        System.out.println("limit has been reached");
-                        break;
-                    } else {
-                        checkContinueWorking = getCheckContinueWorking(question);
-                    }
+                    pattern = "[y|Y|n|N]";
+                    System.out.println(question);
+                    userChoice = SCANNER.nextLine();
+                    checkContinueWork(userChoice, pattern, question);
                 }
                 System.out.println("Total created " + Lecture.counter + " lectures");
                 break;
             case 2:
                 System.out.println("open lecture number");
-                int lectureId = readInteger();
-
+                int lectureId = readInteger();// todo validation [1-9]{2}
                 lectureService.getById(lectureId);
                 break;
             case 3:
@@ -115,7 +118,7 @@ public class MainService {
                 break;
             case 4:
                 System.out.println("input lecture number");
-                lectureId = readInteger();
+                lectureId = readInteger();// todo validation
                 lectureService.deleteById(lectureId);
                 lectureService.out();
 
@@ -129,11 +132,24 @@ public class MainService {
         }
     }
 
+    public void workWithPerson(PersonService personService, Course course) {
+    }
+
     public void autoCreateLectures(LectureService lectureService, Course course, int personId) {
         String[] autoName = {"firstLecture", "secondLecture", "thirdLecture"};
         for (int i = 0; i < 3; i++) {
             lectureService.createLecture(course.getId(), autoName[i], personId, "descriptionLecture");
         }
+    }
+
+    public String validate(String data, String pattern) {
+        boolean b = data.matches(pattern);
+        while (!b) {
+            System.out.println("error, repeat input");
+            data = SCANNER.nextLine();
+            b = data.matches(pattern);
+        }
+        return data;
     }
 }
 

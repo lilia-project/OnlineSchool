@@ -24,7 +24,10 @@ public class Main {
         MainService mainService = new MainService(courseService, lectureService, personService);
 
         System.out.println("input courseName\n");
-        String courseName = SCANNER.nextLine();
+        String courseName = SCANNER.nextLine();// todo "^[a-zA-Z]+\\d*"
+        String pattern = "^[a-zA-Z]+\\d*";
+        mainService.validate(courseName, pattern);
+
 
         Course course = courseService.createCourse(courseName);
 
@@ -35,11 +38,14 @@ public class Main {
 
         System.out.println("\nWelcome to Online school!");
         String question = "continue working? Y - Continue N - Exit";
-        String checkContinueWorking = mainService.getCheckContinueWorking(question);
+        System.out.println(question);
+        pattern = "[y|Y|n|N]";
+        String userChoice = SCANNER.nextLine();
+        mainService.checkContinueWork(userChoice, pattern, question);
 
-        while (checkContinueWorking.equalsIgnoreCase("Y")) {
+        while (userChoice.equalsIgnoreCase("Y")) {
 
-            int category = mainService.choiceCategory();
+            int category = mainService.choiceCategory();// todo validation [1-5]
             System.out.println("_______________________");
 
             switch (category) {
@@ -48,12 +54,18 @@ public class Main {
                     System.out.println("you selected category 'Lecture'\nchoice the action");
                     mainService.workWithLectures(lectureService, course);
                 }
-                case 3 -> System.out.println("you selected category 'Teacher'");
-                case 4 -> System.out.println("you selected category 'Student'");
+                case 3 -> {
+                    System.out.println("you selected category 'Teacher'\nchoice the action");
+                    mainService.workWithPerson(personService, course);
+                }
+                case 4 -> System.out.println("you selected category 'Student'\nchoice the action");
                 case 5 -> System.out.print("Do you want finish or ");
                 default -> System.out.println("Error - incompatible symbol");
             }
-            checkContinueWorking = mainService.getCheckContinueWorking(question);
+            System.out.println(question);
+            pattern = "[y|Y|n|N]";
+            userChoice = SCANNER.nextLine();
+            mainService.checkContinueWork(userChoice, pattern, question);
         }
         SCANNER.close();
     }
