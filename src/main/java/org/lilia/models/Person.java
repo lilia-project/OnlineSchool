@@ -8,13 +8,12 @@ public class Person extends Model {
     private final int courseId;
     private final int id;
     private final String lastName;
-    private final int phone;
+    private final String phone;
     private final String email;
 
     private final Role role;
 
-    private Person(int courseId, String firstName, Role role, String lastName,
-                   int phone, String email) {
+    private Person(int courseId, String firstName, Role role, String lastName, String phone, String email) {
         super(firstName, ++counter);
         this.courseId = courseId;
         this.id = counter++;
@@ -24,7 +23,7 @@ public class Person extends Model {
         this.email = email;
     }
 
-    public static Person createTeacher(int courseId, String firstName, String lastName, int phone, String email) {
+    public static Person createTeacher(int courseId, String firstName, String lastName, String phone, String email) {
         Person teacher = new Person(courseId, firstName, TEACHER, lastName, phone, email);
         return teacher;
     }

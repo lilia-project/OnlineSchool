@@ -9,14 +9,11 @@ import static org.lilia.Main.SCANNER;
 
 public class MainService {
 
-    private static String userChoice;
     private static int checkIntNumber;
 
     private final CourseService courseService;
     private final LectureService lectureService;
     private final PersonService personService;
-    private String pattern;
-
 
     public MainService(CourseService courseService, LectureService lectureService, PersonService personService) {
         this.courseService = courseService;
@@ -32,16 +29,6 @@ public class MainService {
 
     private static void feedNewLine() { //scanner processing for button enter
         SCANNER.nextLine();
-    }
-
-    public String checkContinueWork(String userChoice, String pattern, String question) {
-        boolean b = userChoice.matches(pattern);
-        while (!b) {
-            System.out.println(question + "\ninput Y or N");
-            userChoice = SCANNER.nextLine();
-            b = userChoice.matches(pattern);
-        }
-        return userChoice;
     }
 
     public int choiceCategory() {
@@ -77,33 +64,34 @@ public class MainService {
         return getCheckIntNumber();
     }
 
+    public void workWithCourse(CourseService courseService, Course course) {
+    }
+
     public void workWithLectures(LectureService lectureService, Course course) {
 
         switch (choiceAction()) {
             case 1:
                 String question = "would you create a new lecture? Y - Yes N - No";
                 System.out.println(question);
-                userChoice = SCANNER.nextLine();
-                pattern = "[y|Y|n|N]";
-                checkContinueWork(userChoice, pattern, question);
+                String userChoice = readAndValidationInput("[y|Y|n|N]");
+
                 while (userChoice.equalsIgnoreCase("Y")) {
 
-                    System.out.println("input teacherId ");
-
-                    System.out.println("available teacherId " + Arrays.toString(personService.getAllTeacherIds()));
+                    System.out.println("input teacher's id ");
+                    System.out.println("available teacher's id " + Arrays.toString(personService.getAllTeacherIds()));
 
                     int teacherId = readInteger();// todo validation [1-9]
 
                     System.out.print("input name of lecture ");
-                    String lectureName = SCANNER.nextLine();// todo validation \\w+\\d*
-                    pattern = "\\w+\\d*";
-                    validate(lectureName, pattern);
-                    lectureService.createLecture(course.getId(), lectureName, teacherId, "descriptionLecture");
+                    String lectureName = readAndValidationInput("\\w+\\d*");
 
-                    pattern = "[y|Y|n|N]";
+                    System.out.print("input description of lecture ");
+                    String descriptionLecture = readAndValidationInput("\\w+");
+
+                    lectureService.createLecture(course.getId(), lectureName, teacherId, descriptionLecture);
+
                     System.out.println(question);
-                    userChoice = SCANNER.nextLine();
-                    checkContinueWork(userChoice, pattern, question);
+                    userChoice = readAndValidationInput("[y|Y|n|N]");
                 }
                 System.out.println("Total created " + Lecture.counter + " lectures");
                 break;
@@ -120,8 +108,6 @@ public class MainService {
                 System.out.println("input lecture number");
                 lectureId = readInteger();// todo validation
                 lectureService.deleteById(lectureId);
-                lectureService.out();
-
                 break;
             case 5:
                 System.out.println("exit");
@@ -133,11 +119,12 @@ public class MainService {
     }
 
     public void workWithPerson(PersonService personService, Course course) {
+
     }
 
     public void autoCreateLectures(LectureService lectureService, Course course, int personId) {
         String[] autoName = {"firstLecture", "secondLecture", "thirdLecture"};
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             lectureService.createLecture(course.getId(), autoName[i], personId, "descriptionLecture");
         }
     }
@@ -150,6 +137,12 @@ public class MainService {
             b = data.matches(pattern);
         }
         return data;
+    }
+
+    public String readAndValidationInput(String pattern) {
+        String name = SCANNER.nextLine();
+        validate(name, pattern);
+        return name;
     }
 }
 

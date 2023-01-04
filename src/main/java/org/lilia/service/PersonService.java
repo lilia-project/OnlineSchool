@@ -11,8 +11,8 @@ public class PersonService {
         this.teacherRepository = teacherRepository;
     }
 
-    public Person createPerson(int courseId, String firstName, String lastName, int phone, String email) {
-        Person teacher = Person.createTeacher(courseId, firstName,lastName, phone, email);
+    public Person createPerson(int courseId, String firstName, String lastName, String phone, String email) {
+        Person teacher = Person.createTeacher(courseId, firstName, lastName, phone, email);
         teacherRepository.add(teacher);
         System.out.println("\nthe teacher has been created:\n" + teacher);
         return teacher;
