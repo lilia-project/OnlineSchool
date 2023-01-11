@@ -2,17 +2,24 @@ package org.lilia.service;
 
 import org.lilia.models.Model;
 import org.lilia.models.Person;
-import org.lilia.repository.TeacherRepository;
+import org.lilia.repository.GeneralRepository;
 
 public class PersonService {
-    private final TeacherRepository teacherRepository;
-
-    public PersonService(TeacherRepository teacherRepository) {
+    public PersonService(GeneralRepository<Person> teacherRepository) {
         this.teacherRepository = teacherRepository;
     }
 
+    private final GeneralRepository<Person> teacherRepository;
+
     public Person createPerson(int courseId, String firstName, String lastName, String phone, String email) {
         Person teacher = Person.createTeacher(courseId, firstName, lastName, phone, email);
+        teacherRepository.add(teacher);
+        System.out.println("\nthe teacher has been created:\n" + teacher);
+        return teacher;
+    }
+
+    public Person createPerson(int courseId, String firstName, String lastName) {
+        Person teacher = Person.createTeacher(courseId, firstName, lastName);
         teacherRepository.add(teacher);
         System.out.println("\nthe teacher has been created:\n" + teacher);
         return teacher;

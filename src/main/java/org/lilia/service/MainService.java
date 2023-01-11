@@ -21,7 +21,7 @@ public class MainService {
         this.personService = personService;
     }
 
-    private static int readInteger() { //scanner processing for integer
+    public static int readInteger() { //scanner processing for integer
         int id = SCANNER.nextInt();
         feedNewLine();
         return id;
@@ -98,7 +98,7 @@ public class MainService {
             case 2:
                 System.out.println("open lecture number");
                 int lectureId = readInteger();// todo validation [1-9]{2}
-                lectureService.getById(lectureId);
+                lectureService.printById(lectureId);
                 break;
             case 3:
                 System.out.println("the list of lectures");
@@ -119,7 +119,6 @@ public class MainService {
     }
 
     public void workWithPerson(PersonService personService, Course course) {
-
     }
 
     public void autoCreateLectures(LectureService lectureService, Course course, int personId) {
@@ -143,6 +142,12 @@ public class MainService {
         String name = SCANNER.nextLine();
         validate(name, pattern);
         return name;
+    }
+
+    public int indexIsValid(int index) {
+        System.out.println("Error, index must be from 0 to ");
+        int indexInput = SCANNER.nextInt();
+        return indexInput;
     }
 }
 

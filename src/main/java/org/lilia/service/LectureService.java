@@ -2,12 +2,14 @@ package org.lilia.service;
 
 import org.lilia.models.Lecture;
 import org.lilia.models.Model;
-import org.lilia.repository.LectureRepository;
+import org.lilia.repository.GeneralRepository;
 
 public class LectureService {
-    private final LectureRepository lectureRepository;
 
-    public LectureService(LectureRepository lectureRepository) {// todo конструктор, принимающий ссылку на репо
+    private final GeneralRepository<Lecture> lectureRepository;//указать тип объуктов точно
+    //название перем должно отражать что там лежит
+
+    public LectureService(GeneralRepository<Lecture> lectureRepository) {
         this.lectureRepository = lectureRepository;
     }
 
@@ -24,12 +26,14 @@ public class LectureService {
         }
     }
 
-    public void getById(int lectureId) {
-        lectureRepository.getById(lectureId);
+    public void printById(int lectureId) {
+        System.out.println("you selected to open lecture");
+        Model lecture = lectureRepository.getE(lectureId);
+        System.out.println(lecture);
     }
 
     public void deleteById(int lectureId) {
-        lectureRepository.deleteById(lectureId);
+        lectureRepository.remove(lectureId);
         System.out.println("Lecture " + lectureId + " has been deleted");
     }
 }

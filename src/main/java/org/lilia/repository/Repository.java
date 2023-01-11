@@ -2,7 +2,6 @@ package org.lilia.repository;
 
 import org.lilia.models.Model;
 
-import java.util.Arrays;
 public class Repository {
     private final static int STANDARD_CAPACITY = 5;
 
@@ -25,22 +24,10 @@ public class Repository {
         data = newData;
     }
 
-    public Model[] getAll() {
-        Model[] resData = new Model[size];
-        System.arraycopy(data, 0, resData, 0, size);
-        System.out.println(Arrays.toString(resData));
-        return resData;
-    }
-
-    public void getById(int lectureId) {
-        Model model = data[lectureId];
-        System.out.println(model); //todo
-    }
-
-    public Model[] deleteById(int lectureId) {
-        Model model = data[lectureId];
+    public Model[] deleteById(int id) {
+        Model model = data[id];
         System.out.println(model);
-        for (int i = lectureId; i < (size - 1); i++) {
+        for (int i = id; i < (size - 1); i++) {
             data[i] = data[i + 1];
         }
         size--;
