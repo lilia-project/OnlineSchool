@@ -13,8 +13,29 @@ public class LectureService {
         this.lectureRepository = lectureRepository;
     }
 
-    public Lecture createLecture(int idCourse, String nameLecture, int personId, String description) {
-        Lecture lecture = new Lecture(idCourse, nameLecture, personId, description);
+    public Lecture createLecture(String nameLecture) {
+        Lecture lecture = new Lecture(nameLecture);
+        lectureRepository.add(lecture);
+        System.out.println("\nthe lecture has been created: " + lecture);
+        return lecture;
+    }
+
+    public Lecture createLecture(String nameLecture, String description) {
+        Lecture lecture = new Lecture(nameLecture, description);
+        lectureRepository.add(lecture);
+        System.out.println("\nthe lecture has been created: " + lecture);
+        return lecture;
+    }
+
+    public Lecture createLecture(int courseId, String nameLecture, String description) {
+        Lecture lecture = new Lecture(courseId, nameLecture, description);
+        lectureRepository.add(lecture);
+        System.out.println("\nthe lecture has been created: " + lecture);
+        return lecture;
+    }
+
+    public Lecture createLecture(int courseId,String nameLecture, String description, int personId) {
+        Lecture lecture = new Lecture(courseId, nameLecture, description, personId);
         lectureRepository.add(lecture);
         System.out.println("\nthe lecture has been created: " + lecture);
         return lecture;

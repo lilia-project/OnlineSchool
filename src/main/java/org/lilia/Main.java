@@ -23,21 +23,21 @@ public class Main {
         PersonService personService = new PersonService(teacherRepository);// todo name of variable
         MainService mainService = new MainService(courseService, lectureService, personService);
 
-        System.out.println("input course's name\n");
-        String courseName = mainService.readAndValidationInput("^[a-zA-Z]+\\d*");
-
-        Course course = courseService.createCourse(courseName);
-
-        System.out.println("input teacher's firstName\n");
-        String firstName = mainService.readAndValidationInput("[a-zA-Z]+");
-        System.out.println("input teacher's lastName\n");
-        String lastName = mainService.readAndValidationInput("[a-zA-Z]+");
+//        System.out.println("input course's name\n");
+//        String courseName = mainService.readAndValidationInput("^[a-zA-Z]+\\d*");
+//
+//        Course course = courseService.createCourse(courseName);
+//
+//        System.out.println("input teacher's firstName\n");
+//        String firstName = mainService.readAndValidationInput("[a-zA-Z]+");
+//        System.out.println("input teacher's lastName\n");
+//        String lastName = mainService.readAndValidationInput("[a-zA-Z]+");
        /* System.out.println("input teacher's phone\n");
         String phone = mainService.readAndValidationInput("\\+\\d{3}");
         System.out.println("input teacher's email\n");
         String email = mainService.readAndValidationInput("\\w+@\\w+\\.\\w+");*/
 
-        Person teacher = personService.createPerson(course.getId(), firstName, lastName);
+       // Person teacher = personService.createPerson(course.getId(), firstName, lastName);
 
         // mainService.autoCreateLectures(lectureService, course, teacher.getId());
 
@@ -53,19 +53,19 @@ public class Main {
             switch (category) {
                 case 1 -> {
                     System.out.println("you selected category 'Course'\nchoice the action");
-                    mainService.workWithCourse(courseService, course);
+                    mainService.workWithCourse(courseService);
                 }
                 case 2 -> {
                     System.out.println("you selected category 'Lecture'\nchoice the action");
-                    mainService.workWithLectures(lectureService, course);
+                    mainService.workWithLectures(lectureService);
                 }
                 case 3 -> {
                     System.out.println("you selected category 'Teacher'\nchoice the action");
-                    mainService.workWithPerson(personService, course);
+                    mainService.workWithPerson(personService);
                 }
                 case 4 -> {
                     System.out.println("you selected category 'Student'\nchoice the action");
-                    mainService.workWithPerson(personService, course);
+                    mainService.workWithPerson(personService);
                 }
                 case 5 -> System.out.print("Do you want finish or ");
                 default -> System.out.println("Error - incompatible symbol");

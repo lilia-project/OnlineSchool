@@ -64,10 +64,10 @@ public class MainService {
         return getCheckIntNumber();
     }
 
-    public void workWithCourse(CourseService courseService, Course course) {
+    public void workWithCourse(CourseService courseService) {
     }
 
-    public void workWithLectures(LectureService lectureService, Course course) {
+    public void workWithLectures(LectureService lectureService) {
 
         switch (choiceAction()) {
             case 1:
@@ -77,18 +77,18 @@ public class MainService {
 
                 while (userChoice.equalsIgnoreCase("Y")) {
 
-                    System.out.println("input teacher's id ");
-                    System.out.println("available teacher's id " + Arrays.toString(personService.getAllTeacherIds()));
+                    //System.out.println("input teacher's id ");
+                    //System.out.println("available teacher's id " + Arrays.toString(personService.getAllTeacherIds()));
 
-                    int teacherId = readInteger();// todo validation [1-9]
+                    //int teacherId = readInteger();// todo validation [1-9]
 
                     System.out.print("input name of lecture ");
                     String lectureName = readAndValidationInput("\\w+\\d*");
 
-                    System.out.print("input description of lecture ");
-                    String descriptionLecture = readAndValidationInput("\\w+");
+                   // System.out.print("input description of lecture ");
+                   // String descriptionLecture = readAndValidationInput("\\w+");
 
-                    lectureService.createLecture(course.getId(), lectureName, teacherId, descriptionLecture);
+                    lectureService.createLecture(lectureName);
 
                     System.out.println(question);
                     userChoice = readAndValidationInput("[y|Y|n|N]");
@@ -99,6 +99,10 @@ public class MainService {
                 System.out.println("open lecture number");
                 int lectureId = readInteger();// todo validation [1-9]{2}
                 lectureService.printById(lectureId);
+                System.out.println("want you add description?\n Y - yes, N - no");
+                readAndValidationInput("[y|Y|n|N]");
+                String descriptionLecture = readAndValidationInput("\\w+");
+                lectureService.createLecture(lecture.lectureName, descriptionLecture)
                 break;
             case 3:
                 System.out.println("the list of lectures");
@@ -118,15 +122,15 @@ public class MainService {
         }
     }
 
-    public void workWithPerson(PersonService personService, Course course) {
+    public void workWithPerson(PersonService personService) {
     }
 
-    public void autoCreateLectures(LectureService lectureService, Course course, int personId) {
+   /* public void autoCreateLectures(LectureService lectureService, Course course, int personId) {
         String[] autoName = {"firstLecture", "secondLecture", "thirdLecture"};
         for (int i = 0; i < 2; i++) {
             lectureService.createLecture(course.getId(), autoName[i], personId, "descriptionLecture");
         }
-    }
+    }*/
 
     public String validate(String data, String pattern) {
         boolean b = data.matches(pattern);

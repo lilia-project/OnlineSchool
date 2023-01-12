@@ -3,26 +3,30 @@ package org.lilia.models;
 public class Lecture extends Model {
     public static int counter = 0;
 
-    private final int courseId;
+    private int courseId;
     private int personId;
     private String description;
 
-    public Lecture(int courseId, String name, int personId, String description) {
+    public Lecture(String name) {
         super(name, ++counter);
-        this.courseId = courseId;
-        this.personId = personId;
-        this.description = description;
     }
 
-    public Lecture(int courseId, String name) {
+    public Lecture(String name, String description) {
         super(name, ++counter);
-        this.courseId = courseId;
+        this.description = description;
     }
 
     public Lecture(int courseId, String name, String description) {
         super(name, ++counter);
         this.courseId = courseId;
         this.description = description;
+    }
+
+    public Lecture(int courseId, String name, String description, int personId) {
+        super(name, ++counter);
+        this.courseId = courseId;
+        this.description = description;
+        this.personId = personId;
     }
 
     public int getPersonId() {
