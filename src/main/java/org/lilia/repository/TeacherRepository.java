@@ -1,5 +1,4 @@
 package org.lilia.repository;
 
-public class TeacherRepository {
-    TeacherRepository[] teacher = new TeacherRepository[10];
+public class TeacherRepository extends Repository {
 }

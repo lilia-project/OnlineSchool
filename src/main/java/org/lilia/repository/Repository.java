@@ -3,18 +3,12 @@ package org.lilia.repository;
 import org.lilia.models.Model;
 
 import java.util.Arrays;
-
 public class Repository {
     private final static int STANDARD_CAPACITY = 5;
 
     private int lengthArray = STANDARD_CAPACITY;
-
-    public int getSize() {
-        return size;
-    }
-
-    private int size = 0;
     private Model[] data = new Model[lengthArray];
+    private int size = 0;
 
     public void add(Model model) {
         if (lengthArray <= size) {
@@ -40,7 +34,7 @@ public class Repository {
 
     public void getById(int lectureId) {
         Model model = data[lectureId];
-        System.out.println(model);
+        System.out.println(model); //todo
     }
 
     public Model[] deleteById(int lectureId) {
@@ -63,5 +57,9 @@ public class Repository {
 
     public void setLengthArray(int lengthArray) {
         this.lengthArray = lengthArray;
+    }
+
+    public int getSize() {
+        return size;
     }
 }
