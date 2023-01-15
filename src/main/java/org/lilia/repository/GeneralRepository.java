@@ -2,16 +2,19 @@ package org.lilia.repository;
 
 import org.lilia.models.Model;
 
-import java.util.Arrays;
-
 public class GeneralRepository<E extends Model> {
     private final static int STANDARD_CAPACITY = 5;
 
     private int lengthArray = STANDARD_CAPACITY;
+
+    public int getSize() {
+        return size;
+    }
+
     private int size = 0;
     private Model[] list = new Model[lengthArray];//general array
 
-    public void add(E element) { //добаляет элемент в конец массива
+    public void add(E element) { //addition the element by end of array
         if (lengthArray <= size) {
             expandingArray();
         }
@@ -19,8 +22,7 @@ public class GeneralRepository<E extends Model> {
         size++;
     }
 
-    public void add(int index, E element) { //add the element by index
-        // todo check indexIsValid 0 and size
+    public void add(int index, E element) { //addition the element by index
 
         if (lengthArray <= size) {
             expandingArray();
@@ -36,15 +38,7 @@ public class GeneralRepository<E extends Model> {
         }
         list[index] = element;
         size++;
-    } //todo граничные случаи
-
-//    private int indexIsValid(int index){
-//        while (index < 0 && index > size){
-//            System.out.println("Error, index must be from 0 to " + size());
-//            return index;
-//        }
-//
-//    }
+    }
 
     public E remove(int index) { //delete by index
         Model model = list[index];
@@ -68,14 +62,14 @@ public class GeneralRepository<E extends Model> {
                 return (E) model;
             }
         }
+        System.out.println("no such index exist");
         return null;
     }
 
-    public E[] getAll() {
+    public Model[] getAll() {
         Model[] resList = new Model[size];
         System.arraycopy(list, 0, resList, 0, size);
-        System.out.println(Arrays.toString(resList));
-        return (E[]) resList;
+        return resList;
     }
 
     public boolean isEmpty() { // check the array by empty
@@ -86,7 +80,7 @@ public class GeneralRepository<E extends Model> {
         return b;
     }
 
-    public int size() { // get array's size
+    public int size() {
         return size;
     }
 }

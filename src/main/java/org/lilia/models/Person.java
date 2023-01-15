@@ -6,13 +6,12 @@ import static org.lilia.models.Role.TEACHER;
 public class Person extends Model {
     private static int counter = 0;
 
-    private int courseId;
     private final int id;
     private final String lastName;
-    private String phone;
-    private String email;
-
+    private final String phone;
+    private final String email;
     private final Role role;
+    private int courseId;
 
     private Person(int courseId, String firstName, Role role, String lastName, String phone, String email) {
         super(firstName, ++counter);
@@ -24,34 +23,8 @@ public class Person extends Model {
         this.email = email;
     }
 
-    private Person(String firstName, Role role, String lastName, String phone, String email) {
-        super(firstName, ++counter);
-        this.id = counter++;
-        this.role = role;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.email = email;
-    }
-
-    private Person(int courseId, String firstName, Role role, String lastName) {
-        super(firstName, ++counter);
-        this.id = counter++;
-        this.role = role;
-        this.lastName = lastName;
-    }
-
     public static Person createTeacher(int courseId, String firstName, String lastName, String phone, String email) {
         Person teacher = new Person(courseId, firstName, TEACHER, lastName, phone, email);
-        return teacher;
-    }
-
-    public static Person createTeacher(String firstName, String lastName, String phone, String email) {
-        Person teacher = new Person(firstName, TEACHER, lastName, phone, email);
-        return teacher;
-    }
-
-    public static Person createTeacher(int courseId, String firstName, String lastName) {
-        Person teacher = new Person(courseId, firstName, TEACHER, lastName);
         return teacher;
     }
 

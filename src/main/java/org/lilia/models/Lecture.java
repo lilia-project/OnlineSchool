@@ -3,29 +3,31 @@ package org.lilia.models;
 public class Lecture extends Model {
     public static int counter = 0;
 
-    private int courseId;
-    private int personId;
     private String description;
 
-    public Lecture(String name) {
-        super(name, ++counter);
-    }
+    private int courseId;
+    private int personId;
 
-    public Lecture(String name, String description) {
-        super(name, ++counter);
-        this.description = description;
-    }
-
-    public Lecture(int courseId, String name, String description) {
-        super(name, ++counter);
-        this.courseId = courseId;
-        this.description = description;
+    public Lecture() {
+        super();
     }
 
     public Lecture(int courseId, String name, String description, int personId) {
         super(name, ++counter);
         this.courseId = courseId;
         this.description = description;
+        this.personId = personId;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    public void setPersonId(int personId) {
         this.personId = personId;
     }
 
@@ -43,10 +45,10 @@ public class Lecture extends Model {
 
     @Override
     public String toString() {
-        return "\n courseId = " + courseId +
+        return "\n lectureId = " + getId() +
+                "\n courseId = " + courseId +
                 "\n teacherId = " + personId +
-                "\n lectureId = " + getId() +
                 "\n lectureName = '" + getName() + "'," +
-                "\n lectureDescription = '" + description + "'";
+                "\n lectureDescription = '" + description + "'\n";
     }
 }

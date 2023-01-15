@@ -1,6 +1,5 @@
 package org.lilia;
 
-import org.lilia.models.Course;
 import org.lilia.models.Lecture;
 import org.lilia.models.Person;
 import org.lilia.repository.GeneralRepository;
@@ -23,24 +22,6 @@ public class Main {
         PersonService personService = new PersonService(teacherRepository);// todo name of variable
         MainService mainService = new MainService(courseService, lectureService, personService);
 
-//        System.out.println("input course's name\n");
-//        String courseName = mainService.readAndValidationInput("^[a-zA-Z]+\\d*");
-//
-//        Course course = courseService.createCourse(courseName);
-//
-//        System.out.println("input teacher's firstName\n");
-//        String firstName = mainService.readAndValidationInput("[a-zA-Z]+");
-//        System.out.println("input teacher's lastName\n");
-//        String lastName = mainService.readAndValidationInput("[a-zA-Z]+");
-       /* System.out.println("input teacher's phone\n");
-        String phone = mainService.readAndValidationInput("\\+\\d{3}");
-        System.out.println("input teacher's email\n");
-        String email = mainService.readAndValidationInput("\\w+@\\w+\\.\\w+");*/
-
-       // Person teacher = personService.createPerson(course.getId(), firstName, lastName);
-
-        // mainService.autoCreateLectures(lectureService, course, teacher.getId());
-
         System.out.println("\nWelcome to Online school!");
         String question = "continue working? Y - Continue N - Exit";
         System.out.println(question);
@@ -48,7 +29,7 @@ public class Main {
 
         while (userChoice.equalsIgnoreCase("Y")) {
 
-            int category = mainService.choiceCategory();// todo validation [1-5]
+            int category = mainService.choiceCategory();
 
             switch (category) {
                 case 1 -> {
