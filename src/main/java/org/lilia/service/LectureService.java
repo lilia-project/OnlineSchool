@@ -3,15 +3,22 @@ package org.lilia.service;
 import org.lilia.models.Lecture;
 import org.lilia.models.LectureDto;
 import org.lilia.models.Model;
-import org.lilia.repository.GeneralRepository;
+import org.lilia.repository.LectureRepository;
 
 public class LectureService {
 
-    private final GeneralRepository<Lecture> lectureRepository;//указать тип объуктов точно
+    private final LectureRepository lectureRepository;//указать тип объуктов точно
     //название перем должно отражать что там лежит
 
-    public LectureService(GeneralRepository<Lecture> lectureRepository) {
+    public LectureService(LectureRepository lectureRepository) {
         this.lectureRepository = lectureRepository;
+    }
+
+    public Lecture createLecture(String lectureName) {
+        Lecture lecture = new Lecture(lectureName);
+        lectureRepository.add(lecture);
+        System.out.println("\nthe lecture has been created: " + lecture);
+        return lecture;
     }
 
     public Lecture createLecture(int courseId, String lectureName, String description, int personId) {
@@ -61,6 +68,7 @@ public class LectureService {
     }
 
     public int size() {
+
         return lectureRepository.size();
     }
 }

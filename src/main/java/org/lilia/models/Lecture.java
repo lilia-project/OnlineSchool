@@ -3,20 +3,11 @@ package org.lilia.models;
 public class Lecture extends Model {
     public static int counter = 0;
 
-    private String description;
-
     private int courseId;
     private int personId;
 
     public Lecture() {
         super();
-    }
-
-    public Lecture(int courseId, String name, String description, int personId) {
-        super(name, ++counter);
-        this.courseId = courseId;
-        this.description = description;
-        this.personId = personId;
     }
 
     public void setDescription(String description) {
@@ -28,6 +19,19 @@ public class Lecture extends Model {
     }
 
     public void setPersonId(int personId) {
+        this.personId = personId;
+    }
+
+    private String description;
+
+    public Lecture(String name) {
+        super(name, ++counter);
+    }
+
+    public Lecture(int courseId, String name, String description, int personId) {
+        super(name, ++counter);
+        this.courseId = courseId;
+        this.description = description;
         this.personId = personId;
     }
 

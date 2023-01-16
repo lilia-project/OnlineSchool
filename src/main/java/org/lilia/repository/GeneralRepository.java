@@ -2,16 +2,13 @@ package org.lilia.repository;
 
 import org.lilia.models.Model;
 
-public class GeneralRepository<E extends Model> {
-    private final static int STANDARD_CAPACITY = 5;
+public class GeneralRepository {
+    /*private static final int STANDARD_CAPACITY = 5;
 
     private int lengthArray = STANDARD_CAPACITY;
 
-    public int getSize() {
-        return size;
-    }
-
     private int size = 0;
+
     private Model[] list = new Model[lengthArray];//general array
 
     public void add(E element) { //addition the element by end of array
@@ -82,5 +79,5 @@ public class GeneralRepository<E extends Model> {
 
     public int size() {
         return size;
-    }
+    }*/
 }

@@ -1,8 +1,9 @@
 package org.lilia;
 
-import org.lilia.models.Lecture;
-import org.lilia.models.Person;
-import org.lilia.repository.GeneralRepository;
+import org.lilia.repository.LectureRepository;
+import org.lilia.repository.LectureRepositoryImpl;
+import org.lilia.repository.TeacherRepository;
+import org.lilia.repository.TeacherRepositoryImpl;
 import org.lilia.service.CourseService;
 import org.lilia.service.LectureService;
 import org.lilia.service.MainService;
@@ -15,10 +16,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        GeneralRepository<Lecture> lectureRepository = new <Lecture>GeneralRepository();
+        LectureRepository lectureRepository = new LectureRepositoryImpl();
         LectureService lectureService = new LectureService(lectureRepository);
         CourseService courseService = new CourseService();
-        GeneralRepository<Person> teacherRepository = new <Person>GeneralRepository();
+        TeacherRepository teacherRepository = new TeacherRepositoryImpl();
         PersonService personService = new PersonService(teacherRepository);// todo name of variable
         MainService mainService = new MainService(courseService, lectureService, personService);
 

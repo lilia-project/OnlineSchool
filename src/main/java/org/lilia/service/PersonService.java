@@ -2,12 +2,12 @@ package org.lilia.service;
 
 import org.lilia.models.Model;
 import org.lilia.models.Person;
-import org.lilia.repository.GeneralRepository;
+import org.lilia.repository.TeacherRepository;
 
 public class PersonService {
-    private final GeneralRepository<Person> teacherRepository;
+    private final TeacherRepository teacherRepository;
 
-    public PersonService(GeneralRepository<Person> teacherRepository) {
+    public PersonService(TeacherRepository teacherRepository) {
         this.teacherRepository = teacherRepository;
     }
 
