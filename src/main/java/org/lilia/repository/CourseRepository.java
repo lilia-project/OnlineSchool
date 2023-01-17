@@ -1,6 +1,7 @@
 package org.lilia.repository;
 
 import org.lilia.models.Course;
+import org.lilia.models.Lecture;
 
 public interface CourseRepository {
 
@@ -15,4 +16,8 @@ public interface CourseRepository {
     boolean isEmpty();
 
     int size();
+
+    void expandingArray();
+
+    Course[] getAll();
 }

@@ -120,7 +120,7 @@ public class MainService {
                     System.out.println("Error");
                     break;
             }
-            System.out.println("stay in category Lecture?");
+            System.out.println("stay in category Lecture? Y - yes, N - no");
             userChoice = readAndValidationInput("[y|Y|n|N]");
             if (userChoice.equalsIgnoreCase("N")) {
                 break;
@@ -132,9 +132,9 @@ public class MainService {
     }
 
     public String readAndValidationInput(String pattern) {
-        String name = SCANNER.nextLine();
-        validate(name, pattern);
-        return name;
+        String stringData = SCANNER.nextLine();
+        stringData = validate(stringData, pattern);
+        return stringData;
     }
 
     public String validate(String data, String pattern) {

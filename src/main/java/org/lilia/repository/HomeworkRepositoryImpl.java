@@ -1,16 +1,16 @@
 package org.lilia.repository;
 
-import org.lilia.models.Course;
+import org.lilia.models.Homework;
 
-public class CourseRepositoryImpl implements CourseRepository {
+public class HomeworkRepositoryImpl implements HomeworkRepository {
     private static final int STANDARD_CAPACITY = 5;
 
     private int lengthArray = STANDARD_CAPACITY;
     private int size = 0;
-    private Course[] list = new Course[lengthArray];
+    private Homework[] list = new Homework[lengthArray];
 
     @Override
-    public void add(Course element) {
+    public void add(Homework element) {
         if (lengthArray <= size) {
             expandingArray();
         }
@@ -19,7 +19,7 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
-    public void add(int index, Course element) {
+    public void add(int index, Homework element) {
         if (lengthArray <= size) {
             expandingArray();
         }
@@ -37,20 +37,20 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
-    public Course remove(int index) {
-        Course course = list[index];
+    public Homework remove(int index) {
+        Homework homework = list[index];
         for (int i = index; i < (size - 1); i++) {
             list[i] = list[i + 1];
         }
         size--;
-        return course;
+        return homework;
     }
 
     @Override
-    public Course getE(int index) {
-        for (Course course : list) {
-            if (course.getId() == index) {
-                return course;
+    public Homework getE(int index) {
+        for (Homework homework : list) {
+            if (homework.getId() == index) {
+                return homework;
             }
         }
         System.out.println("no such index exist");
@@ -74,14 +74,14 @@ public class CourseRepositoryImpl implements CourseRepository {
     @Override
     public void expandingArray() {
         lengthArray = lengthArray * 3 / 2 + 1;
-        Course[] newList = new Course[lengthArray];
+        Homework[] newList = new Homework[lengthArray];
         System.arraycopy(list, 0, newList, 0, size);
         list = newList;
     }
 
     @Override
-    public Course[] getAll() {
-        Course[] resList = new Course[size];
+    public Homework[] getAll() {
+        Homework[] resList = new Homework[size];
         System.arraycopy(list, 0, resList, 0, size);
         return resList;
     }
