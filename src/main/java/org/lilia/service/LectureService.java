@@ -2,39 +2,30 @@ package org.lilia.service;
 
 import org.lilia.models.Lecture;
 import org.lilia.models.LectureDto;
-import org.lilia.models.Model;
 import org.lilia.repository.LectureRepository;
 
 public class LectureService {
 
-    private final LectureRepository lectureRepository;//указать тип объуктов точно
-    //название перем должно отражать что там лежит
+    private final LectureRepository lectureRepository;
 
     public LectureService(LectureRepository lectureRepository) {
         this.lectureRepository = lectureRepository;
     }
 
-    public Lecture createLecture(String lectureName) {
-        Lecture lecture = new Lecture(lectureName);
+    public Lecture createLecture(int courseId, String lectureName, String description, String homework, int personId) {
+        Lecture lecture = new Lecture(courseId, lectureName, description, homework, personId);
         lectureRepository.add(lecture);
         System.out.println("\nthe lecture has been created: " + lecture);
         return lecture;
     }
 
-    public Lecture createLecture(int courseId, String lectureName, String description, int personId) {
-        Lecture lecture = new Lecture(courseId, lectureName, description, personId);
-        lectureRepository.add(lecture);
-        System.out.println("\nthe lecture has been created: " + lecture);
-        return lecture;
-    }
-
-    public LectureDto createLectureDto(int courseId, String lectureName, String description, int personId) {
-        LectureDto lectureDto = new LectureDto(courseId, lectureName, description, personId);
+    public LectureDto createLectureDto(int courseId, String lectureName, String description, String homework, int personId) {
+        LectureDto lectureDto = new LectureDto(courseId, lectureName, description, homework, personId);
         return lectureDto;
     }
 
     public void out() {
-        for (Model lecture : lectureRepository.getAll()) {
+        for (Lecture lecture : lectureRepository.getAll()) {
             System.out.println(lecture.toString());
         }
     }
@@ -56,6 +47,9 @@ public class LectureService {
         if (lectureDto.getCourseId() != 0) { // todo курс id поменчть на Integer в DTO
             lecture.setCourseId(lectureDto.getCourseId());
         }
+        if (lectureDto.getHomework() != null) {
+            lecture.setHomework(lectureDto.getHomework());
+        }
         if (lectureDto.getTeacherId() != 0) {
             lecture.setPersonId(lectureDto.getTeacherId());
         }
@@ -68,7 +62,6 @@ public class LectureService {
     }
 
     public int size() {
-
         return lectureRepository.size();
     }
 }

@@ -64,7 +64,7 @@ public class MainService {
                         System.out.print("input name of lecture ");
                         String lectureName = readAndValidationInput("\\w+\\d*");
 
-                        lectureService.createLecture(0, lectureName, null, 0);
+                        lectureService.createLecture(0, lectureName, null, null, 0);
 
                         System.out.println(questionToUser);
                         userChoice = readAndValidationInput("[y|Y|n|N]");
@@ -84,17 +84,26 @@ public class MainService {
                     userChoice = readAndValidationInput("[y|Y|n|N]");
 
                     while (userChoice.equalsIgnoreCase("Y")) {
+
                         System.out.println("lecture's name");
                         String lectureName = readAndValidationInput("\\w+\\d*");
+
                         System.out.println("lecture's description");
                         String lectureDescription = readAndValidationInput("\\w+\\d*");
-                        System.out.println("choose from available course id");
 
+                        System.out.println("choose from available course id");
                         String courseId = readAndValidationInput("\\d+");
+
+                        System.out.println("input homework");
+                        String lectureHomework = readAndValidationInput("\\w+\\d*");
+                        // todo add another task
+//                        System.out.println("want to add another task?");
+//                        userChoice = readAndValidationInput("[Y|y|N|n]");
+
                         System.out.println("teacher id");
                         String personId = readAndValidationInput("\\d+");
 
-                        LectureDto lectureDto = lectureService.createLectureDto(Integer.parseInt(courseId), lectureName, lectureDescription, Integer.parseInt(personId));
+                        LectureDto lectureDto = lectureService.createLectureDto(Integer.parseInt(courseId), lectureName, lectureDescription, lectureHomework, Integer.parseInt(personId));
                         System.out.println(lectureDto);
 
                         Lecture lectureUpdate = lectureService.updateLecture(lecture, lectureDto);

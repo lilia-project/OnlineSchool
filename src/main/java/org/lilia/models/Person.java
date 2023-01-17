@@ -3,49 +3,77 @@ package org.lilia.models;
 import static org.lilia.models.Role.STUDENT;
 import static org.lilia.models.Role.TEACHER;
 
-public class Person extends Model {
+public class Person{
     private static int counter = 0;
 
     private final int id;
+
+    private final String firstName;
+
     private final String lastName;
     private final String phone;
     private final String email;
     private final Role role;
     private int courseId;
-
-    private Person(int courseId, String firstName, Role role, String lastName, String phone, String email) {
-        super(firstName, ++counter);
-        this.courseId = courseId;
-        this.id = counter++;
-        this.role = role;
+    public Person(int courseId, String firstName, String lastName, String phone, String email, Role role) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
+        this.role = role;
+        this.courseId = courseId;
+        counter++;
+        id = counter;
     }
 
+
     public static Person createTeacher(int courseId, String firstName, String lastName, String phone, String email) {
-        Person teacher = new Person(courseId, firstName, TEACHER, lastName, phone, email);
+        Person teacher = new Person(courseId, firstName, lastName, phone, email, TEACHER);
         return teacher;
     }
 
     public static Person createStudent(int courseId, String firstName, String lastName, String phone, String email) {
-        Person student = new Person(courseId, firstName, STUDENT, lastName, phone, email);
+        Person student = new Person(courseId, firstName, lastName, phone, email, STUDENT);
         return student;
-    }
-
-    public int getCourseId() {
-        return courseId;
     }
 
     public int getId() {
         return id;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
     @Override
     public String toString() {
         return " courseId = " + courseId +
                 " teacherId = " + id +
-                " teacherFirstName = " + getName() +
+                " teacherFirstName = " + firstName +
                 " teacherLastName = " + lastName +
                 " teacherPhone = " + phone +
                 " teacherEmail = " + email;

@@ -1,13 +1,42 @@
 package org.lilia.models;
 
-public class Lecture extends Model {
+public class Lecture {
     public static int counter = 0;
 
+    private final int id;
+    private String name;
     private int courseId;
     private int personId;
+    private String description;
+    private String homework;
+    private String[] homeworksList = new String[5];
 
-    public Lecture() {
-        super();
+
+    public Lecture(int courseId, String name, String description, String homework, int personId) {
+        counter++;
+        id = counter;
+        this.courseId = courseId;
+        this.name = name;
+        this.description = description;
+        this.homework = homework;
+        this.personId = personId;
+    }
+
+    private void add(String homework) {
+        for (int i = 0; i <= 4; i++) {
+            homeworksList[i] = homework;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "\n lectureId = " + id +
+                "\n courseId = " + courseId +
+                "\n lectureName = '" + name + "'," +
+                "\n lectureDescription = '" + description + "'" +
+                "\n lectureHomework = '" + homework + "'" +
+                "\n teacherId = " + personId;
+
     }
 
     public void setDescription(String description) {
@@ -22,17 +51,8 @@ public class Lecture extends Model {
         this.personId = personId;
     }
 
-    private String description;
-
-    public Lecture(String name) {
-        super(name, ++counter);
-    }
-
-    public Lecture(int courseId, String name, String description, int personId) {
-        super(name, ++counter);
-        this.courseId = courseId;
-        this.description = description;
-        this.personId = personId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPersonId() {
@@ -47,12 +67,19 @@ public class Lecture extends Model {
         return description;
     }
 
-    @Override
-    public String toString() {
-        return "\n lectureId = " + getId() +
-                "\n courseId = " + courseId +
-                "\n teacherId = " + personId +
-                "\n lectureName = '" + getName() + "'," +
-                "\n lectureDescription = '" + description + "'\n";
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getHomework() {
+        return homework;
+    }
+
+    public void setHomework(String homework) {
+        this.homework = homework;
     }
 }

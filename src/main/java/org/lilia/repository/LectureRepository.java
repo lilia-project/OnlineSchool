@@ -1,7 +1,6 @@
 package org.lilia.repository;
 
 import org.lilia.models.Lecture;
-import org.lilia.models.Model;
 
 public interface LectureRepository {
 

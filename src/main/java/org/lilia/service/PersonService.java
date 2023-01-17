@@ -1,6 +1,5 @@
 package org.lilia.service;
 
-import org.lilia.models.Model;
 import org.lilia.models.Person;
 import org.lilia.repository.TeacherRepository;
 
@@ -19,7 +18,7 @@ public class PersonService {
     }
 
     public int[] getAllTeacherIds() {
-        Model[] teacher = teacherRepository.getAll();
+        Person[] teacher = teacherRepository.getAll();
         int[] allTeacherIds = new int[teacher.length];
         for (int i = 0; i < teacher.length; i++) {
             allTeacherIds[i] = teacher[i].getId();
