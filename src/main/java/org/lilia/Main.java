@@ -1,13 +1,7 @@
 package org.lilia;
 
-import org.lilia.repository.LectureRepository;
-import org.lilia.repository.LectureRepositoryImpl;
-import org.lilia.repository.TeacherRepository;
-import org.lilia.repository.TeacherRepositoryImpl;
-import org.lilia.service.CourseService;
-import org.lilia.service.LectureService;
-import org.lilia.service.MainService;
-import org.lilia.service.PersonService;
+import org.lilia.repository.*;
+import org.lilia.service.*;
 
 import java.util.Scanner;
 
@@ -17,11 +11,13 @@ public class Main {
     public static void main(String[] args) {
 
         LectureRepository lectureRepository = new LectureRepositoryImpl();
-        LectureService lectureService = new LectureService(lectureRepository);
+        HomeworkRepository homeworkRepository = new HomeworkRepositoryImpl();
+        HomeworkService homeworkService = new HomeworkService(homeworkRepository);
+        LectureService lectureService = new LectureService(lectureRepository, homeworkService);
         CourseService courseService = new CourseService();
         TeacherRepository teacherRepository = new TeacherRepositoryImpl();
-        PersonService personService = new PersonService(teacherRepository);// todo name of variable
-        MainService mainService = new MainService(courseService, lectureService, personService);
+        PersonService personService = new PersonService(teacherRepository);
+        MainService mainService = new MainService(courseService, lectureService, personService, homeworkService);
 
         System.out.println("\nWelcome to Online school!");
         String question = "continue working? Y - Continue N - Exit";

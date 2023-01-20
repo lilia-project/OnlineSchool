@@ -4,13 +4,13 @@ public class Homework {
     private static int counter;
 
     private final int id;
-    private int idLecture;
+
+    private int lectureId;
     private String task;
     private String additionalMaterial;
 
-
-    public Homework(int idLecture, String task, String additionalMaterial) {
-        this.idLecture = idLecture;
+    public Homework(int lectureId, String task, String additionalMaterial) {
+        this.lectureId = lectureId;
         this.task = task;
         this.additionalMaterial = additionalMaterial;
         counter++;
@@ -21,12 +21,12 @@ public class Homework {
         return id;
     }
 
-    public int getIdLecture() {
-        return idLecture;
+    public int getLectureId() {
+        return lectureId;
     }
 
-    public void setIdLecture(int idLecture) {
-        this.idLecture = idLecture;
+    public void setLectureId(int lectureId) {
+        this.lectureId = lectureId;
     }
 
     public String getTask() {
@@ -43,5 +43,17 @@ public class Homework {
 
     public void setAdditionalMaterial(String additionalMaterial) {
         this.additionalMaterial = additionalMaterial;
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    @Override
+    public String toString() {
+        return "\n homeworkId = " + id +
+                "\n lecture's id = " + lectureId +
+                "\n homework's name = '" + task + "'" +
+                "\n homework's additionalMaterial = '" + additionalMaterial + "'\n";
     }
 }

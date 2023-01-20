@@ -79,6 +79,7 @@ public class LectureRepositoryImpl implements LectureRepository {
     public int size() {
         return size;
     }
+
     @Override
     public Lecture[] getAll() {
         Lecture[] resList = new Lecture[size];

@@ -4,14 +4,13 @@ public class LectureDto {
     private String name;
 
     private String description;
-    private String homework;
+    // private String homework;
     private int teacherId;
     private int courseId;
 
-    public LectureDto(int courseId, String name, String description, String homework, int teacherId) {
+    public LectureDto(int courseId, String name, String description, int teacherId) {
         this.name = name;
         this.description = description;
-        this.homework = homework;
         this.teacherId = teacherId;
         this.courseId = courseId;
     }
@@ -56,15 +55,6 @@ public class LectureDto {
         return "\n courseId = " + courseId +
                 "\n lectureName = '" + name + "'," +
                 "\n lectureDescription = '" + description + "'" +
-                "\n lectureHomework = '" + homework + "'" +
                 "\n teacherId = " + teacherId;
-    }
-
-    public String getHomework() {
-        return homework;
-    }
-
-    public void setHomework(String homework) {
-        this.homework = homework;
     }
 }

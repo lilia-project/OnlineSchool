@@ -2,6 +2,8 @@ package org.lilia.repository;
 
 import org.lilia.models.Homework;
 
+import java.util.Arrays;
+
 public class HomeworkRepositoryImpl implements HomeworkRepository {
     private static final int STANDARD_CAPACITY = 5;
 
@@ -47,9 +49,9 @@ public class HomeworkRepositoryImpl implements HomeworkRepository {
     }
 
     @Override
-    public Homework getE(int index) {
+    public Homework getE(int id) {
         for (Homework homework : list) {
-            if (homework.getId() == index) {
+            if (homework.getId() == id) {
                 return homework;
             }
         }
@@ -84,5 +86,20 @@ public class HomeworkRepositoryImpl implements HomeworkRepository {
         Homework[] resList = new Homework[size];
         System.arraycopy(list, 0, resList, 0, size);
         return resList;
+    }
+
+    @Override
+    public Homework getByLectureId(int lectureId) {
+        for (Homework homework : list) {
+            if (homework.getLectureId() == lectureId) {
+                return homework;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(list);
     }
 }

@@ -11,11 +11,13 @@ public interface HomeworkRepository {
 
     Homework getE(int index);
 
+    Homework[] getAll();
+
     boolean isEmpty();
 
     int size();
 
     void expandingArray();
 
-    Homework[] getAll();
+    Homework getByLectureId(int lectureId);
 }

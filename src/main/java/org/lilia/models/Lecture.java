@@ -1,5 +1,7 @@
 package org.lilia.models;
 
+import java.util.Arrays;
+
 public class Lecture {
     public static int counter = 0;
 
@@ -8,24 +10,13 @@ public class Lecture {
     private int courseId;
     private int personId;
     private String description;
-    private String homework;
-    private String[] homeworksList = new String[5];
 
+    private Homework[] homeworksList;// ссылка на массив
 
-    public Lecture(int courseId, String name, String description, String homework, int personId) {
+    public Lecture(String name) {
+        this.name = name;
         counter++;
         id = counter;
-        this.courseId = courseId;
-        this.name = name;
-        this.description = description;
-        this.homework = homework;
-        this.personId = personId;
-    }
-
-    private void add(String homework) {
-        for (int i = 0; i <= 4; i++) {
-            homeworksList[i] = homework;
-        }
     }
 
     @Override
@@ -34,9 +25,8 @@ public class Lecture {
                 "\n courseId = " + courseId +
                 "\n lectureName = '" + name + "'," +
                 "\n lectureDescription = '" + description + "'" +
-                "\n lectureHomework = '" + homework + "'" +
-                "\n teacherId = " + personId;
-
+                "\n teacherId = " + personId +
+                "\n lecture's homework = '" + Arrays.toString(homeworksList) + "'";
     }
 
     public void setDescription(String description) {
@@ -53,6 +43,10 @@ public class Lecture {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setHomeworksList(Homework[] homeworksList) {
+        this.homeworksList = homeworksList;
     }
 
     public int getPersonId() {
@@ -75,11 +69,7 @@ public class Lecture {
         return name;
     }
 
-    public String getHomework() {
-        return homework;
-    }
-
-    public void setHomework(String homework) {
-        this.homework = homework;
+    public Homework[] getHomeworksList() {
+        return homeworksList;
     }
 }

@@ -1,5 +1,6 @@
 package org.lilia.service;
 
+import org.lilia.models.Homework;
 import org.lilia.models.Lecture;
 import org.lilia.models.LectureDto;
 
@@ -10,11 +11,13 @@ public class MainService {
     private final CourseService courseService;
     private final LectureService lectureService;
     private final PersonService personService;
+    private final HomeworkService homeworkService;
 
-    public MainService(CourseService courseService, LectureService lectureService, PersonService personService) {
+    public MainService(CourseService courseService, LectureService lectureService, PersonService personService, HomeworkService homeworkService) {
         this.courseService = courseService;
         this.lectureService = lectureService;
         this.personService = personService;
+        this.homeworkService = homeworkService;
     }
 
     public static int readInteger() { //scanner processing for integer
@@ -29,11 +32,11 @@ public class MainService {
 
     public int choiceCategory() {
         System.out.println("select a category:");
-        System.out.println("Course - select 1");
-        System.out.println("Lecture - select 2");
-        System.out.println("Teacher - select 3");
-        System.out.println("Student - select 4");
-        System.out.println("Exit - select 5");
+        System.out.println("1 - course");
+        System.out.println("2 - lecture");
+        System.out.println("3 - teacher");
+        System.out.println("4 - student");
+        System.out.println("5 - exit");
 
         return Integer.parseInt(readAndValidationInput("[1-5]"));
     }
@@ -48,6 +51,17 @@ public class MainService {
         return Integer.parseInt(readAndValidationInput("[1-5]"));
     }
 
+    public int choiceActionForLecture() {
+        System.out.println("1 - create new lecture");
+        System.out.println("2 - create homework");
+        System.out.println("3 - open/edit lecture");
+        System.out.println("4 - output all lectures");
+        System.out.println("5 - delete lecture");
+        System.out.println("6 - exit category Lecture");
+
+        return Integer.parseInt(readAndValidationInput("[1-6]"));
+    }
+
     public void workWithCourse(CourseService courseService) {
     }
 
@@ -55,7 +69,7 @@ public class MainService {
         String questionToUser;
         String userChoice = "Y";
         while (userChoice.equalsIgnoreCase("Y")) {
-            switch (choiceAction()) {
+            switch (choiceActionForLecture()) {
                 case 1:
                     questionToUser = "would you create a new lecture? Y - Yes N - No";
 
@@ -64,7 +78,7 @@ public class MainService {
                         System.out.print("input name of lecture ");
                         String lectureName = readAndValidationInput("\\w+\\d*");
 
-                        lectureService.createLecture(0, lectureName, null, null, 0);
+                        lectureService.createLecture(lectureName);
 
                         System.out.println(questionToUser);
                         userChoice = readAndValidationInput("[y|Y|n|N]");
@@ -72,6 +86,26 @@ public class MainService {
                     System.out.println("You created " + Lecture.counter + " new lecture(s)");
                     break;
                 case 2:
+                    questionToUser = "would you create a new homework? Y - Yes N - No";
+
+                    while (userChoice.equalsIgnoreCase("Y")) {
+                        //System.out.println("create new homework ");
+                        System.out.println("input lecture's id");
+                        int lectureId = indexIsValid();
+
+                        System.out.println("input task's name");
+                        String task = readAndValidationInput("\\w+\\d*");
+
+                        System.out.println("input additionalMaterials");
+                        String additionalMaterial = readAndValidationInput("\\w+\\d*");
+
+                        homeworkService.createHomework(lectureId, task, additionalMaterial);
+                        System.out.println(questionToUser);
+                        userChoice = readAndValidationInput("[y|Y|n|N]");
+                    }
+                    System.out.println("You created " + Homework.getCounter() + " new homework(s)");
+                    break;
+                case 3:
                     questionToUser = "would you edit a lecture?\n Y - yes, N - no";
 
                     System.out.println("array have " + lectureService.size() + " lectures");
@@ -94,16 +128,10 @@ public class MainService {
                         System.out.println("choose from available course id");
                         String courseId = readAndValidationInput("\\d+");
 
-                        System.out.println("input homework");
-                        String lectureHomework = readAndValidationInput("\\w+\\d*");
-                        // todo add another task
-//                        System.out.println("want to add another task?");
-//                        userChoice = readAndValidationInput("[Y|y|N|n]");
-
-                        System.out.println("teacher id");
+                        System.out.println("teacher's id = ");
                         String personId = readAndValidationInput("\\d+");
 
-                        LectureDto lectureDto = lectureService.createLectureDto(Integer.parseInt(courseId), lectureName, lectureDescription, lectureHomework, Integer.parseInt(personId));
+                        LectureDto lectureDto = lectureService.createLectureDto(Integer.parseInt(courseId), lectureName, lectureDescription, Integer.parseInt(personId));
                         System.out.println(lectureDto);
 
                         Lecture lectureUpdate = lectureService.updateLecture(lecture, lectureDto);
@@ -113,16 +141,16 @@ public class MainService {
                         userChoice = readAndValidationInput("[y|Y|n|N]");
                     }
                     break;
-                case 3:
+                case 4:
                     System.out.println("the list of lectures");
                     lectureService.out();
                     break;
-                case 4:
+                case 5:
                     System.out.println("input lecture number");
                     lectureId = indexIsValid();
                     lectureService.deleteById(lectureId);
                     break;
-                case 5:
+                case 6:
                     System.out.println("exit");
                     break;
                 default:
