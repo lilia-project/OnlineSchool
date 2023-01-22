@@ -4,7 +4,6 @@ public class LectureDto {
     private String name;
 
     private String description;
-    // private String homework;
     private int teacherId;
     private int courseId;
 

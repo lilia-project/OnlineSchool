@@ -45,29 +45,44 @@ public class LectureRepositoryImpl implements LectureRepository {
         size++;
     }
 
+    /**
+     * @param lectureId parameter description
+     * @return description of options
+     */
     @Override
-    public Lecture remove(int index) { //delete by index
-        Lecture lecture = list[index];
+    public Lecture remove(int lectureId) {
+        Lecture lecture = getById(lectureId);
+        if (lecture == null) {
+            return null;
+        }
+        int index = 0;
+        for (int i = 0; i < size; i++) {
+            if (list[i] == lecture) {
+                break;
+            }
+            index++;
+        }
         for (int i = index; i < (size - 1); i++) {
             list[i] = list[i + 1];
         }
+        list[size - 1] = null;
         size--;
         return lecture;
     }
 
     @Override
-    public Lecture getE(int index) { // todo изменить на возвр по index!!!
+    public Lecture getById(int id) {
         for (Lecture lecture : list) {
-            if (lecture.getId() == index) {
+            if (lecture.getId() == id) {
                 return lecture;
             }
         }
-        System.out.println("no such index exist");
+        System.out.println("no such id exist");
         return null;
     }
 
     @Override
-    public boolean isEmpty() { // check the array by empty
+    public boolean isEmpty() {
         boolean b = false;
         if (size == 0) {
             b = true;

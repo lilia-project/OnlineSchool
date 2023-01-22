@@ -10,7 +10,7 @@ public interface LectureRepository {
 
     Lecture remove(int index);
 
-    Lecture getE(int index);
+    Lecture getById(int index);
 
     boolean isEmpty();
 

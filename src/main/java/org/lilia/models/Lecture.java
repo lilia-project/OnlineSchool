@@ -11,7 +11,7 @@ public class Lecture {
     private int personId;
     private String description;
 
-    private Homework[] homeworksList;// ссылка на массив
+    private Homework[] homeworksList;
 
     public Lecture(String name) {
         this.name = name;
@@ -25,8 +25,8 @@ public class Lecture {
                 "\n courseId = " + courseId +
                 "\n lectureName = '" + name + "'," +
                 "\n lectureDescription = '" + description + "'" +
-                "\n teacherId = " + personId +
-                "\n lecture's homework = '" + Arrays.toString(homeworksList) + "'";
+                "\n teacherId = " + personId + "\n" +
+                "\n lecture's homework = \n" + Arrays.toString(homeworksList);
     }
 
     public void setDescription(String description) {

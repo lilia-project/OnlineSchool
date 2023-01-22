@@ -1,5 +1,6 @@
 package org.lilia.service;
 
+import org.lilia.ConsoleUtils;
 import org.lilia.models.Homework;
 import org.lilia.models.Lecture;
 import org.lilia.models.LectureDto;
@@ -27,14 +28,14 @@ public class LectureService {
         return lectureDto;
     }
 
-    public void out() {
+    public void out() { // todo вывод дополнительно homeworks
         for (Lecture lecture : lectureRepository.getAll()) {
-            System.out.println(lecture.toString());
+            printById(lecture.getId());
         }
     }
 
-    public Lecture getById(int lectureId) {
-        Lecture lecture = lectureRepository.getE(lectureId);
+    public Lecture printById(int lectureId) {
+        Lecture lecture = lectureRepository.getById(lectureId);
         Homework[] homeworks = homeworkService.findAllByLectureId(lectureId);
         lecture.setHomeworksList(homeworks);
         System.out.println(lecture);
@@ -64,5 +65,16 @@ public class LectureService {
 
     public int size() {
         return lectureRepository.size();
+    }
+
+    public int lectureIdIsValid() {
+        int lectureId = ConsoleUtils.readInteger();
+        Lecture lecture = lectureRepository.getById(lectureId);
+        while (lecture == null) {
+            System.out.println("input valid lecture's id");
+            lectureId = ConsoleUtils.readInteger();
+            lecture = lectureRepository.getById(lectureId);
+        }
+        return lectureId;
     }
 }
