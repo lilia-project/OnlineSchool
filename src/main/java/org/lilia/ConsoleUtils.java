@@ -1,5 +1,7 @@
 package org.lilia;
 
+import org.lilia.exception.InvalidUserInput;
+
 import static org.lilia.Main.SCANNER;
 
 public class ConsoleUtils {
@@ -37,17 +39,31 @@ public class ConsoleUtils {
 
     public static String readAndValidationInput(String pattern) {
         String stringData = SCANNER.nextLine();
-        stringData = validate(stringData, pattern);
+        try {
+            validate(stringData, pattern);
+        } catch (InvalidUserInput e){
+            System.out.println(e.getMessage());
+            stringData = repeatInputUntilCorrect(pattern);
+        }
         return stringData;
     }
 
-    public static String validate(String data, String pattern) {
+    public static void validate(String data, String pattern) {
         boolean b = data.matches(pattern);
-        while (!b) {
-            System.out.println("error, repeat input");
-            data = SCANNER.nextLine();
-            b = data.matches(pattern);
+        if(!b){
+            throw new InvalidUserInput(data, pattern);
         }
-        return data;
+    }
+
+    private static String repeatInputUntilCorrect(String pattern) {
+       do {
+           String data = SCANNER.nextLine();
+           boolean matches = data.matches(pattern);
+           if(!matches){
+               System.out.println("error, repeat input");
+           } else {
+               return data;
+           }
+       } while(true);
     }
 }
