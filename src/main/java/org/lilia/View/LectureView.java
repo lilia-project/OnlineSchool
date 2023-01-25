@@ -1,6 +1,7 @@
 package org.lilia.View;
 
 import org.lilia.ConsoleUtils;
+import org.lilia.exception.NoSuchLectureIdException;
 import org.lilia.models.Lecture;
 import org.lilia.models.LectureDto;
 import org.lilia.service.LectureService;
@@ -33,8 +34,15 @@ public class LectureView {
                     System.out.println("array have " + lectureService.size() + " lectures");
                     System.out.println("select lecture's id");
 
-                    int lectureId = lectureService.lectureIdIsValid(); // todo вывести все лекции из репо, чтобы выбрать id лекции
-                    Lecture lecture = lectureService.printById(lectureId);
+                    //int lectureId = lectureService.lectureIdIsValid(); 
+                    int lectureId = ConsoleUtils.readInteger();
+                    Lecture lecture;
+                    try {
+                        lecture = lectureService.printAndGetById(lectureId);
+                    } catch (NoSuchLectureIdException e) {
+                        System.out.println("lecture was not found by id " + lectureId);
+                        throw new RuntimeException(e);
+                    }
 
                     System.out.println(questionToUser);
                     userChoice = ConsoleUtils.readAndValidationInput("[y|Y|n|N]");

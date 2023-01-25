@@ -72,7 +72,8 @@ public class LectureRepositoryImpl implements LectureRepository {
 
     @Override
     public Lecture getById(int id) {
-        for (Lecture lecture : list) {
+        for (int i = 0; i < size(); i++) {
+            Lecture lecture = list[i];
             if (lecture.getId() == id) {
                 return lecture;
             }

@@ -1,6 +1,7 @@
 package org.lilia.service;
 
 import org.lilia.ConsoleUtils;
+import org.lilia.exception.NoSuchLectureIdException;
 import org.lilia.models.Homework;
 import org.lilia.models.Lecture;
 import org.lilia.models.LectureDto;
@@ -17,6 +18,9 @@ public class LectureService {
     }
 
     public Lecture createLecture(String lectureName) {
+        if (lectureName == null) {
+            throw new IllegalArgumentException("lecture name is null");
+        }
         Lecture lecture = new Lecture(lectureName);
         lectureRepository.add(lecture);
         System.out.println("\nthe lecture has been created: " + lecture);
@@ -30,16 +34,24 @@ public class LectureService {
 
     public void out() { // todo вывод дополнительно homeworks
         for (Lecture lecture : lectureRepository.getAll()) {
-            printById(lecture.getId());
+            addHomeworkIntoLecture(lecture);
+            System.out.println(lecture);
         }
     }
 
-    public Lecture printById(int lectureId) {
+    public Lecture printAndGetById(int lectureId) throws NoSuchLectureIdException {
         Lecture lecture = lectureRepository.getById(lectureId);
-        Homework[] homeworks = homeworkService.findAllByLectureId(lectureId);
-        lecture.setHomeworksList(homeworks);
+        if (lecture == null) {
+            throw new NoSuchLectureIdException(lectureId);
+        }
+        addHomeworkIntoLecture(lecture);
         System.out.println(lecture);
         return lecture;
+    }
+
+    private void addHomeworkIntoLecture(Lecture lecture) {
+        Homework[] homeworks = homeworkService.findAllByLectureId(lecture.getId());
+        lecture.setHomeworksList(homeworks);
     }
 
     public Lecture updateLecture(Lecture lecture, LectureDto lectureDto) {
