@@ -2,12 +2,16 @@ package org.lilia.repository;
 
 import org.lilia.models.Lecture;
 
+import java.util.Iterator;
+
 public class LectureRepositoryImpl implements LectureRepository {
     private static final int STANDARD_CAPACITY = 5;
 
     private int lengthArray = STANDARD_CAPACITY;
     private int size = 0;
+
     private Lecture[] list = new Lecture[lengthArray];
+
 
     @Override
     public void add(Lecture element) {
@@ -55,6 +59,21 @@ public class LectureRepositoryImpl implements LectureRepository {
         if (lecture == null) {
             return null;
         }
+        int index = getIndex(lecture);
+        removeByIndex(index);
+        return lecture;
+    }
+
+    private void removeByIndex(int index) {
+        for (int i = index; i < (size - 1); i++) {
+            list[i] = list[i + 1];
+        }
+        list[size - 1] = null;
+        size--;
+    }
+
+    @Override
+    public int getIndex(Lecture lecture) {
         int index = 0;
         for (int i = 0; i < size; i++) {
             if (list[i] == lecture) {
@@ -62,12 +81,7 @@ public class LectureRepositoryImpl implements LectureRepository {
             }
             index++;
         }
-        for (int i = index; i < (size - 1); i++) {
-            list[i] = list[i + 1];
-        }
-        list[size - 1] = null;
-        size--;
-        return lecture;
+        return index;
     }
 
     @Override
@@ -101,5 +115,40 @@ public class LectureRepositoryImpl implements LectureRepository {
         Lecture[] resList = new Lecture[size];
         System.arraycopy(list, 0, resList, 0, size);
         return resList;
+    }
+
+    @Override
+    public Iterator<Lecture> iterator() {
+        Iterator<Lecture> iterator = new SimpleIteratorImpl();
+        return iterator;
+    }
+
+    private class SimpleIteratorImpl implements Iterator<Lecture> {
+        private int index = 0;
+
+        @Override
+        public boolean hasNext() {
+            if (index < size) {
+                return true;
+            }
+            return false;
+
+            //return index < size;
+        }
+
+
+        @Override
+        public Lecture next() {
+            Lecture currentLecture = list[index];
+            index++;
+            return currentLecture;
+        }
+
+        @Override
+        public void remove() { // todo implement
+            index--;
+            removeByIndex(index);
+
+        }
     }
 }

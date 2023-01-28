@@ -2,7 +2,7 @@ package org.lilia.repository;
 
 import org.lilia.models.Lecture;
 
-public interface LectureRepository {
+public interface LectureRepository extends Iterable<Lecture> {
 
     void add(Lecture element);
 
@@ -12,6 +12,8 @@ public interface LectureRepository {
 
     Lecture getById(int index);
 
+    int getIndex(Lecture lecture);
+
     boolean isEmpty();
 
     int size();
@@ -19,7 +21,6 @@ public interface LectureRepository {
     void expandingArray();
 
     Lecture[] getAll();
-
 }
 
 

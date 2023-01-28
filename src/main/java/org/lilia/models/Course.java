@@ -3,7 +3,7 @@ package org.lilia.models;
 public class Course {
     private static int counter = 0;
 
-    private final int id;
+    private final Integer id;
     private String name;
 
     public Course(String name) {

@@ -6,7 +6,7 @@ import static org.lilia.models.Role.TEACHER;
 public class Person{
     private static int counter = 0;
 
-    private final int id;
+    private final Integer id;
 
     private final String firstName;
 

@@ -7,6 +7,8 @@ import org.lilia.models.Lecture;
 import org.lilia.models.LectureDto;
 import org.lilia.repository.LectureRepository;
 
+import java.util.Iterator;
+
 public class LectureService {
 
     private final LectureRepository lectureRepository;
@@ -32,11 +34,17 @@ public class LectureService {
         return lectureDto;
     }
 
-    public void out() { // todo вывод дополнительно homeworks
-        for (Lecture lecture : lectureRepository.getAll()) {
+    public void out() {
+        Iterator<Lecture> simpleIterator = lectureRepository.iterator();
+        while (simpleIterator.hasNext()) {
+            Lecture lecture = simpleIterator.next();
             addHomeworkIntoLecture(lecture);
             System.out.println(lecture);
         }
+        /*for (Lecture lecture : lectureRepository) {
+            addHomeworkIntoLecture(lecture);
+            System.out.println(lecture);
+        }*/
     }
 
     public Lecture printAndGetById(int lectureId) throws NoSuchLectureIdException {

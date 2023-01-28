@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Lecture {
     public static int counter = 0;
 
-    private final int id;
+    private final Integer id;
     private String name;
     private int courseId;
     private int personId;

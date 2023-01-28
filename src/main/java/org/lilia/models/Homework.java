@@ -3,7 +3,7 @@ package org.lilia.models;
 public class Homework {
     private static int counter;
 
-    private final int id;
+    private final Integer id;
 
     private int lectureId;
     private String task;
