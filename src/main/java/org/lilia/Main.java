@@ -1,31 +1,30 @@
 package org.lilia;
 
-import org.lilia.View.CourseView;
-import org.lilia.View.HomeworkView;
-import org.lilia.View.LectureView;
-import org.lilia.View.PersonView;
+import org.lilia.View.*;
+import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.repository.*;
-import org.lilia.service.CourseService;
-import org.lilia.service.HomeworkService;
-import org.lilia.service.LectureService;
-import org.lilia.service.PersonService;
+import org.lilia.service.*;
 
 import java.util.Scanner;
 
 public class Main {
     public static final Scanner SCANNER = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchMaterialIdException {
 
         LectureRepository lectureRepository = new LectureRepositoryImpl();
         HomeworkRepository homeworkRepository = new HomeworkRepositoryImpl();
         HomeworkService homeworkService = new HomeworkService(homeworkRepository);
+        AdditionalMaterialRepository additionalMaterialRepository = new AdditionalMaterialRepository();
+        AdditionalMaterialService additionalMaterialService = new AdditionalMaterialService(additionalMaterialRepository);
         LectureService lectureService = new LectureService(lectureRepository, homeworkService);
         CourseService courseService = new CourseService();
         TeacherRepository teacherRepository = new TeacherRepositoryImpl();
         PersonService personService = new PersonService(teacherRepository);
         LectureView lectureView = new LectureView();
         HomeworkView homeworkView = new HomeworkView(lectureService);
+        AdditionalMaterialView additionalMaterialView = new AdditionalMaterialView();
+
         CourseView courseView = new CourseView();
         PersonView personView = new PersonView();
 
@@ -59,7 +58,11 @@ public class Main {
                     System.out.println("you selected category 'Homework'\nchoice the action");
                     homeworkView.workWithHomework(homeworkService);
                 }
-                case 6 -> System.out.print("Do you want finish or ");
+                case 6 -> {
+                    System.out.println("you selected category 'AdditionalMaterial'\nchoice the action");
+                    additionalMaterialView.workWithAdditionalMaterials(additionalMaterialService);
+                }
+                case 7 -> System.out.print("Do you want finish or ");
                 default -> System.out.println("Error - incompatible symbol");
             }
             System.out.println(question);

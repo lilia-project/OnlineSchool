@@ -32,9 +32,10 @@ public class ConsoleUtils {
         System.out.println("3 - teacher");
         System.out.println("4 - student");
         System.out.println("5 - homework");
-        System.out.println("6 - exit");
+        System.out.println("6 - additional material");
+        System.out.println("7 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-6]"));
+        return Integer.parseInt(readAndValidationInput("[1-7]"));
     }
 
     public static String readAndValidationInput(String pattern) {
