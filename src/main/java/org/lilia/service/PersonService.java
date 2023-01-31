@@ -10,8 +10,8 @@ public class PersonService {
         this.teacherRepository = teacherRepository;
     }
 
-    public Person createPerson(int courseId, String firstName, String lastName, String phone, String email) {
-        Person teacher = Person.createTeacher(courseId, firstName, lastName, phone, email);
+    public Person createPerson(String lastName) {
+        Person teacher = Person.createTeacher(lastName);
         teacherRepository.add(teacher);
         System.out.println("\nthe teacher has been created:\n" + teacher);
         return teacher;

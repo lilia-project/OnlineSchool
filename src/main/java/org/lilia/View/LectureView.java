@@ -34,7 +34,6 @@ public class LectureView {
                     System.out.println("array have " + lectureService.size() + " lectures");
                     System.out.println("select lecture's id");
 
-                    //int lectureId = lectureService.lectureIdIsValid(); 
                     int lectureId = ConsoleUtils.readInteger();
                     Lecture lecture;
                     try {

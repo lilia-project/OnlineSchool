@@ -5,6 +5,8 @@ import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.models.AdditionalMaterial;
 import org.lilia.repository.AdditionalMaterialRepository;
 
+import java.util.Optional;
+
 public class AdditionalMaterialService {
     private final AdditionalMaterialRepository additionalMaterialRepository;
 
@@ -18,65 +20,39 @@ public class AdditionalMaterialService {
         System.out.println("\nthe additionalMaterial has been created: " + additionalMaterial);
     }
 
-    public void out() {
-        for (AdditionalMaterial additionalMaterial : additionalMaterialRepository.getList()) {
-            //addHomeworkIntoLecture(lecture);
-            System.out.println(additionalMaterial);
-        }
+    public void getAll() {
+        additionalMaterialRepository.getAll();
     }
 
-    public void deleteById(AdditionalMaterial additionalMaterial) {
-        int index = getIndexByAdditionalMaterial(additionalMaterial);
-        additionalMaterialRepository.getList().remove(index);
+    public void deleteById(int additionalMaterialId) {
+        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
+        if (additionalMaterial.isEmpty()) {
+            throw new NoSuchMaterialIdException(additionalMaterialId);
+        }
+        additionalMaterialRepository.remove(additionalMaterial.get());
         System.out.println("additional material has been deleted");
     }
 
     public int additionalMaterialIdIsValid() {
         int additionalMaterialId = ConsoleUtils.readInteger();
-        for (AdditionalMaterial additionalMaterial : additionalMaterialRepository.getList()) {
-            if (additionalMaterial.getId() == 0) {
-                System.out.println("input valid additionalMaterial's id");
-                additionalMaterialId = ConsoleUtils.readInteger();
-            }
+        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
+        while (additionalMaterial.isEmpty()) {
+            System.out.println("additionalMaterial was not found by id " + additionalMaterialId + ", repeat input");
+            additionalMaterialId = ConsoleUtils.readInteger();
+            additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
         }
         return additionalMaterialId;
     }
 
-    public int getIndexByAdditionalMaterial(AdditionalMaterial additionalMaterial) {
-        int index = 0;
-        for (AdditionalMaterial list : additionalMaterialRepository.getList()) {
-            if (list == additionalMaterial) {
-                index = additionalMaterialRepository.getList().indexOf(additionalMaterial);
-            }
-        }
-        return index;
-    }
-
-    public int getIndexById(int additionalMaterialId) {
-        int index = 0;
-        for (AdditionalMaterial list : additionalMaterialRepository.getList()) {
-            if (list.getId() == additionalMaterialId) {
-                index = additionalMaterialRepository.getList().indexOf(list);
-            }
-        }
-        return index;
-    }
-
-    public void deleteByIndex(int index) {
-        additionalMaterialRepository.getList().remove(index);
-    }
-
-    public AdditionalMaterial printAndGetById(int additionalMaterialId) throws NoSuchMaterialIdException {
-        int index = getIndexById(additionalMaterialId);
-        AdditionalMaterial additionalMaterial = additionalMaterialRepository.getList().get(index);
-        if (additionalMaterial == null) {
+    public AdditionalMaterial getRequireById(int additionalMaterialId) {
+        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
+        if (additionalMaterial.isEmpty()) {
             throw new NoSuchMaterialIdException(additionalMaterialId);
         }
-        System.out.println(additionalMaterial);
-        return additionalMaterial;
+        return additionalMaterial.get();
     }
 
     public int size() {
-        return additionalMaterialRepository.getList().size();
+        return additionalMaterialRepository.size();
     }
 }

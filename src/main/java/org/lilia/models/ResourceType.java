@@ -1,5 +1,7 @@
 package org.lilia.models;
 
 public enum ResourceType {
-    URL, VIDEO, BOOK
+    URL,
+    VIDEO,
+    BOOK
 }

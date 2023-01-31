@@ -5,7 +5,7 @@ public class AdditionalMaterial {
 
     private final int id;
     private final String name;
-    private int idLecture;
+    private int lectureId;
     private ResourceType resourceType;
 
 
@@ -23,7 +23,15 @@ public class AdditionalMaterial {
         return name;
     }
 
-    public int getIdLecture() {
-        return idLecture;
+    public int getLectureId() {
+        return lectureId;
+    }
+
+    @Override
+    public String toString() {
+        return "\n additionalMaterialId = " + id +
+                "\n additionalMaterialName = '" + name + "'," +
+                "\n lectureId = " + lectureId +
+                "\n resourceType = " + resourceType;
     }
 }

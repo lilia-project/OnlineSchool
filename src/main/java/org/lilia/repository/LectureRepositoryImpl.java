@@ -132,8 +132,6 @@ public class LectureRepositoryImpl implements LectureRepository {
                 return true;
             }
             return false;
-
-            //return index < size;
         }
 
 
@@ -145,7 +143,7 @@ public class LectureRepositoryImpl implements LectureRepository {
         }
 
         @Override
-        public void remove() { // todo implement
+        public void remove() {
             index--;
             removeByIndex(index);
 
