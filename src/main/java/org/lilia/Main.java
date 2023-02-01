@@ -1,6 +1,6 @@
 package org.lilia;
 
-import org.lilia.View.*;
+import org.lilia.view.*;
 import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.repository.*;
 import org.lilia.service.*;

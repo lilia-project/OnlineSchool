@@ -4,7 +4,7 @@ import org.lilia.ConsoleUtils;
 import org.lilia.exception.NoSuchLectureIdException;
 import org.lilia.model.Homework;
 import org.lilia.model.Lecture;
-import org.lilia.model.LectureDto;
+import org.lilia.dto.LectureDto;
 import org.lilia.repository.LectureRepository;
 
 import java.util.Optional;

@@ -3,7 +3,7 @@ package org.lilia.service;
 import org.lilia.ConsoleUtils;
 import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.model.AdditionalMaterial;
-import org.lilia.model.AdditionalMaterialDto;
+import org.lilia.dto.AdditionalMaterialDto;
 import org.lilia.model.ResourceType;
 import org.lilia.repository.AdditionalMaterialRepository;
 

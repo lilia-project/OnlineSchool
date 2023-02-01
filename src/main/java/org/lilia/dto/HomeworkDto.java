@@ -1,4 +1,4 @@
-package org.lilia.model;
+package org.lilia.dto;
 
 public class HomeworkDto {
     private String task;

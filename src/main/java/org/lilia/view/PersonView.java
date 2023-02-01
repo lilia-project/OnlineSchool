@@ -1,4 +1,4 @@
-package org.lilia.View;
+package org.lilia.view;
 
 import org.lilia.service.PersonService;
 

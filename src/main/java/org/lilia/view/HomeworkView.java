@@ -1,9 +1,9 @@
-package org.lilia.View;
+package org.lilia.view;
 
 import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
 import org.lilia.model.Homework;
-import org.lilia.model.HomeworkDto;
+import org.lilia.dto.HomeworkDto;
 import org.lilia.service.HomeworkService;
 import org.lilia.service.LectureService;
 

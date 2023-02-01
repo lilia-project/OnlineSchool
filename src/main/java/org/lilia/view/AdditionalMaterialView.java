@@ -1,9 +1,9 @@
-package org.lilia.View;
+package org.lilia.view;
 
 import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
 import org.lilia.model.AdditionalMaterial;
-import org.lilia.model.AdditionalMaterialDto;
+import org.lilia.dto.AdditionalMaterialDto;
 import org.lilia.model.ResourceType;
 import org.lilia.service.AdditionalMaterialService;
 import org.lilia.service.LectureService;

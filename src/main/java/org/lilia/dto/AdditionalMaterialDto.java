@@ -1,4 +1,6 @@
-package org.lilia.model;
+package org.lilia.dto;
+
+import org.lilia.model.ResourceType;
 
 public class AdditionalMaterialDto {
     private final int lectureId;
