@@ -1,6 +1,6 @@
 package org.lilia.service;
 
-import org.lilia.models.Person;
+import org.lilia.model.Person;
 import org.lilia.repository.TeacherRepository;
 
 public class PersonService {

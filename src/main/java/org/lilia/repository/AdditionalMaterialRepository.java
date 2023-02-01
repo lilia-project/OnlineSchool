@@ -1,6 +1,6 @@
 package org.lilia.repository;
 
-import org.lilia.models.AdditionalMaterial;
+import org.lilia.model.AdditionalMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ import java.util.Optional;
 public class AdditionalMaterialRepository {
     private final List<AdditionalMaterial> list = new ArrayList<>();
 
-    public List<AdditionalMaterial> getList() {
-        return list;
+    public void add(AdditionalMaterial additionalMaterial) {
+        list.add(additionalMaterial);
     }
 
     public int size() {

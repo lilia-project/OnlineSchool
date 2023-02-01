@@ -1,8 +1,8 @@
 package org.lilia.service;
 
 import org.lilia.ConsoleUtils;
-import org.lilia.models.Homework;
-import org.lilia.models.HomeworkDto;
+import org.lilia.model.Homework;
+import org.lilia.model.HomeworkDto;
 import org.lilia.repository.HomeworkRepository;
 
 public class HomeworkService {
@@ -73,8 +73,7 @@ public class HomeworkService {
     }
 
     public HomeworkDto createHomeworkDto(String task, String additionMaterial) {
-        HomeworkDto homeworkDto = new HomeworkDto(task, additionMaterial);
-        return homeworkDto;
+        return new HomeworkDto(task, additionMaterial);
     }
 }
 

@@ -1,6 +1,6 @@
 package org.lilia.repository;
 
-import org.lilia.models.Person;
+import org.lilia.model.Person;
 
 public interface TeacherRepository{
     void add(Person element);

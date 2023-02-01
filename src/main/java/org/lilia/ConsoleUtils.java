@@ -5,7 +5,7 @@ import org.lilia.exception.InvalidUserInputException;
 import static org.lilia.Main.SCANNER;
 
 public class ConsoleUtils {
-    public static int readInteger() { //scanner processing for integer
+    public static int readInteger() {
         int id = SCANNER.nextInt();
         feedNewLine();
         return id;
@@ -21,7 +21,7 @@ public class ConsoleUtils {
         return Integer.parseInt(readAndValidationInput("[1-5]"));
     }
 
-    private static void feedNewLine() { //scanner processing for button enter
+    private static void feedNewLine() {
         SCANNER.nextLine();
     }
 
@@ -57,14 +57,18 @@ public class ConsoleUtils {
     }
 
     private static String repeatInputUntilCorrect(String pattern) {
-       do {
-           String data = SCANNER.nextLine();
-           boolean matches = data.matches(pattern);
-           if(!matches){
-               System.out.println("error, repeat input");
-           } else {
-               return data;
-           }
-       } while(true);
+        do {
+            String data = SCANNER.nextLine();
+            boolean matches = data.matches(pattern);
+            if (!matches) {
+                System.out.println("error, repeat input");
+            } else {
+                return data;
+            }
+        } while (true);
+    }
+
+    public static void print(String string) {
+        System.out.println(string);
     }
 }

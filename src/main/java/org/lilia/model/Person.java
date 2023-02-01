@@ -1,7 +1,7 @@
-package org.lilia.models;
+package org.lilia.model;
 
-import static org.lilia.models.Role.STUDENT;
-import static org.lilia.models.Role.TEACHER;
+import static org.lilia.model.Role.STUDENT;
+import static org.lilia.model.Role.TEACHER;
 
 public class Person {
     private static int counter = 0;

@@ -1,4 +1,4 @@
-package org.lilia.models;
+package org.lilia.model;
 
 public class Homework {
     private static int counter;

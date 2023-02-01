@@ -1,6 +1,6 @@
 package org.lilia.repository;
 
-import org.lilia.models.Course;
+import org.lilia.model.Course;
 
 public class CourseRepositoryImpl implements CourseRepository {
     private static final int STANDARD_CAPACITY = 5;

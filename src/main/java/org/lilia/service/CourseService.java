@@ -1,6 +1,6 @@
 package org.lilia.service;
 
-import org.lilia.models.Course;
+import org.lilia.model.Course;
 
 public class CourseService {
     public Course createCourse(String name) {

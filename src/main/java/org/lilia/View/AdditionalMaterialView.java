@@ -1,41 +1,64 @@
 package org.lilia.View;
 
 import org.lilia.ConsoleUtils;
-import org.lilia.models.AdditionalMaterial;
+import org.lilia.Constants;
+import org.lilia.model.AdditionalMaterial;
+import org.lilia.model.AdditionalMaterialDto;
+import org.lilia.model.ResourceType;
 import org.lilia.service.AdditionalMaterialService;
+import org.lilia.service.LectureService;
 
 public class AdditionalMaterialView {
+
+    private final LectureService lectureService;
+
+    public AdditionalMaterialView(LectureService lectureService) {
+        this.lectureService = lectureService;
+    }
+
     public void workWithAdditionalMaterials(AdditionalMaterialService additionalMaterialService) {
-        String questionToUser;
         String userChoice = "Y";
         while (userChoice.equalsIgnoreCase("Y")) {
             switch (ConsoleUtils.choiceAction()) {
                 case 1:
-                    questionToUser = "would you create a new additionalMaterial? Y - Yes N - No";
-
                     while (userChoice.equalsIgnoreCase("Y")) {
 
                         System.out.print("input name of additionalMaterial ");
-                        String additionalMaterialName = ConsoleUtils.readAndValidationInput("\\w+\\d*");
+                        String additionalMaterialName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
                         additionalMaterialService.createAdditionalMaterial(additionalMaterialName);
 
-                        System.out.println(questionToUser);
-                        userChoice = ConsoleUtils.readAndValidationInput("[y|Y|n|N]");
+                        ConsoleUtils.print(Constants.CREATE_NEW);
+                        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                     break;
                 case 2:
-                    questionToUser = "would you edit an additionalMaterial?\n Y - yes, N - no";
                     System.out.println("select additionalMaterial's id");
 
                     int additionalMaterialId = additionalMaterialService.additionalMaterialIdIsValid();
                     AdditionalMaterial additionalMaterial = additionalMaterialService.getRequireById(additionalMaterialId);
                     print(additionalMaterial);
 
-                    System.out.println(questionToUser);
+                    ConsoleUtils.print(Constants.EDIT);
+                    while (userChoice.equalsIgnoreCase("Y")) {
+                        System.out.println("additionalMaterial's name");
+                        String name = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
+
+                        System.out.println("lecture's id");
+                        int lectureId = lectureService.lectureIdIsValid();
+
+                        System.out.println("resourceType's description");
+                        ResourceType resourceType = additionalMaterialService.getValueOfEnum();// todo enum
+
+                        AdditionalMaterialDto additionalMaterialDto = additionalMaterialService.createAdditionalMaterialDto(lectureId, name, resourceType);
+                        AdditionalMaterial additionalMaterialUpdate = additionalMaterialService.updateAdditionalMaterial(additionalMaterial, additionalMaterialDto);
+                        System.out.println(additionalMaterialUpdate);
+
+                        ConsoleUtils.print(Constants.EDIT);
+                        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+                    }
                     break;
                 case 3:
-                    System.out.println("the list of additionalMaterials");
                     additionalMaterialService.getAll();
                     break;
                 case 4:
@@ -50,8 +73,8 @@ public class AdditionalMaterialView {
                     System.out.println("Error");
                     break;
             }
-            System.out.println("stay in category? Y - yes, N - no");
-            userChoice = ConsoleUtils.readAndValidationInput("[y|Y|n|N]");
+            ConsoleUtils.print(Constants.STAY_IN);
+            userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
             if (userChoice.equalsIgnoreCase("N")) {
                 break;
             }

@@ -2,7 +2,9 @@ package org.lilia.service;
 
 import org.lilia.ConsoleUtils;
 import org.lilia.exception.NoSuchMaterialIdException;
-import org.lilia.models.AdditionalMaterial;
+import org.lilia.model.AdditionalMaterial;
+import org.lilia.model.AdditionalMaterialDto;
+import org.lilia.model.ResourceType;
 import org.lilia.repository.AdditionalMaterialRepository;
 
 import java.util.Optional;
@@ -16,8 +18,12 @@ public class AdditionalMaterialService {
 
     public void createAdditionalMaterial(String name) {
         AdditionalMaterial additionalMaterial = new AdditionalMaterial(name);
-        additionalMaterialRepository.getList().add(additionalMaterial);
+        additionalMaterialRepository.add(additionalMaterial);
         System.out.println("\nthe additionalMaterial has been created: " + additionalMaterial);
+    }
+
+    public AdditionalMaterialDto createAdditionalMaterialDto(int lectureId, String name, ResourceType resourceType) {
+        return new AdditionalMaterialDto(lectureId, name, resourceType);
     }
 
     public void getAll() {
@@ -54,5 +60,23 @@ public class AdditionalMaterialService {
 
     public int size() {
         return additionalMaterialRepository.size();
+    }
+
+    public AdditionalMaterial updateAdditionalMaterial(AdditionalMaterial additionalMaterial, AdditionalMaterialDto additionalMaterialDto) {
+        if ((additionalMaterialDto.getName()) != null) {
+            additionalMaterial.setName(additionalMaterialDto.getName());
+        }
+        if (additionalMaterialDto.getResourceType() != null) {
+            additionalMaterial.setResourceType(additionalMaterialDto.getResourceType());
+        }
+        if (additionalMaterialDto.getLectureId() != 0) {
+            additionalMaterial.setLectureId(additionalMaterialDto.getLectureId());
+        }
+        return additionalMaterial;
+    }
+
+    public ResourceType getValueOfEnum() {
+
+        return null;
     }
 }

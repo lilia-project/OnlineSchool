@@ -1,7 +1,6 @@
 package org.lilia.repository;
 
-import org.lilia.models.Lecture;
-import org.lilia.models.Person;
+import org.lilia.model.Person;
 
 public class TeacherRepositoryImpl implements TeacherRepository {
 

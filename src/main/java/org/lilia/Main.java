@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws NoSuchMaterialIdException {
 
-        LectureRepository lectureRepository = new LectureRepositoryImpl();
+        LectureRepository lectureRepository = new LectureRepository();
         HomeworkRepository homeworkRepository = new HomeworkRepositoryImpl();
         HomeworkService homeworkService = new HomeworkService(homeworkRepository);
         AdditionalMaterialRepository additionalMaterialRepository = new AdditionalMaterialRepository();
@@ -23,7 +23,7 @@ public class Main {
         PersonService personService = new PersonService(teacherRepository);
         LectureView lectureView = new LectureView();
         HomeworkView homeworkView = new HomeworkView(lectureService);
-        AdditionalMaterialView additionalMaterialView = new AdditionalMaterialView();
+        AdditionalMaterialView additionalMaterialView = new AdditionalMaterialView(lectureService);
 
         CourseView courseView = new CourseView();
         PersonView personView = new PersonView();

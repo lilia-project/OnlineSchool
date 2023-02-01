@@ -1,6 +1,6 @@
 package org.lilia.repository;
 
-import org.lilia.models.Homework;
+import org.lilia.model.Homework;
 
 public interface HomeworkRepository {
     void add(Homework element);
