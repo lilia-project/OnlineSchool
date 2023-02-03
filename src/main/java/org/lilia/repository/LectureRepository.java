@@ -1,21 +1,26 @@
 package org.lilia.repository;
 
-import org.lilia.models.Model;
+import org.lilia.models.Lecture;
 
-public class LectureRepository extends Repository {
+public interface LectureRepository extends Iterable<Lecture> {
 
-    @Override
-    public void getById(int lectureId) {
-        System.out.println("you selected to open lecture");
-        super.getById((lectureId - 1));
-    }
+    void add(Lecture element);
 
-    @Override
-    public Model[] deleteById(int lectureId) {
-        System.out.println("You want delete ");
-        super.deleteById((lectureId - 1));
-        return getData();
-    }
+    void add(int index, Lecture element);
+
+    Lecture remove(int index);
+
+    Lecture getById(int index);
+
+    int getIndex(Lecture lecture);
+
+    boolean isEmpty();
+
+    int size();
+
+    void expandingArray();
+
+    Lecture[] getAll();
 }
 
 
