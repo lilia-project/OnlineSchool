@@ -1,9 +1,10 @@
 package org.lilia.service;
 
 import org.lilia.ConsoleUtils;
+import org.lilia.Constants;
+import org.lilia.dto.AdditionalMaterialDto;
 import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.model.AdditionalMaterial;
-import org.lilia.dto.AdditionalMaterialDto;
 import org.lilia.model.ResourceType;
 import org.lilia.repository.AdditionalMaterialRepository;
 
@@ -36,7 +37,7 @@ public class AdditionalMaterialService {
             throw new NoSuchMaterialIdException(additionalMaterialId);
         }
         additionalMaterialRepository.remove(additionalMaterial.get());
-        System.out.println("additional material has been deleted");
+        ConsoleUtils.print(Constants.ELEMENT_DELETED);
     }
 
     public int additionalMaterialIdIsValid() {

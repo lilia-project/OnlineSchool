@@ -1,20 +1,15 @@
 package org.lilia.model;
 
-import static org.lilia.model.Role.STUDENT;
-import static org.lilia.model.Role.TEACHER;
-
 public class Person {
     private static int counter = 0;
-
     private final Integer id;
-
-    private String firstName;
-
+    private final Role role;
     private final String lastName;
+    private String firstName;
     private String phone;
     private String email;
-    private final Role role;
     private int courseId;
+    private int lectureId;
 
     public Person(String lastName, Role role) {
         this.lastName = lastName;
@@ -24,14 +19,8 @@ public class Person {
     }
 
 
-    public static Person createTeacher(String lastName) {
-        Person teacher = new Person(lastName, TEACHER);
-        return teacher;
-    }
-
-    public static Person createStudent(String lastName) {
-        Person student = new Person(lastName, STUDENT);
-        return student;
+    public static Person createPerson(String lastName, Role role) {
+        return new Person(lastName, role);
     }
 
     public int getId() {
@@ -62,16 +51,21 @@ public class Person {
         return courseId;
     }
 
+    public int getLectureId() {
+        return lectureId;
+    }
+
     public void setCourseId(int courseId) {
         this.courseId = courseId;
     }
 
     @Override
     public String toString() {
-        return "\n courseId = " + courseId +
-                "\n Id = " + id +
-                "\n First name = " + firstName +
+        return "\n id = " + id +
                 "\n Last name = " + lastName +
+                "\n First name = " + firstName +
+                "\n courseId = " + courseId +
+                "\n lectureId = " + lectureId +
                 "\n Phone = " + phone +
                 "\n Email = " + email;
 

@@ -1,12 +1,15 @@
 package org.lilia.service;
 
 import org.lilia.ConsoleUtils;
+import org.lilia.Constants;
+import org.lilia.dto.LectureDto;
 import org.lilia.exception.NoSuchLectureIdException;
 import org.lilia.model.Homework;
 import org.lilia.model.Lecture;
-import org.lilia.dto.LectureDto;
 import org.lilia.repository.LectureRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class LectureService {
@@ -24,30 +27,11 @@ public class LectureService {
         }
         Lecture lecture = new Lecture(lectureName);
         lectureRepository.add(lecture);
-        System.out.println("\nthe lecture has been created: " + lecture);
+        ConsoleUtils.print(Constants.ELEMENT_CREATED + lecture);
     }
 
     public LectureDto createLectureDto(int courseId, String lectureName, String description, int personId) {
         return new LectureDto(courseId, lectureName, description, personId);
-    }
-
-    public void out() {
-        lectureRepository.getAll();
-    }
-
-    public Lecture getRequireById(int lectureId) {
-        Optional<Lecture> lecture = lectureRepository.getById(lectureId);
-        if (lecture.isEmpty()) {
-            throw new NoSuchLectureIdException(lectureId);
-        }
-        addHomeworkIntoLecture(lecture.get());
-        System.out.println(lecture.get());
-        return lecture.get();
-    }
-
-    private void addHomeworkIntoLecture(Lecture lecture) {
-        Homework[] homeworks = homeworkService.findAllByLectureId(lecture.getId());
-        lecture.setHomeworksList(homeworks);
     }
 
     public Lecture updateLecture(Lecture lecture, LectureDto lectureDto) {
@@ -66,14 +50,41 @@ public class LectureService {
         return lecture;
     }
 
+    public void out() {
+        lectureRepository.getAll();
+    }
+
+    public Lecture getRequireById(int lectureId) {
+        Optional<Lecture> lecture = lectureRepository.getById(lectureId);
+        if (lecture.isEmpty()) {
+            throw new NoSuchLectureIdException(lectureId);
+        }
+        addHomeworkIntoLecture(lecture.get());
+        //System.out.println(lecture.get());
+        return lecture.get();
+    }
+
+    private void addHomeworkIntoLecture(Lecture lecture) {
+        List<Homework> list = homeworkService.findAllByLectureId(lecture.getId());
+        lecture.setList(list);
+    }
+
+    public List<Lecture> findAllByCourseId(int courseId) {
+        List<Lecture> resList = new ArrayList<>();
+        Optional<Lecture> lecture;
+        for (int i = 0; i < lectureRepository.size(); i++) {
+            if (lectureRepository.getByCourseId(courseId).isPresent()) {
+                lecture = lectureRepository.getByCourseId(courseId);
+                resList.add(lecture.get());
+            }
+        }
+        return resList;
+    }
+
     public void deleteById(int lectureId) {
         Lecture lecture = getRequireById(lectureId);
         lectureRepository.remove(lecture);
-        System.out.println("Lecture " + lectureId + " has been deleted");
-    }
-
-    public int size() {
-        return lectureRepository.size();
+        ConsoleUtils.print(Constants.ELEMENT_DELETED);
     }
 
     public int lectureIdIsValid() {

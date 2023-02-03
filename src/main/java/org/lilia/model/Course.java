@@ -1,10 +1,14 @@
 package org.lilia.model;
 
+import java.util.List;
+
 public class Course {
     private static int counter = 0;
 
     private final Integer id;
     private String name;
+
+    private List<Lecture> list;
 
     public Course(String name) {
         this.name = name;
@@ -22,5 +26,16 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setList(List<Lecture> list) {
+        this.list = list;
+    }
+
+    @Override
+    public String toString() {
+        return "\n course id = " + id +
+                "\n course name = " + name +
+                "\n lectures = " + list;
     }
 }

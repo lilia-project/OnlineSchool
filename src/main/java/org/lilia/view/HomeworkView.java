@@ -2,8 +2,8 @@ package org.lilia.view;
 
 import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
-import org.lilia.model.Homework;
 import org.lilia.dto.HomeworkDto;
+import org.lilia.model.Homework;
 import org.lilia.service.HomeworkService;
 import org.lilia.service.LectureService;
 
@@ -21,10 +21,10 @@ public class HomeworkView {
             switch (ConsoleUtils.choiceAction()) {
                 case 1:
                     while (userChoice.equalsIgnoreCase("Y")) {
-                        System.out.println("input lecture's id");
+                        ConsoleUtils.print(Constants.LECTURE_ID);
                         int lectureId = lectureService.lectureIdIsValid();
 
-                        System.out.println("input task's name");
+                        ConsoleUtils.print(Constants.NAME);
                         String task = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
                         System.out.println("input additionalMaterials");
@@ -34,23 +34,21 @@ public class HomeworkView {
                         System.out.println(Constants.CREATE_NEW);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
-                    System.out.println("You created " + Homework.getCounter() + " new homework(s)");
                     break;
                 case 2:
-                    System.out.println("select homework's id");
-
-                    int homeworkId = homeworkService.homeworkIdIsValid();// todo вывести все лекции из репо, чтобы выбрать id лекции
-                    Homework homework = homeworkService.getById(homeworkId);
+                    ConsoleUtils.print(Constants.HOMEWORK_ID);
+                    int homeworkId = homeworkService.homeworkIdIsValid();
+                    Homework homework = homeworkService.getRequireById(homeworkId);
 
                     System.out.println(Constants.EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
                     while (userChoice.equalsIgnoreCase("Y")) {
 
-                        System.out.println("homework's name");
+                        ConsoleUtils.print(Constants.NAME);
                         String task = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-                        System.out.println("homework's description");
+                        ConsoleUtils.print(Constants.DESCRIPTION);
                         String additionalMaterial = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
                         HomeworkDto homeworkDto = homeworkService.createHomeworkDto(task, additionalMaterial);
@@ -64,19 +62,18 @@ public class HomeworkView {
                     }
                     break;
                 case 3:
-                    System.out.println("the list of homework");
                     lectureService.out();
                     break;
                 case 4:
-                    System.out.println("input homework's id");
+                    ConsoleUtils.print(Constants.HOMEWORK_ID);
                     homeworkId = homeworkService.homeworkIdIsValid();
                     homeworkService.deleteById(homeworkId);
                     break;
                 case 5:
-                    System.out.println("exit");
+                    ConsoleUtils.print(Constants.EXIT);
                     break;
                 default:
-                    System.out.println("Error");
+                    ConsoleUtils.print(Constants.ERROR);
                     break;
             }
             ConsoleUtils.print(Constants.STAY_IN);

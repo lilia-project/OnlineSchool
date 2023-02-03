@@ -41,4 +41,13 @@ public class LectureRepository {
             System.out.println(lecture);
         }
     }
+
+    public Optional<Lecture> getByCourseId(int courseId) {
+        for (Lecture lecture : list) {
+            if (lecture.getCourseId() == courseId) {
+            }
+            return Optional.of(lecture);
+        }
+        return Optional.empty();
+    }
 }

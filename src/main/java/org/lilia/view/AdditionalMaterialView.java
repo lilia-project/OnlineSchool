@@ -2,8 +2,8 @@ package org.lilia.view;
 
 import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
-import org.lilia.model.AdditionalMaterial;
 import org.lilia.dto.AdditionalMaterialDto;
+import org.lilia.model.AdditionalMaterial;
 import org.lilia.model.ResourceType;
 import org.lilia.service.AdditionalMaterialService;
 import org.lilia.service.LectureService;
@@ -23,7 +23,7 @@ public class AdditionalMaterialView {
                 case 1:
                     while (userChoice.equalsIgnoreCase("Y")) {
 
-                        System.out.print("input name of additionalMaterial ");
+                        ConsoleUtils.print(Constants.NAME);
                         String additionalMaterialName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
                         additionalMaterialService.createAdditionalMaterial(additionalMaterialName);
@@ -33,7 +33,7 @@ public class AdditionalMaterialView {
                     }
                     break;
                 case 2:
-                    System.out.println("select additionalMaterial's id");
+                    ConsoleUtils.print(Constants.ADD_MATERIAL_ID);
 
                     int additionalMaterialId = additionalMaterialService.additionalMaterialIdIsValid();
                     AdditionalMaterial additionalMaterial = additionalMaterialService.getRequireById(additionalMaterialId);
@@ -41,10 +41,10 @@ public class AdditionalMaterialView {
 
                     ConsoleUtils.print(Constants.EDIT);
                     while (userChoice.equalsIgnoreCase("Y")) {
-                        System.out.println("additionalMaterial's name");
+                        ConsoleUtils.print(Constants.NAME);
                         String name = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-                        System.out.println("lecture's id");
+                        ConsoleUtils.print(Constants.LECTURE_ID);
                         int lectureId = lectureService.lectureIdIsValid();
 
                         System.out.println("resourceType's description");
@@ -62,15 +62,15 @@ public class AdditionalMaterialView {
                     additionalMaterialService.getAll();
                     break;
                 case 4:
-                    System.out.println("input additionalMaterial's id");
+                    ConsoleUtils.print(Constants.ADD_MATERIAL_ID);
                     additionalMaterialId = additionalMaterialService.additionalMaterialIdIsValid();
                     additionalMaterialService.deleteById(additionalMaterialId);
                     break;
                 case 5:
-                    System.out.println("exit");
+                    ConsoleUtils.print(Constants.EXIT);
                     break;
                 default:
-                    System.out.println("Error");
+                    ConsoleUtils.print(Constants.ERROR);
                     break;
             }
             ConsoleUtils.print(Constants.STAY_IN);

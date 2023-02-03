@@ -2,8 +2,8 @@ package org.lilia.view;
 
 import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
-import org.lilia.model.Lecture;
 import org.lilia.dto.LectureDto;
+import org.lilia.model.Lecture;
 import org.lilia.service.LectureService;
 
 public class LectureView {
@@ -17,7 +17,7 @@ public class LectureView {
 
                     while (userChoice.equalsIgnoreCase("Y")) {
 
-                        System.out.print("input name of lecture ");
+                        ConsoleUtils.print(Constants.NAME);
                         String lectureName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
                         lectureService.createLecture(lectureName);
@@ -25,10 +25,9 @@ public class LectureView {
                         System.out.println(Constants.CREATE_NEW);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
-                    System.out.println("You created " + Lecture.counter + " new lecture(s)");
                     break;
                 case 2:
-                    System.out.println("select lecture's id");
+                    ConsoleUtils.print(Constants.LECTURE_ID);
                     int lectureId = ConsoleUtils.readInteger();
 
                     Lecture lecture = lectureService.getRequireById(lectureId);
@@ -37,44 +36,43 @@ public class LectureView {
 
                     while (userChoice.equalsIgnoreCase("Y")) {
 
-                        System.out.println("lecture's name");
+                        ConsoleUtils.print(Constants.NAME);
                         String lectureName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-                        System.out.println("lecture's description");
+                        ConsoleUtils.print(Constants.DESCRIPTION);
                         String lectureDescription = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
                         System.out.println("choose from available course id");
-                        String courseId = ConsoleUtils.readAndValidationInput("\\d+");
+                        String courseId = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
 
-                        System.out.println("teacher's id = ");
-                        String personId = ConsoleUtils.readAndValidationInput("\\d+");
+                        ConsoleUtils.print(Constants.TEACHER_ID);
+                        String personId = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
 
                         LectureDto lectureDto = lectureService.createLectureDto(Integer.parseInt(courseId), lectureName, lectureDescription, Integer.parseInt(personId));
 
                         Lecture lectureUpdate = lectureService.updateLecture(lecture, lectureDto);
                         System.out.println(lectureUpdate);
 
-                        System.out.println(Constants.EDIT);
+                        ConsoleUtils.print(Constants.EDIT);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                     break;
                 case 3:
-                    System.out.println("the list of lectures");
                     lectureService.out();
                     break;
                 case 4:
-                    System.out.println("input lecture's id");
+                    ConsoleUtils.print(Constants.LECTURE_ID);
                     lectureId = lectureService.lectureIdIsValid();
                     lectureService.deleteById(lectureId);
                     break;
                 case 5:
-                    System.out.println("exit");
+                    ConsoleUtils.print(Constants.EXIT);
                     break;
                 default:
-                    System.out.println("Error");
+                    ConsoleUtils.print(Constants.ERROR);
                     break;
             }
-            System.out.println("stay in category? Y - yes, N - no");
+            ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
             if (userChoice.equalsIgnoreCase("N")) {
                 break;

@@ -2,22 +2,47 @@ package org.lilia.repository;
 
 import org.lilia.model.Homework;
 
-public interface HomeworkRepository {
-    void add(Homework element);
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-    void add(int index, Homework element);
+public class HomeworkRepository {
 
-    Homework remove(int index);
+    private final List<Homework> list = new ArrayList<>();
 
-    Homework getE(int index);
+    public void add(Homework homework) {
+        list.add(homework);
+    }
 
-    Homework[] getAll();
+    public void remove(Homework homework) {
+        list.remove(homework);
+    }
 
-    boolean isEmpty();
+    public Optional<Homework> getById(int id) {
+        for (Homework homework : list) {
+            if (homework.getId() == id) {
+                return Optional.of(homework);
+            }
+        }
+        return Optional.empty();
+    }
 
-    int size();
+    public int size() {
+        return list.size();
+    }
 
-    void expandingArray();
+    public void getAll() {
+        for (Homework homework : list) {
+            System.out.println(homework);
+        }
+    }
 
-    Homework getByLectureId(int lectureId);
+    public Optional<Homework> getByLectureId(int lectureId) {
+        for (Homework homework : list) {
+            if (homework.getLectureId() == lectureId) {
+                return Optional.of(homework);
+            }
+        }
+        return Optional.empty();
+    }
 }
