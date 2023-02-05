@@ -2,23 +2,22 @@ package org.lilia.repository;
 
 import org.lilia.model.Course;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-public class CourseRepository {
-    private final List<Course> list = new ArrayList<>();
+public class CourseRepository{
+   private final SortedSet<Course> data = new TreeSet<>();
+
 
     public void add(Course course) {
-        list.add(course);
+        data.add(course);
     }
 
     public void remove(Course course) {
-        list.remove(course);
+        data.remove(course);
     }
 
     public Optional<Course> getById(int courseId) {
-        for (Course course : list) {
+        for (Course course : data) {
             if (course.getId() == courseId) {
                 return Optional.of(course);
             }
@@ -27,13 +26,15 @@ public class CourseRepository {
     }
 
     public int size() {
-        return list.size();
+        return data.size();
     }
 
     public void getAll() {
-        for (Course course : list) {
+        for (Course course : data) {
             System.out.println(course);
         }
     }
+
+
 
 }

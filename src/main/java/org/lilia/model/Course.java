@@ -1,8 +1,9 @@
 package org.lilia.model;
 
+import java.util.Comparator;
 import java.util.List;
 
-public class Course {
+public class Course implements Comparable<Course> {
     private static int counter = 0;
 
     private final Integer id;
@@ -15,6 +16,8 @@ public class Course {
         counter++;
         id = counter;
     }
+
+
 
     public int getId() {
         return id;
@@ -38,4 +41,10 @@ public class Course {
                 "\n course name = " + name +
                 "\n lectures = " + list;
     }
+
+    @Override
+    public int compareTo(Course course) {
+        return this.name.compareTo(course.name);
+    }
+
 }
