@@ -77,7 +77,7 @@ public class HomeworkService {
         int homeworkId = ConsoleUtils.readInteger();
         Optional<Homework> homework = homeworkRepository.getById(homeworkId);
         while (homework.isEmpty()) {
-            System.out.println("input valid homework's id");
+            System.out.println("no such homeworkId exist");
             homeworkId = ConsoleUtils.readInteger();
             homework = homeworkRepository.getById(homeworkId);
         }

@@ -24,11 +24,22 @@ public class AdditionalMaterialService {
     }
 
     public AdditionalMaterialDto createAdditionalMaterialDto(int lectureId, String name, ResourceType resourceType) {
-        return new AdditionalMaterialDto(lectureId, name, resourceType);
+
+        if (resourceType.getParameter() == 1) {
+            return new AdditionalMaterialDto(lectureId, name, ResourceType.URL);
+        }
+        if (resourceType.getParameter() == 2) {
+            return new AdditionalMaterialDto(lectureId, name, ResourceType.VIDEO);
+        } else
+            return new AdditionalMaterialDto(lectureId, name, ResourceType.BOOK);
     }
 
     public void getAll() {
         additionalMaterialRepository.getAll();
+    }
+
+    public void getAll(AdditionalMaterial.SortField sortField) {
+        additionalMaterialRepository.getAll(sortField);
     }
 
     public void deleteById(int additionalMaterialId) {
@@ -74,10 +85,5 @@ public class AdditionalMaterialService {
             additionalMaterial.setLectureId(additionalMaterialDto.getLectureId());
         }
         return additionalMaterial;
-    }
-
-    public ResourceType getValueOfEnum() {
-
-        return null;
     }
 }

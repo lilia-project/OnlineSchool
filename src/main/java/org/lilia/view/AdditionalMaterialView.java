@@ -48,7 +48,9 @@ public class AdditionalMaterialView {
                         int lectureId = lectureService.lectureIdIsValid();
 
                         System.out.println("resourceType's description");
-                        ResourceType resourceType = additionalMaterialService.getValueOfEnum();// todo enum
+                        String parameter = ConsoleUtils.choiceParameterResource();
+                        ResourceType resourceType = ResourceType.valueOf(parameter);
+
 
                         AdditionalMaterialDto additionalMaterialDto = additionalMaterialService.createAdditionalMaterialDto(lectureId, name, resourceType);
                         AdditionalMaterial additionalMaterialUpdate = additionalMaterialService.updateAdditionalMaterial(additionalMaterial, additionalMaterialDto);
@@ -60,6 +62,25 @@ public class AdditionalMaterialView {
                     break;
                 case 3:
                     additionalMaterialService.getAll();
+
+                    ConsoleUtils.print(Constants.APPLY_SORT);
+                    userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+                    while (userChoice.equalsIgnoreCase("Y")) {
+
+                        additionalMaterialService.getAll(AdditionalMaterial.SortField.ID);
+                        ConsoleUtils.print("by other parameter " + Constants.APPLY_SORT);
+                        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
+                        if (userChoice.equalsIgnoreCase("Y")) {
+                            ConsoleUtils.print(Constants.SELECT_PARAMETER_SORT);
+
+                            if (ConsoleUtils.choiceParameterSort() == 1) {
+                                additionalMaterialService.getAll(AdditionalMaterial.SortField.LECTURE_ID);
+                            } else {
+                                additionalMaterialService.getAll(AdditionalMaterial.SortField.RESOURCE_TYPE);
+                            }
+                        }
+                    }
                     break;
                 case 4:
                     ConsoleUtils.print(Constants.ADD_MATERIAL_ID);

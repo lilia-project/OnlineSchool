@@ -21,6 +21,13 @@ public class ConsoleUtils {
         return Integer.parseInt(readAndValidationInput("[1-5]"));
     }
 
+    public static int choiceParameterSort() {
+        System.out.println("1 - sort by lectureId");
+        System.out.println("2 - sort by resourceType");
+
+        return Integer.parseInt(readAndValidationInput("[1,2]"));
+    }
+
     private static void feedNewLine() {
         SCANNER.nextLine();
     }
@@ -70,5 +77,13 @@ public class ConsoleUtils {
 
     public static void print(String string) {
         System.out.println(string);
+    }
+
+    public static String choiceParameterResource() {
+        System.out.println("1 - URL");
+        System.out.println("2 - VIDEO");
+        System.out.println("3 - BOOK");
+
+        return readAndValidationInput("URL|VIDEO|BOOK");
     }
 }

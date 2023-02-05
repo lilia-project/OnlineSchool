@@ -90,11 +90,6 @@ public class LectureService {
     public int lectureIdIsValid() {
         int lectureId = ConsoleUtils.readInteger();
         Optional<Lecture> lecture = lectureRepository.getById(lectureId);
-        while (lecture.isEmpty()) {
-            System.out.println("input valid lecture's id");
-            lectureId = ConsoleUtils.readInteger();
-            lecture = lectureRepository.getById(lectureId);
-        }
         return lectureId;
     }
 }

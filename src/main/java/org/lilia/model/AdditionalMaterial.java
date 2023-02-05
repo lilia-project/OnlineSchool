@@ -1,5 +1,7 @@
 package org.lilia.model;
 
+import java.util.Comparator;
+
 public class AdditionalMaterial {
     private static int counter = 0;
 
@@ -47,4 +49,56 @@ public class AdditionalMaterial {
                 "\n lectureId = " + lectureId +
                 "\n resourceType = " + resourceType;
     }
+
+    public static class IdComparator implements Comparator<AdditionalMaterial> {
+
+        @Override
+        public int compare(AdditionalMaterial o1, AdditionalMaterial o2) {
+            if (o1.id > o2.id) {
+                return 1;
+            } else if (o1.id < o2.id) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    public static class LectureIdComparator implements Comparator<AdditionalMaterial> {
+
+        @Override
+        public int compare(AdditionalMaterial o1, AdditionalMaterial o2) {
+            if (o1.lectureId > o2.lectureId) {
+                return 1;
+            } else if (o1.lectureId < o2.lectureId) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    public static class ResourceTypeComparator implements Comparator<AdditionalMaterial> {
+
+        @Override
+        public int compare(AdditionalMaterial o1, AdditionalMaterial o2) {
+
+            if (o1.resourceType.getParameter() > o2.resourceType.getParameter()) {
+                return 1;
+            } else if (o1.resourceType.getParameter() < o2.resourceType.getParameter()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    public enum SortField {
+        ID,
+        LECTURE_ID,
+        RESOURCE_TYPE
+    }
+
 }
+
+

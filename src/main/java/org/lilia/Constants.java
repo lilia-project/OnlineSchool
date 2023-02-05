@@ -19,6 +19,8 @@ public final class Constants {
     public static final String DESCRIPTION = "description";
     public static final String ELEMENT_CREATED = "element has been created";
     public static final String ELEMENT_DELETED = "element has been deleted";
+    public static final String APPLY_SORT = "apply sorting?\n Y - Yes N - No";
+    public static final String SELECT_PARAMETER_SORT = "select parameter of sorting";
 
     private Constants() {
     }

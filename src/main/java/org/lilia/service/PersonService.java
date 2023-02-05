@@ -17,13 +17,4 @@ public class PersonService {
         System.out.println("\nthe teacher has been created:\n" + teacher);
         return teacher;
     }
-
-   /* public int[] getAllTeacherIds() {
-      //  Person[] teacher =PersonRepository.g
-        int[] allTeacherIds = new int[teacher.length];
-        for (int i = 0; i < teacher.length; i++) {
-            allTeacherIds[i] = teacher[i].getId();
-        }
-        return allTeacherIds;
-    }*/
 }
