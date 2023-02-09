@@ -50,6 +50,28 @@ public class AdditionalMaterial {
                 "\n resourceType = " + resourceType;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AdditionalMaterial that = (AdditionalMaterial) o;
+
+        if (id != that.id) return false;
+        if (lectureId != that.lectureId) return false;
+        if (!name.equals(that.name)) return false;
+        return resourceType == that.resourceType;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + lectureId;
+        result = 31 * result + (resourceType != null ? resourceType.hashCode() : 0);
+        return result;
+    }
+
     public static class IdComparator implements Comparator<AdditionalMaterial> {
 
         @Override

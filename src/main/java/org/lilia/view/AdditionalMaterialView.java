@@ -61,11 +61,13 @@ public class AdditionalMaterialView {
                     }
                     break;
                 case 3:
-                    additionalMaterialService.getAll();
+                    ConsoleUtils.print(Constants.LECTURE_ID);
+                    int lectureId = lectureService.lectureIdIsValid();
+                    additionalMaterialService.findAllByLectureId(lectureId);
 
                     ConsoleUtils.print(Constants.APPLY_SORT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-                    while (userChoice.equalsIgnoreCase("Y")) {
+                   /* while (userChoice.equalsIgnoreCase("Y")) {
 
                         additionalMaterialService.getAll(AdditionalMaterial.SortField.ID);
                         ConsoleUtils.print("by other parameter " + Constants.APPLY_SORT);
@@ -80,7 +82,7 @@ public class AdditionalMaterialView {
                                 additionalMaterialService.getAll(AdditionalMaterial.SortField.RESOURCE_TYPE);
                             }
                         }
-                    }
+                    }*/
                     break;
                 case 4:
                     ConsoleUtils.print(Constants.ADD_MATERIAL_ID);

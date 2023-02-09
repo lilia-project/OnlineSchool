@@ -62,7 +62,9 @@ public class HomeworkView {
                     }
                     break;
                 case 3:
-                    lectureService.out();
+                    ConsoleUtils.print(Constants.LECTURE_ID);
+                    int lectureId = lectureService.lectureIdIsValid();
+                    homeworkService.findAllByLectureId(lectureId);
                     break;
                 case 4:
                     ConsoleUtils.print(Constants.HOMEWORK_ID);

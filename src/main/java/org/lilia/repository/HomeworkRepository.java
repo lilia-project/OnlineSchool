@@ -2,47 +2,62 @@ package org.lilia.repository;
 
 import org.lilia.model.Homework;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class HomeworkRepository {
 
-    private final List<Homework> list = new ArrayList<>();
+    private final Map<Integer, List<Homework>> data = new HashMap<>();
 
     public void add(Homework homework) {
-        list.add(homework);
+        List<Homework> value = data.get(homework.getLectureId());
+        if (value == null) {
+            data.put(homework.getLectureId(), List.of(homework));// todo repeat
+        } else {
+            value.add(homework);
+        }
     }
 
     public void remove(Homework homework) {
-        list.remove(homework);
+        List<Homework> value = data.get(homework.getLectureId());
+        if (value == null) {
+            return;
+        }
+        value.remove(homework);
+        // data.put(homework.getLectureId(), value);
     }
 
+
     public Optional<Homework> getById(int id) {
-        for (Homework homework : list) {
-            if (homework.getId() == id) {
-                return Optional.of(homework);
+        Collection<List<Homework>> values = data.values();//список списков дз
+        for (List<Homework> homeworks : values) {
+
+            for (Homework homework : homeworks) {
+
+                if (homework.getId() == id) {
+                    return Optional.of(homework);
+                }
             }
+
         }
         return Optional.empty();
     }
 
     public int size() {
-        return list.size();
+        return data.size();
     }
 
     public void getAll() {
-        for (Homework homework : list) {
-            System.out.println(homework);
+        for (List<Homework> homeworks : data.values()) {
+
+            for (Homework homework : homeworks) {
+
+                System.out.println(homework);
+            }
         }
     }
 
-    public Optional<Homework> getByLectureId(int lectureId) {
-        for (Homework homework : list) {
-            if (homework.getLectureId() == lectureId) {
-                return Optional.of(homework);
-            }
-        }
-        return Optional.empty();
+    public Optional<List<Homework>> getByLectureId(int lectureId) {
+        List<Homework> list = data.get(lectureId);
+        return Optional.ofNullable(list);
     }
 }

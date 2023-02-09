@@ -7,7 +7,7 @@ import org.lilia.exception.NoSuchHomeworkException;
 import org.lilia.model.Homework;
 import org.lilia.repository.HomeworkRepository;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,15 +56,12 @@ public class HomeworkService {
     }
 
     public List<Homework> findAllByLectureId(int lectureId) {
-        List<Homework> resList = new ArrayList<>();
-        Optional<Homework> homework;
-        for (int i = 0; i < homeworkRepository.size(); i++) {
-            if (homeworkRepository.getByLectureId(lectureId).isPresent()) {
-                homework = homeworkRepository.getByLectureId(lectureId);
-                resList.add(homework.get());
-            }
+        Optional<List<Homework>> byLectureId = homeworkRepository.getByLectureId(lectureId);
+        if (byLectureId.isPresent()) {
+            return byLectureId.get();
+        } else {
+            return Collections.emptyList();
         }
-        return resList;
     }
 
     public void deleteById(int homeworkId) {

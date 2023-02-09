@@ -8,6 +8,8 @@ import org.lilia.model.AdditionalMaterial;
 import org.lilia.model.ResourceType;
 import org.lilia.repository.AdditionalMaterialRepository;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 public class AdditionalMaterialService {
@@ -38,9 +40,9 @@ public class AdditionalMaterialService {
         additionalMaterialRepository.getAll();
     }
 
-    public void getAll(AdditionalMaterial.SortField sortField) {
+   /* public void getAll(AdditionalMaterial.SortField sortField) {
         additionalMaterialRepository.getAll(sortField);
-    }
+    }*/
 
     public void deleteById(int additionalMaterialId) {
         Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
@@ -85,5 +87,13 @@ public class AdditionalMaterialService {
             additionalMaterial.setLectureId(additionalMaterialDto.getLectureId());
         }
         return additionalMaterial;
+    }
+
+    public List<AdditionalMaterial> findAllByLectureId(int lectureId) {
+        Optional<List<AdditionalMaterial>> byLectureId = additionalMaterialRepository.getByLectureId(lectureId);
+        if (byLectureId.isPresent()) {
+            return byLectureId.get();
+        }
+        return Collections.emptyList();
     }
 }

@@ -1,45 +1,62 @@
 package org.lilia.repository;
 
-import org.lilia.ConsoleUtils;
-import org.lilia.Constants;
 import org.lilia.model.AdditionalMaterial;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class AdditionalMaterialRepository {
-    private final List<AdditionalMaterial> list = new ArrayList<>();
+
+    private final Map<Integer, List<AdditionalMaterial>> data = new HashMap<>();
 
     public void add(AdditionalMaterial additionalMaterial) {
-        list.add(additionalMaterial);
+        List<AdditionalMaterial> value = data.get(additionalMaterial.getLectureId());
+        if (value == null) {
+            data.put(additionalMaterial.getLectureId(), List.of(additionalMaterial));
+        } else {
+            value.add(additionalMaterial);
+        }
     }
 
     public int size() {
-        return list.size();
+        return data.size();
     }
 
-    public Optional<AdditionalMaterial> getById(int additionalMaterialId) {
-        for (AdditionalMaterial additionalMaterial : list) {
-            if (additionalMaterial.getId() == additionalMaterialId) {
-                return Optional.of(additionalMaterial);
+    public Optional<AdditionalMaterial> getById(int id) {
+        Collection<List<AdditionalMaterial>> values = data.values();
+        for (List<AdditionalMaterial> additionalMaterials : values) {
+            for (AdditionalMaterial additionalMaterial : additionalMaterials) {
+                if (additionalMaterial.getId() == id) {
+                    return Optional.of(additionalMaterial);
+                }
             }
         }
         return Optional.empty();
     }
 
     public void remove(AdditionalMaterial additionalMaterial) {
-        list.remove(additionalMaterial);
+        List<AdditionalMaterial> value = data.get(additionalMaterial.getLectureId());
+        if (value == null) {
+            return;
+        }
+        value.remove(additionalMaterial);
     }
 
     public void getAll() {
-        for (AdditionalMaterial additionalMaterial : list) {
-            System.out.println(additionalMaterial);
+        for (List<AdditionalMaterial> additionalMaterials : data.values()) {
+
+            for (AdditionalMaterial additionalMaterial : additionalMaterials) {
+
+                System.out.println(additionalMaterial);
+            }
         }
     }
 
-    public void getAll(AdditionalMaterial.SortField sortField) {
+    public Optional<List<AdditionalMaterial>> getByLectureId(int lectureId) {
+        List<AdditionalMaterial> list = data.get(lectureId);
+        return Optional.ofNullable(list);
+    }
+
+ /*   public void getAll(AdditionalMaterial.SortField sortField) {
         Comparator<AdditionalMaterial> comparator = null;
         switch (sortField) {
             case ID -> comparator = new AdditionalMaterial.IdComparator();
@@ -51,5 +68,5 @@ public class AdditionalMaterialRepository {
         for (AdditionalMaterial additionalMaterial : list) {
             System.out.println(additionalMaterial);
         }
-    }
+    }*/
 }
