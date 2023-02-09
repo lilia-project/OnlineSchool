@@ -31,7 +31,7 @@ public class CourseView {
 
                     Course course = courseService.getRequireById(courseId);
                     courseService.print(course);
-                    ConsoleUtils.print(Constants.EDIT);
+                    ConsoleUtils.print(Constants.EDIT_ELEMENT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
                     while (userChoice.equalsIgnoreCase("Y")) {
@@ -44,7 +44,7 @@ public class CourseView {
                         Course courseUpdate = courseService.updateCourse(course, courseDto);
                         System.out.println(courseUpdate);
 
-                        ConsoleUtils.print(Constants.EDIT);
+                        ConsoleUtils.print(Constants.EDIT_ELEMENT);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                     break;

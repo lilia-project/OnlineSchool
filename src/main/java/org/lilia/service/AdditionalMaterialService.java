@@ -19,8 +19,8 @@ public class AdditionalMaterialService {
         this.additionalMaterialRepository = additionalMaterialRepository;
     }
 
-    public void createAdditionalMaterial(String name) {
-        AdditionalMaterial additionalMaterial = new AdditionalMaterial(name);
+    public void createAdditionalMaterial(String name, int lectureId) {
+        AdditionalMaterial additionalMaterial = new AdditionalMaterial(name, lectureId);
         additionalMaterialRepository.add(additionalMaterial);
         System.out.println("\nthe additionalMaterial has been created: " + additionalMaterial);
     }
@@ -36,13 +36,10 @@ public class AdditionalMaterialService {
             return new AdditionalMaterialDto(lectureId, name, ResourceType.BOOK);
     }
 
-    public void getAll() {
-        additionalMaterialRepository.getAll();
-    }
 
-   /* public void getAll(AdditionalMaterial.SortField sortField) {
-        additionalMaterialRepository.getAll(sortField);
-    }*/
+    public void getAll(AdditionalMaterial.SortField sortField, int lectureId) {
+        additionalMaterialRepository.getAll(sortField, lectureId);
+    }
 
     public void deleteById(int additionalMaterialId) {
         Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);

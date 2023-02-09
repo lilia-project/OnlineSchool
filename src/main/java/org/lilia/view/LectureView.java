@@ -31,7 +31,7 @@ public class LectureView {
                     int lectureId = ConsoleUtils.readInteger();
 
                     Lecture lecture = lectureService.getRequireById(lectureId);
-                    System.out.println(Constants.EDIT);
+                    System.out.println(Constants.EDIT_ELEMENT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
                     while (userChoice.equalsIgnoreCase("Y")) {
@@ -43,6 +43,7 @@ public class LectureView {
                         String lectureDescription = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
                         System.out.println("choose from available course id");
+                        // todo bind with set of courses
                         String courseId = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
 
                         ConsoleUtils.print(Constants.TEACHER_ID);
@@ -53,7 +54,7 @@ public class LectureView {
                         Lecture lectureUpdate = lectureService.updateLecture(lecture, lectureDto);
                         System.out.println(lectureUpdate);
 
-                        ConsoleUtils.print(Constants.EDIT);
+                        ConsoleUtils.print(Constants.EDIT_ELEMENT);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                     break;

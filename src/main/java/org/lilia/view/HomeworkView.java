@@ -24,13 +24,13 @@ public class HomeworkView {
                         ConsoleUtils.print(Constants.LECTURE_ID);
                         int lectureId = lectureService.lectureIdIsValid();
 
-                        ConsoleUtils.print(Constants.NAME);
+                        ConsoleUtils.print(Constants.TASK);
                         String task = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-                        System.out.println("input additionalMaterials");
-                        String additionalMaterial = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
+                       // System.out.println("input additionalMaterials");
+                      //  String additionalMaterial = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-                        homeworkService.createHomework(lectureId, task, additionalMaterial);
+                        homeworkService.createHomework(lectureId, task);
                         System.out.println(Constants.CREATE_NEW);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
@@ -39,13 +39,14 @@ public class HomeworkView {
                     ConsoleUtils.print(Constants.HOMEWORK_ID);
                     int homeworkId = homeworkService.homeworkIdIsValid();
                     Homework homework = homeworkService.getRequireById(homeworkId);
+                    print(homework);
 
-                    System.out.println(Constants.EDIT);
+                    System.out.println(Constants.EDIT_ELEMENT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
                     while (userChoice.equalsIgnoreCase("Y")) {
 
-                        ConsoleUtils.print(Constants.NAME);
+                        ConsoleUtils.print(Constants.TASK);
                         String task = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
                         ConsoleUtils.print(Constants.DESCRIPTION);
@@ -57,7 +58,7 @@ public class HomeworkView {
                         Homework homeworkUpdate = homeworkService.updateHomework(homework, homeworkDto);
                         System.out.println(homeworkUpdate);
 
-                        ConsoleUtils.print(Constants.EDIT);
+                        ConsoleUtils.print(Constants.EDIT_ELEMENT);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                     break;
@@ -84,5 +85,9 @@ public class HomeworkView {
                 break;
             }
         }
+    }
+
+    private void print(Homework homework) {
+        System.out.println(homework);
     }
 }

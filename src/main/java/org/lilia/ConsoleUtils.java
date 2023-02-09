@@ -22,10 +22,10 @@ public class ConsoleUtils {
     }
 
     public static int choiceParameterSort() {
-        System.out.println("1 - sort by lectureId");
-        System.out.println("2 - sort by resourceType");
+        System.out.println("2 - sort by lectureId");
+        System.out.println("3 - sort by resourceType");
 
-        return Integer.parseInt(readAndValidationInput("[1,2]"));
+        return Integer.parseInt(readAndValidationInput("[2,3]"));
     }
 
     private static void feedNewLine() {
@@ -85,5 +85,14 @@ public class ConsoleUtils {
         System.out.println("3 - BOOK");
 
         return readAndValidationInput("URL|VIDEO|BOOK");
+    }
+
+    public static int workWithListAddMaterial(){
+        System.out.println("1 - add additionMaterial to lecture");
+        System.out.println("2 - delete additionMaterial");
+        System.out.println("3 - sort additionMaterial");
+
+        int keyToAction = Integer.parseInt(readAndValidationInput("[1-3]"));
+        return keyToAction;
     }
 }

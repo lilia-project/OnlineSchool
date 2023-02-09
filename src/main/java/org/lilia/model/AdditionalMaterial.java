@@ -1,6 +1,7 @@
 package org.lilia.model;
 
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 public class AdditionalMaterial {
     private static int counter = 0;
@@ -12,8 +13,9 @@ public class AdditionalMaterial {
     private int lectureId;
     private ResourceType resourceType;
 
-    public AdditionalMaterial(String name) {
+    public AdditionalMaterial(String name, int lectureId) {
         this.name = name;
+        this.lectureId = lectureId;
         counter++;
         id = counter;
     }
@@ -116,10 +118,27 @@ public class AdditionalMaterial {
     }
 
     public enum SortField {
-        ID,
-        LECTURE_ID,
-        RESOURCE_TYPE
+        ID (1),
+        LECTURE_ID(2),
+        RESOURCE_TYPE(3);
+
+        private final int id;
+
+        SortField(int id) {
+            this.id = id;
+        }
+
+        public static SortField getById(int id){
+            SortField[] values = values();
+            for (SortField sortField: values){
+                if(sortField.id == id){
+                    return sortField;
+                }
+            }
+            throw new NoSuchElementException("SortField by id " + id + " was not found");
+        }
     }
+
 
 }
 

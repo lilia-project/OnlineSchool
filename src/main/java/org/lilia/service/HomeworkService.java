@@ -18,11 +18,11 @@ public class HomeworkService {
         this.homeworkRepository = homeworkRepository;
     }
 
-    public void createHomework(int lectureId, String task, String additionalMaterial) {
+    public void createHomework(int lectureId, String task) {
         if (task == null) {
             throw new IllegalArgumentException("homework name is null");
         }
-        Homework homework = new Homework(lectureId, task, additionalMaterial);
+        Homework homework = new Homework(lectureId, task);
         homeworkRepository.add(homework);
         ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
@@ -34,9 +34,6 @@ public class HomeworkService {
     public Homework updateHomework(Homework homework, HomeworkDto homeworkDto) {
         if ((homeworkDto.getTask()) != null) {
             homework.setTask(homeworkDto.getTask());
-        }
-        if (homeworkDto.getAdditionalMaterial() != null) {
-            homework.setAdditionalMaterial(homeworkDto.getAdditionalMaterial());
         }
         return homework;
     }

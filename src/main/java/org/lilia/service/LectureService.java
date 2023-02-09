@@ -60,7 +60,7 @@ public class LectureService {
             throw new NoSuchLectureIdException(lectureId);
         }
         addHomeworkIntoLecture(lecture.get());
-        //System.out.println(lecture.get());
+        System.out.println(lecture.get());
         return lecture.get();
     }
 

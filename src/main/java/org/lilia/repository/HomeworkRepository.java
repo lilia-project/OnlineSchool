@@ -14,8 +14,9 @@ public class HomeworkRepository {
             data.put(homework.getLectureId(), List.of(homework));// todo repeat
         } else {
             value.add(homework);
-        }
+        }data.put(homework.getLectureId(), value);
     }
+
 
     public void remove(Homework homework) {
         List<Homework> value = data.get(homework.getLectureId());

@@ -5,7 +5,7 @@ import org.lilia.model.Course;
 import java.util.*;
 
 public class CourseRepository{
-   private final SortedSet<Course> data = new TreeSet<>();
+   private static final SortedSet<Course> data = new TreeSet<>();
 
 
     public void add(Course course) {
