@@ -48,7 +48,6 @@ public class Homework {
                 "\n homework's name = '" + task + "'";
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

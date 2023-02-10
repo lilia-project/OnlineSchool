@@ -27,8 +27,8 @@ public class HomeworkService {
         ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
-    public HomeworkDto createHomeworkDto(String task, String additionMaterial) {
-        return new HomeworkDto(task, additionMaterial);
+    public HomeworkDto createHomeworkDto(String task) {
+        return new HomeworkDto(task);
     }
 
     public Homework updateHomework(Homework homework, HomeworkDto homeworkDto) {
@@ -38,9 +38,9 @@ public class HomeworkService {
         return homework;
     }
 
-    public void out() {
-        homeworkRepository.getAll();
-    }
+//    public void out(int lectureId) {
+//        homeworkRepository.getAll(lectureId);
+//    }
 
     public Homework getRequireById(int homeworkId) {
 
@@ -48,22 +48,26 @@ public class HomeworkService {
         if (homework.isEmpty()) {
             throw new NoSuchHomeworkException(homeworkId);
         }
-        System.out.println(homework.get());
         return homework.get();
     }
 
     public List<Homework> findAllByLectureId(int lectureId) {
         Optional<List<Homework>> byLectureId = homeworkRepository.getByLectureId(lectureId);
-        if (byLectureId.isPresent()) {
-            return byLectureId.get();
-        } else {
+        if (byLectureId.isEmpty()) {
             return Collections.emptyList();
+        } else {
+            return byLectureId.get();
         }
     }
 
     public void deleteById(int homeworkId) {
-        Homework homework = getRequireById(homeworkId);
-        homeworkRepository.remove(homework);
+        Optional<Homework> homework = homeworkRepository.getById(homeworkId);
+        if (homework.isEmpty()) {
+            ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
+            throw new NoSuchHomeworkException(homeworkId);
+        } else {
+            homeworkRepository.remove(homework.get());
+        }
         ConsoleUtils.print(Constants.ELEMENT_DELETED);
     }
 
@@ -71,7 +75,7 @@ public class HomeworkService {
         int homeworkId = ConsoleUtils.readInteger();
         Optional<Homework> homework = homeworkRepository.getById(homeworkId);
         while (homework.isEmpty()) {
-            System.out.println("no such homeworkId exist");
+            ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
             homeworkId = ConsoleUtils.readInteger();
             homework = homeworkRepository.getById(homeworkId);
         }

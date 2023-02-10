@@ -22,7 +22,7 @@ public class AdditionalMaterialService {
     public void createAdditionalMaterial(String name, int lectureId) {
         AdditionalMaterial additionalMaterial = new AdditionalMaterial(name, lectureId);
         additionalMaterialRepository.add(additionalMaterial);
-        System.out.println("\nthe additionalMaterial has been created: " + additionalMaterial);
+        ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
     public AdditionalMaterialDto createAdditionalMaterialDto(int lectureId, String name, ResourceType resourceType) {
@@ -35,7 +35,6 @@ public class AdditionalMaterialService {
         } else
             return new AdditionalMaterialDto(lectureId, name, ResourceType.BOOK);
     }
-
 
     public void getAll(AdditionalMaterial.SortField sortField, int lectureId) {
         additionalMaterialRepository.getAll(sortField, lectureId);
@@ -54,7 +53,7 @@ public class AdditionalMaterialService {
         int additionalMaterialId = ConsoleUtils.readInteger();
         Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
         while (additionalMaterial.isEmpty()) {
-            System.out.println("additionalMaterial was not found by id " + additionalMaterialId + ", repeat input");
+            ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
             additionalMaterialId = ConsoleUtils.readInteger();
             additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
         }
@@ -88,9 +87,10 @@ public class AdditionalMaterialService {
 
     public List<AdditionalMaterial> findAllByLectureId(int lectureId) {
         Optional<List<AdditionalMaterial>> byLectureId = additionalMaterialRepository.getByLectureId(lectureId);
-        if (byLectureId.isPresent()) {
+        if (byLectureId.isEmpty()) {
+            return Collections.emptyList();
+        } else {
             return byLectureId.get();
         }
-        return Collections.emptyList();
     }
 }

@@ -11,12 +11,13 @@ public class HomeworkRepository {
     public void add(Homework homework) {
         List<Homework> value = data.get(homework.getLectureId());
         if (value == null) {
-            data.put(homework.getLectureId(), List.of(homework));// todo repeat
+            value = new ArrayList<>();
+            value.add(homework);
+            data.put(homework.getLectureId(), value);// todo repeat
         } else {
             value.add(homework);
-        }data.put(homework.getLectureId(), value);
+        }
     }
-
 
     public void remove(Homework homework) {
         List<Homework> value = data.get(homework.getLectureId());
@@ -24,12 +25,10 @@ public class HomeworkRepository {
             return;
         }
         value.remove(homework);
-        // data.put(homework.getLectureId(), value);
     }
 
-
     public Optional<Homework> getById(int id) {
-        Collection<List<Homework>> values = data.values();//список списков дз
+        Collection<List<Homework>> values = data.values();
         for (List<Homework> homeworks : values) {
 
             for (Homework homework : homeworks) {
@@ -38,7 +37,6 @@ public class HomeworkRepository {
                     return Optional.of(homework);
                 }
             }
-
         }
         return Optional.empty();
     }
@@ -47,11 +45,14 @@ public class HomeworkRepository {
         return data.size();
     }
 
-    public void getAll() {
-        for (List<Homework> homeworks : data.values()) {
+    public void getAll(int lectureId) {
+        Optional<List<Homework>> list = getByLectureId(lectureId);
+        if (list.isEmpty()) {
+            System.out.println("in lecture " + lectureId + "homework not exist");
+        } else {
+            List<Homework> resList = list.get();
 
-            for (Homework homework : homeworks) {
-
+            for (Homework homework : resList) {
                 System.out.println(homework);
             }
         }

@@ -2,6 +2,7 @@ package org.lilia.model;
 
 import java.util.Comparator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class AdditionalMaterial {
     private static int counter = 0;
@@ -61,14 +62,14 @@ public class AdditionalMaterial {
 
         if (id != that.id) return false;
         if (lectureId != that.lectureId) return false;
-        if (!name.equals(that.name)) return false;
+        if (!Objects.equals(name, that.name)) return false;
         return resourceType == that.resourceType;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + name.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + lectureId;
         result = 31 * result + (resourceType != null ? resourceType.hashCode() : 0);
         return result;
@@ -138,8 +139,6 @@ public class AdditionalMaterial {
             throw new NoSuchElementException("SortField by id " + id + " was not found");
         }
     }
-
-
 }
 
 

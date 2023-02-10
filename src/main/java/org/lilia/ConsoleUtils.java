@@ -88,13 +88,20 @@ public class ConsoleUtils {
         return readAndValidationInput("[1-3]");
     }
 
-    public static int workWithListAddMaterial(){
+    public static int workWithListAddMaterial() {
         System.out.println("\n1 - add additionMaterial to lecture");
         System.out.println("2 - delete additionMaterial");
         System.out.println("3 - sort additionMaterial");
         System.out.println("4 - exit");
 
-        int keyToAction = Integer.parseInt(readAndValidationInput("[1-4]"));
-        return keyToAction;
+        return Integer.parseInt(readAndValidationInput("[1-4]"));
+    }
+
+    public static int workWithListHomework() {
+        System.out.println("\n1 - add homework to lecture");
+        System.out.println("2 - delete homework");
+        System.out.println("3 - exit");
+
+        return Integer.parseInt(readAndValidationInput("[1-3]"));
     }
 }

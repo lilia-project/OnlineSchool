@@ -27,7 +27,7 @@ public class AdditionalMaterialView {
                     while (userChoice.equalsIgnoreCase("Y")) {
 
                         ConsoleUtils.print(Constants.LECTURE_ID);
-                        int lectureId = ConsoleUtils.readInteger();
+                        int lectureId = lectureService.lectureIdIsValid();
 
                         addNewMaterialToLecture(additionalMaterialService,lectureId);
                     }
@@ -84,9 +84,6 @@ public class AdditionalMaterialView {
             }
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-            if (userChoice.equalsIgnoreCase("N")) {
-                break;
-            }
         }
     }
 

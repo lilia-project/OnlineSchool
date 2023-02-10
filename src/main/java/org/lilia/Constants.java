@@ -23,7 +23,7 @@ public final class Constants {
     public static final String APPLY_SORT = "apply sorting?\n Y - Yes N - No";
     public static final String SELECT_PARAMETER_SORT = "\nselect parameter of sorting";
     public static final String RESOURCE_TYPE = "\ninput type of resource";
-
+    public static final String ELEMENT_NOT_EXIST = "\nelement not exist";
 
     private Constants() {
     }
