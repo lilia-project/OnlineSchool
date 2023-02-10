@@ -8,6 +8,8 @@ import org.lilia.model.ResourceType;
 import org.lilia.service.AdditionalMaterialService;
 import org.lilia.service.LectureService;
 
+import java.util.List;
+
 public class AdditionalMaterialView {
 
     private final LectureService lectureService;
@@ -19,6 +21,7 @@ public class AdditionalMaterialView {
     public void workWithAdditionalMaterials(AdditionalMaterialService additionalMaterialService) {
 
         while (userChoice.equalsIgnoreCase("Y")) {
+
             switch (ConsoleUtils.choiceAction()) {
                 case 1:
                     while (userChoice.equalsIgnoreCase("Y")) {
@@ -27,18 +30,10 @@ public class AdditionalMaterialView {
                         int lectureId = ConsoleUtils.readInteger();
 
                         addNewMaterialToLecture(additionalMaterialService,lectureId);
-
-                       /* ConsoleUtils.print(Constants.NAME);
-                        String additionalMaterialName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
-
-                        additionalMaterialService.createAdditionalMaterial(additionalMaterialName, lectureId);
-
-                        ConsoleUtils.print(Constants.CREATE_NEW);
-                        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);*/
                     }
                     break;
                 case 2:
-                    ConsoleUtils.print(Constants.ADD_MATERIAL_ID);
+                    ConsoleUtils.print(Constants.MATERIAL_ID);
 
                     int additionalMaterialId = additionalMaterialService.additionalMaterialIdIsValid();
                     AdditionalMaterial additionalMaterial = additionalMaterialService.getRequireById(additionalMaterialId);
@@ -47,52 +42,38 @@ public class AdditionalMaterialView {
                     ConsoleUtils.print(Constants.EDIT_ELEMENT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
-                    while (userChoice.equalsIgnoreCase("Y")) {
-                        ConsoleUtils.print(Constants.NAME);
-                        String name = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
-
-                        ConsoleUtils.print(Constants.LECTURE_ID);
-                        int lectureId = lectureService.lectureIdIsValid();
-
-                        System.out.println("resourceType's description");
-                        String parameter = ConsoleUtils.choiceParameterResource();
-                        ResourceType resourceType = ResourceType.valueOf(parameter);
-
-
-                        AdditionalMaterialDto additionalMaterialDto = additionalMaterialService.createAdditionalMaterialDto(lectureId, name, resourceType);
-                        AdditionalMaterial additionalMaterialUpdate = additionalMaterialService.updateAdditionalMaterial(additionalMaterial, additionalMaterialDto);
-                        System.out.println(additionalMaterialUpdate);
-
-                        ConsoleUtils.print(Constants.EDIT_ELEMENT);
-                        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-                    }
+                    editAdditionMaterial(additionalMaterialService, additionalMaterial);
                     break;
                 case 3:
                     ConsoleUtils.print(Constants.LECTURE_ID);
                     int lectureId = lectureService.lectureIdIsValid();
-                    System.out.println(additionalMaterialService.findAllByLectureId(lectureId));
 
-                    ConsoleUtils.print(Constants.CHOOSE_ACTION);
+                    List<AdditionalMaterial> allByLectureId = additionalMaterialService.findAllByLectureId(lectureId);
+                    System.out.println(allByLectureId);
+
+                    ConsoleUtils.print(Constants.ACTION);
                     int action = ConsoleUtils.workWithListAddMaterial();
-                    switch (action){
-                        case 1: addNewMaterialToLecture(additionalMaterialService, lectureId);
-                        break;
-                        case 2: deleteMaterial(additionalMaterialService);
-                        break;
-                        case 3: sortMaterial(additionalMaterialService, lectureId);
-                        break;
-                        default:ConsoleUtils.print(Constants.ERROR);
+                    switch (action) {
+                        case 1:
+                            while (userChoice.equalsIgnoreCase("Y")) {
+                                addNewMaterialToLecture(additionalMaterialService, lectureId);
+                            }
+                            break;
+                        case 2:
+                            deleteAdditionalMaterial(additionalMaterialService);
+                            break;
+                        case 3:
+                            sortMaterial(additionalMaterialService, lectureId);
+                            break;
+                        case 4:
+                            break;
+                        default:
+                            ConsoleUtils.print(Constants.ERROR);
+                            break;
                     }
-
-
-
-
-                   // ConsoleUtils.print(Constants.APPLY_SORT);
-                    //userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-                    //sortMaterial(additionalMaterialService, lectureId);
                     break;
                 case 4:
-
+                    deleteAdditionalMaterial(additionalMaterialService);
                     break;
                 case 5:
                     ConsoleUtils.print(Constants.EXIT);
@@ -109,17 +90,40 @@ public class AdditionalMaterialView {
         }
     }
 
-    private void deleteMaterial(AdditionalMaterialService additionalMaterialService) {
-        ConsoleUtils.print(Constants.ADD_MATERIAL_ID);
+    private void editAdditionMaterial(AdditionalMaterialService additionalMaterialService, AdditionalMaterial additionalMaterial) {
+        while (userChoice.equalsIgnoreCase("Y")) {
+            ConsoleUtils.print(Constants.NAME);
+            String name = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
+
+            ConsoleUtils.print(Constants.LECTURE_ID);
+            int lectureId = lectureService.lectureIdIsValid();
+
+            ConsoleUtils.print(Constants.RESOURCE_TYPE);
+            String parameter = ConsoleUtils.choiceParameterResource();
+            ResourceType resourceType = ResourceType.valueOf(parameter);
+
+            AdditionalMaterialDto additionalMaterialDto = additionalMaterialService.createAdditionalMaterialDto(lectureId, name, resourceType);
+            AdditionalMaterial additionalMaterialUpdate = additionalMaterialService.updateAdditionalMaterial(additionalMaterial, additionalMaterialDto);
+            System.out.println(additionalMaterialUpdate);
+
+            ConsoleUtils.print(Constants.EDIT_ELEMENT);
+            userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+        }
+    }
+
+    private void deleteAdditionalMaterial(AdditionalMaterialService additionalMaterialService) {
+        ConsoleUtils.print(Constants.MATERIAL_ID);
         int additionalMaterialId = additionalMaterialService.additionalMaterialIdIsValid();
         additionalMaterialService.deleteById(additionalMaterialId);
     }
 
     private void sortMaterial(AdditionalMaterialService additionalMaterialService, int lectureId) {
+
+        additionalMaterialService.getAll(AdditionalMaterial.SortField.ID, lectureId);
+
         userChoice = "Y";
         while (userChoice.equalsIgnoreCase("Y")) {
 
-            additionalMaterialService.getAll(AdditionalMaterial.SortField.ID, lectureId);
             ConsoleUtils.print("by other parameter " + Constants.APPLY_SORT);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
@@ -143,7 +147,6 @@ public class AdditionalMaterialView {
 
         ConsoleUtils.print(Constants.CREATE_NEW);
         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-
     }
 
     private void print(AdditionalMaterial additionalMaterial) {

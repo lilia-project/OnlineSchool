@@ -49,7 +49,7 @@ public class AdditionalMaterial {
         return "\n additionalMaterialId = " + id +
                 "\n additionalMaterialName = '" + name + "'," +
                 "\n lectureId = " + lectureId +
-                "\n resourceType = " + resourceType;
+                "\n resourceType = " + resourceType + "\n";
     }
 
     @Override
