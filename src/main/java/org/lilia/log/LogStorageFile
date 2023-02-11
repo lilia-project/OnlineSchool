@@ -1,0 +1,172 @@
+2023-02-11 INFO org.lilia.view.LectureView work with lecture section null
+2023-02-11 INFO org.lilia.view.LectureView choice lecture creation action null
+2023-02-11 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'wwer',
+ lectureDescription = 'null'
+ teacherId = 0
+
+ homeworks = 
+null null
+2023-02-11 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 2
+ courseId = 0
+ lectureName = 'arewrw',
+ lectureDescription = 'null'
+ teacherId = 0
+
+ homeworks = 
+null null
+2023-02-11 DEBUG org.lilia.view.LectureView read lectureId 1 null
+2023-02-11 INFO org.lilia.view.LectureView found lecture 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'wwer',
+ lectureDescription = 'null'
+ teacherId = 0
+
+ homeworks = 
+[] null
+2023-02-11 WARNING org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: r
+2023-02-11 INFO org.lilia.view.LectureView work with lecture section
+2023-02-11 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-11 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'wrew',
+ lectureDescription = 'null'
+ teacherId = 0
+
+ homeworks = 
+null
+2023-02-11 DEBUG org.lilia.view.LectureView read lectureId 1
+2023-02-11 INFO org.lilia.view.LectureView found lecture 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'wrew',
+ lectureDescription = 'null'
+ teacherId = 0
+
+ homeworks = 
+[]
+2023-02-11 WARNING org.lilia.ConsoleUtils invalid user input
+2023-02-11 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: r
+2023-02-11T23:44:28.108027 INFO org.lilia.view.LectureView work with lecture section
+2023-02-11T23:44:33.994759 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-11T23:44:37.483918 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'dfd',
+ lectureDescription = 'null'
+ teacherId = 0
+
+ homeworks = 
+null
+2023-02-11T23:44:42.841861 WARNING org.lilia.ConsoleUtils invalid user input
+2023-02-11T23:44:42.845221 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: e
+2023-02-11T23:51:29.430069 INFO org.lilia.view.LectureView work with lecture section
+2023-02-11T23:51:30.904222 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-11T23:51:32.175026 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'wer',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+2023-02-11T23:52:01.758220 DEBUG org.lilia.view.LectureView read lectureId 1
+2023-02-11T23:52:01.758829 INFO org.lilia.view.LectureView found lecture 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'wer',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = []
+2023-02-11T23:53:08.595739 INFO org.lilia.view.LectureView work with lecture section
+2023-02-11T23:53:12.707228 WARNING org.lilia.ConsoleUtils invalid user input
+2023-02-11T23:53:12.711053 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-5] , got: sd
+2023-02-11T23:53:32.610382 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-11T23:53:35.900289 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'sf',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-11T23:53:47.284408 DEBUG org.lilia.view.LectureView read lectureId 1
+2023-02-11T23:53:47.285049 INFO org.lilia.view.LectureView found lecture 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'sf',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = []
+
+2023-02-11T23:53:55.945304 WARNING org.lilia.ConsoleUtils invalid user input
+2023-02-11T23:53:55.945820 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: g
+2023-02-11T23:56:28.539470 INFO org.lilia.view.LectureView work with lecture section
+2023-02-11T23:56:31.609085 WARNING org.lilia.ConsoleUtils invalid user input
+2023-02-11T23:56:31.612651 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-5] , got: e
+2023-02-11T23:56:34.244485 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-11T23:56:40.270319 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'sdf',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-11T23:56:47.280192 WARNING org.lilia.ConsoleUtils invalid user input
+2023-02-11T23:56:47.280707 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: g
+2023-02-11T23:57:00.513373 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 2
+ courseId = 0
+ lectureName = 'dfg',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-11T23:57:07.364011 DEBUG org.lilia.view.LectureView read lectureId 1
+2023-02-11T23:57:07.364603 INFO org.lilia.view.LectureView found lecture 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'sdf',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = []
+
+2023-02-11T23:59:32.221470 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-11T23:59:33.762839 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 3
+ courseId = 0
+ lectureName = 'fg',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-11T23:59:37.449305 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 4
+ courseId = 0
+ lectureName = 'sdg',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-11T23:59:39.458356 WARNING org.lilia.ConsoleUtils invalid user input
+2023-02-11T23:59:39.458851 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: t
+2023-02-12T00:02:58.178958 INFO org.lilia.view.LectureView work with lecture section
+2023-02-12T00:02:59.835466 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-12T00:03:01.782283 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'dsg',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-12T00:03:05.212620 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: t
+2023-02-12T00:06:09.338091 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-7] , got: f
+2023-02-12T00:06:48.745383 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: t
+2023-02-12T00:07:27.663396 WARNING org.lilia.ConsoleUtils invalid user input
+2023-02-12T00:07:27.676971 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: i

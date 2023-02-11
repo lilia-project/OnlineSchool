@@ -3,24 +3,30 @@ package org.lilia.view;
 import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
 import org.lilia.dto.LectureDto;
+import org.lilia.log.Logger;
+import org.lilia.log.LoggerFactory;
 import org.lilia.model.Lecture;
 import org.lilia.service.LectureService;
 
 public class LectureView {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public void workWithLectures(LectureService lectureService) {
+        logger.info("work with lecture section");
 
         String userChoice = "Y";
         while (userChoice.equalsIgnoreCase("Y")) {
             switch (ConsoleUtils.choiceAction()) {
                 case 1:
+                    logger.info("choice lecture creation action");
 
                     while (userChoice.equalsIgnoreCase("Y")) {
 
                         ConsoleUtils.print(Constants.NAME);
                         String lectureName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-                        lectureService.createLecture(lectureName);
+                        Lecture lecture = lectureService.createLecture(lectureName);
+                        logger.info("lecture created " + lecture);
 
                         System.out.println(Constants.CREATE_NEW);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
@@ -29,8 +35,11 @@ public class LectureView {
                 case 2:
                     ConsoleUtils.print(Constants.LECTURE_ID);
                     int lectureId = ConsoleUtils.readInteger();
+                    logger.debug("read lectureId " + lectureId);
 
                     Lecture lecture = lectureService.getRequireById(lectureId);
+                    logger.info("found lecture " + lecture);
+
                     System.out.println(Constants.EDIT_ELEMENT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
@@ -43,7 +52,7 @@ public class LectureView {
                         String lectureDescription = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
                         System.out.println("choose from available course id");
-                        // todo bind with set of courses
+
                         String courseId = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
 
                         ConsoleUtils.print(Constants.TEACHER_ID);

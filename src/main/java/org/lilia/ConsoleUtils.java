@@ -1,10 +1,15 @@
 package org.lilia;
 
 import org.lilia.exception.InvalidUserInputException;
+import org.lilia.log.Logger;
+import org.lilia.log.LoggerFactory;
 
 import static org.lilia.Main.SCANNER;
 
 public class ConsoleUtils {
+
+    private static final Logger logger = LoggerFactory.getLogger(ConsoleUtils.class);
+
     public static int readInteger() {
         int id = SCANNER.nextInt();
         feedNewLine();
@@ -51,7 +56,8 @@ public class ConsoleUtils {
         try {
             validate(stringData, pattern);
         } catch (InvalidUserInputException e) {
-            System.out.println(e.getMessage());
+            logger.error("unexpected input ", e);
+            //System.out.println(e.getMessage());
             stringData = repeatInputUntilCorrect(pattern);
         }
         return stringData;
@@ -60,6 +66,7 @@ public class ConsoleUtils {
     public static void validate(String data, String pattern) {
         boolean b = data.matches(pattern);
         if(!b){
+            logger.warning("invalid user input");
             throw new InvalidUserInputException(data, pattern);
         }
     }
@@ -69,7 +76,8 @@ public class ConsoleUtils {
             String data = SCANNER.nextLine();
             boolean matches = data.matches(pattern);
             if (!matches) {
-                System.out.println("error, repeat input");
+                logger.error("unexpected input ");
+                //System.out.println("error, repeat input");
             } else {
                 return data;
             }

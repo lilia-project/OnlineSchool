@@ -21,14 +21,16 @@ public class LectureService {
         this.homeworkService = homeworkService;
     }
 
-    public void createLecture(String lectureName) {
+    public Lecture createLecture(String lectureName) {
         if (lectureName == null) {
             throw new IllegalArgumentException("lecture name is null");
         }
         Lecture lecture = new Lecture(lectureName);
         lectureRepository.add(lecture);
         ConsoleUtils.print(Constants.ELEMENT_CREATED + lecture);
+        return lecture;
     }
+
 
     public LectureDto createLectureDto(int courseId, String lectureName, String description, int personId) {
         return new LectureDto(courseId, lectureName, description, personId);
