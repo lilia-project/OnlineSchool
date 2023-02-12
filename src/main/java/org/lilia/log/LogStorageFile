@@ -170,3 +170,18 @@ null
 2023-02-12T00:06:48.745383 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: t
 2023-02-12T00:07:27.663396 WARNING org.lilia.ConsoleUtils invalid user input
 2023-02-12T00:07:27.676971 ERROR org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: i
+2023-02-12T12:23:17.779863 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-12T12:23:17.798477 WARNING org.lilia.ConsoleUtils unexpected input  org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: e
+2023-02-12T12:27:34.327481 ERROR org.lilia.ConsoleUtils invalid user input from validate
+2023-02-12T12:27:34.341406 WARNING org.lilia.ConsoleUtils unexpected input from readAndValidationInput org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: g
+2023-02-12T13:18:18.077884 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 
+2023-02-12T13:22:52.821474 ERROR org.lilia.ConsoleUtils invalid user input from validate
+2023-02-12T13:22:52.835352 WARNING org.lilia.ConsoleUtils unexpected input from readAndValidationInput org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: r
+2023-02-12T13:23:00.747861 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 
+2023-02-12T13:23:07.905669 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 
+2023-02-12T13:23:11.051539 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 
+2023-02-12T13:42:37.370930 INFO org.lilia.view.LectureView work with lecture section
+2023-02-12T13:48:06.119264 ERROR org.lilia.ConsoleUtils invalid user input from validate
+2023-02-12T13:48:06.132730 WARNING org.lilia.ConsoleUtils unexpected input from readAndValidationInput org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: r
+2023-02-12T13:49:40.635230 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 
+2023-02-12T13:49:46.162818 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 

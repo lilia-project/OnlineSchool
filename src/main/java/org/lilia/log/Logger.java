@@ -17,16 +17,6 @@ public class Logger {
         saveLog(message, null, LogLevel.ERROR);
     }
 
-    private void saveLog(String message, Throwable throwable, LogLevel logLevel) {
-        Log log;
-        if (throwable == null) {
-            log = new Log(className, logLevel.getField(), message);
-        } else {
-            log = new Log(className, logLevel.getField(), message, throwable.toString());
-        }
-        logStorage.save(log);
-    }
-
     public void warning(String message, Throwable throwable) {
         saveLog(message, throwable, LogLevel.WARNING);
     }
@@ -41,5 +31,15 @@ public class Logger {
 
     public void debug(String message) {
         saveLog(message, null, LogLevel.DEBUG);
+    }
+
+    private void saveLog(String message, Throwable throwable, LogLevel logLevel) {
+        Log log;
+        if (throwable == null) {
+            log = new Log(className, logLevel.getField(), message);
+        } else {
+            log = new Log(className, logLevel.getField(), message, throwable.toString());
+        }
+        logStorage.save(log);
     }
 }

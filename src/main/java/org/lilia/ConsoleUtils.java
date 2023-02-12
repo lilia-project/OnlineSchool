@@ -56,7 +56,7 @@ public class ConsoleUtils {
         try {
             validate(stringData, pattern);
         } catch (InvalidUserInputException e) {
-            logger.error("unexpected input ", e);
+            logger.warning("unexpected input from readAndValidationInput", e);//white
             //System.out.println(e.getMessage());
             stringData = repeatInputUntilCorrect(pattern);
         }
@@ -66,7 +66,7 @@ public class ConsoleUtils {
     public static void validate(String data, String pattern) {
         boolean b = data.matches(pattern);
         if(!b){
-            logger.warning("invalid user input");
+            logger.error("invalid user input from validate");//red and white
             throw new InvalidUserInputException(data, pattern);
         }
     }
@@ -76,7 +76,7 @@ public class ConsoleUtils {
             String data = SCANNER.nextLine();
             boolean matches = data.matches(pattern);
             if (!matches) {
-                logger.error("unexpected input ");
+                logger.error("unexpected input from repeatInputUntilCorrect ");//red and white
                 //System.out.println("error, repeat input");
             } else {
                 return data;
