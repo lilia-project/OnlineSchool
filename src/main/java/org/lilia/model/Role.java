@@ -1,6 +1,16 @@
 package org.lilia.model;
 
 public enum Role {
-    TEACHER,
-    STUDENT
+    TEACHER("TEACHER"),
+    STUDENT("STUDENT");
+
+    private final String field;
+
+    Role(String field) {
+        this.field = field;
+    }
+
+    public String getField() {
+        return field;
+    }
 }

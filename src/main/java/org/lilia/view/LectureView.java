@@ -93,9 +93,8 @@ public class LectureView {
     }
 
     private static void deleteLecture(LectureService lectureService) {
-        int lectureId;
         ConsoleUtils.print(Constants.LECTURE_ID);
-        lectureId = lectureService.lectureIdIsValid();
+        int lectureId = lectureService.lectureIdIsValid();
         lectureService.deleteById(lectureId);
     }
 }

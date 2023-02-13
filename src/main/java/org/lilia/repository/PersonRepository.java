@@ -3,9 +3,7 @@ package org.lilia.repository;
 import org.lilia.model.Person;
 import org.lilia.model.Role;
 
-import java.util.Optional;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class PersonRepository {
     private final SortedSet<Person> data = new TreeSet<>();
@@ -64,4 +62,24 @@ public class PersonRepository {
         }
         return Optional.empty();
     }
+
+    public Optional<Person> getByLastName(String personLastName) {
+        for (Person person: data){
+            if (person.getLastName().equals(personLastName)){
+                return Optional.of(person);
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    public Optional<Role> getRole(int choiceRole) {
+        if (choiceRole == 1){
+            return Optional.of(Role.TEACHER);
+        }if(choiceRole == 2) {
+            return Optional.of(Role.STUDENT);
+        }
+        return Optional.empty();
+    }
+
 }

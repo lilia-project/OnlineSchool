@@ -42,13 +42,13 @@ public class ConsoleUtils {
         System.out.println("select a category:");
         System.out.println("1 - course");
         System.out.println("2 - lecture");
-        System.out.println("3 - teacher");
-        System.out.println("4 - student");
-        System.out.println("5 - homework");
-        System.out.println("6 - additional material");
-        System.out.println("7 - exit");
+        System.out.println("3 - teacher and student");
+        //System.out.println("4 - student");
+        System.out.println("4 - homework");
+        System.out.println("5 - additional material");
+        System.out.println("6 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-7]"));
+        return Integer.parseInt(readAndValidationInput("[1-6]"));
     }
 
     public static String readAndValidationInput(String pattern) {
@@ -56,8 +56,7 @@ public class ConsoleUtils {
         try {
             validate(stringData, pattern);
         } catch (InvalidUserInputException e) {
-            logger.warning("unexpected input from readAndValidationInput", e);
-            //System.out.println(e.getMessage());
+            logger.warning("unexpected input", e);
             stringData = repeatInputUntilCorrect(pattern);
         }
         return stringData;
@@ -66,7 +65,7 @@ public class ConsoleUtils {
     public static void validate(String data, String pattern) {
         boolean b = data.matches(pattern);
         if(!b){
-            logger.error("invalid user input from validate");
+            logger.error("invalid user input");
             throw new InvalidUserInputException(data, pattern);
         }
     }
@@ -76,7 +75,7 @@ public class ConsoleUtils {
             String data = SCANNER.nextLine();
             boolean matches = data.matches(pattern);
             if (!matches) {
-                logger.error("unexpected input from repeatInputUntilCorrect ");
+                logger.error("unexpected input");
 
             } else {
                 return data;

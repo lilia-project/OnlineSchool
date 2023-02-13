@@ -29,20 +29,19 @@ public class HomeworkView {
             switch (ConsoleUtils.choiceAction()) {
                 case 1:
                     while (userChoice.equalsIgnoreCase("Y")) {
+
                         logger.info("selected to create homework");
+
                         ConsoleUtils.print(Constants.LECTURE_ID);
                         int lectureId = lectureService.lectureIdIsValid();
-
                         addNewHomeworkToLecture(homeworkService, lectureId);
+
                         logger.info("homework created successful");
                     }
                     break;
                 case 2:
                     logger.info("selected to get homework by id");
-                    ConsoleUtils.print(Constants.HOMEWORK_ID);
-                    int homeworkId = homeworkService.homeworkIdIsValid();
-                    Homework homework = homeworkService.getRequireById(homeworkId);
-                    print(homework);
+                    Homework homework = getHomework(homeworkService);
 
                     System.out.println(Constants.EDIT_ELEMENT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
@@ -51,6 +50,7 @@ public class HomeworkView {
                     break;
                 case 3:
                     logger.info("selected to get all homeworks by lecture id");
+
                     ConsoleUtils.print(Constants.LECTURE_ID);
                     int lectureId = lectureService.lectureIdIsValid();
                     List<Homework> allByLectureId = homeworkService.findAllByLectureId(lectureId);
@@ -86,6 +86,14 @@ public class HomeworkView {
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
+    }
+
+    private Homework getHomework(HomeworkService homeworkService) {
+        ConsoleUtils.print(Constants.HOMEWORK_ID);
+        int homeworkId = homeworkService.homeworkIdIsValid();
+        Homework homework = homeworkService.getRequireById(homeworkId);
+        print(homework);
+        return homework;
     }
 
     private void addNewHomework(HomeworkService homeworkService, int lectureId) {

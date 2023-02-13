@@ -27,12 +27,12 @@ public class Main {
         AdditionalMaterialView additionalMaterialView = new AdditionalMaterialView(lectureService);
 
         CourseView courseView = new CourseView();
-        PersonView personView = new PersonView();
+        PersonView personView = new PersonView(courseService);
 
         System.out.println("\nWelcome to Online school!");
-        String question = "continue working? Y - Continue N - Exit";
-        System.out.println(question);
-        String userChoice = ConsoleUtils.readAndValidationInput("[y|Y|n|N]");
+
+        ConsoleUtils.print(Constants.CONTINUE);
+        String userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
         while (userChoice.equalsIgnoreCase("Y")) {
 
@@ -52,22 +52,18 @@ public class Main {
                     personView.workWithPerson(personService);
                 }
                 case 4 -> {
-                    System.out.println("you selected category 'Student'\nchoice the action");
-                    personView.workWithPerson(personService);
-                }
-                case 5 -> {
                     ConsoleUtils.print(Constants.ACTION);
                     homeworkView.workWithHomework(homeworkService);
                 }
-                case 6 -> {
+                case 5 -> {
                     ConsoleUtils.print(Constants.ACTION);
                     additionalMaterialView.workWithAdditionalMaterials(additionalMaterialService);
                 }
-                case 7 -> System.out.print("Do you want finish or ");
+                case 6 -> System.out.print("Do you want finish or ");
                 default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
             }
-            System.out.println(question);
-            userChoice = ConsoleUtils.readAndValidationInput("[y|Y|n|N]");
+            ConsoleUtils.print(Constants.CONTINUE);
+            userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
         SCANNER.close();
     }
