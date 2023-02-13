@@ -4,6 +4,8 @@ import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
 import org.lilia.dto.LectureDto;
 import org.lilia.exception.NoSuchLectureIdException;
+import org.lilia.log.Logger;
+import org.lilia.log.LoggerFactory;
 import org.lilia.model.Homework;
 import org.lilia.model.Lecture;
 import org.lilia.repository.LectureRepository;
@@ -15,6 +17,7 @@ import java.util.Optional;
 public class LectureService {
     private final LectureRepository lectureRepository;
     private final HomeworkService homeworkService;
+    private static final Logger logger = LoggerFactory.getLogger(LectureService.class);
 
     public LectureService(LectureRepository lectureRepository, HomeworkService homeworkService) {
         this.lectureRepository = lectureRepository;
@@ -72,8 +75,10 @@ public class LectureService {
     }
 
     public List<Lecture> findAllByCourseId(int courseId) {
+
         List<Lecture> resList = new ArrayList<>();
         Optional<Lecture> lecture;
+
         for (int i = 0; i < lectureRepository.size(); i++) {
             if (lectureRepository.getByCourseId(courseId).isPresent()) {
                 lecture = lectureRepository.getByCourseId(courseId);
@@ -90,8 +95,15 @@ public class LectureService {
     }
 
     public int lectureIdIsValid() {
-        int lectureId = ConsoleUtils.readInteger();
+        int lectureId = Integer.parseInt(ConsoleUtils.readAndValidationInput(Constants.NUMBER));
+
         Optional<Lecture> lecture = lectureRepository.getById(lectureId);
+        while (lecture.isEmpty()) {
+            logger.error("lecture not found by this lectureId");
+            logger.info("repeat input");
+            lectureId = Integer.parseInt(ConsoleUtils.readAndValidationInput(Constants.NUMBER));
+            lecture = lectureRepository.getById(lectureId);
+        }
         return lectureId;
     }
 }

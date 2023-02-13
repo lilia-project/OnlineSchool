@@ -13,7 +13,7 @@ public class HomeworkRepository {
         if (value == null) {
             value = new ArrayList<>();
             value.add(homework);
-            data.put(homework.getLectureId(), value);// todo repeat
+            data.put(homework.getLectureId(), value);
         } else {
             value.add(homework);
         }
@@ -39,23 +39,6 @@ public class HomeworkRepository {
             }
         }
         return Optional.empty();
-    }
-
-    public int size() {
-        return data.size();
-    }
-
-    public void getAll(int lectureId) {
-        Optional<List<Homework>> list = getByLectureId(lectureId);
-        if (list.isEmpty()) {
-            System.out.println("in lecture " + lectureId + "homework not exist");
-        } else {
-            List<Homework> resList = list.get();
-
-            for (Homework homework : resList) {
-                System.out.println(homework);
-            }
-        }
     }
 
     public Optional<List<Homework>> getByLectureId(int lectureId) {

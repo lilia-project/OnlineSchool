@@ -185,3 +185,99 @@ null
 2023-02-12T13:48:06.132730 WARNING org.lilia.ConsoleUtils unexpected input from readAndValidationInput org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: r
 2023-02-12T13:49:40.635230 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 
 2023-02-12T13:49:46.162818 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 
+2023-02-12T14:32:55.899859 INFO org.lilia.view.LectureView work with lecture section
+2023-02-12T14:32:59.248846 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-12T14:33:01.152246 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'sdfg',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-12T14:33:08.217888 INFO org.lilia.view.HomeworkView work with homework section
+2023-02-12T14:33:12.033641 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T14:33:12.034165 INFO org.lilia.service.LectureService repeat input
+2023-02-12T14:33:24.433103 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T14:33:24.433562 INFO org.lilia.service.LectureService repeat input
+2023-02-12T14:33:26.697665 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T14:33:26.698115 INFO org.lilia.service.LectureService repeat input
+2023-02-12T14:33:28.599398 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T14:33:28.599806 INFO org.lilia.service.LectureService repeat input
+2023-02-12T14:35:53.053138 INFO org.lilia.view.LectureView work with lecture section
+2023-02-12T14:35:54.769329 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-12T14:35:56.112760 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'fgsfdg',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-12T14:36:01.733097 INFO org.lilia.view.HomeworkView work with homework section
+2023-02-12T14:36:06.042203 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T14:36:06.042728 INFO org.lilia.service.LectureService repeat input
+2023-02-12T14:36:10.780076 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T14:36:10.780522 INFO org.lilia.service.LectureService repeat input
+2023-02-12T14:40:30.753080 INFO org.lilia.view.LectureView work with lecture section
+2023-02-12T14:40:32.296378 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-12T14:40:33.916169 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'asdfd',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-12T14:40:39.527340 INFO org.lilia.view.HomeworkView work with homework section
+2023-02-12T14:40:44.335949 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T14:40:44.336446 INFO org.lilia.service.LectureService repeat input
+2023-02-12T14:40:52.655727 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T14:40:52.656236 INFO org.lilia.service.LectureService repeat input
+2023-02-12T14:40:56.936116 INFO org.lilia.view.HomeworkView created element
+2023-02-12T14:45:27.796262 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T14:45:27.796740 INFO org.lilia.service.LectureService repeat input
+2023-02-12T15:00:02.563592 INFO org.lilia.view.LectureView work with lecture section
+2023-02-12T15:00:04.235546 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-12T15:00:05.632548 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'sdg',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-12T15:00:10.597048 INFO org.lilia.view.HomeworkView work with homework section
+2023-02-12T15:00:17.016252 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T15:00:17.016721 INFO org.lilia.service.LectureService repeat input
+2023-02-12T15:09:06.664160 INFO org.lilia.view.LectureView work with lecture section
+2023-02-12T15:09:08.228616 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-12T15:09:09.364200 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'asf',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-12T15:09:14.565622 INFO org.lilia.view.HomeworkView work with homework section
+2023-02-12T15:09:20.309357 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T15:09:20.309853 INFO org.lilia.service.LectureService repeat input
+2023-02-12T15:11:02.469170 INFO org.lilia.view.LectureView work with lecture section
+2023-02-12T15:11:03.963827 INFO org.lilia.view.LectureView choice lecture creation action
+2023-02-12T15:11:05.271595 INFO org.lilia.view.LectureView lecture created 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'dg',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = null
+
+2023-02-12T15:11:10.297419 INFO org.lilia.view.HomeworkView work with homework section
+2023-02-12T15:11:13.665158 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-12T15:11:13.665714 INFO org.lilia.service.LectureService repeat input
+2023-02-12T15:11:15.472568 ERROR org.lilia.ConsoleUtils invalid user input from validate
+2023-02-12T15:11:15.475753 WARNING org.lilia.ConsoleUtils unexpected input from readAndValidationInput org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \d+ , got: y
+2023-02-12T15:11:51.582870 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 
+2023-02-12T15:11:58.183524 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 
+2023-02-12T15:12:00.335534 ERROR org.lilia.ConsoleUtils unexpected input from repeatInputUntilCorrect 

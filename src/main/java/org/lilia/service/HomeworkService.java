@@ -24,7 +24,6 @@ public class HomeworkService {
         }
         Homework homework = new Homework(lectureId, task);
         homeworkRepository.add(homework);
-        ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
     public HomeworkDto createHomeworkDto(String task) {
@@ -37,10 +36,6 @@ public class HomeworkService {
         }
         return homework;
     }
-
-//    public void out(int lectureId) {
-//        homeworkRepository.getAll(lectureId);
-//    }
 
     public Homework getRequireById(int homeworkId) {
 
