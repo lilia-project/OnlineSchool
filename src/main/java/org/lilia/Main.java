@@ -1,31 +1,31 @@
 package org.lilia;
 
-import org.lilia.View.CourseView;
-import org.lilia.View.HomeworkView;
-import org.lilia.View.LectureView;
-import org.lilia.View.PersonView;
+import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.repository.*;
-import org.lilia.service.CourseService;
-import org.lilia.service.HomeworkService;
-import org.lilia.service.LectureService;
-import org.lilia.service.PersonService;
+import org.lilia.service.*;
+import org.lilia.view.*;
 
 import java.util.Scanner;
 
 public class Main {
     public static final Scanner SCANNER = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchMaterialIdException {
 
-        LectureRepository lectureRepository = new LectureRepositoryImpl();
-        HomeworkRepository homeworkRepository = new HomeworkRepositoryImpl();
+        LectureRepository lectureRepository = new LectureRepository();
+        HomeworkRepository homeworkRepository = new HomeworkRepository();
         HomeworkService homeworkService = new HomeworkService(homeworkRepository);
+        AdditionalMaterialRepository additionalMaterialRepository = new AdditionalMaterialRepository();
+        AdditionalMaterialService additionalMaterialService = new AdditionalMaterialService(additionalMaterialRepository);
         LectureService lectureService = new LectureService(lectureRepository, homeworkService);
-        CourseService courseService = new CourseService();
-        TeacherRepository teacherRepository = new TeacherRepositoryImpl();
-        PersonService personService = new PersonService(teacherRepository);
+        CourseRepository courseRepository = new CourseRepository();
+        CourseService courseService = new CourseService(courseRepository, lectureService);
+        PersonRepository personRepository = new PersonRepository();
+        PersonService personService = new PersonService(personRepository);
         LectureView lectureView = new LectureView();
         HomeworkView homeworkView = new HomeworkView(lectureService);
+        AdditionalMaterialView additionalMaterialView = new AdditionalMaterialView(lectureService);
+
         CourseView courseView = new CourseView();
         PersonView personView = new PersonView();
 
@@ -40,15 +40,15 @@ public class Main {
 
             switch (category) {
                 case 1 -> {
-                    System.out.println("you selected category 'Course'\nchoice the action");
+                    ConsoleUtils.print(Constants.ACTION);
                     courseView.workWithCourse(courseService);
                 }
                 case 2 -> {
-                    System.out.println("you selected category 'Lecture'\nchoice the action");
+                    ConsoleUtils.print(Constants.ACTION);
                     lectureView.workWithLectures(lectureService);
                 }
                 case 3 -> {
-                    System.out.println("you selected category 'Teacher'\nchoice the action");
+                    ConsoleUtils.print(Constants.ACTION);
                     personView.workWithPerson(personService);
                 }
                 case 4 -> {
@@ -56,11 +56,15 @@ public class Main {
                     personView.workWithPerson(personService);
                 }
                 case 5 -> {
-                    System.out.println("you selected category 'Homework'\nchoice the action");
+                    ConsoleUtils.print(Constants.ACTION);
                     homeworkView.workWithHomework(homeworkService);
                 }
-                case 6 -> System.out.print("Do you want finish or ");
-                default -> System.out.println("Error - incompatible symbol");
+                case 6 -> {
+                    ConsoleUtils.print(Constants.ACTION);
+                    additionalMaterialView.workWithAdditionalMaterials(additionalMaterialService);
+                }
+                case 7 -> System.out.print("Do you want finish or ");
+                default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
             }
             System.out.println(question);
             userChoice = ConsoleUtils.readAndValidationInput("[y|Y|n|N]");

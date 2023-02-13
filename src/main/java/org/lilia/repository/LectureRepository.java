@@ -1,28 +1,53 @@
 package org.lilia.repository;
 
-import org.lilia.models.Lecture;
+import org.lilia.model.Lecture;
 
-public interface LectureRepository extends Iterable<Lecture> {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-    void add(Lecture element);
+public class LectureRepository {
 
-    void add(int index, Lecture element);
+    private final List<Lecture> list = new ArrayList<>();
 
-    Lecture remove(int index);
+    public void add(Lecture lecture) {
+        list.add(lecture);
+    }
 
-    Lecture getById(int index);
+    /**
+     * @param lecture parameter description
+     * @return description of options
+     */
 
-    int getIndex(Lecture lecture);
+    public void remove(Lecture lecture) {
+        list.remove(lecture);
+    }
 
-    boolean isEmpty();
+    public Optional<Lecture> getById(int id) {
+        for (Lecture lecture : list) {
+            if (lecture.getId() == id) {
+                return Optional.of(lecture);
+            }
+        }
+        return Optional.empty();
+    }
 
-    int size();
+    public int size() {
+        return list.size();
+    }
 
-    void expandingArray();
+    public void getAll() {
+        for (Lecture lecture : list) {
+            System.out.println(lecture);
+        }
+    }
 
-    Lecture[] getAll();
+    public Optional<Lecture> getByCourseId(int courseId) {
+        for (Lecture lecture : list) {
+            if (lecture.getCourseId() == courseId) {
+            }
+            return Optional.of(lecture);
+        }
+        return Optional.empty();
+    }
 }
-
-
-
-

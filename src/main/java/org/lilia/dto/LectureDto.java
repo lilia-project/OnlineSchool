@@ -1,4 +1,4 @@
-package org.lilia.models;
+package org.lilia.dto;
 
 public class LectureDto {
     private String name;

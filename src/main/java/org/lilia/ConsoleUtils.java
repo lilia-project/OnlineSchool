@@ -5,7 +5,7 @@ import org.lilia.exception.InvalidUserInputException;
 import static org.lilia.Main.SCANNER;
 
 public class ConsoleUtils {
-    public static int readInteger() { //scanner processing for integer
+    public static int readInteger() {
         int id = SCANNER.nextInt();
         feedNewLine();
         return id;
@@ -21,7 +21,15 @@ public class ConsoleUtils {
         return Integer.parseInt(readAndValidationInput("[1-5]"));
     }
 
-    private static void feedNewLine() { //scanner processing for button enter
+    public static int choiceParameterSort() {
+        System.out.println("1 - sort by additionMaterialId");
+        System.out.println("2 - sort by lectureId");
+        System.out.println("3 - sort by resourceType");
+
+        return Integer.parseInt(readAndValidationInput("[1-3]"));
+    }
+
+    private static void feedNewLine() {
         SCANNER.nextLine();
     }
 
@@ -32,9 +40,10 @@ public class ConsoleUtils {
         System.out.println("3 - teacher");
         System.out.println("4 - student");
         System.out.println("5 - homework");
-        System.out.println("6 - exit");
+        System.out.println("6 - additional material");
+        System.out.println("7 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-6]"));
+        return Integer.parseInt(readAndValidationInput("[1-7]"));
     }
 
     public static String readAndValidationInput(String pattern) {
@@ -56,14 +65,43 @@ public class ConsoleUtils {
     }
 
     private static String repeatInputUntilCorrect(String pattern) {
-       do {
-           String data = SCANNER.nextLine();
-           boolean matches = data.matches(pattern);
-           if(!matches){
-               System.out.println("error, repeat input");
-           } else {
-               return data;
-           }
-       } while(true);
+        do {
+            String data = SCANNER.nextLine();
+            boolean matches = data.matches(pattern);
+            if (!matches) {
+                System.out.println("error, repeat input");
+            } else {
+                return data;
+            }
+        } while (true);
+    }
+
+    public static void print(String string) {
+        System.out.println(string);
+    }
+
+    public static String choiceParameterResource() {
+        System.out.println("1 - URL");
+        System.out.println("2 - VIDEO");
+        System.out.println("3 - BOOK");
+
+        return readAndValidationInput("[1-3]");
+    }
+
+    public static int workWithListAddMaterial() {
+        System.out.println("\n1 - add additionMaterial to lecture");
+        System.out.println("2 - delete additionMaterial");
+        System.out.println("3 - sort additionMaterial");
+        System.out.println("4 - exit");
+
+        return Integer.parseInt(readAndValidationInput("[1-4]"));
+    }
+
+    public static int workWithListHomework() {
+        System.out.println("\n1 - add homework to lecture");
+        System.out.println("2 - delete homework");
+        System.out.println("3 - exit");
+
+        return Integer.parseInt(readAndValidationInput("[1-3]"));
     }
 }

@@ -1,23 +1,40 @@
 package org.lilia.repository;
 
-import org.lilia.models.Course;
-import org.lilia.models.Lecture;
+import org.lilia.model.Course;
 
-public interface CourseRepository {
+import java.util.*;
 
-    void add(Course element);
+public class CourseRepository{
+   private static final SortedSet<Course> data = new TreeSet<>();
 
-    void add(int index, Course element);
 
-    Course remove(int index);
+    public void add(Course course) {
+        data.add(course);
+    }
 
-    Course getE(int index);
+    public void remove(Course course) {
+        data.remove(course);
+    }
 
-    boolean isEmpty();
+    public Optional<Course> getById(int courseId) {
+        for (Course course : data) {
+            if (course.getId() == courseId) {
+                return Optional.of(course);
+            }
+        }
+        return Optional.empty();
+    }
 
-    int size();
+    public int size() {
+        return data.size();
+    }
 
-    void expandingArray();
+    public void getAll() {
+        for (Course course : data) {
+            System.out.println(course);
+        }
+    }
 
-    Course[] getAll();
+
+
 }

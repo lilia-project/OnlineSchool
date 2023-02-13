@@ -1,4 +1,4 @@
-package org.lilia.models;
+package org.lilia.model;
 
 public enum Role {
     TEACHER,

@@ -1,9 +1,15 @@
 package org.lilia.service;
 
 import org.lilia.ConsoleUtils;
-import org.lilia.models.Homework;
-import org.lilia.models.HomeworkDto;
+import org.lilia.Constants;
+import org.lilia.dto.HomeworkDto;
+import org.lilia.exception.NoSuchHomeworkException;
+import org.lilia.model.Homework;
 import org.lilia.repository.HomeworkRepository;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public class HomeworkService {
     private final HomeworkRepository homeworkRepository;
@@ -12,69 +18,68 @@ public class HomeworkService {
         this.homeworkRepository = homeworkRepository;
     }
 
-    public Homework createHomework(int lectureId, String task, String additionalMaterial) {
-        Homework homework = new Homework(lectureId, task, additionalMaterial);
+    public void createHomework(int lectureId, String task) {
+        if (task == null) {
+            throw new IllegalArgumentException("homework name is null");
+        }
+        Homework homework = new Homework(lectureId, task);
         homeworkRepository.add(homework);
-        System.out.println("\n homework has been created");
-        return homework;
+        ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
-    public Homework[] findAllByLectureId(int lectureId) {
-        Homework[] resList = homeworkRepository.getAll();
-        int length = homeworkRepository.size();
-        Homework[] lectureIdHomeworks = new Homework[length];
-        int count = 0;
-        for (Homework current : resList) {
-            if (current.getLectureId() == lectureId) {
-                lectureIdHomeworks[count] = current;
-                count++;
-            }
-        }
-        Homework[] newList = new Homework[count];
-        System.arraycopy(lectureIdHomeworks, 0, newList, 0, count); // copy array without null-element
-        return newList;
-    }
-
-    public Homework getById(int homeworkId) {
-        System.out.println("you selected to open homework");
-        Homework homework = homeworkRepository.getE(homeworkId);
-        System.out.println(homework);
-        return homework;
-    }
-
-    public int size() {
-        return homeworkRepository.size();
-    }
-
-    public int homeworkIdIsValid() {
-        int homeworkId = ConsoleUtils.readInteger();
-        Homework homework = homeworkRepository.getE(homeworkId);
-        while (homework == null) {
-            System.out.println("input valid homework's id");
-            homeworkId = ConsoleUtils.readInteger();
-            homework = homeworkRepository.getE(homeworkId);
-        }
-        return homeworkId;
-    }
-
-    public void deleteById(int homeworkId) {
-        homeworkRepository.remove(homeworkId);
-        System.out.println("homework " + homeworkId + " has been deleted");
+    public HomeworkDto createHomeworkDto(String task) {
+        return new HomeworkDto(task);
     }
 
     public Homework updateHomework(Homework homework, HomeworkDto homeworkDto) {
         if ((homeworkDto.getTask()) != null) {
             homework.setTask(homeworkDto.getTask());
         }
-        if (homeworkDto.getAdditionalMaterial() != null) {
-            homework.setAdditionalMaterial(homeworkDto.getAdditionalMaterial());
-        }
         return homework;
     }
 
-    public HomeworkDto createHomeworkDto(String task, String additionMaterial) {
-        HomeworkDto homeworkDto = new HomeworkDto(task, additionMaterial);
-        return homeworkDto;
+//    public void out(int lectureId) {
+//        homeworkRepository.getAll(lectureId);
+//    }
+
+    public Homework getRequireById(int homeworkId) {
+
+        Optional<Homework> homework = homeworkRepository.getById(homeworkId);
+        if (homework.isEmpty()) {
+            throw new NoSuchHomeworkException(homeworkId);
+        }
+        return homework.get();
+    }
+
+    public List<Homework> findAllByLectureId(int lectureId) {
+        Optional<List<Homework>> byLectureId = homeworkRepository.getByLectureId(lectureId);
+        if (byLectureId.isEmpty()) {
+            return Collections.emptyList();
+        } else {
+            return byLectureId.get();
+        }
+    }
+
+    public void deleteById(int homeworkId) {
+        Optional<Homework> homework = homeworkRepository.getById(homeworkId);
+        if (homework.isEmpty()) {
+            ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
+            throw new NoSuchHomeworkException(homeworkId);
+        } else {
+            homeworkRepository.remove(homework.get());
+        }
+        ConsoleUtils.print(Constants.ELEMENT_DELETED);
+    }
+
+    public int homeworkIdIsValid() {
+        int homeworkId = ConsoleUtils.readInteger();
+        Optional<Homework> homework = homeworkRepository.getById(homeworkId);
+        while (homework.isEmpty()) {
+            ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
+            homeworkId = ConsoleUtils.readInteger();
+            homework = homeworkRepository.getById(homeworkId);
+        }
+        return homeworkId;
     }
 }
 

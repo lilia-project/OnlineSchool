@@ -1,6 +1,6 @@
-package org.lilia.models;
+package org.lilia.model;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class Lecture {
     public static int counter = 0;
@@ -11,7 +11,7 @@ public class Lecture {
     private int personId;
     private String description;
 
-    private Homework[] homeworksList;
+    private List<Homework> list;
 
     public Lecture(String name) {
         this.name = name;
@@ -26,7 +26,7 @@ public class Lecture {
                 "\n lectureName = '" + name + "'," +
                 "\n lectureDescription = '" + description + "'" +
                 "\n teacherId = " + personId + "\n" +
-                "\n lecture's homework = \n" + Arrays.toString(homeworksList);
+                "\n homeworks = \n" + list;
     }
 
     public void setDescription(String description) {
@@ -43,10 +43,6 @@ public class Lecture {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setHomeworksList(Homework[] homeworksList) {
-        this.homeworksList = homeworksList;
     }
 
     public int getPersonId() {
@@ -69,7 +65,7 @@ public class Lecture {
         return name;
     }
 
-    public Homework[] getHomeworksList() {
-        return homeworksList;
+    public void setList(List<Homework> list) {
+        this.list = list;
     }
 }
