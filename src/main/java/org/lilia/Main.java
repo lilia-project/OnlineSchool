@@ -28,6 +28,7 @@ public class Main {
 
         CourseView courseView = new CourseView();
         PersonView personView = new PersonView(courseService);
+        ControlWorkService controlWorkService = new ControlWorkService();
 
         System.out.println("\nWelcome to Online school!");
 
@@ -59,7 +60,8 @@ public class Main {
                     ConsoleUtils.print(Constants.ACTION);
                     additionalMaterialView.workWithAdditionalMaterials(additionalMaterialService);
                 }
-                case 6 -> System.out.print("Do you want finish or ");
+                case 6 -> controlWorkService.startControlWork();
+                case 7 -> System.out.print("Do you want finish or ");
                 default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
             }
             ConsoleUtils.print(Constants.CONTINUE);
