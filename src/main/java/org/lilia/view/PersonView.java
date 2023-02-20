@@ -78,7 +78,7 @@ public class PersonView {
         int choiceRole = ConsoleUtils.readInteger();
         Role role = personService.getRole(choiceRole);
 
-        return personService.createPerson(personName, role);
+       return personService.createPerson(personName, role);
     }
 
     private Person getPersonById(PersonService personService) {

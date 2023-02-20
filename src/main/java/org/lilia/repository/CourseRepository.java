@@ -2,9 +2,7 @@ package org.lilia.repository;
 
 import org.lilia.model.Course;
 
-import java.util.Optional;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class CourseRepository{
    private static final SortedSet<Course> data = new TreeSet<>();

@@ -101,7 +101,7 @@ public class AdditionalMaterialView {
         ConsoleUtils.print(Constants.LECTURE_ID);
         int lectureId = lectureService.lectureIdIsValid();
 
-        addNewMaterialToLecture(additionalMaterialService, lectureId);
+        addNewMaterialToLecture(additionalMaterialService,lectureId);
     }
 
     private void editAdditionMaterial(AdditionalMaterialService additionalMaterialService, AdditionalMaterial additionalMaterial) {

@@ -31,7 +31,7 @@ public class ConsoleUtils {
         System.out.println("2 - sort by lectureId");
         System.out.println("3 - sort by resourceType");
 
-        return Integer.parseInt(readAndValidationInput("[1-3]"));
+        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
     }
 
     private static void feedNewLine() {
@@ -92,7 +92,7 @@ public class ConsoleUtils {
         System.out.println("2 - VIDEO");
         System.out.println("3 - BOOK");
 
-        return readAndValidationInput("[1-3]");
+        return readAndValidationInput(Constants.SELECT_ACTION);
     }
 
     public static int workWithListAddMaterial() {
@@ -109,6 +109,6 @@ public class ConsoleUtils {
         System.out.println("2 - delete homework");
         System.out.println("3 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-3]"));
+        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
     }
 }
