@@ -32,18 +32,17 @@ public class HomeworkView {
 
                         logger.info("selected to create homework");
 
-                        ConsoleUtils.print(Constants.LECTURE_ID);
-                        int lectureId = lectureService.lectureIdIsValid();
-                        addNewHomeworkToLecture(homeworkService, lectureId);
+                        createNewHomework(homeworkService);
 
                         logger.info("homework created successful");
                     }
                     break;
                 case 2:
                     logger.info("selected to get homework by id");
-                    Homework homework = getHomework(homeworkService);
 
-                    System.out.println(Constants.EDIT_ELEMENT);
+                    Homework homework = getHomeworkById(homeworkService);
+
+                    ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
                     editHomework(homeworkService, homework);
@@ -51,10 +50,7 @@ public class HomeworkView {
                 case 3:
                     logger.info("selected to get all homeworks by lecture id");
 
-                    ConsoleUtils.print(Constants.LECTURE_ID);
-                    int lectureId = lectureService.lectureIdIsValid();
-                    List<Homework> allByLectureId = homeworkService.findAllByLectureId(lectureId);
-                    System.out.println(allByLectureId);
+                    int lectureId = outputAllByLectureId(homeworkService);
 
                     ConsoleUtils.print(Constants.ACTION);
                     int action = ConsoleUtils.workWithListHomework();
@@ -88,7 +84,21 @@ public class HomeworkView {
         }
     }
 
-    private Homework getHomework(HomeworkService homeworkService) {
+    private int outputAllByLectureId(HomeworkService homeworkService) {
+        ConsoleUtils.print(Constants.LECTURE_ID);
+        int lectureId = lectureService.lectureIdIsValid();
+        List<Homework> allByLectureId = homeworkService.findAllByLectureId(lectureId);
+        System.out.println(allByLectureId);
+        return lectureId;
+    }
+
+    private void createNewHomework(HomeworkService homeworkService) {
+        ConsoleUtils.print(Constants.LECTURE_ID);
+        int lectureId = lectureService.lectureIdIsValid();
+        addNewHomeworkToLecture(homeworkService, lectureId);
+    }
+
+    private Homework getHomeworkById(HomeworkService homeworkService) {
         ConsoleUtils.print(Constants.HOMEWORK_ID);
         int homeworkId = homeworkService.homeworkIdIsValid();
         Homework homework = homeworkService.getRequireById(homeworkId);
@@ -121,7 +131,7 @@ public class HomeworkView {
             Homework homeworkUpdate = homeworkService.updateHomework(homework, homeworkDto);
             System.out.println(homeworkUpdate);
 
-            ConsoleUtils.print(Constants.EDIT_ELEMENT);
+            ConsoleUtils.print(Constants.ELEMENT_EDIT);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
     }

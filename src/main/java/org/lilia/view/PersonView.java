@@ -34,22 +34,22 @@ public class PersonView {
                         Person person = createNewPerson(personService);
                         logger.info("person created successful " + person.getRole() + " " + person.getLastName());
 
-                        System.out.println(Constants.CREATE_NEW);
+                        ConsoleUtils.print(Constants.CREATE_NEW);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                     break;
                 case 2:
                     logger.info("selected get person by last name");
-                    Person person = getPerson(personService);
+                    Person person = getPersonById(personService);
 
-                    ConsoleUtils.print(Constants.EDIT_ELEMENT);
+                    ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
                     editPerson(personService, userChoice, person);
                     break;
                 case 3:
                     logger.info("selected output person");
-                    out(personService);
+                    outputAll(personService);
                     break;
                 case 4:
                     logger.info("selected delete person");
@@ -78,11 +78,10 @@ public class PersonView {
         int choiceRole = ConsoleUtils.readInteger();
         Role role = personService.getRole(choiceRole);
 
-        Person person = personService.createPerson(personName, role);
-        return person;
+        return personService.createPerson(personName, role);
     }
 
-    private Person getPerson(PersonService personService) {
+    private Person getPersonById(PersonService personService) {
         ConsoleUtils.print(Constants.LAST_NAME);
         String personLastName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
         Person person = personService.getByLastName(personLastName);
@@ -114,12 +113,12 @@ public class PersonView {
             Person personUpdate = personService.updatePerson(person, personDto);
             System.out.println(personUpdate);
 
-            ConsoleUtils.print(Constants.EDIT_ELEMENT);
+            ConsoleUtils.print(Constants.ELEMENT_EDIT);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
     }
 
-    private void out(PersonService personService) {
+    private void outputAll(PersonService personService) {
         ConsoleUtils.print(Constants.COURSE_ID);
         int courseId = courseService.courseIdIsValid();
 
@@ -138,6 +137,4 @@ public class PersonView {
     private void print(Person person){
         System.out.println(person);
     }
-
-
 }

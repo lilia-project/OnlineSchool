@@ -21,7 +21,7 @@ public class CourseService {
         this.lectureService = lectureService;
     }
 
-    public void createCourse(String courseName) {
+    public void createNewCourse(String courseName) {
         if (courseName == null) {
             throw new IllegalArgumentException("course name is null");
         }
@@ -41,7 +41,7 @@ public class CourseService {
         return course;
     }
 
-    public void out() {
+    public void outputAll() {
         courseRepository.getAll();
     }
 
@@ -51,7 +51,6 @@ public class CourseService {
             throw new NoSuchCourseIdException(courseId);
         }
         addLectureIntoCourse(course.get());
-//        System.out.println(course.get());
         return course.get();
     }
 
@@ -78,7 +77,6 @@ public class CourseService {
     }
 
     public void print(Course course) {
-        //addLectureIntoCourse(course);
         System.out.println(course);
     }
 }

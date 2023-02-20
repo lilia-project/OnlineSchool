@@ -26,30 +26,22 @@ public class AdditionalMaterialView {
                 case 1:
                     while (userChoice.equalsIgnoreCase("Y")) {
 
-                        ConsoleUtils.print(Constants.LECTURE_ID);
-                        int lectureId = lectureService.lectureIdIsValid();
+                        createNew(additionalMaterialService);
 
-                        addNewMaterialToLecture(additionalMaterialService,lectureId);
+                        ConsoleUtils.print(Constants.CREATE_NEW);
+                        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                     break;
                 case 2:
-                    ConsoleUtils.print(Constants.MATERIAL_ID);
+                    AdditionalMaterial additionalMaterial = getAdditionalMaterial(additionalMaterialService);
 
-                    int additionalMaterialId = additionalMaterialService.additionalMaterialIdIsValid();
-                    AdditionalMaterial additionalMaterial = additionalMaterialService.getRequireById(additionalMaterialId);
-                    print(additionalMaterial);
-
-                    ConsoleUtils.print(Constants.EDIT_ELEMENT);
+                    ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
                     editAdditionMaterial(additionalMaterialService, additionalMaterial);
                     break;
                 case 3:
-                    ConsoleUtils.print(Constants.LECTURE_ID);
-                    int lectureId = lectureService.lectureIdIsValid();
-
-                    List<AdditionalMaterial> allByLectureId = additionalMaterialService.findAllByLectureId(lectureId);
-                    System.out.println(allByLectureId);
+                    int lectureId = getAllByLectureId(additionalMaterialService);
 
                     ConsoleUtils.print(Constants.ACTION);
                     int action = ConsoleUtils.workWithListAddMaterial();
@@ -87,6 +79,31 @@ public class AdditionalMaterialView {
         }
     }
 
+    private int getAllByLectureId(AdditionalMaterialService additionalMaterialService) {
+        ConsoleUtils.print(Constants.LECTURE_ID);
+        int lectureId = lectureService.lectureIdIsValid();
+
+        List<AdditionalMaterial> allByLectureId = additionalMaterialService.findAllByLectureId(lectureId);
+        System.out.println(allByLectureId);
+        return lectureId;
+    }
+
+    private AdditionalMaterial getAdditionalMaterial(AdditionalMaterialService additionalMaterialService) {
+        ConsoleUtils.print(Constants.MATERIAL_ID);
+
+        int additionalMaterialId = additionalMaterialService.additionalMaterialIdIsValid();
+        AdditionalMaterial additionalMaterial = additionalMaterialService.getRequireById(additionalMaterialId);
+        print(additionalMaterial);
+        return additionalMaterial;
+    }
+
+    private void createNew(AdditionalMaterialService additionalMaterialService) {
+        ConsoleUtils.print(Constants.LECTURE_ID);
+        int lectureId = lectureService.lectureIdIsValid();
+
+        addNewMaterialToLecture(additionalMaterialService, lectureId);
+    }
+
     private void editAdditionMaterial(AdditionalMaterialService additionalMaterialService, AdditionalMaterial additionalMaterial) {
         while (userChoice.equalsIgnoreCase("Y")) {
             ConsoleUtils.print(Constants.NAME);
@@ -103,7 +120,7 @@ public class AdditionalMaterialView {
             AdditionalMaterial additionalMaterialUpdate = additionalMaterialService.updateAdditionalMaterial(additionalMaterial, additionalMaterialDto);
             System.out.println(additionalMaterialUpdate);
 
-            ConsoleUtils.print(Constants.EDIT_ELEMENT);
+            ConsoleUtils.print(Constants.ELEMENT_EDIT);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
     }
@@ -142,8 +159,7 @@ public class AdditionalMaterialView {
 
         additionalMaterialService.createAdditionalMaterial(additionalMaterialName, lectureId);
 
-        ConsoleUtils.print(Constants.CREATE_NEW);
-        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
     }
 
     private void print(AdditionalMaterial additionalMaterial) {

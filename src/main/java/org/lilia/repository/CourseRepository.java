@@ -2,7 +2,9 @@ package org.lilia.repository;
 
 import org.lilia.model.Course;
 
-import java.util.*;
+import java.util.Optional;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class CourseRepository{
    private static final SortedSet<Course> data = new TreeSet<>();
@@ -23,10 +25,6 @@ public class CourseRepository{
             }
         }
         return Optional.empty();
-    }
-
-    public int size() {
-        return data.size();
     }
 
     public void getAll() {

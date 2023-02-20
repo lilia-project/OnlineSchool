@@ -389,3 +389,22 @@ null
 2023-02-17T19:01:11.034804 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: н
 2023-02-17T23:32:37.753299 ERROR org.lilia.ConsoleUtils invalid user input
 2023-02-17T23:32:37.768388 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: н
+2023-02-20T20:41:56.274467 INFO org.lilia.view.HomeworkView work with homework section
+2023-02-20T20:41:58.978920 INFO org.lilia.view.HomeworkView selected to create homework
+2023-02-20T20:42:03.042873 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-20T20:42:03.043318 INFO org.lilia.service.LectureService repeat input
+2023-02-20T20:42:05.249345 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-02-20T20:42:05.249789 INFO org.lilia.service.LectureService repeat input
+2023-02-20T20:42:08.514258 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-20T20:42:08.517950 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \d+ , got: n
+2023-02-20T20:56:55.768211 INFO org.lilia.view.HomeworkView work with homework section
+2023-02-20T20:56:57.479221 INFO org.lilia.view.HomeworkView selected to create homework
+2023-02-20T20:59:05.948486 INFO org.lilia.view.HomeworkView work with homework section
+2023-02-20T20:59:08.171545 INFO org.lilia.view.HomeworkView selected to create homework
+2023-02-20T21:29:16.767378 INFO org.lilia.view.LectureView work with lecture section
+2023-02-20T21:29:23.053840 INFO org.lilia.view.LectureView selected to create lecture
+2023-02-20T21:29:26.451463 INFO org.lilia.view.LectureView lecture created successful1
+2023-02-20T21:29:36.437432 INFO org.lilia.view.HomeworkView work with homework section
+2023-02-20T21:29:38.397036 INFO org.lilia.view.HomeworkView selected to create homework
+2023-02-20T21:29:42.387416 INFO org.lilia.view.HomeworkView element created successful
+2023-02-20T21:29:45.068803 INFO org.lilia.view.HomeworkView homework created successful

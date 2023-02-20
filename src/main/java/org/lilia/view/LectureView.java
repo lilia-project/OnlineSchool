@@ -22,53 +22,31 @@ public class LectureView {
 
                     while (userChoice.equalsIgnoreCase("Y")) {
 
-                        ConsoleUtils.print(Constants.NAME);
-                        String lectureName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
-
-                        Lecture lecture = lectureService.createLecture(lectureName);
+                        Lecture lecture = createNewLecture(lectureService);
                         logger.info("lecture created successful" + lecture.getId());
 
-                        System.out.println(Constants.CREATE_NEW);
+                        ConsoleUtils.print(Constants.CREATE_NEW);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                     break;
                 case 2:
-                    ConsoleUtils.print(Constants.LECTURE_ID);
-                    int lectureId = ConsoleUtils.readInteger();
-                    logger.debug("read lectureId " + lectureId);
 
-                    Lecture lecture = lectureService.getRequireById(lectureId);
+                    Lecture lecture = getLectureById(lectureService);
                     logger.info("found lecture " + lecture);
 
-                    System.out.println(Constants.EDIT_ELEMENT);
+                    ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
                     while (userChoice.equalsIgnoreCase("Y")) {
 
-                        ConsoleUtils.print(Constants.NAME);
-                        String lectureName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
+                        editLecture(lectureService, lecture);
 
-                        ConsoleUtils.print(Constants.DESCRIPTION);
-                        String lectureDescription = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
-
-                        System.out.println("choose from available course id");
-
-                        String courseId = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
-
-                        ConsoleUtils.print(Constants.TEACHER_ID);
-                        String personId = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
-
-                        LectureDto lectureDto = lectureService.createLectureDto(Integer.parseInt(courseId), lectureName, lectureDescription, Integer.parseInt(personId));
-
-                        Lecture lectureUpdate = lectureService.updateLecture(lecture, lectureDto);
-                        System.out.println(lectureUpdate);
-
-                        ConsoleUtils.print(Constants.EDIT_ELEMENT);
+                        ConsoleUtils.print(Constants.ELEMENT_EDIT);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                     break;
                 case 3:
-                    lectureService.out();
+                    lectureService.outputAll();
                     break;
                 case 4:
                     logger.info("selected delete lecture");
@@ -86,10 +64,39 @@ public class LectureView {
             }
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-            if (userChoice.equalsIgnoreCase("N")) {
-                break;
-            }
         }
+    }
+
+    private static void editLecture(LectureService lectureService, Lecture lecture) {
+        ConsoleUtils.print(Constants.NAME);
+        String lectureName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
+
+        ConsoleUtils.print(Constants.DESCRIPTION);
+        String lectureDescription = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
+
+        System.out.println("choose from available course id");
+
+        String courseId = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
+
+        ConsoleUtils.print(Constants.TEACHER_ID);
+        String personId = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
+
+        LectureDto lectureDto = lectureService.createLectureDto(Integer.parseInt(courseId), lectureName, lectureDescription, Integer.parseInt(personId));
+
+        Lecture lectureUpdate = lectureService.updateLecture(lecture, lectureDto);
+        System.out.println(lectureUpdate);
+    }
+
+    private static Lecture getLectureById(LectureService lectureService) {
+        ConsoleUtils.print(Constants.LECTURE_ID);
+        int lectureId = ConsoleUtils.readInteger();
+        return lectureService.getRequireById(lectureId);
+    }
+
+    private static Lecture createNewLecture(LectureService lectureService) {
+        ConsoleUtils.print(Constants.NAME);
+        String lectureName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
+        return lectureService.createLecture(lectureName);
     }
 
     private static void deleteLecture(LectureService lectureService) {

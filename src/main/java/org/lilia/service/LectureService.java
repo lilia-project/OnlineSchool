@@ -55,7 +55,7 @@ public class LectureService {
         return lecture;
     }
 
-    public void out() {
+    public void outputAll() {
         lectureRepository.getAll();
     }
 
