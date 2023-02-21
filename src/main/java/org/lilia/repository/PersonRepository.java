@@ -3,12 +3,10 @@ package org.lilia.repository;
 import org.lilia.model.Person;
 import org.lilia.model.Role;
 
-import java.util.Optional;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class PersonRepository {
-    private final SortedSet<Person> data = new TreeSet<>();
+    private final List<Person> data = new ArrayList<>();
 
     public void add(Person person) {
         data.add(person);
@@ -54,4 +52,7 @@ public class PersonRepository {
         return Optional.empty();
     }
 
+    public void sortByLastName() {
+        data.sort(new Person.sortByLastName());
+    }
 }

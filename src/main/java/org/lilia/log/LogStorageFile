@@ -466,3 +466,22 @@ null
 2023-02-21T16:33:49.160957 INFO org.lilia.view.PersonView selected get person by last name
 2023-02-21T16:34:14.090742 INFO org.lilia.view.PersonView selected output person
 2023-02-21T16:34:52.353661 INFO org.lilia.view.PersonView selected output person
+2023-02-21T21:32:38.789406 INFO org.lilia.view.PersonView work with person section
+2023-02-21T21:32:40.161896 INFO org.lilia.view.PersonView selected to create person
+2023-02-21T21:32:46.747143 INFO org.lilia.view.PersonView person created successful TEACHER ww
+2023-02-21T21:33:09.039636 INFO org.lilia.view.PersonView person created successful TEACHER ee
+2023-02-21T21:33:14.566147 INFO org.lilia.view.PersonView person created successful STUDENT uu
+2023-02-21T21:33:18.249180 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-21T21:33:18.250357 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: jj
+2023-02-21T21:33:24.959267 INFO org.lilia.view.PersonView person created successful STUDENT jj
+2023-02-21T21:33:30.101349 INFO org.lilia.view.PersonView selected output person
+2023-02-21T21:46:00.739060 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-21T21:46:00.753435 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: н
+2023-02-21T21:46:15.657143 INFO org.lilia.view.PersonView work with person section
+2023-02-21T21:46:17.177337 INFO org.lilia.view.PersonView selected to create person
+2023-02-21T21:46:22.209816 INFO org.lilia.view.PersonView person created successful TEACHER qq
+2023-02-21T21:46:27.152984 INFO org.lilia.view.PersonView person created successful TEACHER ww
+2023-02-21T21:46:33.672471 INFO org.lilia.view.PersonView person created successful STUDENT ee
+2023-02-21T21:47:05.023067 INFO org.lilia.view.PersonView person created successful STUDENT aa
+2023-02-21T21:47:14.718591 INFO org.lilia.view.PersonView person created successful TEACHER j
+2023-02-21T21:47:21.702590 INFO org.lilia.view.PersonView selected output person

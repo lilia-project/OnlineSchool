@@ -1,6 +1,8 @@
 package org.lilia.model;
 
-public class Person implements Comparable<Person> {
+import java.util.Comparator;
+
+public class Person {
     private static int counter = 0;
     private final Integer id;
     private final Role role;
@@ -87,8 +89,11 @@ public class Person implements Comparable<Person> {
                 "\n Email = " + email;
     }
 
-    @Override
-    public int compareTo(Person o) {
-        return this.lastName.compareTo(o.lastName);
+    public static class sortByLastName implements Comparator<Person>{
+
+        @Override
+        public int compare(Person o1, Person o2) {
+            return o1.getLastName().compareTo(o2.getLastName());
+        }
     }
 }

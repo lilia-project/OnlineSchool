@@ -50,6 +50,13 @@ public class PersonView {
                 case 3:
                     logger.info("selected output person");
                     outputAll(personService);
+                    ConsoleUtils.print(Constants.SORT_BY_LAST_NAME);
+                    userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+                    if(userChoice.equalsIgnoreCase("Y")){
+                        personService.sortByLastName();
+                    }
+
+
                     break;
                 case 4:
                     logger.info("selected delete person");

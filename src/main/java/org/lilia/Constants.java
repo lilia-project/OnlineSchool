@@ -32,6 +32,7 @@ public final class Constants {
     public static final String ELEMENT_NOT_EXIST = "\nelement not exist";
     public static final String SELECT_ACTION = "[1-3]";
     public static final String SORT_BY_NAME = "sort by name?";
+    public static final String SORT_BY_LAST_NAME = "sort by lastname?";
 
 
     private Constants() {

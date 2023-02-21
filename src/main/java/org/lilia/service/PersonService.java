@@ -83,4 +83,9 @@ public class PersonService {
        }
         return person.get();
     }
+
+    public void sortByLastName() {
+        personRepository.sortByLastName();
+    }
 }
+
