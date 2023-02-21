@@ -2,7 +2,6 @@ package org.lilia.log;
 
 import java.time.LocalDateTime;
 
-
 public class Log {
     private final String name;
 
