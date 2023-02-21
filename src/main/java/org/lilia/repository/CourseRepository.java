@@ -5,7 +5,7 @@ import org.lilia.model.Course;
 import java.util.*;
 
 public class CourseRepository{
-   private static final SortedSet<Course> data = new TreeSet<>();
+   private static final List<Course> data = new ArrayList<>();
 
 
     public void add(Course course) {
@@ -30,7 +30,8 @@ public class CourseRepository{
             System.out.println(course);
         }
     }
-
-
-
+    public void sortByName(){
+      data.sort(new Course.CourseIDComparator());
+        System.out.println(data);
+    }
 }

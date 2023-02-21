@@ -36,6 +36,12 @@ public class CourseView {
                     break;
                 case 3:
                     courseService.outputAll();
+                    ConsoleUtils.print(Constants.SORT_BY_NAME);
+                    userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+                    if (userChoice.equalsIgnoreCase("Y")){
+                        courseService.sortByName();
+                    }
+
                     break;
                 case 4:
                     deleteCourse(courseService);

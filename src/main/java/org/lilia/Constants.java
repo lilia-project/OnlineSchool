@@ -31,6 +31,7 @@ public final class Constants {
     public static final String RESOURCE_TYPE = "\ninput type of resource";
     public static final String ELEMENT_NOT_EXIST = "\nelement not exist";
     public static final String SELECT_ACTION = "[1-3]";
+    public static final String SORT_BY_NAME = "sort by name?";
 
 
     private Constants() {

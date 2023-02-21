@@ -408,3 +408,61 @@ null
 2023-02-20T21:29:38.397036 INFO org.lilia.view.HomeworkView selected to create homework
 2023-02-20T21:29:42.387416 INFO org.lilia.view.HomeworkView element created successful
 2023-02-20T21:29:45.068803 INFO org.lilia.view.HomeworkView homework created successful
+2023-02-21T15:39:42.319446 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-21T15:39:42.343349 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: г
+2023-02-21T15:39:53.516709 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-21T15:39:53.517278 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-5] , got: fsd
+2023-02-21T15:40:13.228985 INFO org.lilia.view.LectureView work with lecture section
+2023-02-21T15:40:15.724460 INFO org.lilia.view.LectureView selected to create lecture
+2023-02-21T15:40:17.830101 INFO org.lilia.view.LectureView lecture created successful1
+2023-02-21T15:40:26.932227 INFO org.lilia.view.PersonView work with person section
+2023-02-21T15:40:29.452627 INFO org.lilia.view.PersonView selected to create person
+2023-02-21T15:40:33.181843 INFO org.lilia.view.PersonView person created successful TEACHER sdg
+2023-02-21T15:40:41.773798 INFO org.lilia.view.PersonView person created successful STUDENT sdfg
+2023-02-21T15:41:00.941079 INFO org.lilia.view.PersonView work with person section
+2023-02-21T15:41:04.051253 INFO org.lilia.view.PersonView selected output person
+2023-02-21T15:45:12.024881 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-21T15:45:12.041312 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-5] , got: sdg
+2023-02-21T15:45:26.833314 INFO org.lilia.view.LectureView work with lecture section
+2023-02-21T15:45:28.802677 INFO org.lilia.view.LectureView selected to create lecture
+2023-02-21T15:45:30.052986 INFO org.lilia.view.LectureView lecture created successful1
+2023-02-21T15:45:35.097536 INFO org.lilia.view.PersonView work with person section
+2023-02-21T15:45:36.864348 INFO org.lilia.view.PersonView selected to create person
+2023-02-21T15:45:40.306674 INFO org.lilia.view.PersonView person created successful TEACHER dfgh
+2023-02-21T15:45:46.601711 INFO org.lilia.view.PersonView person created successful STUDENT ghfd
+2023-02-21T15:45:58.633751 INFO org.lilia.view.PersonView selected output person
+2023-02-21T15:50:37.213342 INFO org.lilia.view.LectureView work with lecture section
+2023-02-21T15:50:39.100232 INFO org.lilia.view.LectureView selected to create lecture
+2023-02-21T15:50:40.313058 INFO org.lilia.view.LectureView lecture created successful1
+2023-02-21T15:50:49.244101 INFO org.lilia.view.PersonView work with person section
+2023-02-21T15:50:56.682271 INFO org.lilia.view.PersonView selected to create person
+2023-02-21T15:50:59.669112 INFO org.lilia.view.PersonView person created successful TEACHER fdhg
+2023-02-21T15:51:04.931345 INFO org.lilia.view.PersonView person created successful STUDENT dfgh
+2023-02-21T15:51:10.555267 INFO org.lilia.view.PersonView selected output person
+2023-02-21T15:51:33.930556 INFO org.lilia.view.PersonView selected get person by last name
+2023-02-21T15:52:26.135921 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-21T15:52:26.136685 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \d+ , got: dfhg
+2023-02-21T15:52:31.056503 ERROR org.lilia.ConsoleUtils unexpected input
+2023-02-21T15:55:19.186693 INFO org.lilia.view.PersonView selected get person by last name
+2023-02-21T15:56:07.375581 INFO org.lilia.view.PersonView selected output person
+2023-02-21T15:56:23.296486 INFO org.lilia.view.PersonView work with person section
+2023-02-21T15:56:25.960279 INFO org.lilia.view.PersonView selected output person
+2023-02-21T16:04:47.462692 INFO org.lilia.view.PersonView work with person section
+2023-02-21T16:04:50.351086 INFO org.lilia.view.PersonView selected to create person
+2023-02-21T16:04:54.936777 INFO org.lilia.view.PersonView person created successful TEACHER qq
+2023-02-21T16:05:03.519021 INFO org.lilia.view.PersonView person created successful STUDENT ww
+2023-02-21T16:05:11.711888 INFO org.lilia.view.PersonView selected output person
+2023-02-21T16:05:46.021572 INFO org.lilia.view.PersonView work with person section
+2023-02-21T16:05:50.717215 INFO org.lilia.view.PersonView selected get person by last name
+2023-02-21T16:06:20.924644 INFO org.lilia.view.PersonView selected get person by last name
+2023-02-21T16:06:48.619221 INFO org.lilia.view.PersonView selected output person
+2023-02-21T16:07:28.105883 INFO org.lilia.view.PersonView selected output person
+2023-02-21T16:07:49.143218 INFO org.lilia.view.PersonView selected output person
+2023-02-21T16:33:00.364222 INFO org.lilia.view.PersonView work with person section
+2023-02-21T16:33:02.748502 INFO org.lilia.view.PersonView selected to create person
+2023-02-21T16:33:06.512529 INFO org.lilia.view.PersonView person created successful TEACHER qq
+2023-02-21T16:33:13.620023 INFO org.lilia.view.PersonView person created successful STUDENT ww
+2023-02-21T16:33:20.395601 INFO org.lilia.view.PersonView selected get person by last name
+2023-02-21T16:33:49.160957 INFO org.lilia.view.PersonView selected get person by last name
+2023-02-21T16:34:14.090742 INFO org.lilia.view.PersonView selected output person
+2023-02-21T16:34:52.353661 INFO org.lilia.view.PersonView selected output person

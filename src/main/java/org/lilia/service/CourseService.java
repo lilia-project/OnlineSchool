@@ -15,6 +15,9 @@ public class CourseService {
 
     private final CourseRepository courseRepository;
     private final LectureService lectureService;
+    public void sortByName(){
+        courseRepository.sortByName();
+    }
 
     public CourseService(CourseRepository courseRepository, LectureService lectureService) {
         this.courseRepository = courseRepository;
