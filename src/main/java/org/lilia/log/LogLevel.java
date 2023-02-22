@@ -1,18 +1,26 @@
 package org.lilia.log;
 
 public enum LogLevel {
-    ERROR("ERROR"),
-    WARNING("WARNING"),
-    INFO("INFO"),
-    DEBUG("DEBUG");
+    OFF("OFF", 4),
+    ERROR("ERROR", 3),
+    WARNING("WARNING", 2),
+    INFO("INFO", 1),
+    DEBUG("DEBUG", 0);
 
     private final String field;
 
-    LogLevel(String field) {
+    private final int levelId;
+
+    LogLevel(String field, int levelId) {
         this.field = field;
+        this.levelId = levelId;
     }
 
     public String getField() {
         return field;
+    }
+
+    public int getLevelId() {
+        return levelId;
     }
 }

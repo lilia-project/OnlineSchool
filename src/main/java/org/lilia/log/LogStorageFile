@@ -485,3 +485,25 @@ null
 2023-02-21T21:47:05.023067 INFO org.lilia.view.PersonView person created successful STUDENT aa
 2023-02-21T21:47:14.718591 INFO org.lilia.view.PersonView person created successful TEACHER j
 2023-02-21T21:47:21.702590 INFO org.lilia.view.PersonView selected output person
+2023-02-22T20:49:04.630163 INFO org.lilia.view.LectureView work with lecture section
+2023-02-22T20:49:08.124701 INFO org.lilia.view.LectureView selected to create lecture
+2023-02-22T20:49:09.528846 INFO org.lilia.view.LectureView lecture created successful1
+2023-02-22T20:49:19.804789 INFO org.lilia.view.LectureView lecture created successful2
+2023-02-22T20:54:46.601196 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-22T20:55:53.891939 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: g
+2023-02-22T20:57:39.382862 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-22T20:57:39.397455 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: d
+2023-02-22T20:57:43.991290 INFO org.lilia.view.LectureView work with lecture section
+2023-02-22T20:57:45.702185 INFO org.lilia.view.LectureView selected to create lecture
+2023-02-22T20:57:46.646974 INFO org.lilia.view.LectureView lecture created successful1
+2023-02-22T20:57:48.662758 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-22T20:57:48.663383 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: h
+2023-02-22T21:38:20.791 ERROR org.lilia.ConsoleUtils invalid user input
+2023-02-22T21:38:20.807200 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: h
+2023-02-22T21:38:20.972157 ERROR org.lilia.ConsoleUtils unexpected input
+2023-02-22T21:38:29.883590 ERROR org.lilia.ConsoleUtils unexpected input
+2023-02-22T21:38:31.851574 ERROR org.lilia.ConsoleUtils unexpected input
+2023-02-22T21:38:34.187559 ERROR org.lilia.ConsoleUtils unexpected input
+2023-02-22T21:38:42.059089 INFO org.lilia.view.LectureView work with lecture section
+2023-02-22T21:38:44.571196 INFO org.lilia.view.LectureView selected to create lecture
+2023-02-22T21:38:45.881639 INFO org.lilia.view.LectureView lecture created successful1

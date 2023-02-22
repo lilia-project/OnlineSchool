@@ -14,4 +14,5 @@ public class LogStorage {
             logWriter.write(log);
         }
     }
+
 }
