@@ -6,7 +6,11 @@ import java.util.List;
 public class LogStorage {
 
     private final List<Log> logStorage = new ArrayList<>();
-    private final List<LogWriter> logWriters = List.of(new FileSaver(), new ConsoleWriter());
+    private final List<LogWriter> logWriters;
+
+    public LogStorage(List<LogWriter> logWriters) {
+        this.logWriters = logWriters;
+    }
 
     public void save(Log log) {
         logStorage.add(log);
@@ -14,5 +18,4 @@ public class LogStorage {
             logWriter.write(log);
         }
     }
-
 }

@@ -10,26 +10,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConfigurationReader {
-
-    //private final URL configPath = getClass().getClassLoader().getResource("valueLogLevel.properties");
     private static final String FILE_DATA_PATH = "src/main/resources/valueLogLevel.properties";
 
     public Map<String, String> readConfiguration() {
+
         Map<String, String> mapConfiguration = new HashMap<>();
 
-        // Path path;
         Path path = Paths.get(FILE_DATA_PATH);
-
-       /* try {
-            //if (configPath == null) {
-            if (configPath == null) {
-                throw new FileNotFoundException("valueLogLevel.properties");
-            }
-            path = Paths.get(configPath.toURI());
-        } catch (URISyntaxException | FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-      */
 
         try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
             String currentLine;
@@ -38,7 +25,7 @@ public class ConfigurationReader {
                 mapConfiguration.put(pair.getKey(), pair.getValue());
             }
         } catch (IOException ex) {
-            ex.printStackTrace(); //handle an exception here
+            ex.printStackTrace();
         }
         return mapConfiguration;
     }

@@ -1,8 +1,9 @@
 package org.lilia;
 
 import org.lilia.exception.NoSuchMaterialIdException;
+import org.lilia.log.ConfigurationReader;
 import org.lilia.log.ConfigurationWatcher;
-import org.lilia.log.ConsoleWriter;
+import org.lilia.log.LoggerFactory;
 import org.lilia.repository.*;
 import org.lilia.service.*;
 import org.lilia.view.*;
@@ -30,9 +31,9 @@ public class Main {
         CourseView courseView = new CourseView();
         PersonView personView = new PersonView(courseService);
         ControlWorkService controlWorkService = new ControlWorkService();
+        ConfigurationReader configurationReader = new ConfigurationReader();
 
-        ConsoleWriter consoleWriter = new ConsoleWriter();
-        ConfigurationWatcher configurationWatcher = new ConfigurationWatcher(consoleWriter);
+        ConfigurationWatcher configurationWatcher = new ConfigurationWatcher(LoggerFactory.CONSOLE_WRITER, configurationReader);
 
         System.out.println("\nWelcome to Online school!");
         configurationWatcher.setDaemon(true);
