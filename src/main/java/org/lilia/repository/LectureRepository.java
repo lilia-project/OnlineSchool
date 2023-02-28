@@ -14,11 +14,6 @@ public class LectureRepository {
         list.add(lecture);
     }
 
-    /**
-     * @param lecture parameter description
-     * @return description of options
-     */
-
     public void remove(Lecture lecture) {
         list.remove(lecture);
     }
@@ -45,9 +40,10 @@ public class LectureRepository {
     public Optional<Lecture> getByCourseId(int courseId) {
         for (Lecture lecture : list) {
             if (lecture.getCourseId() == courseId) {
+                return Optional.of(lecture);
             }
-            return Optional.of(lecture);
         }
         return Optional.empty();
     }
+
 }

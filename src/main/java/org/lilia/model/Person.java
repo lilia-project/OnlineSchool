@@ -1,23 +1,26 @@
 package org.lilia.model;
 
-public class Person implements Comparable<Person> {
+import java.util.Comparator;
+
+public class Person {
     private static int counter = 0;
     private final Integer id;
     private final Role role;
-    private final String lastName;
+
+    private String lastName;
+
     private String firstName;
+
     private String phone;
     private String email;
     private int courseId;
     private int lectureId;
-
     public Person(String lastName, Role role) {
         this.lastName = lastName;
         this.role = role;
         counter++;
         id = counter;
     }
-
 
     public static Person createPerson(String lastName, Role role) {
         return new Person(lastName, role);
@@ -59,6 +62,22 @@ public class Person implements Comparable<Person> {
         this.courseId = courseId;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "\n id = " + id +
@@ -70,8 +89,11 @@ public class Person implements Comparable<Person> {
                 "\n Email = " + email;
     }
 
-    @Override
-    public int compareTo(Person o) {
-        return this.lastName.compareTo(o.lastName);
+    public static class sortByLastName implements Comparator<Person>{
+
+        @Override
+        public int compare(Person o1, Person o2) {
+            return o1.getLastName().compareTo(o2.getLastName());
+        }
     }
 }

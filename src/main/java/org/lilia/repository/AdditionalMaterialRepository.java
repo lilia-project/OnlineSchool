@@ -82,10 +82,18 @@ public class AdditionalMaterialRepository {
     private static Comparator<AdditionalMaterial> getAdditionalMaterialComparator(AdditionalMaterial.SortField sortField) {
         Comparator<AdditionalMaterial> comparator = null;
         switch (sortField) {
-            case ID -> comparator = new AdditionalMaterial.IdComparator();
-            case LECTURE_ID -> comparator = new AdditionalMaterial.LectureIdComparator();
-            case RESOURCE_TYPE -> comparator = new AdditionalMaterial.ResourceTypeComparator();
-            default -> ConsoleUtils.print(Constants.ERROR);
+            case ID:
+                comparator = new AdditionalMaterial.IdComparator();
+                break;
+            case LECTURE_ID:
+                comparator = new AdditionalMaterial.LectureIdComparator();
+                break;
+            case RESOURCE_TYPE:
+                comparator = new AdditionalMaterial.ResourceTypeComparator();
+                break;
+            default:
+                ConsoleUtils.print(Constants.ERROR);
+                break;
         }
         return comparator;
     }

@@ -1,12 +1,17 @@
 package org.lilia;
 
 import org.lilia.exception.InvalidUserInputException;
+import org.lilia.log.Logger;
+import org.lilia.log.LoggerFactory;
 
 import static org.lilia.Main.SCANNER;
 
 public class ConsoleUtils {
+
+    private static final Logger logger = LoggerFactory.getLogger(ConsoleUtils.class);
+
     public static int readInteger() {
-        int id = SCANNER.nextInt();
+           int id = SCANNER.nextInt();
         feedNewLine();
         return id;
     }
@@ -26,7 +31,7 @@ public class ConsoleUtils {
         System.out.println("2 - sort by lectureId");
         System.out.println("3 - sort by resourceType");
 
-        return Integer.parseInt(readAndValidationInput("[1-3]"));
+        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
     }
 
     private static void feedNewLine() {
@@ -37,10 +42,10 @@ public class ConsoleUtils {
         System.out.println("select a category:");
         System.out.println("1 - course");
         System.out.println("2 - lecture");
-        System.out.println("3 - teacher");
-        System.out.println("4 - student");
-        System.out.println("5 - homework");
-        System.out.println("6 - additional material");
+        System.out.println("3 - teacher and student");
+        System.out.println("4 - homework");
+        System.out.println("5 - additional material");
+        System.out.println("6 - control work");
         System.out.println("7 - exit");
 
         return Integer.parseInt(readAndValidationInput("[1-7]"));
@@ -51,7 +56,7 @@ public class ConsoleUtils {
         try {
             validate(stringData, pattern);
         } catch (InvalidUserInputException e) {
-            System.out.println(e.getMessage());
+            logger.warning("unexpected input", e);
             stringData = repeatInputUntilCorrect(pattern);
         }
         return stringData;
@@ -60,6 +65,7 @@ public class ConsoleUtils {
     public static void validate(String data, String pattern) {
         boolean b = data.matches(pattern);
         if(!b){
+            logger.error("invalid user input");
             throw new InvalidUserInputException(data, pattern);
         }
     }
@@ -69,7 +75,8 @@ public class ConsoleUtils {
             String data = SCANNER.nextLine();
             boolean matches = data.matches(pattern);
             if (!matches) {
-                System.out.println("error, repeat input");
+                logger.error("unexpected input");
+
             } else {
                 return data;
             }
@@ -85,7 +92,7 @@ public class ConsoleUtils {
         System.out.println("2 - VIDEO");
         System.out.println("3 - BOOK");
 
-        return readAndValidationInput("[1-3]");
+        return readAndValidationInput(Constants.SELECT_ACTION);
     }
 
     public static int workWithListAddMaterial() {
@@ -102,6 +109,6 @@ public class ConsoleUtils {
         System.out.println("2 - delete homework");
         System.out.println("3 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-3]"));
+        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
     }
 }

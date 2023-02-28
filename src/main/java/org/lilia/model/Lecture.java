@@ -25,8 +25,8 @@ public class Lecture {
                 "\n courseId = " + courseId +
                 "\n lectureName = '" + name + "'," +
                 "\n lectureDescription = '" + description + "'" +
-                "\n teacherId = " + personId + "\n" +
-                "\n homeworks = \n" + list;
+                "\n teacherId = " + personId +
+                "\n homeworks = " + list + "\n";
     }
 
     public void setDescription(String description) {

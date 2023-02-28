@@ -5,18 +5,16 @@ public class PersonDto {
     private String firstName;
     private String phone;
     private String email;
-    private int lectureId;
     private int courseId;
 
     public PersonDto() {
     }
 
-    public PersonDto(String lastName, String firstName, String phone, String email, int lectureId, int courseId) {
+    public PersonDto(String lastName, String firstName, String phone, String email, int courseId) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.phone = phone;
         this.email = email;
-        this.lectureId = lectureId;
         this.courseId = courseId;
     }
 
@@ -52,14 +50,6 @@ public class PersonDto {
         this.email = email;
     }
 
-    public int getLectureId() {
-        return lectureId;
-    }
-
-    public void setLectureId(int lectureId) {
-        this.lectureId = lectureId;
-    }
-
     public int getCourseId() {
         return courseId;
     }
@@ -74,7 +64,6 @@ public class PersonDto {
                 "\n firstName = '" + firstName + "'," +
                 "\n phone = '" + phone + "'" +
                 "\n email = '" + email + "'" +
-                "\n lectureId = " + lectureId +
                 "\n courseId = " + courseId;
     }
 }

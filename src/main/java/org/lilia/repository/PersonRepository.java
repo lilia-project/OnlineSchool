@@ -3,12 +3,10 @@ package org.lilia.repository;
 import org.lilia.model.Person;
 import org.lilia.model.Role;
 
-import java.util.Optional;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class PersonRepository {
-    private final SortedSet<Person> data = new TreeSet<>();
+    private final List<Person> data = new ArrayList<>();
 
     public void add(Person person) {
         data.add(person);
@@ -27,41 +25,34 @@ public class PersonRepository {
         return Optional.empty();
     }
 
-    public int size() {
-        return data.size();
-    }
-
-    public void getAllTeachers() {
+    public void getByCourseId(int courseId, Role role) {
         for (Person person : data) {
-            if (person.getRole() == Role.TEACHER) {
+            if (person.getCourseId() == courseId & person.getRole().equals(role)) {
                 System.out.println(person);
             }
         }
+        System.out.println("no objects to display");
     }
 
-    public void getAllStudents() {
-        for (Person person : data) {
-            if (person.getRole() == Role.STUDENT) {
-                System.out.println(person);
-            }
-        }
-    }
-
-    public Optional<Person> getByCourseId(int courseId, Role role) {
-        for (Person person : data) {
-            if (person.getCourseId() == courseId) {
+    public Optional<Person> getByLastName(String personLastName) {
+        for (Person person: data){
+            if (person.getLastName().equals(personLastName)){
                 return Optional.of(person);
             }
         }
         return Optional.empty();
     }
 
-    public Optional<Person> getByLectureId(int lectureId, Role role) {
-        for (Person person : data) {
-            if (person.getLectureId() == lectureId) {
-                return Optional.of(person);
-            }
+    public Optional<Role> getRole(int choiceRole) {
+        if (choiceRole == 1){
+            return Optional.of(Role.TEACHER);
+        }if(choiceRole == 2) {
+            return Optional.of(Role.STUDENT);
         }
         return Optional.empty();
+    }
+
+    public void sortByLastName() {
+        data.sort(new Person.sortByLastName());
     }
 }
