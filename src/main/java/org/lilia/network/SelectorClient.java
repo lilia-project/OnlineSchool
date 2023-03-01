@@ -12,7 +12,7 @@ public class SelectorClient {
     }
 
     public void start() throws IOException {
-      
+
         String hostName = "localhost";
         int portNumber = 1234;
 

@@ -34,7 +34,6 @@ public final class Constants {
     public static final String SORT_BY_NAME = "sort by name?";
     public static final String SORT_BY_LAST_NAME = "sort by lastname?";
 
-
     private Constants() {
     }
 }

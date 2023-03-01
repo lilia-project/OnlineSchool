@@ -9,6 +9,7 @@ public final class LoggerFactory {
 
     private LoggerFactory() {
     }
+
     public static Logger getLogger(Class<?> clazz) {
         Logger logger = new Logger(clazz.getName(), LOG_STORAGE);
         return logger;

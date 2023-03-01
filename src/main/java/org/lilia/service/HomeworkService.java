@@ -48,11 +48,7 @@ public class HomeworkService {
 
     public List<Homework> findAllByLectureId(int lectureId) {
         Optional<List<Homework>> byLectureId = homeworkRepository.getByLectureId(lectureId);
-        if (byLectureId.isEmpty()) {
-            return Collections.emptyList();
-        } else {
-            return byLectureId.get();
-        }
+        return byLectureId.orElse(Collections.emptyList());
     }
 
     public void deleteById(int homeworkId) {

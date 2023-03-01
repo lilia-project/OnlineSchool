@@ -11,7 +11,7 @@ public class ConsoleUtils {
     private static final Logger logger = LoggerFactory.getLogger(ConsoleUtils.class);
 
     public static int readInteger() {
-           int id = SCANNER.nextInt();
+        int id = SCANNER.nextInt();
         feedNewLine();
         return id;
     }
@@ -46,9 +46,11 @@ public class ConsoleUtils {
         System.out.println("4 - homework");
         System.out.println("5 - additional material");
         System.out.println("6 - control work");
-        System.out.println("7 - exit");
+        System.out.println("7 - start server");
+        System.out.println("8 - start client");
+        System.out.println("9 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-7]"));
+        return Integer.parseInt(readAndValidationInput("[1-9]"));
     }
 
     public static String readAndValidationInput(String pattern) {
@@ -64,7 +66,7 @@ public class ConsoleUtils {
 
     public static void validate(String data, String pattern) {
         boolean b = data.matches(pattern);
-        if(!b){
+        if (!b) {
             logger.error("invalid user input");
             throw new InvalidUserInputException(data, pattern);
         }
@@ -111,4 +113,5 @@ public class ConsoleUtils {
 
         return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
     }
+
 }

@@ -52,7 +52,7 @@ public class PersonView {
                     outputAll(personService);
                     ConsoleUtils.print(Constants.SORT_BY_LAST_NAME);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-                    if(userChoice.equalsIgnoreCase("Y")){
+                    if (userChoice.equalsIgnoreCase("Y")) {
                         personService.sortByLastName();
                     }
 
@@ -85,7 +85,7 @@ public class PersonView {
         int choiceRole = ConsoleUtils.readInteger();
         Role role = personService.getRole(choiceRole);
 
-       return personService.createPerson(personName, role);
+        return personService.createPerson(personName, role);
     }
 
     private Person getPersonById(PersonService personService) {
@@ -141,7 +141,8 @@ public class PersonView {
         String lastName = personService.lastNameIsValid();
         personService.delete(lastName);
     }
-    private void print(Person person){
+
+    private void print(Person person) {
         System.out.println(person);
     }
 }

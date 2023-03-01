@@ -1,5 +1,4 @@
-/*
-package org.lilia.network1;
+package org.lilia.network;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,18 +14,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class SelectorServer {
 
     private static final int SERVER_PORT = 1234;
-    private ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
+    private final ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
     private static final String BLACK_LIST_IP = "src/main/resources/blackListIp.properties";
 
     private Selector selector;
 
-   //public static void main(String[] args) throws IOException {
-      //  new SelectorServer().start();
-   // }
+    public static void main(String[] args) throws IOException {
+        new SelectorServer().start();
+    }
 
     public void start() throws IOException {
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
@@ -38,9 +38,6 @@ public class SelectorServer {
         System.out.println("Server started and listening at port = " + SERVER_PORT);
 
         while (true) {
-            SocketChannel clientSocket = serverSocketChannel.accept();
-
-            checkIdClient(clientSocket);
 
             selector.select();
 
@@ -50,11 +47,9 @@ public class SelectorServer {
                 SelectionKey currentKey = keyIterator.next();
                 keyIterator.remove();
 
-
                 if (!currentKey.isValid()) {
                     continue;
                 }
-
                 if (currentKey.isAcceptable()) {
                     acceptConnection(currentKey);
                 } else if (currentKey.isReadable()) {
@@ -68,10 +63,18 @@ public class SelectorServer {
 
     public void acceptConnection(SelectionKey selectionKey) throws IOException {
         ServerSocketChannel serverSocketChannel = (ServerSocketChannel) selectionKey.channel();
+
         SocketChannel clientChannel = serverSocketChannel.accept();
-        clientChannel.configureBlocking(false);
-        clientChannel.register(selector, SelectionKey.OP_READ);
-        System.out.println("New client connected: " + clientChannel.getRemoteAddress());
+
+        if (checkIdClient(clientChannel)) {
+            clientChannel.shutdownInput();
+            System.out.println("clientChannel is connected? = " + clientChannel.isConnected());
+        } else {
+
+            clientChannel.configureBlocking(false);
+            clientChannel.register(selector, SelectionKey.OP_READ);
+            System.out.println("New client connected: " + clientChannel.getRemoteAddress());
+        }
     }
 
     public void readMessage(SelectionKey key) throws IOException {
@@ -103,33 +106,33 @@ public class SelectorServer {
         key.interestOps(SelectionKey.OP_READ);
     }
 
-    private void checkIdClient(SocketChannel socketChannel) throws IOException {
+    private boolean checkIdClient(SocketChannel socketChannel) throws IOException {
         SocketAddress clientAddress = socketChannel.getRemoteAddress();
-        Boolean checkingIpClient = readAndCheckBlackList(String.valueOf(clientAddress));
-        if(checkingIpClient){
-            socketChannel.finishConnect();
-            socketChannel.shutdownInput(); // todo закрыть соединение для клиента, но канал оставить открытым
-            System.out.println(socketChannel.isConnected());
-        }
+        String stringIpAddress = parseLine(String.valueOf(clientAddress));
+        return readAndCheckBlackList(stringIpAddress);
     }
 
-    private Boolean readAndCheckBlackList(String ip){
+    private Boolean readAndCheckBlackList(String ip) {
         Path path = Paths.get(BLACK_LIST_IP);
-
         try {
             BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
             String currentValue;
-            while ((currentValue = reader.readLine()) != null){
-                if(currentValue.equals(ip)){
-                    System.out.println("This IP is blacklisted");
+            while ((currentValue = reader.readLine()) != null) {
+                if (Objects.equals(currentValue, ip)) {
+                    System.out.println("This IP in black list");
                     return true;
                 }
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-        }return false;
+        }
+        return false;
+    }
+
+    private String parseLine(String line) {
+        String[] newLine = line.split(":");
+        return newLine[0];
     }
 
 }
 
-*/

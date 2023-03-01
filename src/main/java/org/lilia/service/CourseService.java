@@ -15,7 +15,8 @@ public class CourseService {
 
     private final CourseRepository courseRepository;
     private final LectureService lectureService;
-    public void sortByName(){
+
+    public void sortByName() {
         courseRepository.sortByName();
     }
 
