@@ -106,4 +106,12 @@ public class LectureService {
         }
         return lectureId;
     }
+
+    public void backupLecture() {
+        lectureRepository.serializeList();
+    }
+
+    public void deserialize() {
+        lectureRepository.deserialize();
+    }
 }

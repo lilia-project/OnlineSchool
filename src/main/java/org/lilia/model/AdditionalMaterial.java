@@ -1,10 +1,11 @@
 package org.lilia.model;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class AdditionalMaterial {
+public class AdditionalMaterial implements Serializable {
     private static int counter = 0;
 
     private final int id;

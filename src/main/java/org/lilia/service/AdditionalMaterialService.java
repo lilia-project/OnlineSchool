@@ -93,4 +93,8 @@ public class AdditionalMaterialService {
             return byLectureId.get();
         }
     }
+
+    public void backupMaterial() {
+        additionalMaterialRepository.serializeMaterial();
+    }
 }

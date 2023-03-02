@@ -83,4 +83,12 @@ public class CourseService {
     public void print(Course course) {
         System.out.println(course);
     }
+
+    public void backupCourses() {
+        courseRepository.serializeCourses();
+    }
+
+    public void deserialize() {
+        courseRepository.deserialize();
+    }
 }

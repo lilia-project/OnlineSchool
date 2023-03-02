@@ -17,9 +17,8 @@ public class LectureView {
         String userChoice = "Y";
         while (userChoice.equalsIgnoreCase("Y")) {
             switch (ConsoleUtils.choiceAction()) {
-                case 1:
+                case 1 -> {
                     logger.info("selected to create lecture");
-
                     while (userChoice.equalsIgnoreCase("Y")) {
 
                         Lecture lecture = createNewLecture(lectureService);
@@ -28,15 +27,12 @@ public class LectureView {
                         ConsoleUtils.print(Constants.CREATE_NEW);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
-                    break;
-                case 2:
-
+                }
+                case 2 -> {
                     Lecture lecture = getLectureById(lectureService);
                     logger.info("found lecture " + lecture);
-
                     ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-
                     while (userChoice.equalsIgnoreCase("Y")) {
 
                         editLecture(lectureService, lecture);
@@ -44,23 +40,21 @@ public class LectureView {
                         ConsoleUtils.print(Constants.ELEMENT_EDIT);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
-                    break;
-                case 3:
-                    lectureService.outputAll();
-                    break;
-                case 4:
+                }
+                case 3 -> lectureService.outputAll();
+                case 4 -> {
                     logger.info("selected delete lecture");
                     deleteLecture(lectureService);
                     logger.info("lecture deleted successful");
-                    break;
-                case 5:
+                }
+                case 5 -> {
                     logger.info("selected EXIT from menu");
                     ConsoleUtils.print(Constants.EXIT);
-                    break;
-                default:
+                }
+                default -> {
                     logger.error(Constants.ERROR);
                     ConsoleUtils.print(Constants.ERROR);
-                    break;
+                }
             }
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);

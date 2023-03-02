@@ -2,6 +2,8 @@ package org.lilia.repository;
 
 import org.lilia.model.Person;
 import org.lilia.model.Role;
+import org.lilia.serialization.FilePath;
+import org.lilia.serialization.Serializer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,4 +60,32 @@ public class PersonRepository {
     public void sortByLastName() {
         data.sort(new Person.sortByLastName());
     }
+
+    public void serializePerson(Role role) {
+        if (role.getField().equals("TEACHER")) {
+            for (Person person : data) {
+                if (person.getRole() == role) {
+                    Serializer.serialize(person, FilePath.FILE_PATH_TEACHER);
+                } else {
+                    Serializer.serialize(person, FilePath.FILE_PATH_STUDENT);
+                }
+            }
+        }
+    }
+
+    public void deserializePerson(Role role) {
+        String filePath;
+        for (Person person : data) {
+            if (person.getRole() == role) {
+                if (role.getField().equals("TEACHER")) {
+                    filePath = FilePath.FILE_PATH_TEACHER.getPath();
+                    System.out.println(Serializer.deserialize(filePath));
+                } else {
+                    filePath = FilePath.FILE_PATH_STUDENT.getPath();
+                    System.out.println(Serializer.deserialize(filePath));
+                }
+            }
+        }
+    }
 }
+

@@ -1,8 +1,9 @@
 package org.lilia.model;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class Person {
+public class Person implements Serializable {
     private static int counter = 0;
     private final Integer id;
     private final Role role;

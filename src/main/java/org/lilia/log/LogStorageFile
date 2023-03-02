@@ -5,3 +5,111 @@
 2023-02-28T23:45:11.961786 ERROR org.lilia.ConsoleUtils unexpected input
 2023-03-01T00:01:10.587223 ERROR org.lilia.ConsoleUtils invalid user input
 2023-03-01T00:01:10.599441 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: uytuy
+2023-03-01T13:58:46.345903 INFO org.lilia.view.LectureView work with lecture section
+2023-03-01T13:58:48.760689 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-01T13:58:57.016703 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-01T13:59:15.409739 INFO org.lilia.view.LectureView found lecture 
+ lectureId = 1
+ courseId = 0
+ lectureName = 'first',
+ lectureDescription = 'null'
+ teacherId = 0
+ homeworks = []
+
+2023-03-01T14:00:22.505161 INFO org.lilia.view.LectureView work with lecture section
+2023-03-01T14:03:58.012995 INFO org.lilia.view.LectureView work with lecture section
+2023-03-01T14:11:47.806051 INFO org.lilia.view.LectureView work with lecture section
+2023-03-01T14:11:51.939301 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-01T14:11:51.943107 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: 
+2023-03-02T14:49:24.338692 INFO org.lilia.view.LectureView work with lecture section
+2023-03-02T14:49:25.864258 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-02T14:49:27.422891 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-02T14:51:09.469225 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T14:51:09.482870 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-10] , got: 2
+2023-03-02T14:51:12.500331 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T14:51:19.155163 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T14:51:20.498488 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T14:51:21.826298 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T14:51:31.055969 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T14:51:41.849611 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T14:51:41.862554 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-10] , got: 2
+2023-03-02T14:53:24.328362 INFO org.lilia.view.LectureView work with lecture section
+2023-03-02T14:53:47.412606 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-02T14:53:53.402138 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-02T14:54:43.932978 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T14:54:43.933893 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-9] , got: 10
+2023-03-02T15:08:34.029540 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T15:08:34.043022 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: 10
+2023-03-02T15:09:53.817339 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T15:09:53.830624 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: 10
+2023-03-02T15:10:13.932638 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T15:10:13.933136 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-10] , got: 10
+2023-03-02T15:10:38.994068 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T15:10:45.945041 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T15:11:22.793803 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T15:11:22.807227 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-10] , got: 10
+2023-03-02T15:12:56.229337 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T15:12:56.242090 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-9]E , got: e
+2023-03-02T15:12:59.751080 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T15:28:16.933411 INFO org.lilia.view.LectureView work with lecture section
+2023-03-02T15:28:18.500495 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-02T15:28:23.244624 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-02T15:29:07.123587 INFO org.lilia.view.LectureView work with lecture section
+2023-03-02T15:29:09.123145 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-02T15:29:11.401473 INFO org.lilia.view.LectureView lecture created successful2
+2023-03-02T15:31:39.824940 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T15:31:39.839259 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [E][1-9] , got: E
+2023-03-02T15:34:30.645360 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T15:34:30.658649 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \d[E] , got: E
+2023-03-02T17:24:26.495869 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T17:24:26.504808 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: t
+2023-03-02T17:53:26.004229 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T17:53:26.018051 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: н
+2023-03-02T20:06:46.525087 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T20:06:46.541283 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [0-9] , got: 11
+2023-03-02T20:38:27.313578 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T20:38:27.327642 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [0-9] , got: 10
+2023-03-02T20:38:32.424557 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T20:38:38.120598 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T20:39:35.078982 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T20:39:35.093084 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: .[0-9E] , got: 9
+2023-03-02T21:03:25.626856 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T21:03:25.640802 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \d|[E] , got: e
+2023-03-02T21:04:27.328275 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T21:04:27.341530 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \d[E] , got: E
+2023-03-02T21:04:41.831501 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T21:04:44.080072 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T21:04:50.976665 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T21:05:27.544671 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T21:05:27.557757 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \dE , got: E
+2023-03-02T21:05:30.968738 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T21:05:33.088749 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T21:05:34.815855 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T21:12:40.027744 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T21:12:40.041413 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: e\d , got: e
+2023-03-02T21:12:43.388498 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T21:12:49.258715 ERROR org.lilia.ConsoleUtils unexpected input
+2023-03-02T21:13:10.762034 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T21:13:10.776201 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \e\d , got: e
+2023-03-02T21:38:14.090004 INFO org.lilia.view.LectureView work with lecture section
+2023-03-02T21:38:16.160951 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-02T21:38:20.070974 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-02T22:13:18.829432 INFO org.lilia.view.PersonView work with person section
+2023-03-02T22:13:22.153817 INFO org.lilia.view.PersonView selected to create person
+2023-03-02T22:13:31.192043 INFO org.lilia.view.PersonView person created successful TEACHER rrrrrrrrr
+2023-03-02T22:16:55.730181 INFO org.lilia.view.PersonView work with person section
+2023-03-02T22:16:57.064980 INFO org.lilia.view.PersonView selected to create person
+2023-03-02T22:17:02.804622 INFO org.lilia.view.PersonView person created successful TEACHER wwwwwwww
+2023-03-02T22:18:53.700313 INFO org.lilia.view.HomeworkView work with homework section
+2023-03-02T22:18:56.428407 INFO org.lilia.view.HomeworkView selected to create homework
+2023-03-02T22:18:58.476081 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-03-02T22:18:58.476511 INFO org.lilia.service.LectureService repeat input
+2023-03-02T22:19:22.995575 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-02T22:19:22.996407 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \d+ , got: t
+2023-03-02T22:19:32.627534 INFO org.lilia.view.LectureView work with lecture section
+2023-03-02T22:19:34.132136 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-02T22:19:36.456733 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-02T22:19:45.178052 INFO org.lilia.view.HomeworkView work with homework section
+2023-03-02T22:19:47.090320 INFO org.lilia.view.HomeworkView selected to create homework
+2023-03-02T22:19:53.226650 INFO org.lilia.view.HomeworkView element created successful
+2023-03-02T22:20:06.441435 INFO org.lilia.view.HomeworkView homework created successful

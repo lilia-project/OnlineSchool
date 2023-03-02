@@ -1,8 +1,9 @@
 package org.lilia.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Lecture {
+public class Lecture implements Serializable {
     public static int counter = 0;
 
     private final Integer id;
@@ -11,7 +12,7 @@ public class Lecture {
     private int personId;
     private String description;
 
-    private List<Homework> list;
+    private transient List<Homework> list;
 
     public Lecture(String name) {
         this.name = name;

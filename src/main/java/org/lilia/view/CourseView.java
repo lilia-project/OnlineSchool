@@ -13,7 +13,7 @@ public class CourseView {
         String userChoice = "Y";
         while (userChoice.equalsIgnoreCase("Y")) {
             switch (ConsoleUtils.choiceAction()) {
-                case 1:
+                case 1 -> {
                     String userChoice1 = userChoice;
                     while (userChoice1.equalsIgnoreCase("Y")) {
 
@@ -22,41 +22,33 @@ public class CourseView {
 
                         courseService.createNewCourse(courseName);
 
-                        System.out.println(Constants.CREATE_NEW);
+                        ConsoleUtils.print(Constants.CREATE_NEW);
                         userChoice1 = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     Course course = getCourseById(courseService);
-
                     ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-
                     editCourse(courseService, userChoice, course);
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     courseService.outputAll();
                     ConsoleUtils.print(Constants.SORT_BY_NAME);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     if (userChoice.equalsIgnoreCase("Y")) {
                         courseService.sortByName();
                     }
-
-                    break;
-                case 4:
-                    deleteCourse(courseService);
-                    break;
-                case 5:
-                    ConsoleUtils.print(Constants.EXIT);
-                    break;
-                default:
-                    ConsoleUtils.print(Constants.ERROR);
-                    break;
+                }
+                case 4 -> deleteCourse(courseService);
+                case 5 -> ConsoleUtils.print(Constants.EXIT);
+                default -> ConsoleUtils.print(Constants.ERROR);
             }
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
     }
+
 
     private static void deleteCourse(CourseService courseService) {
         int courseId;

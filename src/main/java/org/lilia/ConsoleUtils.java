@@ -26,6 +26,15 @@ public class ConsoleUtils {
         return Integer.parseInt(readAndValidationInput("[1-5]"));
     }
 
+
+    public static int choiceSerialOrDeserialize() {
+        ConsoleUtils.print("1 - backup");
+        ConsoleUtils.print("2 - deserialization");
+        ConsoleUtils.print("3 - exit");
+
+        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
+    }
+
     public static int choiceParameterSort() {
         System.out.println("1 - sort by additionMaterialId");
         System.out.println("2 - sort by lectureId");
@@ -48,10 +57,25 @@ public class ConsoleUtils {
         System.out.println("6 - control work");
         System.out.println("7 - start server");
         System.out.println("8 - start client");
-        System.out.println("9 - exit");
+        System.out.println("9 - backup or deserialization");
+        System.out.println("0 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-9]"));
+        return Integer.parseInt(readAndValidationInput("\\d*"));
     }
+
+    public static int choiceCategoryToSerialize() {
+        System.out.println("select a category:");
+        System.out.println("1 - course");
+        System.out.println("2 - lecture");
+        System.out.println("3 - teacher");
+        System.out.println("4 - student");
+        System.out.println("5 - homework");
+        System.out.println("6 - additional material");
+        System.out.println("0 - exit");
+
+        return Integer.parseInt(readAndValidationInput("[0-6]"));
+    }
+
 
     public static String readAndValidationInput(String pattern) {
         String stringData = SCANNER.nextLine();
@@ -113,5 +137,4 @@ public class ConsoleUtils {
 
         return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
     }
-
 }
