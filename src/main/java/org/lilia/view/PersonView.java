@@ -59,6 +59,16 @@ public class PersonView {
                     logger.info("lecture deleted successful");
                 }
                 case 5 -> {
+                    ConsoleUtils.print(Constants.ROLE);
+                    Role role = personService.getRole(ConsoleUtils.readInteger());
+                    personService.backupPerson(role);
+                }
+                case 6 -> {
+                    ConsoleUtils.print(Constants.ROLE);
+                    Role role = personService.getRole(ConsoleUtils.readInteger());
+                    personService.deserialize(role);
+                }
+                case 7 -> {
                     logger.info("selected EXIT from menu");
                     ConsoleUtils.print(Constants.EXIT);
                 }

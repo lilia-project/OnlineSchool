@@ -21,18 +21,11 @@ public class ConsoleUtils {
         System.out.println("2 - open/edit");
         System.out.println("3 - output all");
         System.out.println("4 - delete");
-        System.out.println("5 - exit");
+        System.out.println("5 - create backup");
+        System.out.println("6 - deserialization");
+        System.out.println("7 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-5]"));
-    }
-
-
-    public static int choiceSerialOrDeserialize() {
-        ConsoleUtils.print("1 - backup");
-        ConsoleUtils.print("2 - deserialization");
-        ConsoleUtils.print("3 - exit");
-
-        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
+        return Integer.parseInt(readAndValidationInput("[1-7]"));
     }
 
     public static int choiceParameterSort() {
@@ -57,25 +50,10 @@ public class ConsoleUtils {
         System.out.println("6 - control work");
         System.out.println("7 - start server");
         System.out.println("8 - start client");
-        System.out.println("9 - backup or deserialization");
-        System.out.println("0 - exit");
+        System.out.println("9 - exit");
 
-        return Integer.parseInt(readAndValidationInput("\\d*"));
+        return Integer.parseInt(readAndValidationInput("[1-9]"));
     }
-
-    public static int choiceCategoryToSerialize() {
-        System.out.println("select a category:");
-        System.out.println("1 - course");
-        System.out.println("2 - lecture");
-        System.out.println("3 - teacher");
-        System.out.println("4 - student");
-        System.out.println("5 - homework");
-        System.out.println("6 - additional material");
-        System.out.println("0 - exit");
-
-        return Integer.parseInt(readAndValidationInput("[0-6]"));
-    }
-
 
     public static String readAndValidationInput(String pattern) {
         String stringData = SCANNER.nextLine();

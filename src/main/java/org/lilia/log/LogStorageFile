@@ -113,3 +113,29 @@
 2023-03-02T22:19:47.090320 INFO org.lilia.view.HomeworkView selected to create homework
 2023-03-02T22:19:53.226650 INFO org.lilia.view.HomeworkView element created successful
 2023-03-02T22:20:06.441435 INFO org.lilia.view.HomeworkView homework created successful
+2023-03-02T23:28:23.440601 INFO org.lilia.view.HomeworkView work with homework section
+2023-03-02T23:28:31.248947 INFO org.lilia.view.HomeworkView selected EXIT
+2023-03-02T23:28:37.536738 INFO org.lilia.view.LectureView work with lecture section
+2023-03-02T23:28:39.087216 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-02T23:28:40.717106 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-02T23:28:50.591743 INFO org.lilia.view.HomeworkView work with homework section
+2023-03-02T23:29:15.222639 INFO org.lilia.view.HomeworkView work with homework section
+2023-03-02T23:30:37.868127 INFO org.lilia.view.LectureView work with lecture section
+2023-03-02T23:30:39.427649 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-02T23:30:41.001119 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-02T23:30:48.497240 INFO org.lilia.view.HomeworkView work with homework section
+2023-03-02T23:30:50.338600 INFO org.lilia.view.HomeworkView selected to create homework
+2023-03-02T23:30:55.755023 INFO org.lilia.view.HomeworkView element created successful
+2023-03-02T23:30:58.571665 INFO org.lilia.view.HomeworkView homework created successful
+2023-03-02T23:30:58.572245 INFO org.lilia.view.HomeworkView selected to create homework
+2023-03-02T23:31:22.761405 INFO org.lilia.view.HomeworkView element created successful
+2023-03-02T23:31:26.137038 INFO org.lilia.view.HomeworkView homework created successful
+2023-03-02T23:31:26.137536 INFO org.lilia.view.HomeworkView selected to create homework
+2023-03-02T23:37:50.120428 INFO org.lilia.view.LectureView work with lecture section
+2023-03-02T23:37:51.775655 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-02T23:37:53.801384 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-02T23:38:01.615265 INFO org.lilia.view.HomeworkView work with homework section
+2023-03-02T23:38:02.992441 INFO org.lilia.view.HomeworkView selected to create homework
+2023-03-02T23:38:06.631344 INFO org.lilia.view.HomeworkView element created successful
+2023-03-02T23:38:09.054623 INFO org.lilia.view.HomeworkView homework created successful
+2023-03-02T23:52:50.410022 INFO org.lilia.view.HomeworkView work with homework section

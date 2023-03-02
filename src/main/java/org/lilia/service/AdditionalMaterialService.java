@@ -94,7 +94,12 @@ public class AdditionalMaterialService {
         }
     }
 
-    public void backupMaterial() {
-        additionalMaterialRepository.serializeMaterial();
+    public void backupMaterial(int lectureId) {
+        additionalMaterialRepository.serializeMaterial(lectureId);
+    }
+
+    public void deserialization() {
+        additionalMaterialRepository.deserialize();
+
     }
 }

@@ -4,7 +4,6 @@ import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.log.ConfigurationReader;
 import org.lilia.log.ConfigurationWatcher;
 import org.lilia.log.LoggerFactory;
-import org.lilia.model.Role;
 import org.lilia.network.SelectorClient;
 import org.lilia.network.SelectorServer;
 import org.lilia.repository.*;
@@ -74,34 +73,7 @@ public class Main {
                 case 6 -> controlWorkService.startControlWork();
                 case 7 -> startServer();
                 case 8 -> startClient();
-                case 9 -> {
-                    int select = ConsoleUtils.choiceSerialOrDeserialize();
-                    if (select == 1) {
-
-                        int categoryToSerialization = ConsoleUtils.choiceCategoryToSerialize();
-                        switch (categoryToSerialization) {
-                            case 1 -> courseService.backupCourses();
-                            case 2 -> lectureService.backupLecture();
-                            case 3 -> personService.backupPerson(Role.TEACHER);
-                            case 4 -> personService.backupPerson(Role.STUDENT);
-                            case 5 -> homeworkService.backupHomework();
-                            case 6 -> additionalMaterialService.backupMaterial();
-                            default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
-                        }
-                    } else {
-                        int categoryToDeserialization = ConsoleUtils.choiceCategoryToSerialize();
-                        switch (categoryToDeserialization) {
-                            case 1 -> courseService.backupCourses();
-                            case 2 -> lectureService.deserialize();
-                            case 3 -> personService.deserialize(Role.TEACHER);
-                            case 4 -> personService.deserialize(Role.STUDENT);
-                            case 5 -> homeworkService.backupHomework();
-                            case 6 -> additionalMaterialService.backupMaterial();
-                            default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
-                        }
-                    }
-                }
-                case 0 -> ConsoleUtils.print("Do you want finish or ");
+                case 9 -> ConsoleUtils.print("Do you want finish or ");
                 default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
             }
             ConsoleUtils.print(Constants.CONTINUE);

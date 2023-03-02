@@ -47,7 +47,9 @@ public class LectureView {
                     deleteLecture(lectureService);
                     logger.info("lecture deleted successful");
                 }
-                case 5 -> {
+                case 5 -> lectureService.backupLecture();
+                case 6 -> lectureService.deserialize();
+                case 7 -> {
                     logger.info("selected EXIT from menu");
                     ConsoleUtils.print(Constants.EXIT);
                 }

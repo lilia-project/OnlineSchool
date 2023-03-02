@@ -41,7 +41,9 @@ public class CourseView {
                     }
                 }
                 case 4 -> deleteCourse(courseService);
-                case 5 -> ConsoleUtils.print(Constants.EXIT);
+                case 5 -> courseService.backupCourses();
+                case 6 -> courseService.deserialize();
+                case 7 -> ConsoleUtils.print(Constants.EXIT);
                 default -> ConsoleUtils.print(Constants.ERROR);
             }
             ConsoleUtils.print(Constants.STAY_IN);

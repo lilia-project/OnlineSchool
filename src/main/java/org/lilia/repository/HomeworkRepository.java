@@ -48,11 +48,15 @@ public class HomeworkRepository {
         return Optional.ofNullable(list);
     }
 
-    public void serialiseHomework() {
-        int lectureId = 1;
+    public void serialiseHomework(int lectureId) {
         List<Homework> list = data.get(lectureId);
         for (Homework homework : list) {
             Serializer.serialize(homework, FilePath.FILE_PATH_HOMEWORK);
         }
+    }
+
+    public void deserialize() {
+        String filePath = FilePath.FILE_PATH_HOMEWORK.getPath();
+        System.out.println(Serializer.deserialize(filePath));
     }
 }

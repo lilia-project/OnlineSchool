@@ -23,12 +23,12 @@ public class AdditionalMaterialRepository {
         }
     }
 
-    public void serializeMaterial() {
-        for (Map.Entry<Integer, List<AdditionalMaterial>> entry : data.entrySet()) {
-            Serializer.serialize(entry, FilePath.FILE_PATH_ADDITION_MATERIAL);
+    public void serializeMaterial(int lectureId) {
+        List<AdditionalMaterial> list = data.get(lectureId);
+        for (AdditionalMaterial additionalMaterial : list) {
+            Serializer.serialize(additionalMaterial, FilePath.FILE_PATH_ADDITION_MATERIAL);
         }
     }
-
 
     public int size() {
         return data.size();
@@ -89,4 +89,8 @@ public class AdditionalMaterialRepository {
         return comparator;
     }
 
+    public void deserialize() {
+        String filePath = FilePath.FILE_PATH_ADDITION_MATERIAL.getPath();
+        System.out.println(Serializer.deserialize(filePath));
+    }
 }
