@@ -17,9 +17,7 @@ public class LectureRepository {
     }
 
     public void serializeList() {
-        for (Lecture lecture : list) {
-            Serializer.serialize(lecture, FilePath.FILE_PATH_LECTURE);
-        }
+        Serializer.serialize(list, FilePath.FILE_PATH_LECTURE);
     }
 
     public void deserialize() {

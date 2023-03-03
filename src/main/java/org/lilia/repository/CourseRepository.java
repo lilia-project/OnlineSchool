@@ -41,9 +41,7 @@ public class CourseRepository {
     }
 
     public void serializeCourses() {
-        for (Course course : data) {
-            Serializer.serialize(course, FilePath.FILE_PATH_COURSE);
-        }
+        Serializer.serialize(data, FilePath.FILE_PATH_COURSE);
     }
 
     public void deserialize() {

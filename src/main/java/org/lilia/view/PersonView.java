@@ -40,15 +40,19 @@ public class PersonView {
                 case 2 -> {
                     logger.info("selected get person by last name");
                     Person person = getPersonById(personService);
+
                     ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
                     editPerson(personService, userChoice, person);
                 }
                 case 3 -> {
                     logger.info("selected output person");
                     outputAll(personService);
+
                     ConsoleUtils.print(Constants.SORT_BY_LAST_NAME);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
                     if (userChoice.equalsIgnoreCase("Y")) {
                         personService.sortByLastName();
                     }

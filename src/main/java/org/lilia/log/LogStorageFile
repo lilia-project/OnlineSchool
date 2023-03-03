@@ -139,3 +139,29 @@
 2023-03-02T23:38:06.631344 INFO org.lilia.view.HomeworkView element created successful
 2023-03-02T23:38:09.054623 INFO org.lilia.view.HomeworkView homework created successful
 2023-03-02T23:52:50.410022 INFO org.lilia.view.HomeworkView work with homework section
+2023-03-03T19:01:15.271447 INFO org.lilia.view.LectureView work with lecture section
+2023-03-03T19:01:16.724500 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-03T19:01:21.080102 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-03T19:01:28.811962 INFO org.lilia.view.LectureView lecture created successful2
+2023-03-03T19:25:43.065870 INFO org.lilia.view.HomeworkView work with homework section
+2023-03-03T19:25:47.575075 INFO org.lilia.view.HomeworkView selected to create homework
+2023-03-03T19:25:49.279204 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-03-03T19:25:49.279641 INFO org.lilia.service.LectureService repeat input
+2023-03-03T19:26:22.745270 INFO org.lilia.view.LectureView work with lecture section
+2023-03-03T19:27:07.315420 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-03T19:27:10.498199 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-03T19:27:30.170223 INFO org.lilia.view.HomeworkView work with homework section
+2023-03-03T19:27:39.226375 INFO org.lilia.view.HomeworkView selected to create homework
+2023-03-03T19:27:44.284372 INFO org.lilia.view.HomeworkView element created successful
+2023-03-03T19:27:48.002070 INFO org.lilia.view.HomeworkView homework created successful
+2023-03-03T19:27:51.905661 ERROR org.lilia.ConsoleUtils invalid user input
+2023-03-03T19:27:51.909363 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: ffffffff
+2023-03-03T19:27:54.371017 INFO org.lilia.view.HomeworkView selected to create homework
+2023-03-03T19:27:59.338753 INFO org.lilia.view.HomeworkView element created successful
+2023-03-03T19:28:01.681336 INFO org.lilia.view.HomeworkView homework created successful
+2023-03-03T19:29:14.646005 INFO org.lilia.view.LectureView work with lecture section
+2023-03-03T19:31:05.113440 INFO org.lilia.view.PersonView work with person section
+2023-03-03T19:31:36.392232 INFO org.lilia.view.PersonView selected to create person
+2023-03-03T19:31:43.456983 INFO org.lilia.view.PersonView person created successful TEACHER wwww
+2023-03-03T19:31:57.239256 INFO org.lilia.view.PersonView person created successful TEACHER iiii
+2023-03-03T19:32:06.974653 INFO org.lilia.view.PersonView person created successful STUDENT oooooo

@@ -84,9 +84,7 @@ public class AdditionalMaterialRepository {
 
     public void serializeMaterial(int lectureId) {
         List<AdditionalMaterial> list = data.get(lectureId);
-        for (AdditionalMaterial additionalMaterial : list) {
-            Serializer.serialize(additionalMaterial, FilePath.FILE_PATH_ADDITION_MATERIAL);
-        }
+            Serializer.serialize(list, FilePath.FILE_PATH_ADDITION_MATERIAL);
     }
 
     public void deserializeMaterial() {

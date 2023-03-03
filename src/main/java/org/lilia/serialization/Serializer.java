@@ -5,7 +5,6 @@ import java.io.*;
 public class Serializer {
 
     public static <T> void serialize(T type, FilePath filePath) {
-
         try (FileOutputStream fileOutputStream = new FileOutputStream(filePath.getPath());
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
             objectOutputStream.writeObject(type);
