@@ -75,7 +75,7 @@ public class AdditionalMaterialView {
                     additionalMaterialService.backupMaterial(lectureId);
                     break;
                 case 6:
-                    additionalMaterialService.deserialization();
+                    additionalMaterialService.deserialize();
                     break;
                 case 7:
                     ConsoleUtils.print(Constants.EXIT);

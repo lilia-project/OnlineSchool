@@ -15,16 +15,14 @@ public class Serializer {
     }
 
     public static Object deserialize(String filePath) {
-        Object value = null;
+        Object newObject;
         try (FileInputStream fileInputStream = new FileInputStream(filePath);
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-            value = objectInputStream.readObject();
-        } catch (IOException e) {
+            newObject = objectInputStream.readObject();
+        } catch (IOException|ClassNotFoundException e) {
             throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
-        return value;
+        return newObject;
     }
 
 }

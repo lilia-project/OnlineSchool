@@ -98,8 +98,8 @@ public class AdditionalMaterialService {
         additionalMaterialRepository.serializeMaterial(lectureId);
     }
 
-    public void deserialization() {
-        additionalMaterialRepository.deserialize();
+    public void deserialize() {
+        additionalMaterialRepository.deserializeMaterial();
 
     }
 }
