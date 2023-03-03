@@ -50,7 +50,7 @@ public class HomeworkRepository {
 
     public void serialiseHomework(int lectureId) {
         List<Homework> list = data.get(lectureId);
-            Serializer.serialize(list, FilePath.FILE_PATH_HOMEWORK);
+        Serializer.serialize(list, FilePath.FILE_PATH_HOMEWORK);
     }
 
     public void deserialize() {

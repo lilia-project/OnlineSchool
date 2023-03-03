@@ -165,3 +165,13 @@
 2023-03-03T19:31:43.456983 INFO org.lilia.view.PersonView person created successful TEACHER wwww
 2023-03-03T19:31:57.239256 INFO org.lilia.view.PersonView person created successful TEACHER iiii
 2023-03-03T19:32:06.974653 INFO org.lilia.view.PersonView person created successful STUDENT oooooo
+2023-03-03T21:18:25.218001 INFO org.lilia.view.PersonView work with person section
+2023-03-03T21:18:29.063531 INFO org.lilia.view.PersonView selected to create person
+2023-03-03T21:18:32.955990 INFO org.lilia.view.PersonView person created successful TEACHER qqqqqq
+2023-03-03T21:18:40.183047 INFO org.lilia.view.PersonView person created successful TEACHER wwwwwww
+2023-03-03T21:18:45.966952 INFO org.lilia.view.PersonView person created successful STUDENT rrrrrrrr
+2023-03-03T21:22:04.543274 INFO org.lilia.view.PersonView work with person section
+2023-03-03T21:22:11.181665 INFO org.lilia.view.PersonView selected to create person
+2023-03-03T21:22:15.313560 INFO org.lilia.view.PersonView person created successful TEACHER qqqq
+2023-03-03T21:22:22.709806 INFO org.lilia.view.PersonView person created successful TEACHER wwwww
+2023-03-03T21:22:27.251967 INFO org.lilia.view.PersonView person created successful STUDENT eeeeee
