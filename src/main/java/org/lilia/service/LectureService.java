@@ -13,6 +13,7 @@ import org.lilia.repository.LectureRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class LectureService {
     private final LectureRepository lectureRepository;
@@ -56,6 +57,7 @@ public class LectureService {
     }
 
     public void outputAll() {
+
         lectureRepository.getAll();
     }
 

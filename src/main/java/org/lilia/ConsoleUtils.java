@@ -23,9 +23,10 @@ public class ConsoleUtils {
         System.out.println("4 - delete");
         System.out.println("5 - create backup");
         System.out.println("6 - deserialization");
-        System.out.println("7 - exit");
+        System.out.println("7 - print all grouped by lecture");
+        System.out.println("8 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-7]"));
+        return Integer.parseInt(readAndValidationInput("[1-8]"));
     }
 
     public static int choiceParameterSort() {

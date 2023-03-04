@@ -175,3 +175,136 @@
 2023-03-03T21:22:15.313560 INFO org.lilia.view.PersonView person created successful TEACHER qqqq
 2023-03-03T21:22:22.709806 INFO org.lilia.view.PersonView person created successful TEACHER wwwww
 2023-03-03T21:22:27.251967 INFO org.lilia.view.PersonView person created successful STUDENT eeeeee
+2023-03-03T23:41:57.736458 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+2023-03-03T23:41:57.751530 INFO org.lilia.service.LectureService repeat input
+2023-03-03T23:54:27.919313 INFO org.lilia.view.LectureView work with lecture section
+2023-03-03T23:54:29.917241 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-03T23:54:34.358290 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-04T00:00:50.611446 INFO org.lilia.view.LectureView work with lecture section
+2023-03-04T00:00:52.387174 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-04T00:00:53.696568 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-04T00:00:56.396386 INFO org.lilia.view.LectureView lecture created successful2
+2023-03-04T00:01:07.850829 INFO org.lilia.view.LectureView lecture created successful3
+2023-03-04T19:14:20.058032 INFO org.lilia.view.LectureView work with lecture section
+2023-03-04T19:14:22.065971 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-04T19:14:24.874519 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-04T19:14:29.888314 INFO org.lilia.view.LectureView lecture created successful2
+2023-03-04T19:14:32.856065 INFO org.lilia.view.LectureView lecture created successful3
+2023-03-04T19:40:51.019736 INFO org.lilia.view.LectureView work with lecture section
+2023-03-04T19:40:53.040455 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-04T19:40:55.322616 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-04T19:41:01.409393 INFO org.lilia.view.LectureView lecture created successful2
+2023-03-04T19:43:23.717180 INFO org.lilia.view.LectureView work with lecture section
+2023-03-04T19:43:59.187512 INFO org.lilia.view.LectureView work with lecture section
+марта, 4, 2023 22:16:49 INFO org.lilia.view.LectureView work with lecture section
+марта, 4, 2023 22:16:52 INFO org.lilia.view.LectureView selected to create lecture
+марта, 4, 2023 22:16:53 INFO org.lilia.view.LectureView lecture created successful1
+4, марта, 2023 22:18:25 INFO org.lilia.view.LectureView work with lecture section
+4, марта, 2023 22:18:29 INFO org.lilia.view.LectureView selected to create lecture
+4, марта, 2023 22:18:30 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 22:19:47 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 22:19:49 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 22:19:50 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 22:21:10:124 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 22:21:12:479 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 22:21:15:816 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 22:28:58:947 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 22:29:04:214 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 22:29:07:046 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 22:29:16:159 INFO org.lilia.view.LectureView lecture created successful2
+4-03-2023 22:34:45:166 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 22:34:47:244 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 22:34:48:288 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 22:42:31:316 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 22:42:33:094 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 22:42:33:932 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 22:45:25:242 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 22:45:27:046 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 22:45:28:044 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 22:47:04:405 ERROR org.lilia.ConsoleUtils invalid user input
+4-03-2023 22:47:04:419 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: н
+4-03-2023 22:47:09:739 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 22:47:15:657 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 22:47:17:167 INFO org.lilia.view.LectureView lecture created successful1
+мар.4-2023 22:48:17:054 INFO org.lilia.view.LectureView work with lecture section
+мар.4-2023 22:48:19:023 INFO org.lilia.view.LectureView selected to create lecture
+мар.4-2023 22:48:20:008 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 22:52:22:751 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 22:52:24:515 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 22:52:26:139 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 22:56:41:324 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 22:56:42:742 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 22:56:44:169 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 22:57:39:400 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 22:57:41:027 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 22:57:42:671 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 23:05:39:273 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:05:41:133 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:05:43:514 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 23:07:22:509 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:07:24:312 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:07:26:413 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 23:22:45:428 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:22:49:944 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:22:51:879 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 23:22:57:016 INFO org.lilia.view.LectureView lecture created successful2
+4-03-2023 23:25:20:550 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:25:22:043 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:25:22:976 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 23:32:08:072 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:32:09:819 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:32:11:420 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-04T23:33:58.571232 INFO org.lilia.view.LectureView work with lecture section
+2023-03-04T23:34:00.385092 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-04T23:34:01.895701 INFO org.lilia.view.LectureView lecture created successful1
+2023-03-04T23:35:27.878666 INFO org.lilia.view.LectureView work with lecture section
+2023-03-04T23:35:29.630115 INFO org.lilia.view.LectureView selected to create lecture
+2023-03-04T23:35:31.276414 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 23:45:44:299 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:45:45:945 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:45:47:141 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 23:47:39:649 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:47:43:300 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:47:44:564 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 23:54:01:088 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:54:02:287 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:54:03:376 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 23:55:11:230 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:55:12:555 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:55:14:026 INFO org.lilia.view.LectureView lecture created successful1
+4-03-2023 23:58:10:183 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:58:11:812 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:58:48:821 INFO org.lilia.view.LectureView work with lecture section
+4-03-2023 23:58:50:195 INFO org.lilia.view.LectureView selected to create lecture
+4-03-2023 23:59:02:713 INFO org.lilia.view.LectureView lecture created successful1
+5-03-2023 00:03:54:326 INFO org.lilia.view.LectureView work with lecture section
+5-03-2023 00:03:55:418 INFO org.lilia.view.LectureView selected to create lecture
+5-03-2023 00:03:57:475 INFO org.lilia.view.LectureView lecture created successful1
+5-03-2023 00:04:02:441 INFO org.lilia.view.LectureView lecture created successful2
+5-03-2023 00:04:16:379 INFO org.lilia.view.HomeworkView work with homework section
+5-03-2023 00:04:19:138 INFO org.lilia.view.HomeworkView selected to create homework
+5-03-2023 00:04:22:666 INFO org.lilia.view.HomeworkView element created successful
+5-03-2023 00:04:25:003 INFO org.lilia.view.HomeworkView homework created successful
+5-03-2023 00:04:35:345 INFO org.lilia.view.HomeworkView selected to create homework
+5-03-2023 00:04:39:825 INFO org.lilia.view.HomeworkView element created successful
+5-03-2023 00:04:41:985 INFO org.lilia.view.HomeworkView homework created successful
+5-03-2023 00:04:54:335 INFO org.lilia.view.HomeworkView selected to create homework
+5-03-2023 00:04:58:066 INFO org.lilia.view.HomeworkView element created successful
+5-03-2023 00:05:00:496 INFO org.lilia.view.HomeworkView homework created successful
+5-03-2023 00:05:02:656 INFO org.lilia.view.HomeworkView selected to create homework
+5-03-2023 00:05:08:838 INFO org.lilia.view.HomeworkView element created successful
+5-03-2023 00:05:10:552 INFO org.lilia.view.HomeworkView homework created successful
+5-03-2023 00:05:21:463 INFO org.lilia.view.HomeworkView selected to get all homeworks by lecture id
+5-03-2023 00:05:33:095 INFO org.lilia.view.HomeworkView selected EXIT from menu
+5-03-2023 00:06:50:027 INFO org.lilia.view.HomeworkView selected to get all homeworks by lecture id
+5-03-2023 00:06:57:579 INFO org.lilia.view.HomeworkView selected EXIT from menu
+5-03-2023 00:07:02:570 INFO org.lilia.view.HomeworkView selected EXIT
+5-03-2023 00:10:04:207 INFO org.lilia.view.LectureView work with lecture section
+5-03-2023 00:10:05:897 INFO org.lilia.view.LectureView selected to create lecture
+5-03-2023 00:10:07:160 INFO org.lilia.view.LectureView lecture created successful1
+5-03-2023 00:11:47:227 INFO org.lilia.view.HomeworkView work with homework section
+5-03-2023 00:11:53:772 ERROR org.lilia.view.HomeworkView Error
+5-03-2023 00:12:07:874 INFO org.lilia.view.HomeworkView selected EXIT
+5-03-2023 00:16:53:796 INFO org.lilia.view.LectureView work with lecture section
+5-03-2023 00:16:55:179 INFO org.lilia.view.LectureView selected to create lecture
+5-03-2023 00:16:56:626 INFO org.lilia.view.LectureView lecture created successful1

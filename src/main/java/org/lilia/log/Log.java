@@ -1,6 +1,7 @@
 package org.lilia.log;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Log {
     private final String name;
@@ -8,14 +9,16 @@ public class Log {
     private final String logLevel;
 
     private final String message;
-    private final LocalDateTime localDate;
+    private final LocalDateTime createdAt;
     private String stackTrace;
+
+    DateTimeFormatter dTF = DateTimeFormatter.ofPattern("d-MM-yyyy HH:mm:ss:SSS");
 
     protected Log(String name, String logLevel, String message, String stackTrace) {
         this.name = name;
         this.logLevel = logLevel;
         this.message = message;
-        this.localDate = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
         this.stackTrace = stackTrace;
     }
 
@@ -23,12 +26,12 @@ public class Log {
         this.name = name;
         this.logLevel = logLevel;
         this.message = message;
-        this.localDate = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     @Override
     public String toString() {
-        String log = localDate +
+        String log = createdAt.format(dTF) +
                 " " + logLevel +
                 " " + name +
                 " " + message;

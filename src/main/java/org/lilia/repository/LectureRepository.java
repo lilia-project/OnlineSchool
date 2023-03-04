@@ -44,9 +44,7 @@ public class LectureRepository {
     }
 
     public void getAll() {
-        for (Lecture lecture : list) {
-            System.out.println(lecture);
-        }
+        list.forEach(System.out::println);
     }
 
     public Optional<Lecture> getByCourseId(int courseId) {
