@@ -1,30 +1,27 @@
 package org.lilia.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 
 public class Lecture implements Serializable {
     public static int counter = 0;
 
     private final Integer id;
-    private final LocalDateTime createdAt;
-    private LocalDateTime lectureDate;
+    private final LocalDate createdAt;
+
+    private LocalDate lectureDate;
+
     private String name;
     private int courseId;
     private int personId;
     private String description;
-    transient DateTimeFormatter dTF = DateTimeFormatter.ofPattern("d-MM-yyyy HH:mm:ss:SSS", Locale.ENGLISH);
-    transient DateTimeFormatter dTF1 = DateTimeFormatter.ofPattern("MMM d,eeee HH:mm:ss", Locale.ENGLISH);
-
     private transient List<Homework> list;
 
     public Lecture(String name) {
         this.name = name;
-        this.createdAt = LocalDateTime.now();
-        this.lectureDate = LocalDateTime.now().plusDays(2);
+        this.createdAt = LocalDate.now();
+        this.lectureDate = LocalDate.now().plusDays((int) (Math.random() * 10));
         counter++;
         id = counter;
     }
@@ -33,8 +30,8 @@ public class Lecture implements Serializable {
     public String toString() {
         return "Lecture{" +
                 "id=" + id +
-                ", createdAt=" + createdAt.format(dTF) +
-                ", lectureDate=" + lectureDate.format(dTF1) +
+                ", createdAt=" + createdAt +
+                ", lectureDate=" + lectureDate +
                 ", name='" + name + '\'' +
                 ", courseId=" + courseId +
                 ", personId=" + personId +
@@ -43,8 +40,8 @@ public class Lecture implements Serializable {
                 '}';
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return createdAt;
+    public LocalDate getLectureDate() {
+        return lectureDate;
     }
 
     public void setDescription(String description) {

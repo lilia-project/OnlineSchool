@@ -1,5 +1,7 @@
 package org.lilia.repository;
 
+import org.lilia.ConsoleUtils;
+import org.lilia.Constants;
 import org.lilia.model.Person;
 import org.lilia.model.Role;
 import org.lilia.serialization.FilePath;
@@ -66,6 +68,7 @@ public class PersonRepository {
         FilePath filePath = getPath(role);
         List<Person> newList = splitListOfPerson(data, role);
         Serializer.serialize(newList, filePath);
+        ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
     private static FilePath getPath(Role role) {

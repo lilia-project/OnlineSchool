@@ -308,3 +308,215 @@
 5-03-2023 00:16:53:796 INFO org.lilia.view.LectureView work with lecture section
 5-03-2023 00:16:55:179 INFO org.lilia.view.LectureView selected to create lecture
 5-03-2023 00:16:56:626 INFO org.lilia.view.LectureView lecture created successful1
+5-03-2023 21:16:35:526 INFO org.lilia.view.LectureView work with lecture section
+5-03-2023 21:16:37:898 INFO org.lilia.view.LectureView selected to create lecture
+5-03-2023 21:16:39:327 INFO org.lilia.view.LectureView lecture created successful1
+5-03-2023 23:20:19:996 INFO org.lilia.view.LectureView work with lecture section
+5-03-2023 23:20:21:569 INFO org.lilia.view.LectureView selected to create lecture
+5-03-2023 23:20:24:839 INFO org.lilia.view.LectureView lecture created successful1
+5-03-2023 23:20:40:657 INFO org.lilia.view.LectureView lecture created successful2
+5-03-2023 23:29:32:084 INFO org.lilia.view.LectureView work with lecture section
+5-03-2023 23:29:33:264 INFO org.lilia.view.LectureView selected to create lecture
+5-03-2023 23:29:35:294 INFO org.lilia.view.LectureView lecture created successful1
+5-03-2023 23:30:03:392 INFO org.lilia.view.LectureView lecture created successful2
+5-03-2023 23:30:15:824 ERROR org.lilia.ConsoleUtils invalid user input
+5-03-2023 23:30:15:828 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: t
+5-03-2023 23:30:18:350 INFO org.lilia.view.LectureView lecture created successful3
+5-03-2023 23:30:26:304 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 01:01:26:009 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 01:01:30:044 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 01:01:31:328 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 01:01:38:172 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 01:01:42:941 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 01:01:51:932 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 01:13:47:870 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 01:13:49:210 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 01:13:50:854 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 01:13:55:530 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 01:14:00:153 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 01:14:04:587 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 01:14:12:595 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 01:14:17:577 INFO org.lilia.view.LectureView lecture created successful6
+6-03-2023 01:21:19:641 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 01:21:20:742 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 01:21:21:875 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 01:21:24:582 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 01:21:26:669 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 01:21:28:308 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 01:21:30:324 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 01:27:45:326 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 01:27:46:771 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 01:27:48:632 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 01:27:51:698 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 01:27:54:017 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 01:27:55:649 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 01:27:55:652 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: yfdg
+6-03-2023 01:27:58:866 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 01:28:00:771 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 01:28:03:787 INFO org.lilia.view.LectureView lecture created successful6
+6-03-2023 01:28:06:049 INFO org.lilia.view.LectureView lecture created successful7
+6-03-2023 10:12:45:640 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 10:12:46:633 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 10:12:47:646 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 10:12:52:262 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 10:12:54:246 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 10:12:56:119 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 10:12:57:895 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 10:12:59:991 INFO org.lilia.view.LectureView lecture created successful6
+6-03-2023 10:13:02:007 INFO org.lilia.view.LectureView lecture created successful7
+6-03-2023 10:13:03:999 INFO org.lilia.view.LectureView lecture created successful8
+6-03-2023 10:17:08:576 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 10:17:08:580 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \d{2} , got: 7
+6-03-2023 10:25:37:911 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 10:25:39:252 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 10:25:40:866 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 10:25:43:132 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 10:25:45:097 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 10:25:46:860 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 10:25:48:851 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 10:25:50:666 INFO org.lilia.view.LectureView lecture created successful6
+6-03-2023 10:25:53:100 INFO org.lilia.view.LectureView lecture created successful7
+6-03-2023 10:27:01:520 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 10:27:01:524 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \d{2} , got: 8
+6-03-2023 10:27:10:534 ERROR org.lilia.ConsoleUtils unexpected input
+6-03-2023 10:29:17:536 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 10:29:17:537 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \d{2} , got: 3
+6-03-2023 10:33:06:047 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 10:33:08:219 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 10:33:09:273 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 10:33:15:273 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 10:33:16:764 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 10:33:18:347 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 10:33:19:883 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 10:33:21:842 INFO org.lilia.view.LectureView lecture created successful6
+6-03-2023 10:33:23:450 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 10:33:23:454 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: rt
+6-03-2023 10:33:25:490 INFO org.lilia.view.LectureView lecture created successful7
+6-03-2023 10:36:24:536 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 10:36:24:537 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: 
+6-03-2023 11:45:03:934 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 11:45:05:770 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 11:45:06:587 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 11:45:08:268 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 11:45:09:652 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 11:45:11:202 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 11:45:12:851 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 11:45:19:508 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 11:45:19:512 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: t
+6-03-2023 11:48:39:267 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 11:48:40:906 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 11:48:44:201 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 11:48:45:999 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 11:48:48:377 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 11:48:50:376 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 11:48:53:271 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 11:52:38:706 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 11:52:41:535 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 11:52:43:090 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 11:52:44:765 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 11:52:46:493 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 11:52:48:461 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 11:52:50:068 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 11:52:52:020 INFO org.lilia.view.LectureView lecture created successful6
+6-03-2023 11:55:41:247 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 11:55:42:653 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 11:55:45:148 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 11:55:48:001 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 11:55:49:164 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 11:55:50:267 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 11:55:51:350 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 11:55:53:379 INFO org.lilia.view.LectureView lecture created successful6
+6-03-2023 12:08:04:879 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 12:08:06:604 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 12:08:07:514 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 12:08:08:932 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 12:08:10:003 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 12:08:10:972 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 12:08:12:723 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 12:11:11:391 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 12:11:12:459 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 12:11:13:984 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 12:11:15:763 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 12:11:17:520 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 12:11:19:202 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 12:11:21:202 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 12:11:23:115 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 12:11:23:119 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: \w+\d* , got: ,m
+6-03-2023 12:11:25:899 INFO org.lilia.view.LectureView lecture created successful6
+6-03-2023 12:15:26:658 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 12:15:28:142 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 12:15:29:643 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 12:15:31:358 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 12:15:33:318 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 12:15:34:926 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 12:15:36:454 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 12:15:38:278 INFO org.lilia.view.LectureView lecture created successful6
+6-03-2023 12:15:47:821 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 12:15:47:825 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-7] , got: y
+6-03-2023 12:20:54:698 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 12:20:55:622 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 12:20:57:084 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 12:20:59:246 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 12:21:00:702 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 12:21:02:315 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 12:21:03:804 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 12:21:05:454 INFO org.lilia.view.LectureView lecture created successful6
+6-03-2023 12:21:07:494 INFO org.lilia.view.LectureView lecture created successful7
+6-03-2023 12:22:05:451 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 12:22:05:455 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: ~y
+6-03-2023 12:25:32:042 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 12:25:33:056 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 12:25:34:245 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 12:25:37:136 INFO org.lilia.view.LectureView lecture created successful2
+6-03-2023 12:25:38:801 INFO org.lilia.view.LectureView lecture created successful3
+6-03-2023 12:25:41:001 INFO org.lilia.view.LectureView lecture created successful4
+6-03-2023 12:25:43:256 INFO org.lilia.view.LectureView lecture created successful5
+6-03-2023 13:58:19:992 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 14:02:13:507 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 14:12:40:629 INFO org.lilia.view.HomeworkView work with homework section
+6-03-2023 14:12:51:513 INFO org.lilia.view.HomeworkView selected to create homework
+6-03-2023 14:12:53:320 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+6-03-2023 14:12:53:321 INFO org.lilia.service.LectureService repeat input
+6-03-2023 14:12:59:696 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+6-03-2023 14:12:59:696 INFO org.lilia.service.LectureService repeat input
+6-03-2023 14:13:01:050 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+6-03-2023 14:13:01:051 INFO org.lilia.service.LectureService repeat input
+6-03-2023 14:13:01:864 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+6-03-2023 14:13:01:865 INFO org.lilia.service.LectureService repeat input
+6-03-2023 14:13:06:682 ERROR org.lilia.service.LectureService lecture not found by this lectureId
+6-03-2023 14:13:06:682 INFO org.lilia.service.LectureService repeat input
+6-03-2023 14:13:36:089 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 14:14:11:885 INFO org.lilia.view.HomeworkView work with homework section
+6-03-2023 14:14:14:301 INFO org.lilia.view.HomeworkView selected to create homework
+6-03-2023 14:14:19:910 INFO org.lilia.view.HomeworkView element created successful
+6-03-2023 14:14:22:172 INFO org.lilia.view.HomeworkView homework created successful
+6-03-2023 14:14:36:285 INFO org.lilia.view.HomeworkView selected to create homework
+6-03-2023 14:14:51:899 INFO org.lilia.view.HomeworkView element created successful
+6-03-2023 14:14:54:298 INFO org.lilia.view.HomeworkView homework created successful
+6-03-2023 14:14:56:203 INFO org.lilia.view.HomeworkView selected to create homework
+6-03-2023 14:15:00:904 INFO org.lilia.view.HomeworkView element created successful
+6-03-2023 14:15:02:562 INFO org.lilia.view.HomeworkView homework created successful
+6-03-2023 14:17:13:036 ERROR org.lilia.ConsoleUtils invalid user input
+6-03-2023 14:17:13:037 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: 
+6-03-2023 14:17:14:342 ERROR org.lilia.ConsoleUtils unexpected input
+6-03-2023 14:17:15:020 ERROR org.lilia.ConsoleUtils unexpected input
+6-03-2023 14:29:23:785 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 15:02:30:447 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 15:05:42:685 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 15:13:13:770 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 15:16:53:977 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 15:18:03:581 INFO org.lilia.view.LectureView found lecture Lecture{id=1, createdAt=2023-03-06, lectureDate=2023-03-15, name='ytr', courseId=0, personId=0, description='null', list=[]}
+6-03-2023 15:21:54:462 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 15:25:51:529 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 15:34:48:679 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 15:35:07:930 INFO org.lilia.view.LectureView selected to create lecture
+6-03-2023 15:35:12:879 INFO org.lilia.view.LectureView lecture created successful1
+6-03-2023 15:46:15:271 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 15:47:32:163 INFO org.lilia.view.LectureView work with lecture section
+6-03-2023 15:52:12:836 INFO org.lilia.view.LectureView work with lecture section
+7-03-2023 00:04:38:606 INFO org.lilia.view.LectureView work with lecture section
+7-03-2023 00:06:58:126 INFO org.lilia.view.LectureView work with lecture section
+7-03-2023 00:12:35:725 INFO org.lilia.view.LectureView work with lecture section
+7-03-2023 00:17:36:589 INFO org.lilia.view.LectureView work with lecture section
+7-03-2023 00:20:39:341 INFO org.lilia.view.LectureView work with lecture section
+7-03-2023 00:23:35:718 INFO org.lilia.view.LectureView work with lecture section

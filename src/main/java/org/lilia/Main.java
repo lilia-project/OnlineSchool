@@ -82,7 +82,6 @@ public class Main {
         SCANNER.close();
     }
 
-
     private static void startServer() {
         Thread serverThread = new Thread(() -> {
             try {

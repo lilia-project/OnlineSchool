@@ -16,7 +16,11 @@ public class ConsoleUtils {
         return id;
     }
 
-    public static int choiceAction() {
+    private static void feedNewLine() {
+        SCANNER.nextLine();
+    }
+
+    public static int choiceActionForAddMaterial() {
         System.out.println("1 - create new");
         System.out.println("2 - open/edit");
         System.out.println("3 - output all");
@@ -29,16 +33,24 @@ public class ConsoleUtils {
         return Integer.parseInt(readAndValidationInput("[1-8]"));
     }
 
+    public static int choiceAction() {
+        System.out.println("1 - create new");
+        System.out.println("2 - open/edit");
+        System.out.println("3 - output all");
+        System.out.println("4 - delete");
+        System.out.println("5 - create backup");
+        System.out.println("6 - deserialization");
+        System.out.println("7 - exit");
+
+        return Integer.parseInt(readAndValidationInput("[1-7]"));
+    }
+
     public static int choiceParameterSort() {
         System.out.println("1 - sort by additionMaterialId");
         System.out.println("2 - sort by lectureId");
         System.out.println("3 - sort by resourceType");
 
-        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
-    }
-
-    private static void feedNewLine() {
-        SCANNER.nextLine();
+        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION_FROM_3));
     }
 
     public static int choiceCategory() {
@@ -97,7 +109,7 @@ public class ConsoleUtils {
         System.out.println("2 - VIDEO");
         System.out.println("3 - BOOK");
 
-        return readAndValidationInput(Constants.SELECT_ACTION);
+        return readAndValidationInput(Constants.SELECT_ACTION_FROM_3);
     }
 
     public static int workWithListAddMaterial() {
@@ -106,7 +118,7 @@ public class ConsoleUtils {
         System.out.println("3 - sort additionMaterial");
         System.out.println("4 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-4]"));
+        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION_FROM_4));
     }
 
     public static int workWithListHomework() {
@@ -114,6 +126,25 @@ public class ConsoleUtils {
         System.out.println("2 - delete homework");
         System.out.println("3 - exit");
 
-        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
+        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION_FROM_3));
     }
+
+    public static int outputDate() {
+        System.out.println("1 - output all");
+        System.out.println("2 - output with date parameter");
+        System.out.println("3 - exit");
+
+        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION_FROM_3));
+
+    }
+
+    public static int choiceDisplayType() {
+        System.out.println("1 - before the date");
+        System.out.println("2 - after the date");
+        System.out.println("3 - between dates");
+        System.out.println("4 - exit");
+
+        return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION_FROM_4));
+    }
+
 }

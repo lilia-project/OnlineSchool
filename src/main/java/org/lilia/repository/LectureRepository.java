@@ -1,9 +1,12 @@
 package org.lilia.repository;
 
+import org.lilia.ConsoleUtils;
+import org.lilia.Constants;
 import org.lilia.model.Lecture;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,11 +21,24 @@ public class LectureRepository {
 
     public void serializeList() {
         Serializer.serialize(list, FilePath.FILE_PATH_LECTURE);
+        ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
     public void deserialize() {
         String filePath = FilePath.FILE_PATH_LECTURE.getPath();
-        System.out.println(Serializer.deserialize(filePath));
+        Object deserialize = Serializer.deserialize(filePath);
+        List<Lecture> lectures = (List<Lecture>) deserialize;
+        ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
+
+        for (Lecture lecture : lectures) {
+            saveLecture(lecture);
+        }
+    }
+
+    private void saveLecture(Lecture lecture) {
+        if (!list.contains(lecture.getId())) {
+            list.add(lecture);
+        }
     }
 
     public void remove(Lecture lecture) {
@@ -56,5 +72,23 @@ public class LectureRepository {
         return Optional.empty();
     }
 
+    public void isBeforeDate(LocalDate localDate) {
+        list.stream()
+                .filter(lecture -> lecture.getLectureDate().isBefore(localDate))
+                .forEach(System.out::println);
+    }
+
+    public void isAfterDate(LocalDate localDate) {
+        list.stream()
+                .filter(lecture -> lecture.getLectureDate().isAfter(localDate))
+                .forEach(System.out::println);
+    }
+
+    public void isBetweenDate(LocalDate localDate, LocalDate localDateSecond) {
+        list.stream()
+                .filter(lecture -> lecture.getLectureDate().isAfter(localDate))
+                .filter(lecture -> lecture.getLectureDate().isBefore(localDateSecond))
+                .forEach(System.out::println);
+    }
 
 }

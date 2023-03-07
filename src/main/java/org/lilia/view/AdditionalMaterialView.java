@@ -28,7 +28,7 @@ public class AdditionalMaterialView {
 
         while (userChoice.equalsIgnoreCase("Y")) {
 
-            switch (ConsoleUtils.choiceAction()) {
+            switch (ConsoleUtils.choiceActionForAddMaterial()) {
                 case 1:
                     while (userChoice.equalsIgnoreCase("Y")) {
 

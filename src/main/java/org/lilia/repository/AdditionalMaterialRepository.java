@@ -93,15 +93,16 @@ public class AdditionalMaterialRepository {
     public void serializeMaterial() {
         List<AdditionalMaterial> list = getAll();
         Serializer.serialize(list, FilePath.FILE_PATH_ADDITION_MATERIAL);
+        ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
     public void deserializeMaterial() {
         String filePath = FilePath.FILE_PATH_ADDITION_MATERIAL.getPath();
         Object deserialize = Serializer.deserialize(filePath);
         List<AdditionalMaterial> additionalMaterials = (List<AdditionalMaterial>) deserialize;
-        System.out.println(additionalMaterials);
+        ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
 
-        for (AdditionalMaterial additionalMaterial:additionalMaterials ){
+        for (AdditionalMaterial additionalMaterial : additionalMaterials) {
             saveAdditionMaterial(additionalMaterial);
         }
     }

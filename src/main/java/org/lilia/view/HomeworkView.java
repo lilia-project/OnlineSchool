@@ -80,9 +80,7 @@ public class HomeworkView {
                     logger.info("homework deleted successful");
                     break;
                 case 5:
-                    ConsoleUtils.print(Constants.LECTURE_ID);
-                    lectureId = lectureService.lectureIdIsValid();
-                    homeworkService.backupHomework(lectureId);
+                    homeworkService.backupHomework();
                     break;
                 case 6:
                     homeworkService.deserialization();

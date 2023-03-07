@@ -10,10 +10,10 @@ import org.lilia.model.Homework;
 import org.lilia.model.Lecture;
 import org.lilia.repository.LectureRepository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 public class LectureService {
     private final LectureRepository lectureRepository;
@@ -34,7 +34,6 @@ public class LectureService {
         ConsoleUtils.print(Constants.ELEMENT_CREATED + lecture);
         return lecture;
     }
-
 
     public LectureDto createLectureDto(int courseId, String lectureName, String description, int personId) {
         return new LectureDto(courseId, lectureName, description, personId);
@@ -57,9 +56,9 @@ public class LectureService {
     }
 
     public void outputAll() {
-
         lectureRepository.getAll();
     }
+
 
     public Lecture getRequireById(int lectureId) {
         Optional<Lecture> lecture = lectureRepository.getById(lectureId);
@@ -115,5 +114,17 @@ public class LectureService {
 
     public void deserialize() {
         lectureRepository.deserialize();
+    }
+
+    public void isBeforeDate(LocalDate localDate) {
+        lectureRepository.isBeforeDate(localDate);
+    }
+
+    public void isAfterDate(LocalDate localDate) {
+        lectureRepository.isAfterDate(localDate);
+    }
+
+    public void isBetweenDates(LocalDate localDate, LocalDate localDateSecond) {
+        lectureRepository.isBetweenDate(localDate, localDateSecond);
     }
 }
