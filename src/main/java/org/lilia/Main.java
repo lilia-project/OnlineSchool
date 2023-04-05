@@ -82,35 +82,27 @@ public class Main {
         SCANNER.close();
     }
 
-
     private static void startServer() {
-        Thread serverThread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    new SelectorServer().start();
-                    System.out.println("Server started");
-                } catch (IOException e) {
-                    System.out.println("Server is not able to start, details: " + e.getMessage());
-                }
+        Thread serverThread = new Thread(() -> {
+            try {
+                new SelectorServer().start();
+                System.out.println("Server started");
+            } catch (IOException e) {
+                System.out.println("Server is not able to start, details: " + e.getMessage());
             }
-        };
+        });
         serverThread.start();
     }
 
     private static void startClient() throws InterruptedException {
-        Thread clientThread = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-                    new SelectorClient().start();
-                    System.out.println("Client started");
-                } catch (IOException e) {
-                    System.out.println("Client is not able to start, details: " + e.getMessage());
-                }
+        Thread clientThread = new Thread(() -> {
+            try {
+                new SelectorClient().start();
+                System.out.println("Client started");
+            } catch (IOException e) {
+                System.out.println("Client is not able to start, details: " + e.getMessage());
             }
-        };
+        });
         clientThread.start();
         clientThread.join(10000);
         clientThread.interrupt();

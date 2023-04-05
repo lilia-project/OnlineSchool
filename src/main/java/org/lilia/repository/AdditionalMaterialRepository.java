@@ -56,6 +56,14 @@ public class AdditionalMaterialRepository {
         return Optional.ofNullable(list);
     }
 
+    public List<AdditionalMaterial> getAll() {
+        List<AdditionalMaterial> list = new ArrayList<>();
+        for (List<AdditionalMaterial> additionalMaterials : data.values()) {
+            list.addAll(additionalMaterials);
+        }
+        return list;
+    }
+
     public void getAll(AdditionalMaterial.SortField sortField, int lectureId) {
 
         Optional<List<AdditionalMaterial>> list = getByLectureId(lectureId);
@@ -82,13 +90,31 @@ public class AdditionalMaterialRepository {
         return comparator;
     }
 
-    public void serializeMaterial(int lectureId) {
-        List<AdditionalMaterial> list = data.get(lectureId);
+    public void serializeMaterial() {
+        List<AdditionalMaterial> list = getAll();
         Serializer.serialize(list, FilePath.FILE_PATH_ADDITION_MATERIAL);
+        ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
     public void deserializeMaterial() {
         String filePath = FilePath.FILE_PATH_ADDITION_MATERIAL.getPath();
-        System.out.println(Serializer.deserialize(filePath));
+        Object deserialize = Serializer.deserialize(filePath);
+        List<AdditionalMaterial> additionalMaterials = (List<AdditionalMaterial>) deserialize;
+        ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
+
+        for (AdditionalMaterial additionalMaterial : additionalMaterials) {
+            saveAdditionMaterial(additionalMaterial);
+        }
+    }
+
+    private void saveAdditionMaterial(AdditionalMaterial additionalMaterial) {
+        if (data.containsKey(additionalMaterial.getLectureId())) {
+            List<AdditionalMaterial> list = data.get(additionalMaterial.getLectureId());
+            list.add(additionalMaterial);
+        } else {
+            List<AdditionalMaterial> list = new ArrayList<>();
+            list.add(additionalMaterial);
+            data.put(additionalMaterial.getLectureId(), list);
+        }
     }
 }

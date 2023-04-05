@@ -11,6 +11,7 @@ import org.lilia.repository.AdditionalMaterialRepository;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public class AdditionalMaterialService {
     private final AdditionalMaterialRepository additionalMaterialRepository;
@@ -90,12 +91,17 @@ public class AdditionalMaterialService {
         return byLectureId.orElse(Collections.emptyList());
     }
 
-    public void backupMaterial(int lectureId) {
-        additionalMaterialRepository.serializeMaterial(lectureId);
+    public void backupMaterial() {
+        additionalMaterialRepository.serializeMaterial();
     }
 
     public void deserialize() {
         additionalMaterialRepository.deserializeMaterial();
 
+    }
+
+    public void printAllWithGrouping(Consumer<List<AdditionalMaterial>> consumer) {
+        List<AdditionalMaterial> all = additionalMaterialRepository.getAll();
+        consumer.accept(all);
     }
 }

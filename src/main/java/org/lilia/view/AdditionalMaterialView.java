@@ -8,7 +8,11 @@ import org.lilia.model.ResourceType;
 import org.lilia.service.AdditionalMaterialService;
 import org.lilia.service.LectureService;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class AdditionalMaterialView {
 
@@ -24,7 +28,7 @@ public class AdditionalMaterialView {
 
         while (userChoice.equalsIgnoreCase("Y")) {
 
-            switch (ConsoleUtils.choiceAction()) {
+            switch (ConsoleUtils.choiceActionForAddMaterial()) {
                 case 1:
                     while (userChoice.equalsIgnoreCase("Y")) {
 
@@ -70,14 +74,23 @@ public class AdditionalMaterialView {
                     deleteAdditionalMaterial(additionalMaterialService);
                     break;
                 case 5:
-                    ConsoleUtils.print(Constants.LECTURE_ID);
-                    lectureId = lectureService.lectureIdIsValid();
-                    additionalMaterialService.backupMaterial(lectureId);
+                    additionalMaterialService.backupMaterial();
+                    System.out.println("Backup created");
                     break;
                 case 6:
                     additionalMaterialService.deserialize();
                     break;
                 case 7:
+                    Consumer<List<AdditionalMaterial>> consumer = list -> {
+                        Map<Integer, List<AdditionalMaterial>> collect = list.stream()
+                                .collect(Collectors.groupingBy(AdditionalMaterial::getLectureId));
+                        for (List<AdditionalMaterial> materials : collect.values()) {
+                            System.out.println(Arrays.toString(materials.toArray()));
+                        }
+                    };
+                    additionalMaterialService.printAllWithGrouping(consumer);
+                    break;
+                case 8:
                     ConsoleUtils.print(Constants.EXIT);
                     break;
                 default:
@@ -94,7 +107,7 @@ public class AdditionalMaterialView {
         int lectureId = lectureService.lectureIdIsValid();
 
         List<AdditionalMaterial> allByLectureId = additionalMaterialService.findAllByLectureId(lectureId);
-        System.out.println(allByLectureId);
+        allByLectureId.forEach((System.out::println));
         return lectureId;
     }
 

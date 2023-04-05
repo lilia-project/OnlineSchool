@@ -30,9 +30,19 @@ public final class Constants {
     public static final String SELECT_PARAMETER_SORT = "\nselect parameter of sorting";
     public static final String RESOURCE_TYPE = "\ninput type of resource";
     public static final String ELEMENT_NOT_EXIST = "\nelement not exist";
-    public static final String SELECT_ACTION = "[1-3]";
+    public static final String SELECT_ACTION_FROM_3 = "[1-3]";
+    public static final String SELECT_ACTION_FROM_4 = "[1-4]";
     public static final String SORT_BY_NAME = "sort by name?";
     public static final String SORT_BY_LAST_NAME = "sort by lastname?";
+    public static final String DISPLAY_TYPE = "date display type";
+    public static final String FIRST_DATE_FOR_LECTURE = "input first lecture date";
+    public static final String SECOND_DATE_FOR_LECTURE_BETWEEN_DATES = "input second date for lectures between dates";
+    public static final String INPUT_DAY = "dd";
+    public static final String INPUT_MONTHS = "MM";
+    public static final String INPUT_YEAR = "yy";
+    public static final String REPEAT_INPUT = "repeat input";
+    public static final String DESERIALIZATION_COMPLETED = "deserialization completed";
+    public static final String SERIALIZATION_COMPLETED = "serialization completed";
 
     private Constants() {
     }

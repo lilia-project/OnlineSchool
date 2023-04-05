@@ -8,6 +8,8 @@ import org.lilia.log.LoggerFactory;
 import org.lilia.model.Lecture;
 import org.lilia.service.LectureService;
 
+import java.time.LocalDate;
+
 public class LectureView {
     private static final Logger logger = LoggerFactory.getLogger(LectureView.class);
 
@@ -31,8 +33,10 @@ public class LectureView {
                 case 2 -> {
                     Lecture lecture = getLectureById(lectureService);
                     logger.info("found lecture " + lecture);
+
                     ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
                     while (userChoice.equalsIgnoreCase("Y")) {
 
                         editLecture(lectureService, lecture);
@@ -41,7 +45,22 @@ public class LectureView {
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                 }
-                case 3 -> lectureService.outputAll();
+                case 3 -> {
+                    ConsoleUtils.print(Constants.DISPLAY_TYPE);
+
+                    switch (ConsoleUtils.outputDate()) {
+                        case 1 -> lectureService.outputAll();
+                        case 2 -> {
+                            LocalDate localDate = getLocalDate();
+                            outputByDateParameter(lectureService, localDate);
+                        }
+                        case 3 -> ConsoleUtils.print(Constants.EXIT);
+                        default -> {
+                            logger.error(Constants.ERROR);
+                            ConsoleUtils.print(Constants.ERROR);
+                        }
+                    }
+                }
                 case 4 -> {
                     logger.info("selected delete lecture");
                     deleteLecture(lectureService);
@@ -61,6 +80,54 @@ public class LectureView {
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
+    }
+
+    private static LocalDate getLocalDate() {
+        ConsoleUtils.print(Constants.FIRST_DATE_FOR_LECTURE);
+
+        ConsoleUtils.print(Constants.INPUT_DAY);
+        int date = Integer.parseInt(ConsoleUtils.readAndValidationInput("\\d{2}"));
+
+        ConsoleUtils.print(Constants.INPUT_MONTHS);
+        int months = Integer.parseInt(ConsoleUtils.readAndValidationInput("\\d{2}"));
+
+        if (months < 1 | months > 12) {
+            ConsoleUtils.print(Constants.REPEAT_INPUT);
+            months = Integer.parseInt(ConsoleUtils.readAndValidationInput("\\d{2}"));
+        }
+
+        ConsoleUtils.print(Constants.INPUT_YEAR);
+        int year = Integer.parseInt(ConsoleUtils.readAndValidationInput("\\d{4}"));
+
+        LocalDate localDate = LocalDate.of(year, months, date);
+        return localDate;
+    }
+
+    private static void outputByDateParameter(LectureService lectureService, LocalDate localDate) {
+        switch (ConsoleUtils.choiceDisplayType()) {
+            case 1 -> lectureService.isBeforeDate(localDate);
+            case 2 -> lectureService.isAfterDate(localDate);
+            case 3 -> {
+                LocalDate localDateSecond = getLocalDateSecond();
+                lectureService.isBetweenDates(localDate, localDateSecond);
+            }
+        }
+    }
+
+    private static LocalDate getLocalDateSecond() {
+        ConsoleUtils.print(Constants.SECOND_DATE_FOR_LECTURE_BETWEEN_DATES);
+
+        ConsoleUtils.print(Constants.INPUT_DAY);
+        int dateSecond = Integer.parseInt(ConsoleUtils.readAndValidationInput("\\d{2}"));
+
+        ConsoleUtils.print(Constants.INPUT_MONTHS);
+        int monthsSecond = Integer.parseInt(ConsoleUtils.readAndValidationInput("\\d{2}"));
+
+        ConsoleUtils.print(Constants.INPUT_YEAR);
+        int yearSecond = Integer.parseInt(ConsoleUtils.readAndValidationInput("\\d{4}"));
+
+        LocalDate localDateSecond = LocalDate.of(yearSecond, monthsSecond, dateSecond);
+        return localDateSecond;
     }
 
     private static void editLecture(LectureService lectureService, Lecture lecture) {
