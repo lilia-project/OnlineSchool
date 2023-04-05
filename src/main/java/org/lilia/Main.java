@@ -73,16 +73,15 @@ public class Main {
                 case 6 -> controlWorkService.startControlWork();
                 case 7 -> startServer();
                 case 8 -> startClient();
-                case 9 -> System.out.print("Do you want finish or ");
+                case 9 -> ConsoleUtils.print("Do you want finish or ");
                 default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
             }
-
             ConsoleUtils.print(Constants.CONTINUE);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
         SCANNER.close();
-
     }
+
 
     private static void startServer() {
         Thread serverThread = new Thread() {

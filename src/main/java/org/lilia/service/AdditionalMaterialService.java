@@ -87,10 +87,15 @@ public class AdditionalMaterialService {
 
     public List<AdditionalMaterial> findAllByLectureId(int lectureId) {
         Optional<List<AdditionalMaterial>> byLectureId = additionalMaterialRepository.getByLectureId(lectureId);
-        if (byLectureId.isEmpty()) {
-            return Collections.emptyList();
-        } else {
-            return byLectureId.get();
-        }
+        return byLectureId.orElse(Collections.emptyList());
+    }
+
+    public void backupMaterial(int lectureId) {
+        additionalMaterialRepository.serializeMaterial(lectureId);
+    }
+
+    public void deserialize() {
+        additionalMaterialRepository.deserializeMaterial();
+
     }
 }

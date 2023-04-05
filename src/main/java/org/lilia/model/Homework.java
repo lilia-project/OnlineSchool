@@ -1,8 +1,9 @@
 package org.lilia.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Homework {
+public class Homework implements Serializable {
     private static int counter;
 
     private final Integer id;

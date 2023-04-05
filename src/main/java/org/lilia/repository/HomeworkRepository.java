@@ -1,6 +1,8 @@
 package org.lilia.repository;
 
 import org.lilia.model.Homework;
+import org.lilia.serialization.FilePath;
+import org.lilia.serialization.Serializer;
 
 import java.util.*;
 
@@ -44,5 +46,15 @@ public class HomeworkRepository {
     public Optional<List<Homework>> getByLectureId(int lectureId) {
         List<Homework> list = data.get(lectureId);
         return Optional.ofNullable(list);
+    }
+
+    public void serialiseHomework(int lectureId) {
+        List<Homework> list = data.get(lectureId);
+        Serializer.serialize(list, FilePath.FILE_PATH_HOMEWORK);
+    }
+
+    public void deserialize() {
+        String filePath = FilePath.FILE_PATH_HOMEWORK.getPath();
+        System.out.println(Serializer.deserialize(filePath));
     }
 }

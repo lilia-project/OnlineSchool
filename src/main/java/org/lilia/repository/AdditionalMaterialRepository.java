@@ -3,6 +3,8 @@ package org.lilia.repository;
 import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
 import org.lilia.model.AdditionalMaterial;
+import org.lilia.serialization.FilePath;
+import org.lilia.serialization.Serializer;
 
 import java.util.*;
 
@@ -49,16 +51,6 @@ public class AdditionalMaterialRepository {
         value.remove(additionalMaterial);
     }
 
-    public void getAll() {
-        for (List<AdditionalMaterial> additionalMaterials : data.values()) {
-
-            for (AdditionalMaterial additionalMaterial : additionalMaterials) {
-
-                System.out.println(additionalMaterial);
-            }
-        }
-    }
-
     public Optional<List<AdditionalMaterial>> getByLectureId(int lectureId) {
         List<AdditionalMaterial> list = data.get(lectureId);
         return Optional.ofNullable(list);
@@ -82,19 +74,21 @@ public class AdditionalMaterialRepository {
     private static Comparator<AdditionalMaterial> getAdditionalMaterialComparator(AdditionalMaterial.SortField sortField) {
         Comparator<AdditionalMaterial> comparator = null;
         switch (sortField) {
-            case ID:
-                comparator = new AdditionalMaterial.IdComparator();
-                break;
-            case LECTURE_ID:
-                comparator = new AdditionalMaterial.LectureIdComparator();
-                break;
-            case RESOURCE_TYPE:
-                comparator = new AdditionalMaterial.ResourceTypeComparator();
-                break;
-            default:
-                ConsoleUtils.print(Constants.ERROR);
-                break;
+            case ID -> comparator = new AdditionalMaterial.IdComparator();
+            case LECTURE_ID -> comparator = new AdditionalMaterial.LectureIdComparator();
+            case RESOURCE_TYPE -> comparator = new AdditionalMaterial.ResourceTypeComparator();
+            default -> ConsoleUtils.print(Constants.ERROR);
         }
         return comparator;
+    }
+
+    public void serializeMaterial(int lectureId) {
+        List<AdditionalMaterial> list = data.get(lectureId);
+        Serializer.serialize(list, FilePath.FILE_PATH_ADDITION_MATERIAL);
+    }
+
+    public void deserializeMaterial() {
+        String filePath = FilePath.FILE_PATH_ADDITION_MATERIAL.getPath();
+        System.out.println(Serializer.deserialize(filePath));
     }
 }

@@ -1,10 +1,11 @@
 package org.lilia.model;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-public class Course {
+public class Course implements Serializable {
     private static int counter = 0;
 
     private final Integer id;

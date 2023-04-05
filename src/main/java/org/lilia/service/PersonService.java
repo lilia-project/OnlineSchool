@@ -86,5 +86,14 @@ public class PersonService {
     public void sortByLastName() {
         personRepository.sortByLastName();
     }
+
+    public void backupPerson(Role role) {
+        personRepository.serializePerson(role);
+
+    }
+
+    public void deserialize(Role role) {
+        personRepository.deserializePerson(role);
+    }
 }
 

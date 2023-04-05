@@ -1,6 +1,8 @@
 package org.lilia.repository;
 
 import org.lilia.model.Lecture;
+import org.lilia.serialization.FilePath;
+import org.lilia.serialization.Serializer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +16,19 @@ public class LectureRepository {
         list.add(lecture);
     }
 
+    public void serializeList() {
+        Serializer.serialize(list, FilePath.FILE_PATH_LECTURE);
+    }
+
+    public void deserialize() {
+        String filePath = FilePath.FILE_PATH_LECTURE.getPath();
+        System.out.println(Serializer.deserialize(filePath));
+    }
+
     public void remove(Lecture lecture) {
         list.remove(lecture);
     }
+
 
     public Optional<Lecture> getById(int id) {
         for (Lecture lecture : list) {
@@ -46,5 +58,5 @@ public class LectureRepository {
         return Optional.empty();
     }
 
-    // int getIndex(int lectureId);
+
 }

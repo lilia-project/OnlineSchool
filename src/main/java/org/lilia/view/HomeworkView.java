@@ -24,7 +24,7 @@ public class HomeworkView {
 
     public void workWithHomework(HomeworkService homeworkService) {
         logger.info("work with homework section");
-
+        String userChoice = "Y";
         while (userChoice.equalsIgnoreCase("Y")) {
             switch (ConsoleUtils.choiceAction()) {
                 case 1:
@@ -35,6 +35,9 @@ public class HomeworkView {
                         createNewHomework(homeworkService);
 
                         logger.info("homework created successful");
+
+                        ConsoleUtils.print(Constants.CREATE_NEW);
+                        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
                     break;
                 case 2:
@@ -45,7 +48,13 @@ public class HomeworkView {
                     ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
-                    editHomework(homeworkService, homework);
+                    while (userChoice.equalsIgnoreCase("Y")) {
+
+                        editHomework(homeworkService, homework);
+
+                        ConsoleUtils.print(Constants.ELEMENT_EDIT);
+                        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+                    }
                     break;
                 case 3:
                     logger.info("selected to get all homeworks by lecture id");
@@ -71,6 +80,14 @@ public class HomeworkView {
                     logger.info("homework deleted successful");
                     break;
                 case 5:
+                    ConsoleUtils.print(Constants.LECTURE_ID);
+                    lectureId = lectureService.lectureIdIsValid();
+                    homeworkService.backupHomework(lectureId);
+                    break;
+                case 6:
+                    homeworkService.deserialization();
+                    break;
+                case 7:
                     logger.info("selected EXIT");
                     ConsoleUtils.print(Constants.EXIT);
                     break;

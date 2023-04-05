@@ -21,9 +21,11 @@ public class ConsoleUtils {
         System.out.println("2 - open/edit");
         System.out.println("3 - output all");
         System.out.println("4 - delete");
-        System.out.println("5 - exit");
+        System.out.println("5 - create backup");
+        System.out.println("6 - deserialization");
+        System.out.println("7 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-5]"));
+        return Integer.parseInt(readAndValidationInput("[1-7]"));
     }
 
     public static int choiceParameterSort() {
@@ -113,5 +115,4 @@ public class ConsoleUtils {
 
         return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION));
     }
-
 }

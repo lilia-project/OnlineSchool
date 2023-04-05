@@ -72,6 +72,16 @@ public class HomeworkService {
         }
         return homeworkId;
     }
+
+    public void backupHomework(int lectureId) {
+        homeworkRepository.serialiseHomework(lectureId);
+
+    }
+
+    public void deserialization() {
+        homeworkRepository.deserialize();
+
+    }
 }
 
 

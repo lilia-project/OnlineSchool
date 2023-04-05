@@ -70,6 +70,14 @@ public class AdditionalMaterialView {
                     deleteAdditionalMaterial(additionalMaterialService);
                     break;
                 case 5:
+                    ConsoleUtils.print(Constants.LECTURE_ID);
+                    lectureId = lectureService.lectureIdIsValid();
+                    additionalMaterialService.backupMaterial(lectureId);
+                    break;
+                case 6:
+                    additionalMaterialService.deserialize();
+                    break;
+                case 7:
                     ConsoleUtils.print(Constants.EXIT);
                     break;
                 default:
