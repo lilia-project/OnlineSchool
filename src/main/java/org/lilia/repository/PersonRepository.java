@@ -3,7 +3,9 @@ package org.lilia.repository;
 import org.lilia.model.Person;
 import org.lilia.model.Role;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class PersonRepository {
     private final List<Person> data = new ArrayList<>();
@@ -35,8 +37,8 @@ public class PersonRepository {
     }
 
     public Optional<Person> getByLastName(String personLastName) {
-        for (Person person: data){
-            if (person.getLastName().equals(personLastName)){
+        for (Person person : data) {
+            if (person.getLastName().equals(personLastName)) {
                 return Optional.of(person);
             }
         }
@@ -44,9 +46,10 @@ public class PersonRepository {
     }
 
     public Optional<Role> getRole(int choiceRole) {
-        if (choiceRole == 1){
+        if (choiceRole == 1) {
             return Optional.of(Role.TEACHER);
-        }if(choiceRole == 2) {
+        }
+        if (choiceRole == 2) {
             return Optional.of(Role.STUDENT);
         }
         return Optional.empty();

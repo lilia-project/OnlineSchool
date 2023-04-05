@@ -38,7 +38,7 @@ public class CourseView {
                     courseService.outputAll();
                     ConsoleUtils.print(Constants.SORT_BY_NAME);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-                    if (userChoice.equalsIgnoreCase("Y")){
+                    if (userChoice.equalsIgnoreCase("Y")) {
                         courseService.sortByName();
                     }
 

@@ -62,7 +62,7 @@ public class Homework {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = id.hashCode();
         result = 31 * result + lectureId;
         result = 31 * result + (task != null ? task.hashCode() : 0);
         return result;

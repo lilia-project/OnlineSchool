@@ -46,4 +46,5 @@ public class LectureRepository {
         return Optional.empty();
     }
 
+    // int getIndex(int lectureId);
 }

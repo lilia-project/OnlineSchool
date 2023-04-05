@@ -4,16 +4,19 @@ import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.log.ConfigurationReader;
 import org.lilia.log.ConfigurationWatcher;
 import org.lilia.log.LoggerFactory;
+import org.lilia.network.SelectorClient;
+import org.lilia.network.SelectorServer;
 import org.lilia.repository.*;
 import org.lilia.service.*;
 import org.lilia.view.*;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
     public static final Scanner SCANNER = new Scanner(System.in);
 
-    public static void main(String[] args) throws NoSuchMaterialIdException {
+    public static void main(String[] args) throws NoSuchMaterialIdException, InterruptedException {
 
         LectureRepository lectureRepository = new LectureRepository();
         HomeworkRepository homeworkRepository = new HomeworkRepository();
@@ -68,12 +71,49 @@ public class Main {
                     additionalMaterialView.workWithAdditionalMaterials(additionalMaterialService);
                 }
                 case 6 -> controlWorkService.startControlWork();
-                case 7 -> System.out.print("Do you want finish or ");
+                case 7 -> startServer();
+                case 8 -> startClient();
+                case 9 -> System.out.print("Do you want finish or ");
                 default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
             }
+
             ConsoleUtils.print(Constants.CONTINUE);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
         SCANNER.close();
+
+    }
+
+    private static void startServer() {
+        Thread serverThread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    new SelectorServer().start();
+                    System.out.println("Server started");
+                } catch (IOException e) {
+                    System.out.println("Server is not able to start, details: " + e.getMessage());
+                }
+            }
+        };
+        serverThread.start();
+    }
+
+    private static void startClient() throws InterruptedException {
+        Thread clientThread = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    new SelectorClient().start();
+                    System.out.println("Client started");
+                } catch (IOException e) {
+                    System.out.println("Client is not able to start, details: " + e.getMessage());
+                }
+            }
+        };
+        clientThread.start();
+        clientThread.join(10000);
+        clientThread.interrupt();
     }
 }

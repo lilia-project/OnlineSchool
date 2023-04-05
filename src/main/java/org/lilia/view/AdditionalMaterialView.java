@@ -17,7 +17,9 @@ public class AdditionalMaterialView {
     public AdditionalMaterialView(LectureService lectureService) {
         this.lectureService = lectureService;
     }
+
     String userChoice = "Y";
+
     public void workWithAdditionalMaterials(AdditionalMaterialService additionalMaterialService) {
 
         while (userChoice.equalsIgnoreCase("Y")) {
@@ -101,7 +103,7 @@ public class AdditionalMaterialView {
         ConsoleUtils.print(Constants.LECTURE_ID);
         int lectureId = lectureService.lectureIdIsValid();
 
-        addNewMaterialToLecture(additionalMaterialService,lectureId);
+        addNewMaterialToLecture(additionalMaterialService, lectureId);
     }
 
     private void editAdditionMaterial(AdditionalMaterialService additionalMaterialService, AdditionalMaterial additionalMaterial) {

@@ -79,13 +79,7 @@ public class AdditionalMaterial {
 
         @Override
         public int compare(AdditionalMaterial o1, AdditionalMaterial o2) {
-            if (o1.id > o2.id) {
-                return 1;
-            } else if (o1.id < o2.id) {
-                return -1;
-            } else {
-                return 0;
-            }
+            return Integer.compare(o1.id, o2.id);
         }
     }
 
@@ -93,13 +87,7 @@ public class AdditionalMaterial {
 
         @Override
         public int compare(AdditionalMaterial o1, AdditionalMaterial o2) {
-            if (o1.lectureId > o2.lectureId) {
-                return 1;
-            } else if (o1.lectureId < o2.lectureId) {
-                return -1;
-            } else {
-                return 0;
-            }
+            return Integer.compare(o1.lectureId, o2.lectureId);
         }
     }
 
@@ -108,18 +96,12 @@ public class AdditionalMaterial {
         @Override
         public int compare(AdditionalMaterial o1, AdditionalMaterial o2) {
 
-            if (o1.resourceType.getParameter() > o2.resourceType.getParameter()) {
-                return 1;
-            } else if (o1.resourceType.getParameter() < o2.resourceType.getParameter()) {
-                return -1;
-            } else {
-                return 0;
-            }
+            return Integer.compare(o1.resourceType.getParameter(), o2.resourceType.getParameter());
         }
     }
 
     public enum SortField {
-        ID (1),
+        ID(1),
         LECTURE_ID(2),
         RESOURCE_TYPE(3);
 
@@ -129,10 +111,10 @@ public class AdditionalMaterial {
             this.id = id;
         }
 
-        public static SortField getById(int id){
+        public static SortField getById(int id) {
             SortField[] values = values();
-            for (SortField sortField: values){
-                if(sortField.id == id){
+            for (SortField sortField : values) {
+                if (sortField.id == id) {
                     return sortField;
                 }
             }

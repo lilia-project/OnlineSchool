@@ -15,6 +15,7 @@ public class Person {
     private String email;
     private int courseId;
     private int lectureId;
+
     public Person(String lastName, Role role) {
         this.lastName = lastName;
         this.role = role;
@@ -89,7 +90,7 @@ public class Person {
                 "\n Email = " + email;
     }
 
-    public static class sortByLastName implements Comparator<Person>{
+    public static class sortByLastName implements Comparator<Person> {
 
         @Override
         public int compare(Person o1, Person o2) {

@@ -9,7 +9,6 @@ import org.lilia.model.Person;
 import org.lilia.model.Role;
 import org.lilia.repository.PersonRepository;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class PersonService {
@@ -60,27 +59,27 @@ public class PersonService {
         personRepository.getByCourseId(courseId, role);
     }
 
-    public void delete(String lastName){
+    public void delete(String lastName) {
         Person person = getByLastName(lastName);
         personRepository.remove(person);
 
     }
 
-    public String lastNameIsValid(){
+    public String lastNameIsValid() {
         String lastName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
         Optional<Person> person = personRepository.getByLastName(lastName);
-        if(person.isEmpty()){
+        if (person.isEmpty()) {
             throw new NoSuchPersonException(lastName);
 
         }
-       return person.get().getLastName();
+        return person.get().getLastName();
     }
 
     public Person getByLastName(String lastName) {
-       Optional<Person> person = personRepository.getByLastName(lastName);
-       if(person.isEmpty()){
-           throw new NoSuchPersonException(lastName);
-       }
+        Optional<Person> person = personRepository.getByLastName(lastName);
+        if (person.isEmpty()) {
+            throw new NoSuchPersonException(lastName);
+        }
         return person.get();
     }
 
