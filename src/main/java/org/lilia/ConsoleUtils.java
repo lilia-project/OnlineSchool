@@ -63,9 +63,11 @@ public class ConsoleUtils {
         System.out.println("6 - control work");
         System.out.println("7 - start server");
         System.out.println("8 - start client");
+        System.out.println("0 - logs");
+
         System.out.println("9 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-9]"));
+        return Integer.parseInt(readAndValidationInput("[0-9]"));
     }
 
     public static String readAndValidationInput(String pattern) {

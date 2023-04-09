@@ -3,6 +3,7 @@ package org.lilia;
 import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.log.ConfigurationReader;
 import org.lilia.log.ConfigurationWatcher;
+import org.lilia.log.LogService;
 import org.lilia.log.LoggerFactory;
 import org.lilia.network.SelectorClient;
 import org.lilia.network.SelectorServer;
@@ -73,6 +74,7 @@ public class Main {
                 case 6 -> controlWorkService.startControlWork();
                 case 7 -> startServer();
                 case 8 -> startClient();
+                case 0 -> LogService.readAndFilterLogStorageFile();
                 case 9 -> ConsoleUtils.print("Do you want finish or ");
                 default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
             }

@@ -2,29 +2,27 @@ package org.lilia.repository;
 
 import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
+import org.lilia.model.Lecture;
 import org.lilia.model.Person;
 import org.lilia.model.Role;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class PersonRepository {
-    private final List<Person> data = new ArrayList<>();
+    private final List<Person> list = new ArrayList<>();
 
     public void add(Person person) {
-        data.add(person);
+        list.add(person);
     }
 
     public void remove(Person person) {
-        data.remove(person);
+        list.remove(person);
     }
 
     public Optional<Person> getById(int id) {
-        for (Person person : data) {
+        for (Person person : list) {
             if (person.getId() == id) {
                 return Optional.of(person);
             }
@@ -33,7 +31,7 @@ public class PersonRepository {
     }
 
     public void getByCourseId(int courseId, Role role) {
-        for (Person person : data) {
+        for (Person person : list) {
             if (person.getCourseId() == courseId & person.getRole().equals(role)) {
                 System.out.println(person);
             }
@@ -42,7 +40,7 @@ public class PersonRepository {
     }
 
     public Optional<Person> getByLastName(String personLastName) {
-        for (Person person : data) {
+        for (Person person : list) {
             if (person.getLastName().equals(personLastName)) {
                 return Optional.of(person);
             }
@@ -61,17 +59,18 @@ public class PersonRepository {
     }
 
     public void sortByLastName() {
-        data.sort(new Person.sortByLastName());
+        list.sort(new Person.sortByLastName());
     }
 
     public void serializePerson(Role role) {
         FilePath filePath = getPath(role);
-        List<Person> newList = splitListOfPerson(data, role);
+        List<Person> newList = splitListOfPerson(list, role);
         Serializer.serialize(newList, filePath);
         ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
     private static FilePath getPath(Role role) {
+
         FilePath filePath;
         if (role.getField().equals("TEACHER")) {
             filePath = FilePath.FILE_PATH_TEACHER;
@@ -93,7 +92,23 @@ public class PersonRepository {
 
     public void deserializePerson(Role role) {
         FilePath filePath = getPath(role);
-        System.out.println(Serializer.deserialize(filePath.getPath()));
+        Object deserialize = Serializer.deserialize(filePath.getPath());
+        List<Person> personList = (List<Person>) deserialize;
+        ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
+
+        for (Person person: personList){
+            savePerson(person);
+        }
+    }
+
+    private void savePerson(Person person) {
+        if (!list.contains(person.getId())) {
+
+            if (!list.contains(person.getLastName())) {
+                list.add(person);
+            }
+
+        }
     }
 }
 
