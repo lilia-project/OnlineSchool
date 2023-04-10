@@ -19,9 +19,8 @@ import java.util.Objects;
 public class SelectorServer {
 
     private static final int SERVER_PORT = 1234;
-    private final ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
     private static final String BLACK_LIST_IP = "src/main/resources/blackListIp.properties";
-
+    private final ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
     private Selector selector;
 
     public static void main(String[] args) throws IOException {

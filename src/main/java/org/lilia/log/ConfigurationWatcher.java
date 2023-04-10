@@ -5,9 +5,9 @@ import java.nio.file.*;
 import java.util.Map;
 
 public class ConfigurationWatcher extends Thread {
+    private static final String FILE_DATA_PATH = "src/main/resources/";
     private final ConsoleWriter consoleWriter;
     private final ConfigurationReader configurationReader;
-    private static final String FILE_DATA_PATH = "src/main/resources/";
 
     public ConfigurationWatcher(ConsoleWriter consoleWriter, ConfigurationReader configurationReader) {
         this.consoleWriter = consoleWriter;

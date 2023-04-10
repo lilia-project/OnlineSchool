@@ -18,6 +18,10 @@ public class Homework implements Serializable {
         id = counter;
     }
 
+    public static int getCounter() {
+        return counter;
+    }
+
     public int getId() {
         return id;
     }
@@ -36,10 +40,6 @@ public class Homework implements Serializable {
 
     public void setTask(String task) {
         this.task = task;
-    }
-
-    public static int getCounter() {
-        return counter;
     }
 
     @Override

@@ -10,9 +10,8 @@ public class Log {
 
     private final String message;
     private final LocalDateTime createdAt;
-    private String stackTrace;
-
     DateTimeFormatter dTF = DateTimeFormatter.ofPattern("d-MM-yyyy HH:mm:ss:SSS");
+    private String stackTrace;
 
     protected Log(String name, String logLevel, String message, String stackTrace) {
         this.name = name;

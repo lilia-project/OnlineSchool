@@ -2,7 +2,8 @@ package org.lilia.log;
 
 import org.lilia.serialization.FilePath;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,8 +20,9 @@ public class LogService {
         try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
             String currentLine;
             while ((currentLine = reader.readLine()) != null) {
-                 if (currentLine.contains("INFO")){
-                list.add("\n" + currentLine);}
+                if (currentLine.contains("INFO")) {
+                    list.add("\n" + currentLine);
+                }
             }
         } catch (IOException ex) {
             ex.printStackTrace();

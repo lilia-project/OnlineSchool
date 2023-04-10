@@ -17,12 +17,11 @@ import java.util.stream.Collectors;
 public class AdditionalMaterialView {
 
     private final LectureService lectureService;
+    String userChoice = "Y";
 
     public AdditionalMaterialView(LectureService lectureService) {
         this.lectureService = lectureService;
     }
-
-    String userChoice = "Y";
 
     public void workWithAdditionalMaterials(AdditionalMaterialService additionalMaterialService) {
 

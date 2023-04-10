@@ -4,7 +4,6 @@ import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
 import org.lilia.dto.PersonDto;
 import org.lilia.exception.NoSuchPersonException;
-import org.lilia.exception.NoSuchRoleException;
 import org.lilia.model.Person;
 import org.lilia.model.Role;
 import org.lilia.repository.PersonRepository;
@@ -47,13 +46,21 @@ public class PersonService {
         return person;
     }
 
+    /* public Role getRole(int choiceRole) {
+         Optional<Role> role = personRepository.getRole(choiceRole);
+         if (role.isEmpty()) {
+             throw new NoSuchRoleException();
+         } else
+             return role.get();
+     }*/
     public Role getRole(int choiceRole) {
-        Optional<Role> role = personRepository.getRole(choiceRole);
-        if (role.isEmpty()) {
-            throw new NoSuchRoleException();
-        } else
-            return role.get();
+        if (choiceRole == 1) {
+            return Role.TEACHER;
+        } else {
+            return Role.STUDENT;
+        }
     }
+
 
     public void outAllByCourse(int courseId, Role role) {
         personRepository.getByCourseId(courseId, role);
@@ -94,6 +101,10 @@ public class PersonService {
 
     public void deserialize(Role role) {
         personRepository.deserializePerson(role);
+    }
+
+    public void outputBeforeN() {
+        personRepository.lastNameOfTeachersBeforeN();
     }
 }
 

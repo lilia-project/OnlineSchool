@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class LectureService {
+    private static final Logger logger = LoggerFactory.getLogger(LectureService.class);
     private final LectureRepository lectureRepository;
     private final HomeworkService homeworkService;
-    private static final Logger logger = LoggerFactory.getLogger(LectureService.class);
 
     public LectureService(LectureRepository lectureRepository, HomeworkService homeworkService) {
         this.lectureRepository = lectureRepository;

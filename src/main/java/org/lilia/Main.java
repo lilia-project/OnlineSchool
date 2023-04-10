@@ -74,8 +74,8 @@ public class Main {
                 case 6 -> controlWorkService.startControlWork();
                 case 7 -> startServer();
                 case 8 -> startClient();
-                case 0 -> LogService.readAndFilterLogStorageFile();
-                case 9 -> ConsoleUtils.print("Do you want finish or ");
+                case 9 -> LogService.readAndFilterLogStorageFile();
+                case 0 -> ConsoleUtils.print("Do you want finish or ");
                 default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
             }
             ConsoleUtils.print(Constants.CONTINUE);

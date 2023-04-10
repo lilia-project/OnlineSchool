@@ -12,6 +12,17 @@ public class AdditionalMaterialRepository {
 
     private final Map<Integer, List<AdditionalMaterial>> data = new HashMap<>();
 
+    private static Comparator<AdditionalMaterial> getAdditionalMaterialComparator(AdditionalMaterial.SortField sortField) {
+        Comparator<AdditionalMaterial> comparator = null;
+        switch (sortField) {
+            case ID -> comparator = new AdditionalMaterial.IdComparator();
+            case LECTURE_ID -> comparator = new AdditionalMaterial.LectureIdComparator();
+            case RESOURCE_TYPE -> comparator = new AdditionalMaterial.ResourceTypeComparator();
+            default -> ConsoleUtils.print(Constants.ERROR);
+        }
+        return comparator;
+    }
+
     public void add(AdditionalMaterial additionalMaterial) {
         List<AdditionalMaterial> value = data.get(additionalMaterial.getLectureId());
         if (value == null) {
@@ -77,17 +88,6 @@ public class AdditionalMaterialRepository {
                 System.out.println(additionalMaterial);
             }
         }
-    }
-
-    private static Comparator<AdditionalMaterial> getAdditionalMaterialComparator(AdditionalMaterial.SortField sortField) {
-        Comparator<AdditionalMaterial> comparator = null;
-        switch (sortField) {
-            case ID -> comparator = new AdditionalMaterial.IdComparator();
-            case LECTURE_ID -> comparator = new AdditionalMaterial.LectureIdComparator();
-            case RESOURCE_TYPE -> comparator = new AdditionalMaterial.ResourceTypeComparator();
-            default -> ConsoleUtils.print(Constants.ERROR);
-        }
-        return comparator;
     }
 
     public void serializeMaterial() {

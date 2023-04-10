@@ -44,32 +44,28 @@ public class Lecture implements Serializable {
         return lectureDate;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
+    public int getPersonId() {
+        return personId;
     }
 
     public void setPersonId(int personId) {
         this.personId = personId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPersonId() {
-        return personId;
-    }
-
     public int getCourseId() {
         return courseId;
     }
 
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
@@ -78,6 +74,10 @@ public class Lecture implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setList(List<Homework> list) {

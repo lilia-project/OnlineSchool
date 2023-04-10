@@ -16,3 +16,85 @@
 7-04-2023 14:05:50:163 INFO org.lilia.view.LectureView selected to create lecture
 7-04-2023 14:05:52:063 INFO org.lilia.view.LectureView lecture created successful1
 7-04-2023 14:05:57:225 INFO org.lilia.view.LectureView lecture created successful2
+9-04-2023 18:02:20:775 INFO org.lilia.view.PersonView work with person section
+9-04-2023 18:03:27:278 INFO org.lilia.view.PersonView work with person section
+9-04-2023 18:19:43:472 INFO org.lilia.view.PersonView work with person section
+9-04-2023 18:20:05:613 INFO org.lilia.view.PersonView selected to create person
+9-04-2023 18:20:11:988 INFO org.lilia.view.PersonView person created successful TEACHER jj
+9-04-2023 18:20:18:928 INFO org.lilia.view.PersonView person created successful TEACHER ww
+9-04-2023 18:20:24:430 INFO org.lilia.view.PersonView person created successful TEACHER ll
+9-04-2023 18:20:49:630 INFO org.lilia.view.PersonView selected output person
+9-04-2023 18:22:56:569 INFO org.lilia.view.PersonView work with person section
+9-04-2023 18:23:00:005 INFO org.lilia.view.PersonView selected output person
+9-04-2023 18:23:45:538 INFO org.lilia.view.PersonView selected output person
+9-04-2023 18:30:27:237 INFO org.lilia.view.PersonView work with person section
+9-04-2023 18:30:37:983 INFO org.lilia.view.PersonView selected output person
+9-04-2023 18:31:20:660 INFO org.lilia.view.PersonView work with person section
+9-04-2023 18:31:25:848 INFO org.lilia.view.PersonView selected get person by last name
+9-04-2023 18:35:24:405 INFO org.lilia.view.PersonView work with person section
+9-04-2023 18:36:33:141 INFO org.lilia.view.PersonView selected get person by last name
+9-04-2023 18:37:31:072 INFO org.lilia.view.PersonView selected get person by last name
+9-04-2023 18:38:11:752 INFO org.lilia.view.PersonView selected get person by last name
+9-04-2023 18:38:53:040 INFO org.lilia.view.PersonView selected get person by last name
+9-04-2023 18:39:41:210 INFO org.lilia.view.PersonView selected output person
+9-04-2023 18:41:17:000 INFO org.lilia.view.PersonView work with person section
+9-04-2023 18:41:35:741 INFO org.lilia.view.PersonView selected output person
+9-04-2023 18:47:43:041 ERROR org.lilia.ConsoleUtils invalid user input
+9-04-2023 18:47:43:054 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: 
+9-04-2023 18:47:49:660 INFO org.lilia.view.PersonView work with person section
+9-04-2023 18:47:57:657 INFO org.lilia.view.PersonView selected output person
+9-04-2023 18:48:22:060 INFO org.lilia.view.PersonView selected output person
+9-04-2023 18:51:34:850 INFO org.lilia.view.PersonView work with person section
+9-04-2023 18:51:42:521 INFO org.lilia.view.PersonView selected output person
+9-04-2023 22:35:02:918 INFO org.lilia.view.PersonView work with person section
+9-04-2023 22:35:18:677 INFO org.lilia.view.PersonView selected output person
+9-04-2023 22:42:21:300 INFO org.lilia.view.PersonView work with person section
+9-04-2023 22:42:43:670 INFO org.lilia.view.PersonView work with person section
+9-04-2023 22:43:10:917 INFO org.lilia.view.PersonView selected output person
+9-04-2023 22:45:25:311 INFO org.lilia.view.PersonView selected get person by last name
+9-04-2023 22:47:07:712 INFO org.lilia.view.PersonView selected output person
+9-04-2023 22:50:46:045 INFO org.lilia.view.PersonView work with person section
+9-04-2023 22:52:04:829 INFO org.lilia.view.PersonView selected output person
+9-04-2023 22:53:02:905 INFO org.lilia.view.PersonView selected output person
+9-04-2023 22:54:44:764 INFO org.lilia.view.PersonView work with person section
+9-04-2023 22:55:05:246 INFO org.lilia.view.PersonView selected output person
+9-04-2023 23:00:23:898 INFO org.lilia.view.PersonView work with person section
+9-04-2023 23:00:36:952 INFO org.lilia.view.PersonView selected output person
+9-04-2023 23:02:35:817 INFO org.lilia.view.PersonView selected output person
+9-04-2023 23:25:29:135 INFO org.lilia.view.PersonView work with person section
+9-04-2023 23:27:03:368 INFO org.lilia.view.PersonView work with person section
+9-04-2023 23:27:33:821 INFO org.lilia.view.PersonView selected output person
+9-04-2023 23:33:41:022 INFO org.lilia.view.PersonView work with person section
+9-04-2023 23:33:56:781 INFO org.lilia.view.PersonView selected output person
+9-04-2023 23:34:44:330 INFO org.lilia.view.PersonView selected output person
+10-04-2023 20:49:18:212 INFO org.lilia.view.PersonView work with person section
+10-04-2023 20:49:26:758 INFO org.lilia.view.PersonView selected output person
+10-04-2023 20:50:57:780 INFO org.lilia.view.PersonView work with person section
+10-04-2023 20:51:05:923 INFO org.lilia.view.PersonView selected output person
+10-04-2023 21:00:01:509 INFO org.lilia.view.PersonView work with person section
+10-04-2023 21:00:16:012 INFO org.lilia.view.PersonView selected output person
+10-04-2023 21:03:27:180 INFO org.lilia.view.PersonView work with person section
+10-04-2023 21:03:38:586 INFO org.lilia.view.PersonView selected output person
+10-04-2023 21:09:01:566 INFO org.lilia.view.PersonView work with person section
+10-04-2023 21:09:10:420 INFO org.lilia.view.PersonView selected output person
+10-04-2023 21:55:50:890 INFO org.lilia.view.PersonView work with person section
+10-04-2023 21:55:54:885 INFO org.lilia.view.PersonView selected deserialize person
+10-04-2023 21:56:21:068 INFO org.lilia.view.PersonView selected output person
+10-04-2023 21:56:55:551 INFO org.lilia.view.PersonView selected output person
+10-04-2023 21:57:40:464 INFO org.lilia.view.PersonView work with person section
+10-04-2023 21:57:43:957 INFO org.lilia.view.PersonView selected deserialize person
+10-04-2023 21:57:51:905 INFO org.lilia.view.PersonView selected output person
+10-04-2023 21:58:26:486 INFO org.lilia.view.PersonView selected delete person
+10-04-2023 21:58:34:553 INFO org.lilia.view.PersonView lecture deleted successful
+10-04-2023 22:00:03:982 INFO org.lilia.view.PersonView selected output person
+10-04-2023 22:00:08:348 ERROR org.lilia.ConsoleUtils invalid user input
+10-04-2023 22:00:08:351 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-2] , got: 5
+10-04-2023 22:00:21:244 ERROR org.lilia.ConsoleUtils unexpected input
+10-04-2023 22:08:45:889 INFO org.lilia.view.PersonView work with person section
+10-04-2023 22:08:49:892 INFO org.lilia.view.PersonView selected deserialize person
+10-04-2023 22:09:02:124 ERROR org.lilia.ConsoleUtils invalid user input
+10-04-2023 22:09:02:128 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-2] , got: 7
+10-04-2023 22:09:13:539 INFO org.lilia.view.PersonView selected output person
+10-04-2023 22:09:19:957 ERROR org.lilia.ConsoleUtils invalid user input
+10-04-2023 22:09:19:957 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-2] , got: 6
+10-04-2023 22:10:34:035 INFO org.lilia.view.PersonView selected create backup person

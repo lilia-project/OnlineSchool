@@ -7,38 +7,6 @@ import java.util.Map;
 
 public class ControlWorkService {
 
-    public void startControlWork() {
-
-        int capacity = 10;
-
-        List<Thread> threads = new ArrayList<>(capacity);
-        List<Integer> tasks = new ArrayList<>(capacity);
-        Map<Integer, Integer> timesOfWork = new HashMap<>(capacity);
-
-        fillTasksListRandom(tasks);
-        distributeTasksToStudent(threads, tasks);
-
-        for (Thread thread : threads) {
-            thread.start();
-        }
-
-        try {
-            Thread.sleep(12000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        fillMapTimesOfWork(timesOfWork);
-        searchBestTime(timesOfWork);
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        searchWorseTime(timesOfWork);
-    }
-
     private static void fillMapTimesOfWork(Map<Integer, Integer> timesOfWork) {
         int time;
         for (int i = 0; i < 10; i++) {
@@ -98,5 +66,37 @@ public class ControlWorkService {
             tasks.add(i);
         }
         System.out.println("List of tasks\n" + tasks);
+    }
+
+    public void startControlWork() {
+
+        int capacity = 10;
+
+        List<Thread> threads = new ArrayList<>(capacity);
+        List<Integer> tasks = new ArrayList<>(capacity);
+        Map<Integer, Integer> timesOfWork = new HashMap<>(capacity);
+
+        fillTasksListRandom(tasks);
+        distributeTasksToStudent(threads, tasks);
+
+        for (Thread thread : threads) {
+            thread.start();
+        }
+
+        try {
+            Thread.sleep(12000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        fillMapTimesOfWork(timesOfWork);
+        searchBestTime(timesOfWork);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        searchWorseTime(timesOfWork);
     }
 }
