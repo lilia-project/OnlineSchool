@@ -36,4 +36,13 @@ public class LogService {
                 .forEach(System.out::println);
     }
 
+    public static void filterHalfLogStorageFile() {
+        List<String> listLogs = readLogStorageFile();
+        List<String> listLogsHalf = listLogs.subList(listLogs.size() / 2, listLogs.size());
+        long count = listLogsHalf.stream()
+                .filter(it -> it.contains(" INFO org."))
+                .count();
+        System.out.println("In LogStorageFile is " + count + " records INFO");
+    }
+
 }
