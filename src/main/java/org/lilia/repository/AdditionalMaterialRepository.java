@@ -39,7 +39,7 @@ public class AdditionalMaterialRepository {
     }
 
     public Optional<AdditionalMaterial> getById(int id) {
-
+        AdditionalMaterial resultAddMaterial = null;
         Collection<List<AdditionalMaterial>> values = data.values();
 
         for (List<AdditionalMaterial> additionalMaterials : values) {
@@ -47,11 +47,11 @@ public class AdditionalMaterialRepository {
             for (AdditionalMaterial additionalMaterial : additionalMaterials) {
 
                 if (additionalMaterial.getId() == id) {
-                    return Optional.of(additionalMaterial);
+                    resultAddMaterial = additionalMaterial;
                 }
             }
         }
-        return Optional.empty();
+        return Optional.ofNullable(resultAddMaterial);
     }
 
     public void remove(AdditionalMaterial additionalMaterial) {

@@ -12,22 +12,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LogService {
-    public static void readAndFilterLogStorageFile() {
+    static final List<String> listLogs = new ArrayList<>();
+    static final Path path = Paths.get(FilePath.FILE_PATH_LOG_STORAGE_FILE.getPath());
 
-        final List<String> list = new ArrayList<>();
-        final Path path = Paths.get(FilePath.FILE_PATH_LOG_STORAGE_FILE.getPath());
+    public static List<String> readLogStorageFile() {
 
         try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
             String currentLine;
             while ((currentLine = reader.readLine()) != null) {
-                if (currentLine.contains("INFO")) {
-                    list.add("\n" + currentLine);
-                }
+                listLogs.add(currentLine);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        System.out.println(list);
+        return listLogs;
+    }
+
+    public static void filterLogStorageFile() {
+
+        List<String> listFilter = readLogStorageFile();
+        listFilter.stream()
+                .filter(it -> it.contains(" INFO org."))
+                .forEach(System.out::println);
     }
 
 }

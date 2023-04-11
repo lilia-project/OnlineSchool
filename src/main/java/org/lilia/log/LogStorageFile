@@ -98,3 +98,7 @@
 10-04-2023 22:09:19:957 ERROR org.lilia.ConsoleUtils invalid user input
 10-04-2023 22:09:19:957 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [1-2] , got: 6
 10-04-2023 22:10:34:035 INFO org.lilia.view.PersonView selected create backup person
+11-04-2023 11:41:47:909 INFO org.lilia.view.PersonView work with person section
+11-04-2023 11:41:56:171 ERROR org.lilia.view.PersonView Error
+11-04-2023 11:42:13:788 ERROR org.lilia.ConsoleUtils invalid user input
+11-04-2023 11:42:13:791 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: 
