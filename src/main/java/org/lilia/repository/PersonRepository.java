@@ -96,12 +96,12 @@ public class PersonRepository {
     }
 
     private void savePerson(Person person) {
-
-        if (!list.contains(person.getId())) {
-            if (!list.contains(person.getLastName())) {
-                list.add(person);
+        for (Person currentPerson: list){
+            if (currentPerson.getId() == person.getId()){
+                ConsoleUtils.print(person.getId() + " - this id already exists");
+                break;
             }
-        }
+        }list.add(person);
     }
 
     public void lastNameOfTeachersBeforeN() {

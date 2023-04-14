@@ -39,7 +39,7 @@ public class Main {
 
         ConfigurationWatcher configurationWatcher = new ConfigurationWatcher(LoggerFactory.CONSOLE_WRITER, configurationReader);
 
-        System.out.println("\nWelcome to Online school!");
+        ConsoleUtils.print("\nWelcome to Online school!");
         configurationWatcher.setDaemon(true);
         configurationWatcher.start();
 
@@ -91,9 +91,9 @@ public class Main {
         Thread serverThread = new Thread(() -> {
             try {
                 new SelectorServer().start();
-                System.out.println("Server started");
+                ConsoleUtils.print("Server started");
             } catch (IOException e) {
-                System.out.println("Server is not able to start, details: " + e.getMessage());
+                ConsoleUtils.print("Server is not able to start, details: " + e.getMessage());
             }
         });
         serverThread.start();
@@ -103,9 +103,9 @@ public class Main {
         Thread clientThread = new Thread(() -> {
             try {
                 new SelectorClient().start();
-                System.out.println("Client started");
+                ConsoleUtils.print("Client started");
             } catch (IOException e) {
-                System.out.println("Client is not able to start, details: " + e.getMessage());
+                ConsoleUtils.print("Client is not able to start, details: " + e.getMessage());
             }
         });
         clientThread.start();

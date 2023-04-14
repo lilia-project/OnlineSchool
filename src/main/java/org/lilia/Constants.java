@@ -18,6 +18,7 @@ public final class Constants {
     public static final String HOMEWORK_ID = "input homework's id = ";
     public static final String MATERIAL_ID = "input additionalMaterial's id";
     public static final String ROLE = "1 - teacher\n 2 - student";
+    public static final String APPLY_SORT = "apply sorting?\n Y - Yes N - No";
     public static final String NAME = "input name";
     public static final String LAST_NAME = "input lastname";
     public static final String PHONE = "input phone";
@@ -26,13 +27,12 @@ public final class Constants {
     public static final String DESCRIPTION = "input description";
     public static final String ELEMENT_CREATED = "element created successful";
     public static final String ELEMENT_DELETED = "element deleted successful";
-    public static final String APPLY_SORT = "apply sorting?\n Y - Yes N - No";
     public static final String SELECT_PARAMETER_SORT = "\nselect parameter of sorting";
     public static final String RESOURCE_TYPE = "\ninput type of resource";
     public static final String ELEMENT_NOT_EXIST = "\nelement not exist";
     public static final String SELECT_ACTION_FROM_3 = "[1-3]";
     public static final String SELECT_ACTION_FROM_4 = "[1-4]";
-    public static final String SORT_BY_NAME = "sort by name?";
+    public static final String SORT_BY_NAME = "sort by name?\n Y - Yes N - No";
     public static final String SORT_BY_LAST_NAME = "sort by lastname?\n Y - Yes N - No";
     public static final String SORT_LAST_NAME_BEFORE_N = "sort lastname before N?\n Y - Yes N - No";
     public static final String DISPLAY_TYPE = "date display type";

@@ -1,5 +1,7 @@
 package org.lilia.log;
 
+import org.lilia.ConsoleUtils;
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.Map;
@@ -41,9 +43,7 @@ public class ConfigurationWatcher extends Thread {
                 String newLogLevel = stringStringMap.get("log.level");
                 LogLevel logLevel = LogLevel.valueOf(newLogLevel);
                 consoleWriter.setLevel(logLevel);
-                System.out.println(
-                        "Event kind:" + event.kind()
-                                + ". File affected: " + event.context() + ".");
+                ConsoleUtils.print("Event kind:" + event.kind() + ". File affected: " + event.context() + ".");
             }
             key.reset();
         }

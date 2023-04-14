@@ -58,8 +58,12 @@ public class CourseRepository {
     }
 
     private void saveCourse(Course course) {
-        if (!list.contains(course.getId())) {
-            list.add(course);
+        for (Course currentCourse : list) {
+            if (currentCourse.getId() == course.getId()) {
+                ConsoleUtils.print(course.getId() + " - this course id already exists");
+                break;
+            }
         }
+        list.add(course);
     }
 }

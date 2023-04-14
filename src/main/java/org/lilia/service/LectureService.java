@@ -116,6 +116,8 @@ public class LectureService {
         lectureRepository.deserialize();
     }
 
+
+
     public void isBeforeDate(LocalDate localDate) {
         lectureRepository.isBeforeDate(localDate);
     }
@@ -126,5 +128,9 @@ public class LectureService {
 
     public void isBetweenDates(LocalDate localDate, LocalDate localDateSecond) {
         lectureRepository.isBetweenDate(localDate, localDateSecond);
+    }
+
+    public void getLectureInEarlyTimeCreate() {
+        lectureRepository.getLectureInEarlyTimeCreate();
     }
 }

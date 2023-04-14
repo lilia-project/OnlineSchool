@@ -1,5 +1,6 @@
 package org.lilia.log;
 
+import org.lilia.ConsoleUtils;
 import org.lilia.serialization.FilePath;
 
 import java.io.BufferedReader;
@@ -42,7 +43,7 @@ public class LogService {
         long count = listLogsHalf.stream()
                 .filter(it -> it.contains(" INFO org."))
                 .count();
-        System.out.println("In LogStorageFile is " + count + " records INFO");
+        ConsoleUtils.print("In LogStorageFile is " + count + " records INFO");
     }
 
 }
