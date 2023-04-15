@@ -61,7 +61,6 @@ public class CourseRepository {
         for (Course currentCourse : list) {
             if (currentCourse.getId() == course.getId()) {
                 ConsoleUtils.print(course.getId() + " - this course id already exists");
-                break;
             }
         }
         list.add(course);

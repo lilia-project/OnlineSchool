@@ -133,7 +133,7 @@ public class LectureView {
                 }
                 case 3 -> {
                     ConsoleUtils.print(Constants.DISPLAY_TYPE);
-                    lectureService.getLectureInEarlyTimeCreate();
+                    lectureService.getLectureInEarlyTimeCreate(); // todo
 
                     switch (ConsoleUtils.outputDate()) {
                         case 1 -> lectureService.outputAll();

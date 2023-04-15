@@ -72,7 +72,7 @@ public class LectureService {
 
     private void addHomeworkIntoLecture(Lecture lecture) {
         List<Homework> list = homeworkService.findAllByLectureId(lecture.getId());
-        lecture.setList(list);
+        lecture.setHomeworkList(list);
     }
 
     public List<Lecture> findAllByCourseId(int courseId) {
@@ -117,7 +117,6 @@ public class LectureService {
     }
 
 
-
     public void isBeforeDate(LocalDate localDate) {
         lectureRepository.isBeforeDate(localDate);
     }
@@ -131,6 +130,7 @@ public class LectureService {
     }
 
     public void getLectureInEarlyTimeCreate() {
-        lectureRepository.getLectureInEarlyTimeCreate();
+        lectureRepository.getLectureByEarlyTimeCreate().
+                ifPresentOrElse(System.out::println, () -> System.out.println("No lecture"));
     }
 }

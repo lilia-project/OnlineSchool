@@ -2,7 +2,6 @@ package org.lilia.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,7 +19,9 @@ public class Lecture implements Serializable {
     private int courseId;
     private int personId;
     private String description;
-    private transient List<Homework> list;
+
+    private List<Homework> homeworkList;
+
     public Lecture(String name) {
         this.name = name;
         this.createdAt = LocalDate.now();
@@ -43,7 +44,7 @@ public class Lecture implements Serializable {
                 ", courseId=" + courseId +
                 ", personId=" + personId +
                 ", description='" + description + '\'' +
-                ", list=" + list +
+                ", homeworkList=" + homeworkList +
                 '}';
     }
 
@@ -55,12 +56,20 @@ public class Lecture implements Serializable {
         return personId;
     }
 
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
+
     public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setPersonId(int personId) {
-        this.personId = personId;
+    public List<Homework> getHomeworkList() {
+        return homeworkList;
+    }
+
+    public void setHomeworkList(List<Homework> homeworkList) {
+        this.homeworkList = homeworkList;
     }
 
     public int getCourseId() {
@@ -91,28 +100,17 @@ public class Lecture implements Serializable {
         this.name = name;
     }
 
-    public void setList(List<Homework> list) {
-        this.list = list;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lecture lecture = (Lecture) o;
-        return courseId == lecture.courseId && personId == lecture.personId && Objects.equals(id, lecture.id) && Objects.equals(createdAt, lecture.createdAt) && Objects.equals(lectureDate, lecture.lectureDate) && Objects.equals(name, lecture.name) && Objects.equals(description, lecture.description) && Objects.equals(list, lecture.list);
+        return courseId == lecture.courseId && personId == lecture.personId && Objects.equals(id, lecture.id) && Objects.equals(createdAt, lecture.createdAt) && Objects.equals(lectureDate, lecture.lectureDate) && Objects.equals(name, lecture.name) && Objects.equals(description, lecture.description) && Objects.equals(homeworkList, lecture.homeworkList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, createdAt, lectureDate, name, courseId, personId, description, list);
+        return Objects.hash(id, createdAt, lectureDate, name, courseId, personId, description, homeworkList);
     }
 
-    public static class LectureCreateAtComparator implements Comparator<Lecture>{
-
-        @Override
-        public int compare(Lecture o1, Lecture o2) {
-            return (o1.getCreatedAt().compareTo(o2.getCreatedAt()));
-        }
-    }
 }

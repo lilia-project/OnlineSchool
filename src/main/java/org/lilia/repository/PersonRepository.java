@@ -96,12 +96,13 @@ public class PersonRepository {
     }
 
     private void savePerson(Person person) {
-        for (Person currentPerson: list){
-            if (currentPerson.getId() == person.getId()){
+        for (Person currentPerson : list) {
+            if (currentPerson.getId() == person.getId()) {
                 ConsoleUtils.print(person.getId() + " - this id already exists");
                 break;
             }
-        }list.add(person);
+        }
+        list.add(person);
     }
 
     public void lastNameOfTeachersBeforeN() {

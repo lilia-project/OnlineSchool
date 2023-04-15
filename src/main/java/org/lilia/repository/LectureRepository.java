@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class LectureRepository {
 
@@ -38,12 +37,6 @@ public class LectureRepository {
     }
 
     private void saveLecture(Lecture lecture) {
-        for (Lecture currentLecture: list){
-            if (currentLecture.getId() == lecture.getId()){
-                ConsoleUtils.print(lecture.getId() + " - this lecture id already exists");
-                break;
-            }
-        }
         list.add(lecture);
     }
 
@@ -96,17 +89,16 @@ public class LectureRepository {
                 .filter(lecture -> lecture.getLectureDate().isBefore(localDateSecond))
                 .forEach(System.out::println);
     }
-    public void getLectureInEarlyTimeCreate(){ // todo Lecture output!!!
-        deserialize();
-        System.out.println(list.stream()
-                .min(new Lecture.LectureCreateAtComparator())
-                .stream().toList());
 
-    }
-
-    public void getLectureWithMaxAddMaterials(){ // todo Lecture output!!!
-        deserialize();
-
+    public Optional<Lecture> getLectureByEarlyTimeCreate() {
+        return list.stream()
+                .min(Comparator.comparing(Lecture::getCreatedAt)
+                        .thenComparing(lecture -> {
+                            if (lecture.getHomeworkList() != null) {
+                                return lecture.getHomeworkList().size();
+                            }
+                            return null;
+                        }, Comparator.nullsLast(Comparator.naturalOrder())));
     }
 
 }
