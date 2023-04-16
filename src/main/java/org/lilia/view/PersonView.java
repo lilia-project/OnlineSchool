@@ -144,7 +144,16 @@ public class PersonView {
             ConsoleUtils.print(Constants.EMAIL);
             String email = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
 
-            PersonDto personDto = personService.createPersonDto(personLastName, personName, phone, email, Integer.parseInt(courseId));
+            while (!personService.checkEmail(email)) {
+                ConsoleUtils.print("This email already registered");
+
+                ConsoleUtils.print(Constants.EMAIL);
+                email = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
+
+            }
+            String emailChecked = email;
+
+            PersonDto personDto = personService.createPersonDto(personLastName, personName, phone, emailChecked, Integer.parseInt(courseId));
 
             Person personUpdate = personService.updatePerson(person, personDto);
             System.out.println(personUpdate);

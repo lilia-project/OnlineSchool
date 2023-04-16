@@ -7,13 +7,10 @@ import org.lilia.model.Role;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class PersonRepository {
-    private final List<Person> list = new ArrayList<>();
+    private final List<Person> personList = new ArrayList<>();
 
     private static FilePath getPath(Role role) {
 
@@ -37,15 +34,15 @@ public class PersonRepository {
     }
 
     public void add(Person person) {
-        list.add(person);
+        personList.add(person);
     }
 
     public void remove(Person person) {
-        list.remove(person);
+        personList.remove(person);
     }
 
     public Optional<Person> getById(int id) {
-        for (Person person : list) {
+        for (Person person : personList) {
             if (person.getId() == id) {
                 return Optional.of(person);
             }
@@ -54,7 +51,7 @@ public class PersonRepository {
     }
 
     public void getByCourseId(int courseId, Role role) {
-        for (Person person : list) {
+        for (Person person : personList) {
             if (person.getCourseId() == courseId & person.getRole().equals(role)) {
                 System.out.println(person);
             }
@@ -62,7 +59,7 @@ public class PersonRepository {
     }
 
     public Optional<Person> getByLastName(String personLastName) {
-        for (Person person : list) {
+        for (Person person : personList) {
             if (person.getLastName().equals(personLastName)) {
                 return Optional.of(person);
             }
@@ -71,7 +68,7 @@ public class PersonRepository {
     }
 
     public void sortByLastName() {
-        list.stream()
+        personList.stream()
                 .map(Person::getLastName)
                 .sorted()
                 .forEach(System.out::println);
@@ -79,7 +76,7 @@ public class PersonRepository {
 
     public void serializePerson(Role role) {
         FilePath filePath = getPath(role);
-        List<Person> newList = splitListOfPerson(list, role);
+        List<Person> newList = splitListOfPerson(personList, role);
         Serializer.serialize(newList, filePath);
         ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
@@ -96,20 +93,27 @@ public class PersonRepository {
     }
 
     private void savePerson(Person person) {
-        for (Person currentPerson : list) {
+        for (Person currentPerson : personList) {
             if (currentPerson.getId() == person.getId()) {
                 ConsoleUtils.print(person.getId() + " - this id already exists");
                 break;
             }
         }
-        list.add(person);
+        personList.add(person);
     }
 
     public void lastNameOfTeachersBeforeN() {
-        list.stream()
+        personList.stream()
                 .map(Person::getLastName)
                 .filter(it -> (it.substring(0, 1)).compareToIgnoreCase("N") <= 0)
                 .forEach(System.out::println);
+    }
+
+    public Boolean checkEmailForDuplicate(String email) {
+        return personList.stream()
+                .map(Person::getEmail)
+                .filter(Objects::nonNull)
+                .noneMatch(it -> it.equals(email));
     }
 }
 

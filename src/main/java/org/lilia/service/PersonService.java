@@ -18,12 +18,17 @@ public class PersonService {
     }
 
     public Person createPerson(String lastName, Role role) {
+        if (lastName == null | role == null) {
+            throw new IllegalArgumentException("last name or role is null");
+        }
         Person person = Person.createPerson(lastName, role);
+        ConsoleUtils.print(Constants.ELEMENT_CREATED + person);
         personRepository.add(person);
         return person;
     }
 
     public PersonDto createPersonDto(String lastName, String firstName, String phone, String email, int courseId) {
+
         return new PersonDto(lastName, firstName, phone, email, courseId);
     }
 
@@ -46,13 +51,6 @@ public class PersonService {
         return person;
     }
 
-    /* public Role getRole(int choiceRole) {
-         Optional<Role> role = personRepository.getRole(choiceRole);
-         if (role.isEmpty()) {
-             throw new NoSuchRoleException();
-         } else
-             return role.get();
-     }*/
     public Role getRole(int choiceRole) {
         if (choiceRole == 1) {
             return Role.TEACHER;
@@ -96,7 +94,6 @@ public class PersonService {
 
     public void backupPerson(Role role) {
         personRepository.serializePerson(role);
-
     }
 
     public void deserialize(Role role) {
@@ -105,6 +102,10 @@ public class PersonService {
 
     public void outputBeforeN() {
         personRepository.lastNameOfTeachersBeforeN();
+    }
+
+    public Boolean checkEmail(String email) {
+        return personRepository.checkEmailForDuplicate(email);
     }
 }
 

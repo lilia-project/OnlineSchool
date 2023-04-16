@@ -148,5 +148,4 @@ public class ConsoleUtils {
 
         return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION_FROM_4));
     }
-
 }
