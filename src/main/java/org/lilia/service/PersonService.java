@@ -101,7 +101,7 @@ public class PersonService {
     }
 
     public void outputBeforeN() {
-        personRepository.lastNameOfTeachersBeforeN();
+        personRepository.printLastNameOfTeachersBeforeN();
     }
 
     public Boolean checkEmail(String email) {

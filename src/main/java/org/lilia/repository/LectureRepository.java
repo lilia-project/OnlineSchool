@@ -20,24 +20,18 @@ public class LectureRepository {
         list.add(lecture);
     }
 
-    public void serializeList() {
+    public void serializeLecture() {
         Serializer.serialize(list, FilePath.FILE_PATH_LECTURE);
         ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
-    public void deserialize() {
+    public void deserializeLecture() {
         String filePath = FilePath.FILE_PATH_LECTURE.getPath();
         Object deserialize = Serializer.deserialize(filePath);
         List<Lecture> lectures = (List<Lecture>) deserialize;
         ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
 
-        for (Lecture lecture : lectures) {
-            saveLecture(lecture);
-        }
-    }
-
-    private void saveLecture(Lecture lecture) {
-        list.add(lecture);
+        list.addAll(lectures);
     }
 
     public void remove(Lecture lecture) {

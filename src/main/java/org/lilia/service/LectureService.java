@@ -109,11 +109,11 @@ public class LectureService {
     }
 
     public void backupLecture() {
-        lectureRepository.serializeList();
+        lectureRepository.serializeLecture();
     }
 
     public void deserialize() {
-        lectureRepository.deserialize();
+        lectureRepository.deserializeLecture();
     }
 
 

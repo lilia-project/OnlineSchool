@@ -168,4 +168,5 @@ public class LectureView {
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
     }
+
 }

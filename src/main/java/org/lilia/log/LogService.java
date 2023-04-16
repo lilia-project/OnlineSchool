@@ -31,6 +31,7 @@ public class LogService {
 
     public static void filterLogStorageFile() {
 
+        System.out.println("Logs with INFO");
         List<String> listFilter = readLogStorageFile();
         listFilter.stream()
                 .filter(it -> it.contains(" INFO org."))
@@ -38,8 +39,10 @@ public class LogService {
     }
 
     public static void filterHalfLogStorageFile() {
+        System.out.println("Logs INFO from the middle to end of the logs file");
         List<String> listLogs = readLogStorageFile();
         List<String> listLogsHalf = listLogs.subList(listLogs.size() / 2, listLogs.size());
+        System.out.println(listLogsHalf);
         long count = listLogsHalf.stream()
                 .filter(it -> it.contains(" INFO org."))
                 .count();

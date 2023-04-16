@@ -28,7 +28,7 @@ public class HomeworkRepository {
         for (List<Homework> homeworks : data.values()) {
             list.addAll(homeworks);
         }
-        return list;
+        return Optional.of(list).orElse(Collections.emptyList());
     }
 
     public void remove(Homework homework) {
@@ -58,7 +58,7 @@ public class HomeworkRepository {
         return Optional.ofNullable(list);
     }
 
-    public void serialiseHomework() {
+    public void serializeHomework() {
         List<Homework> list = getAll();
         Serializer.serialize(list, FilePath.FILE_PATH_HOMEWORK);
         ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);

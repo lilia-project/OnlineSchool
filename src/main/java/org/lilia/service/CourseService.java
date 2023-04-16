@@ -89,6 +89,6 @@ public class CourseService {
     }
 
     public void deserialize() {
-        courseRepository.deserialize();
+        courseRepository.deserializeCourses();
     }
 }

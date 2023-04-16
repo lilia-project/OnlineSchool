@@ -8,7 +8,6 @@ import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class PersonRepository {
     private final List<Person> personList = new ArrayList<>();
@@ -90,7 +89,7 @@ public class PersonRepository {
         personList.addAll(list);
     }
 
-    public void lastNameOfTeachersBeforeN() {
+    public void printLastNameOfTeachersBeforeN() {
         personList.stream()
                 .map(Person::getLastName)
                 .filter(it -> (it.substring(0, 1)).compareToIgnoreCase("N") <= 0)

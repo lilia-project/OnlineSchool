@@ -40,6 +40,7 @@ public class Main {
         ConfigurationWatcher configurationWatcher = new ConfigurationWatcher(LoggerFactory.CONSOLE_WRITER, configurationReader);
 
         ConsoleUtils.print("\nWelcome to Online school!");
+
         configurationWatcher.setDaemon(true);
         configurationWatcher.start();
 
