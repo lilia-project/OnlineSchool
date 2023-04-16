@@ -140,7 +140,7 @@ public class LectureView {
                             LocalDate localDate = getLocalDate();
                             outputByDateParameter(lectureService, localDate);
                         }
-                        case 3 -> lectureService.getLectureInEarlyTimeCreate();
+                        case 3 -> lectureService.getLectureInEarlyTime();
                         case 4 -> lectureService.printLecturesGrouping();
                         case 0 -> ConsoleUtils.print(Constants.EXIT);
                         default -> {

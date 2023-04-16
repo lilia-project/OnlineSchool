@@ -7,6 +7,7 @@ import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AdditionalMaterialRepository {
 
@@ -115,5 +116,12 @@ public class AdditionalMaterialRepository {
             list.add(additionalMaterial);
             data.put(additionalMaterial.getLectureId(), list);
         }
+    }
+
+    public void printAddMaterialsGroupingByLectureId() {
+        List<AdditionalMaterial> materials = getAll();
+        Map<Integer, List<AdditionalMaterial>> collect = materials.stream()
+                .collect(Collectors.groupingBy(AdditionalMaterial::getLectureId));
+        System.out.println(collect);
     }
 }

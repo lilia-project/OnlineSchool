@@ -36,15 +36,15 @@ public class Lecture implements Serializable {
 
     @Override
     public String toString() {
-        return "Lecture{" +
-                "id=" + id +
-                ", createdAt=" + createdAt +
-                ", lectureDate=" + lectureDate +
-                ", name='" + name + '\'' +
-                ", courseId=" + courseId +
-                ", personId=" + personId +
-                ", description='" + description + '\'' +
-                ", homeworkList=" + homeworkList +
+        return " Lecture{" +
+                " id=" + id +
+                " createdAt=" + createdAt +
+                " lectureDate=" + lectureDate +
+                " name='" + name + '\'' +
+                " courseId=" + courseId +
+                " personId=" + personId +
+                " description='" + description + '\'' +
+                " homeworkList=" + homeworkList +
                 '}';
     }
 

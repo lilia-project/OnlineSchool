@@ -47,14 +47,6 @@ public class AdditionalMaterial implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "\n additionalMaterialId = " + id +
-                "\n additionalMaterialName = '" + name + "'," +
-                "\n lectureId = " + lectureId +
-                "\n resourceType = " + resourceType + "\n";
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -74,6 +66,16 @@ public class AdditionalMaterial implements Serializable {
         result = 31 * result + lectureId;
         result = 31 * result + (resourceType != null ? resourceType.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "\n AdditionalMaterial{" +
+                " id=" + id +
+                " name='" + name + '\'' +
+                " lectureId=" + lectureId +
+                " resourceType=" + resourceType +
+                '}';
     }
 
     public enum SortField {
