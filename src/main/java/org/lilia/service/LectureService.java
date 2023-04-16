@@ -133,4 +133,8 @@ public class LectureService {
         lectureRepository.getLectureByEarlyTimeCreate().
                 ifPresentOrElse(System.out::println, () -> System.out.println("No lecture"));
     }
+
+    public void printLecturesGrouping() {
+        lectureRepository.printLecturesGroupingByTeacher();
+    }
 }

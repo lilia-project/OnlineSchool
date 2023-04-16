@@ -133,7 +133,6 @@ public class LectureView {
                 }
                 case 3 -> {
                     ConsoleUtils.print(Constants.DISPLAY_TYPE);
-                    lectureService.getLectureInEarlyTimeCreate(); // todo
 
                     switch (ConsoleUtils.outputDate()) {
                         case 1 -> lectureService.outputAll();
@@ -141,7 +140,9 @@ public class LectureView {
                             LocalDate localDate = getLocalDate();
                             outputByDateParameter(lectureService, localDate);
                         }
-                        case 3 -> ConsoleUtils.print(Constants.EXIT);
+                        case 3 -> lectureService.getLectureInEarlyTimeCreate();
+                        case 4 -> lectureService.printLecturesGrouping();
+                        case 0 -> ConsoleUtils.print(Constants.EXIT);
                         default -> {
                             logger.error(Constants.ERROR);
                             ConsoleUtils.print(Constants.ERROR);

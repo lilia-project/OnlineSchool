@@ -95,4 +95,9 @@ public class LectureRepository {
                         }, Comparator.nullsLast(Comparator.naturalOrder())));
     }
 
+    public void printLecturesGroupingByTeacher() {
+        list.stream()
+                .sorted(Comparator.comparing(Lecture::getPersonId))
+                .forEach(System.out::println);
+    }
 }
