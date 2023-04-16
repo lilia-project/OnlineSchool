@@ -8,6 +8,7 @@ import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class PersonRepository {
     private final List<Person> personList = new ArrayList<>();
@@ -40,6 +41,7 @@ public class PersonRepository {
     }
 
     public Optional<Person> getById(int id) {
+
         for (Person person : personList) {
             if (person.getId() == id) {
                 return Optional.of(person);
@@ -85,19 +87,7 @@ public class PersonRepository {
         List<Person> list = (List<Person>) deserialize;
         ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
 
-        for (Person person : list) {
-            savePerson(person);
-        }
-    }
-
-    private void savePerson(Person person) {
-        for (Person currentPerson : personList) {
-            if (currentPerson.getId() == person.getId()) {
-                ConsoleUtils.print(person.getId() + " - this id already exists");
-                break;
-            }
-        }
-        personList.add(person);
+        personList.addAll(list);
     }
 
     public void lastNameOfTeachersBeforeN() {
