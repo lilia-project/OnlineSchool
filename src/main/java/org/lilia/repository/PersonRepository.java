@@ -24,12 +24,10 @@ public class PersonRepository {
     }
 
     private static List<Person> splitListOfPerson(List<Person> data, Role role) {
-        List<Person> splitList = new ArrayList<>();
-        for (Person person : data) {
-            if (person.getRole() == role) {
-                splitList.add(person);
-            }
-        }
+        List<Person> splitList = data.stream()
+                .filter(person -> person.getRole().equals(role))
+                .toList();
+
         return Optional.of(splitList).orElse(Collections.emptyList());
     }
 
