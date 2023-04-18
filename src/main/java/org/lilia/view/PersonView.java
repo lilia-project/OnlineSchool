@@ -19,19 +19,26 @@ public class PersonView {
         this.courseService = courseService;
     }
 
-    private static void sortByLastNameTeachers(PersonService personService) {
+    private static void sortOrMapPersons(PersonService personService) {
         String userChoice;
-        ConsoleUtils.print(Constants.SORT_BY_LAST_NAME);
+        ConsoleUtils.print(Constants.SORT_BY_LAST_NAME_TEACHERS);
         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
         if (userChoice.equalsIgnoreCase("Y")) {
             personService.sortByLastName();
         }
-        ConsoleUtils.print(Constants.SORT_LAST_NAME_BEFORE_N);
+        ConsoleUtils.print(Constants.PRINT_LAST_NAME_TEACHERS_BEFORE_N);
         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
         if (userChoice.equalsIgnoreCase("Y")) {
             personService.outputBeforeN();
+        }
+
+        ConsoleUtils.print(Constants.CREATE_MAP_PERSONS);
+        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
+        if(userChoice.equalsIgnoreCase("Y")){
+            personService.printMap();
         }
     }
 
@@ -85,7 +92,7 @@ public class PersonView {
                     logger.info("selected output person");
                     outputAll(personService);
 
-                    sortByLastNameTeachers(personService);
+                    sortOrMapPersons(personService);
 
                 }
                 case 4 -> {
@@ -114,6 +121,7 @@ public class PersonView {
             }
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
         }
     }
 

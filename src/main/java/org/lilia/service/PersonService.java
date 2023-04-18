@@ -107,5 +107,9 @@ public class PersonService {
     public Boolean checkEmail(String email) {
         return personRepository.checkEmailForDuplicate(email);
     }
+
+    public void printMap() {
+        personRepository.printMapKeyEmailValueName();
+    }
 }
 
