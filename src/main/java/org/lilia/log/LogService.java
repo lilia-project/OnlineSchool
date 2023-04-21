@@ -48,5 +48,4 @@ public class LogService {
                 .count();
         ConsoleUtils.print("In LogStorageFile is " + count + " records INFO");
     }
-
 }

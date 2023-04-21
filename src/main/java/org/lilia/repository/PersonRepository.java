@@ -109,5 +109,14 @@ public class PersonRepository {
                 .collect(Collectors.toMap(Person::getEmail, i -> (i.getLastName() + " " + i.getFirstName())));
         System.out.println(collect);
     }
+
+    public List<String> sortEmailsOfStudents() {
+        List<Person> students = splitListOfPerson(personList, Role.STUDENT);
+        List<String> emailsOfStudents = students.stream()
+                .map(Person::getEmail)
+                .sorted()
+                .toList();
+        return Optional.of(emailsOfStudents).orElse(Collections.emptyList());
+    }
 }
 

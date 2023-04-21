@@ -37,8 +37,15 @@ public class PersonView {
         ConsoleUtils.print(Constants.CREATE_MAP_PERSONS);
         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
-        if(userChoice.equalsIgnoreCase("Y")){
+        if (userChoice.equalsIgnoreCase("Y")) {
             personService.printMap();
+        }
+
+        ConsoleUtils.print(Constants.SORT_STUDENTS_BY_EMAIL);
+        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
+        if (userChoice.equalsIgnoreCase("Y")) {
+            personService.printEmailsOfStudentsToFile();
         }
     }
 

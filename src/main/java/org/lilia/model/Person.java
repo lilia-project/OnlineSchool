@@ -89,7 +89,7 @@ public class Person implements Serializable {
                 "\n lectureId = " + lectureId +
                 "\n Phone = " + phone +
                 "\n Email = " + email +
-                '}';
+                "\n }";
     }
 
 }

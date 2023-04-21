@@ -37,6 +37,7 @@ public final class Constants {
     public static final String SORT_BY_LAST_NAME_TEACHERS = "sort by lastname teachers?\n Y - Yes N - No";
     public static final String PRINT_LAST_NAME_TEACHERS_BEFORE_N = "sort lastname before N?\n Y - Yes N - No";
     public static final String CREATE_MAP_PERSONS = "create the map of persons?\n Y - Yes N - No";
+    public static final String SORT_STUDENTS_BY_EMAIL = "sort students by email?\n Y - Yes N - No";
     public static final String DISPLAY_TYPE = "date display type";
     public static final String FIRST_DATE_FOR_LECTURE = "input first lecture date";
     public static final String SECOND_DATE_FOR_LECTURE_BETWEEN_DATES = "input second date for lectures between dates";
