@@ -121,14 +121,11 @@ public class PersonService {
     public void printEmailsOfStudentsToFile() {
         Path path = Paths.get(FilePath.FILE_PATH_EMAILS_OF_STUDENTS.getPath());
         List<String> emailsOfStudents = personRepository.sortEmailsOfStudents();
-        try
-                (BufferedWriter writer = Files.newBufferedWriter(path)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write(emailsOfStudents.toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 }
 
