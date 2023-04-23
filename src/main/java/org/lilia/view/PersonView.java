@@ -19,56 +19,6 @@ public class PersonView {
         this.courseService = courseService;
     }
 
-    private static void sortOrMapPersons(PersonService personService) {
-        String userChoice;
-        ConsoleUtils.print(Constants.SORT_BY_LAST_NAME_TEACHERS);
-        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-
-        if (userChoice.equalsIgnoreCase("Y")) {
-            personService.sortByLastName();
-        }
-        ConsoleUtils.print(Constants.PRINT_LAST_NAME_TEACHERS_BEFORE_N);
-        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-
-        if (userChoice.equalsIgnoreCase("Y")) {
-            personService.outputBeforeN();
-        }
-
-        ConsoleUtils.print(Constants.CREATE_MAP_PERSONS);
-        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-
-        if (userChoice.equalsIgnoreCase("Y")) {
-            personService.printMap();
-        }
-
-        ConsoleUtils.print(Constants.SORT_STUDENTS_BY_EMAIL);
-        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-
-        if (userChoice.equalsIgnoreCase("Y")) {
-            personService.printEmailsOfStudentsToFile();
-        }
-    }
-
-    private static Person createNewPerson(PersonService personService) {
-        ConsoleUtils.print(Constants.NAME);
-        String personName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
-
-        Role role = personService.getRole(selectRole());
-
-        return personService.createPerson(personName, role);
-    }
-
-    private static int selectRole() {
-        ConsoleUtils.print(Constants.ROLE);
-        return Integer.parseInt(ConsoleUtils.readAndValidationInput("[1-2]"));
-    }
-
-    private static void delete(PersonService personService) {
-        ConsoleUtils.print(Constants.LAST_NAME);
-        String lastName = personService.lastNameIsValid();
-        personService.delete(lastName);
-    }
-
     public void workWithPerson(PersonService personService) {
         logger.info("work with person section");
 
@@ -98,9 +48,7 @@ public class PersonView {
                 case 3 -> {
                     logger.info("selected output person");
                     outputAll(personService);
-
                     sortOrMapPersons(personService);
-
                 }
                 case 4 -> {
                     logger.info("selected delete person");
@@ -185,6 +133,55 @@ public class PersonView {
         Role role = personService.getRole(selectRole());
 
         personService.outAllByCourse(courseId, role);
+    }
+    private static void sortOrMapPersons(PersonService personService) {
+        String userChoice;
+        ConsoleUtils.print(Constants.SORT_BY_LAST_NAME_TEACHERS);
+        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
+        if (userChoice.equalsIgnoreCase("Y")) {
+            personService.sortByLastName();
+        }
+        ConsoleUtils.print(Constants.PRINT_LAST_NAME_TEACHERS_BEFORE_N);
+        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
+        if (userChoice.equalsIgnoreCase("Y")) {
+            personService.outputBeforeN();
+        }
+
+        ConsoleUtils.print(Constants.CREATE_MAP_PERSONS);
+        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
+        if (userChoice.equalsIgnoreCase("Y")) {
+            personService.printMap();
+        }
+
+        ConsoleUtils.print(Constants.SORT_STUDENTS_BY_EMAIL);
+        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
+        if (userChoice.equalsIgnoreCase("Y")) {
+            personService.printEmailsOfStudentsToFile();
+        }
+    }
+
+    private static Person createNewPerson(PersonService personService) {
+        ConsoleUtils.print(Constants.NAME);
+        String personName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
+
+        Role role = personService.getRole(selectRole());
+
+        return personService.createPerson(personName, role);
+    }
+
+    private static int selectRole() {
+        ConsoleUtils.print(Constants.ROLE);
+        return Integer.parseInt(ConsoleUtils.readAndValidationInput("[1-2]"));
+    }
+
+    private static void delete(PersonService personService) {
+        ConsoleUtils.print(Constants.LAST_NAME);
+        String lastName = personService.lastNameIsValid();
+        personService.delete(lastName);
     }
 
     private void print(Person person) {
