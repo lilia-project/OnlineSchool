@@ -6,7 +6,7 @@ import org.lilia.model.Lecture;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,7 +14,7 @@ public class LectureRepository {
 
     private final List<Lecture> list = new ArrayList<>();
 
-    public void add(Lecture lecture) {
+    public void addNewLecture(Lecture lecture) {
         list.add(lecture);
     }
 
@@ -54,28 +54,27 @@ public class LectureRepository {
         list.forEach(System.out::println);
     }
 
-    public Optional<Lecture> getByCourseId(int courseId) {
-        for (Lecture lecture : list) {
-            if (lecture.getCourseId() == courseId) {
-                return Optional.of(lecture);
-            }
-        }
-        return Optional.empty();
+    public List<Lecture> getByCourseId(int courseId) {
+        List<Lecture> resList = list.stream()
+                .filter(r -> r.getCourseId() == courseId)
+                .collect(Collectors.toList());
+
+        return Optional.of(resList).orElse(Collections.emptyList());
     }
 
-    public void isBeforeDate(LocalDate localDate) {
+    public void isBeforeDate(LocalDateTime localDate) {
         list.stream()
                 .filter(lecture -> lecture.getLectureDate().isBefore(localDate))
                 .forEach(System.out::println);
     }
 
-    public void isAfterDate(LocalDate localDate) {
+    public void isAfterDate(LocalDateTime localDate) {
         list.stream()
                 .filter(lecture -> lecture.getLectureDate().isAfter(localDate))
                 .forEach(System.out::println);
     }
 
-    public void isBetweenDate(LocalDate localDate, LocalDate localDateSecond) {
+    public void isBetweenDate(LocalDateTime localDate, LocalDateTime localDateSecond) {
         list.stream()
                 .filter(lecture -> lecture.getLectureDate().isAfter(localDate))
                 .filter(lecture -> lecture.getLectureDate().isBefore(localDateSecond))
@@ -98,6 +97,5 @@ public class LectureRepository {
                 .collect(Collectors.groupingBy(Lecture::getPersonId));
 
         System.out.println(collect);
-        // System.out.println(collect.toString().replaceAll("[{}]", " ").replaceAll("\\s", "\n"));
     }
 }

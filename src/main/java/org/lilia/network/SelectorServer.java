@@ -94,14 +94,17 @@ public class SelectorServer {
         key.interestOps(SelectionKey.OP_WRITE);
     }
 
-    public void write(SelectionKey key) throws IOException {
-        SocketChannel socketChannel = (SocketChannel) key.channel();
+    public void write(SelectionKey key) {
+        try (SocketChannel socketChannel = (SocketChannel) key.channel()) {
 
-        String response = "Hello from server!";
-        buffer.clear();
-        buffer.put(response.getBytes());
-        buffer.flip();
-        socketChannel.write(buffer);
+            String response = "Hello from server!";
+            buffer.clear();
+            buffer.put(response.getBytes());
+            buffer.flip();
+            socketChannel.write(buffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         key.interestOps(SelectionKey.OP_READ);
     }
 

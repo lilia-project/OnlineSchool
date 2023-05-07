@@ -1,31 +1,28 @@
 package org.lilia.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Lecture implements Serializable {
+    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("MMM d, EEE HH:mm:ss", Locale.ENGLISH);
     private static int counter = 0;
-
     private final Integer id;
-
-    private final LocalDate createdAt;
-
-    private final LocalDate lectureDate;
-
+    private final LocalDateTime createdAt;
+    private final LocalDateTime lectureDate;
     private String name;
-
     private int courseId;
     private int personId;
     private String description;
-
     private List<Homework> homeworkList;
 
     public Lecture(String name) {
         this.name = name;
-        this.createdAt = LocalDate.now();
-        this.lectureDate = LocalDate.now().plusDays((int) (Math.random() * 10));
+        this.createdAt = LocalDateTime.now();
+        this.lectureDate = LocalDateTime.now().plusDays((int) (Math.random() * 10));
         counter++;
         id = counter;
     }
@@ -38,8 +35,8 @@ public class Lecture implements Serializable {
     public String toString() {
         return " Lecture{" +
                 " id=" + id +
-                " createdAt=" + createdAt +
-                " lectureDate=" + lectureDate +
+                " createdAt=" + createdAt.format(DTF) +
+                " lectureDate=" + lectureDate.format(DTF) +
                 " name='" + name + '\'' +
                 " courseId=" + courseId +
                 " personId=" + personId +
@@ -48,7 +45,7 @@ public class Lecture implements Serializable {
                 '}';
     }
 
-    public LocalDate getLectureDate() {
+    public LocalDateTime getLectureDate() {
         return lectureDate;
     }
 
@@ -60,7 +57,7 @@ public class Lecture implements Serializable {
         this.personId = personId;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 

@@ -8,12 +8,12 @@ import org.lilia.log.LoggerFactory;
 import org.lilia.model.Lecture;
 import org.lilia.service.LectureService;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class LectureView {
     private static final Logger logger = LoggerFactory.getLogger(LectureView.class);
 
-    private static LocalDate getLocalDate() {
+    private static LocalDateTime getLocalDate() {
         ConsoleUtils.print(Constants.FIRST_DATE_FOR_LECTURE);
 
         ConsoleUtils.print(Constants.INPUT_DAY);
@@ -30,22 +30,21 @@ public class LectureView {
         ConsoleUtils.print(Constants.INPUT_YEAR);
         int year = Integer.parseInt(ConsoleUtils.readAndValidationInput("\\d{4}"));
 
-        LocalDate localDate = LocalDate.of(year, months, date);
-        return localDate;
+        return LocalDateTime.of(year, months, date, 0, 0, 0);
     }
 
-    private static void outputByDateParameter(LectureService lectureService, LocalDate localDate) {
+    private static void outputByDateParameter(LectureService lectureService, LocalDateTime localDate) {
         switch (ConsoleUtils.choiceDisplayType()) {
-            case 1 -> lectureService.isBeforeDate(localDate);
-            case 2 -> lectureService.isAfterDate(localDate);
+            case 1 -> lectureService.isBeforeDate(LocalDateTime.from(localDate));
+            case 2 -> lectureService.isAfterDate(LocalDateTime.from(localDate));
             case 3 -> {
-                LocalDate localDateSecond = getLocalDateSecond();
+                LocalDateTime localDateSecond = getLocalDateSecond();
                 lectureService.isBetweenDates(localDate, localDateSecond);
             }
         }
     }
 
-    private static LocalDate getLocalDateSecond() {
+    private static LocalDateTime getLocalDateSecond() {
         ConsoleUtils.print(Constants.SECOND_DATE_FOR_LECTURE_BETWEEN_DATES);
 
         ConsoleUtils.print(Constants.INPUT_DAY);
@@ -57,8 +56,7 @@ public class LectureView {
         ConsoleUtils.print(Constants.INPUT_YEAR);
         int yearSecond = Integer.parseInt(ConsoleUtils.readAndValidationInput("\\d{4}"));
 
-        LocalDate localDateSecond = LocalDate.of(yearSecond, monthsSecond, dateSecond);
-        return localDateSecond;
+        return LocalDateTime.of(yearSecond, monthsSecond, dateSecond, 0, 0, 0);
     }
 
     private static void editLecture(LectureService lectureService, Lecture lecture) {
@@ -137,7 +135,7 @@ public class LectureView {
                     switch (ConsoleUtils.outputDate()) {
                         case 1 -> lectureService.outputAll();
                         case 2 -> {
-                            LocalDate localDate = getLocalDate();
+                            LocalDateTime localDate = getLocalDate();
                             outputByDateParameter(lectureService, localDate);
                         }
                         case 3 -> lectureService.getLectureInEarlyTime();

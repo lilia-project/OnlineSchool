@@ -62,6 +62,10 @@ public class AdditionalMaterialRepository {
         value.remove(additionalMaterial);
     }
 
+    /* public Optional<List<AdditionalMaterial>> getByLectureId(int lectureId) {
+         List<AdditionalMaterial> list = data.get(lectureId);
+         return Optional.ofNullable(list);
+     }*/
     public Optional<List<AdditionalMaterial>> getByLectureId(int lectureId) {
         List<AdditionalMaterial> list = data.get(lectureId);
         return Optional.ofNullable(list);
