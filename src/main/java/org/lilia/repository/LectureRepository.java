@@ -7,10 +7,8 @@ import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LectureRepository {
 
@@ -84,9 +82,9 @@ public class LectureRepository {
                 .forEach(System.out::println);
     }
 
-    public Optional<Lecture> getLectureByEarlyTimeCreate() {
+    public Optional<Lecture> getLectureByEarlyTime() {
         return list.stream()
-                .min(Comparator.comparing(Lecture::getCreatedAt)
+                .min(Comparator.comparing(Lecture::getLectureDate)
                         .thenComparing(lecture -> {
                             if (lecture.getHomeworkList() != null) {
                                 return lecture.getHomeworkList().size();
@@ -95,4 +93,11 @@ public class LectureRepository {
                         }, Comparator.nullsLast(Comparator.naturalOrder())));
     }
 
+    public void printLecturesGroupingByTeacher() {
+        Map<Integer, List<Lecture>> collect = list.stream()
+                .collect(Collectors.groupingBy(Lecture::getPersonId));
+
+        System.out.println(collect);
+        // System.out.println(collect.toString().replaceAll("[{}]", " ").replaceAll("\\s", "\n"));
+    }
 }

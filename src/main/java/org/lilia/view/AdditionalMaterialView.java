@@ -8,11 +8,7 @@ import org.lilia.model.ResourceType;
 import org.lilia.service.AdditionalMaterialService;
 import org.lilia.service.LectureService;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public class AdditionalMaterialView {
 
@@ -80,14 +76,7 @@ public class AdditionalMaterialView {
                     additionalMaterialService.deserialize();
                     break;
                 case 7:
-                    Consumer<List<AdditionalMaterial>> consumer = list -> {
-                        Map<Integer, List<AdditionalMaterial>> collect = list.stream()
-                                .collect(Collectors.groupingBy(AdditionalMaterial::getLectureId));
-                        for (List<AdditionalMaterial> materials : collect.values()) {
-                            System.out.println(Arrays.toString(materials.toArray()));
-                        }
-                    };
-                    additionalMaterialService.printAllWithGrouping(consumer);
+                    additionalMaterialService.printAllWithGroupingByLectureId();
                     break;
                 case 8:
                     ConsoleUtils.print(Constants.EXIT);

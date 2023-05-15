@@ -129,8 +129,12 @@ public class LectureService {
         lectureRepository.isBetweenDate(localDate, localDateSecond);
     }
 
-    public void getLectureInEarlyTimeCreate() {
-        lectureRepository.getLectureByEarlyTimeCreate().
+    public void getLectureInEarlyTime() {
+        lectureRepository.getLectureByEarlyTime().
                 ifPresentOrElse(System.out::println, () -> System.out.println("No lecture"));
+    }
+
+    public void printLecturesGrouping() {
+        lectureRepository.printLecturesGroupingByTeacher();
     }
 }

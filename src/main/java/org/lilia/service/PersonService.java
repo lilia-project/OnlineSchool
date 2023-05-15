@@ -7,7 +7,14 @@ import org.lilia.exception.NoSuchPersonException;
 import org.lilia.model.Person;
 import org.lilia.model.Role;
 import org.lilia.repository.PersonRepository;
+import org.lilia.serialization.FilePath;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
 public class PersonService {
@@ -59,7 +66,6 @@ public class PersonService {
         }
     }
 
-
     public void outAllByCourse(int courseId, Role role) {
         personRepository.getByCourseId(courseId, role);
     }
@@ -106,6 +112,20 @@ public class PersonService {
 
     public Boolean checkEmail(String email) {
         return personRepository.checkEmailForDuplicate(email);
+    }
+
+    public void printMap() {
+        personRepository.printMapKeyEmailValueName();
+    }
+
+    public void printEmailsOfStudentsToFile() {
+        Path path = Paths.get(FilePath.FILE_PATH_EMAILS_OF_STUDENTS.getPath());
+        List<String> emailsOfStudents = personRepository.sortEmailsOfStudents();
+        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+            writer.write(emailsOfStudents.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

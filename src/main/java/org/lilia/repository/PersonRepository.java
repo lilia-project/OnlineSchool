@@ -8,6 +8,7 @@ import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PersonRepository {
     private final List<Person> personList = new ArrayList<>();
@@ -101,6 +102,21 @@ public class PersonRepository {
                 .map(Person::getEmail)
                 .filter(Objects::nonNull)
                 .noneMatch(it -> it.equals(email));
+    }
+
+    public void printMapKeyEmailValueName() {
+        Map<String, String> collect = personList.stream()
+                .collect(Collectors.toMap(Person::getEmail, i -> (i.getLastName() + " " + i.getFirstName())));
+        System.out.println(collect);
+    }
+
+    public List<String> sortEmailsOfStudents() {
+        List<Person> students = splitListOfPerson(personList, Role.STUDENT);
+        List<String> emailsOfStudents = students.stream()
+                .map(Person::getEmail)
+                .sorted()
+                .toList();
+        return Optional.of(emailsOfStudents).orElse(Collections.emptyList());
     }
 }
 

@@ -81,13 +81,15 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "\n id = " + id +
+        return "\n Person{" +
+                "\n id = " + id +
                 "\n Last name = " + lastName +
                 "\n First name = " + firstName +
                 "\n courseId = " + courseId +
                 "\n lectureId = " + lectureId +
                 "\n Phone = " + phone +
-                "\n Email = " + email;
+                "\n Email = " + email +
+                "\n }";
     }
 
 }
