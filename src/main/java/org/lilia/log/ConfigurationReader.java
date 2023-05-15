@@ -20,8 +20,8 @@ public class ConfigurationReader {
 
         try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
             String currentLine;
-            while ((currentLine = reader.readLine()) != null) {//while there is content on the current line
-                Pair pair = parseLine(currentLine); // print the current line
+            while ((currentLine = reader.readLine()) != null) {
+                Pair pair = parseLine(currentLine);
                 mapConfiguration.put(pair.getKey(), pair.getValue());
             }
         } catch (IOException ex) {

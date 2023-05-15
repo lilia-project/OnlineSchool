@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class LectureService {
+    private static final Logger logger = LoggerFactory.getLogger(LectureService.class);
     private final LectureRepository lectureRepository;
     private final HomeworkService homeworkService;
-    private static final Logger logger = LoggerFactory.getLogger(LectureService.class);
 
     public LectureService(LectureRepository lectureRepository, HomeworkService homeworkService) {
         this.lectureRepository = lectureRepository;
@@ -72,7 +72,7 @@ public class LectureService {
 
     private void addHomeworkIntoLecture(Lecture lecture) {
         List<Homework> list = homeworkService.findAllByLectureId(lecture.getId());
-        lecture.setList(list);
+        lecture.setHomeworkList(list);
     }
 
     public List<Lecture> findAllByCourseId(int courseId) {
@@ -109,12 +109,13 @@ public class LectureService {
     }
 
     public void backupLecture() {
-        lectureRepository.serializeList();
+        lectureRepository.serializeLecture();
     }
 
     public void deserialize() {
-        lectureRepository.deserialize();
+        lectureRepository.deserializeLecture();
     }
+
 
     public void isBeforeDate(LocalDate localDate) {
         lectureRepository.isBeforeDate(localDate);
@@ -126,5 +127,10 @@ public class LectureService {
 
     public void isBetweenDates(LocalDate localDate, LocalDate localDateSecond) {
         lectureRepository.isBetweenDate(localDate, localDateSecond);
+    }
+
+    public void getLectureInEarlyTimeCreate() {
+        lectureRepository.getLectureByEarlyTimeCreate().
+                ifPresentOrElse(System.out::println, () -> System.out.println("No lecture"));
     }
 }

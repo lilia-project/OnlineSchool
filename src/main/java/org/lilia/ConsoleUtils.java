@@ -28,9 +28,9 @@ public class ConsoleUtils {
         System.out.println("5 - create backup");
         System.out.println("6 - deserialization");
         System.out.println("7 - print all grouped by lecture");
-        System.out.println("8 - exit");
+        System.out.println("0 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-8]"));
+        return Integer.parseInt(readAndValidationInput("[0-7]"));
     }
 
     public static int choiceAction() {
@@ -40,9 +40,9 @@ public class ConsoleUtils {
         System.out.println("4 - delete");
         System.out.println("5 - create backup");
         System.out.println("6 - deserialization");
-        System.out.println("7 - exit");
+        System.out.println("0 - exit");
 
-        return Integer.parseInt(readAndValidationInput("[1-7]"));
+        return Integer.parseInt(readAndValidationInput("[0-6]"));
     }
 
     public static int choiceParameterSort() {
@@ -63,9 +63,11 @@ public class ConsoleUtils {
         System.out.println("6 - control work");
         System.out.println("7 - start server");
         System.out.println("8 - start client");
-        System.out.println("9 - exit");
+        System.out.println("9 - filter logs");
 
-        return Integer.parseInt(readAndValidationInput("[1-9]"));
+        System.out.println("0 - exit");
+
+        return Integer.parseInt(readAndValidationInput("[0-9]"));
     }
 
     public static String readAndValidationInput(String pattern) {
@@ -146,5 +148,4 @@ public class ConsoleUtils {
 
         return Integer.parseInt(readAndValidationInput(Constants.SELECT_ACTION_FROM_4));
     }
-
 }

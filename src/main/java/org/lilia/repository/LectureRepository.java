@@ -8,6 +8,7 @@ import org.lilia.serialization.Serializer;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,26 +20,18 @@ public class LectureRepository {
         list.add(lecture);
     }
 
-    public void serializeList() {
+    public void serializeLecture() {
         Serializer.serialize(list, FilePath.FILE_PATH_LECTURE);
         ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
-    public void deserialize() {
+    public void deserializeLecture() {
         String filePath = FilePath.FILE_PATH_LECTURE.getPath();
         Object deserialize = Serializer.deserialize(filePath);
         List<Lecture> lectures = (List<Lecture>) deserialize;
         ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
 
-        for (Lecture lecture : lectures) {
-            saveLecture(lecture);
-        }
-    }
-
-    private void saveLecture(Lecture lecture) {
-        if (!list.contains(lecture.getId())) {
-            list.add(lecture);
-        }
+        list.addAll(lectures);
     }
 
     public void remove(Lecture lecture) {
@@ -89,6 +82,17 @@ public class LectureRepository {
                 .filter(lecture -> lecture.getLectureDate().isAfter(localDate))
                 .filter(lecture -> lecture.getLectureDate().isBefore(localDateSecond))
                 .forEach(System.out::println);
+    }
+
+    public Optional<Lecture> getLectureByEarlyTimeCreate() {
+        return list.stream()
+                .min(Comparator.comparing(Lecture::getCreatedAt)
+                        .thenComparing(lecture -> {
+                            if (lecture.getHomeworkList() != null) {
+                                return lecture.getHomeworkList().size();
+                            }
+                            return null;
+                        }, Comparator.nullsLast(Comparator.naturalOrder())));
     }
 
 }

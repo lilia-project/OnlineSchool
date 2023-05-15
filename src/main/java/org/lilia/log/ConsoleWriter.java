@@ -1,5 +1,7 @@
 package org.lilia.log;
 
+import org.lilia.ConsoleUtils;
+
 import java.util.Map;
 
 public class ConsoleWriter implements LogWriter {
@@ -27,7 +29,7 @@ public class ConsoleWriter implements LogWriter {
 
     public void setLevel(LogLevel level) {
         if (this.level != level) {
-            System.out.println("LogLevel change from " + this.level + " to " + level);
+            ConsoleUtils.print("LogLevel change from " + this.level + " to " + level);
         }
         this.level = level;
     }

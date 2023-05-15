@@ -3,20 +3,24 @@ package org.lilia.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class Lecture implements Serializable {
-    public static int counter = 0;
+    private static int counter = 0;
 
     private final Integer id;
+
     private final LocalDate createdAt;
 
-    private LocalDate lectureDate;
+    private final LocalDate lectureDate;
 
     private String name;
+
     private int courseId;
     private int personId;
     private String description;
-    private transient List<Homework> list;
+
+    private List<Homework> homeworkList;
 
     public Lecture(String name) {
         this.name = name;
@@ -24,6 +28,10 @@ public class Lecture implements Serializable {
         this.lectureDate = LocalDate.now().plusDays((int) (Math.random() * 10));
         counter++;
         id = counter;
+    }
+
+    public static int getCounter() {
+        return counter;
     }
 
     @Override
@@ -36,7 +44,7 @@ public class Lecture implements Serializable {
                 ", courseId=" + courseId +
                 ", personId=" + personId +
                 ", description='" + description + '\'' +
-                ", list=" + list +
+                ", homeworkList=" + homeworkList +
                 '}';
     }
 
@@ -44,32 +52,40 @@ public class Lecture implements Serializable {
         return lectureDate;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
+    public int getPersonId() {
+        return personId;
     }
 
     public void setPersonId(int personId) {
         this.personId = personId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public int getPersonId() {
-        return personId;
+    public List<Homework> getHomeworkList() {
+        return homeworkList;
+    }
+
+    public void setHomeworkList(List<Homework> homeworkList) {
+        this.homeworkList = homeworkList;
     }
 
     public int getCourseId() {
         return courseId;
     }
 
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
@@ -80,7 +96,21 @@ public class Lecture implements Serializable {
         return name;
     }
 
-    public void setList(List<Homework> list) {
-        this.list = list;
+    public void setName(String name) {
+        this.name = name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lecture lecture = (Lecture) o;
+        return courseId == lecture.courseId && personId == lecture.personId && Objects.equals(id, lecture.id) && Objects.equals(createdAt, lecture.createdAt) && Objects.equals(lectureDate, lecture.lectureDate) && Objects.equals(name, lecture.name) && Objects.equals(description, lecture.description) && Objects.equals(homeworkList, lecture.homeworkList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createdAt, lectureDate, name, courseId, personId, description, homeworkList);
+    }
+
 }

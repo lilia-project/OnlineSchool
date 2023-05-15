@@ -22,14 +22,6 @@ public class AdditionalMaterial implements Serializable {
         id = counter;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLectureId(int lectureId) {
-        this.lectureId = lectureId;
-    }
-
     public void setResourceType(ResourceType resourceType) {
         this.resourceType = resourceType;
     }
@@ -42,8 +34,16 @@ public class AdditionalMaterial implements Serializable {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getLectureId() {
         return lectureId;
+    }
+
+    public void setLectureId(int lectureId) {
+        this.lectureId = lectureId;
     }
 
     @Override
@@ -76,6 +76,28 @@ public class AdditionalMaterial implements Serializable {
         return result;
     }
 
+    public enum SortField {
+        ID(1),
+        LECTURE_ID(2),
+        RESOURCE_TYPE(3);
+
+        private final int id;
+
+        SortField(int id) {
+            this.id = id;
+        }
+
+        public static SortField getById(int id) {
+            SortField[] values = values();
+            for (SortField sortField : values) {
+                if (sortField.id == id) {
+                    return sortField;
+                }
+            }
+            throw new NoSuchElementException("SortField by id " + id + " was not found");
+        }
+    }
+
     public static class IdComparator implements Comparator<AdditionalMaterial> {
 
         @Override
@@ -98,28 +120,6 @@ public class AdditionalMaterial implements Serializable {
         public int compare(AdditionalMaterial o1, AdditionalMaterial o2) {
 
             return Integer.compare(o1.resourceType.getParameter(), o2.resourceType.getParameter());
-        }
-    }
-
-    public enum SortField {
-        ID(1),
-        LECTURE_ID(2),
-        RESOURCE_TYPE(3);
-
-        private final int id;
-
-        SortField(int id) {
-            this.id = id;
-        }
-
-        public static SortField getById(int id) {
-            SortField[] values = values();
-            for (SortField sortField : values) {
-                if (sortField.id == id) {
-                    return sortField;
-                }
-            }
-            throw new NoSuchElementException("SortField by id " + id + " was not found");
         }
     }
 }

@@ -3,6 +3,7 @@ package org.lilia;
 import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.log.ConfigurationReader;
 import org.lilia.log.ConfigurationWatcher;
+import org.lilia.log.LogService;
 import org.lilia.log.LoggerFactory;
 import org.lilia.network.SelectorClient;
 import org.lilia.network.SelectorServer;
@@ -38,7 +39,8 @@ public class Main {
 
         ConfigurationWatcher configurationWatcher = new ConfigurationWatcher(LoggerFactory.CONSOLE_WRITER, configurationReader);
 
-        System.out.println("\nWelcome to Online school!");
+        ConsoleUtils.print("\nWelcome to Online school!");
+
         configurationWatcher.setDaemon(true);
         configurationWatcher.start();
 
@@ -73,7 +75,11 @@ public class Main {
                 case 6 -> controlWorkService.startControlWork();
                 case 7 -> startServer();
                 case 8 -> startClient();
-                case 9 -> ConsoleUtils.print("Do you want finish or ");
+                case 9 -> {
+                    LogService.filterLogStorageFile();
+                    LogService.filterHalfLogStorageFile();
+                }
+                case 0 -> ConsoleUtils.print("Do you want finish or ");
                 default -> ConsoleUtils.print(Constants.ERROR + "incompatible symbol");
             }
             ConsoleUtils.print(Constants.CONTINUE);
@@ -86,9 +92,9 @@ public class Main {
         Thread serverThread = new Thread(() -> {
             try {
                 new SelectorServer().start();
-                System.out.println("Server started");
+                ConsoleUtils.print("Server started");
             } catch (IOException e) {
-                System.out.println("Server is not able to start, details: " + e.getMessage());
+                ConsoleUtils.print("Server is not able to start, details: " + e.getMessage());
             }
         });
         serverThread.start();
@@ -98,9 +104,9 @@ public class Main {
         Thread clientThread = new Thread(() -> {
             try {
                 new SelectorClient().start();
-                System.out.println("Client started");
+                ConsoleUtils.print("Client started");
             } catch (IOException e) {
-                System.out.println("Client is not able to start, details: " + e.getMessage());
+                ConsoleUtils.print("Client is not able to start, details: " + e.getMessage());
             }
         });
         clientThread.start();

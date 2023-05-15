@@ -13,12 +13,47 @@ import org.lilia.service.PersonService;
 public class PersonView {
 
     private static final Logger logger = LoggerFactory.getLogger(PersonView.class);
+    private final CourseService courseService;
 
     public PersonView(CourseService courseService) {
         this.courseService = courseService;
     }
 
-    private final CourseService courseService;
+    private static void sortByLastNameTeachers(PersonService personService) {
+        String userChoice;
+        ConsoleUtils.print(Constants.SORT_BY_LAST_NAME);
+        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
+        if (userChoice.equalsIgnoreCase("Y")) {
+            personService.sortByLastName();
+        }
+        ConsoleUtils.print(Constants.SORT_LAST_NAME_BEFORE_N);
+        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+
+        if (userChoice.equalsIgnoreCase("Y")) {
+            personService.outputBeforeN();
+        }
+    }
+
+    private static Person createNewPerson(PersonService personService) {
+        ConsoleUtils.print(Constants.NAME);
+        String personName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
+
+        Role role = personService.getRole(selectRole());
+
+        return personService.createPerson(personName, role);
+    }
+
+    private static int selectRole() {
+        ConsoleUtils.print(Constants.ROLE);
+        return Integer.parseInt(ConsoleUtils.readAndValidationInput("[1-2]"));
+    }
+
+    private static void delete(PersonService personService) {
+        ConsoleUtils.print(Constants.LAST_NAME);
+        String lastName = personService.lastNameIsValid();
+        personService.delete(lastName);
+    }
 
     public void workWithPerson(PersonService personService) {
         logger.info("work with person section");
@@ -50,12 +85,8 @@ public class PersonView {
                     logger.info("selected output person");
                     outputAll(personService);
 
-                    ConsoleUtils.print(Constants.SORT_BY_LAST_NAME);
-                    userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
+                    sortByLastNameTeachers(personService);
 
-                    if (userChoice.equalsIgnoreCase("Y")) {
-                        personService.sortByLastName();
-                    }
                 }
                 case 4 -> {
                     logger.info("selected delete person");
@@ -63,13 +94,13 @@ public class PersonView {
                     logger.info("lecture deleted successful");
                 }
                 case 5 -> {
-                    ConsoleUtils.print(Constants.ROLE);
-                    Role role = personService.getRole(ConsoleUtils.readInteger());
+                    logger.info("selected create backup person");
+                    Role role = personService.getRole(selectRole());
                     personService.backupPerson(role);
                 }
                 case 6 -> {
-                    ConsoleUtils.print(Constants.ROLE);
-                    Role role = personService.getRole(ConsoleUtils.readInteger());
+                    logger.info("selected deserialize person");
+                    Role role = personService.getRole(selectRole());
                     personService.deserialize(role);
                 }
                 case 7 -> {
@@ -84,17 +115,6 @@ public class PersonView {
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
-    }
-
-    private static Person createNewPerson(PersonService personService) {
-        ConsoleUtils.print(Constants.NAME);
-        String personName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
-
-        ConsoleUtils.print(Constants.ROLE);
-        int choiceRole = ConsoleUtils.readInteger();
-        Role role = personService.getRole(choiceRole);
-
-        return personService.createPerson(personName, role);
     }
 
     private Person getPersonById(PersonService personService) {
@@ -124,7 +144,16 @@ public class PersonView {
             ConsoleUtils.print(Constants.EMAIL);
             String email = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
 
-            PersonDto personDto = personService.createPersonDto(personLastName, personName, phone, email, Integer.parseInt(courseId));
+            while (!personService.checkEmail(email)) {
+                ConsoleUtils.print("This email already registered");
+
+                ConsoleUtils.print(Constants.EMAIL);
+                email = ConsoleUtils.readAndValidationInput(Constants.NUMBER);
+
+            }
+            String emailChecked = email;
+
+            PersonDto personDto = personService.createPersonDto(personLastName, personName, phone, emailChecked, Integer.parseInt(courseId));
 
             Person personUpdate = personService.updatePerson(person, personDto);
             System.out.println(personUpdate);
@@ -138,17 +167,9 @@ public class PersonView {
         ConsoleUtils.print(Constants.COURSE_ID);
         int courseId = courseService.courseIdIsValid();
 
-        ConsoleUtils.print(Constants.ROLE);
-        int choiceRole = ConsoleUtils.readInteger();
-        Role role = personService.getRole(choiceRole);
+        Role role = personService.getRole(selectRole());
 
         personService.outAllByCourse(courseId, role);
-    }
-
-    private static void delete(PersonService personService) {
-        ConsoleUtils.print(Constants.LAST_NAME);
-        String lastName = personService.lastNameIsValid();
-        personService.delete(lastName);
     }
 
     private void print(Person person) {

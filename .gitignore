@@ -2,6 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+src/main/java/org/lilia/log/LogStorageFile
 
 ### IntelliJ IDEA ###
 .idea/
@@ -9,6 +10,7 @@ target/
 *.iws
 *.iml
 *.ipr
+
 
 
 ### Eclipse ###

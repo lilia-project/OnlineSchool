@@ -4,7 +4,6 @@ import org.lilia.ConsoleUtils;
 import org.lilia.Constants;
 import org.lilia.dto.PersonDto;
 import org.lilia.exception.NoSuchPersonException;
-import org.lilia.exception.NoSuchRoleException;
 import org.lilia.model.Person;
 import org.lilia.model.Role;
 import org.lilia.repository.PersonRepository;
@@ -19,12 +18,17 @@ public class PersonService {
     }
 
     public Person createPerson(String lastName, Role role) {
+        if (lastName == null | role == null) {
+            throw new IllegalArgumentException("last name or role is null");
+        }
         Person person = Person.createPerson(lastName, role);
+        ConsoleUtils.print(Constants.ELEMENT_CREATED + person);
         personRepository.add(person);
         return person;
     }
 
     public PersonDto createPersonDto(String lastName, String firstName, String phone, String email, int courseId) {
+
         return new PersonDto(lastName, firstName, phone, email, courseId);
     }
 
@@ -48,12 +52,13 @@ public class PersonService {
     }
 
     public Role getRole(int choiceRole) {
-        Optional<Role> role = personRepository.getRole(choiceRole);
-        if (role.isEmpty()) {
-            throw new NoSuchRoleException();
-        } else
-            return role.get();
+        if (choiceRole == 1) {
+            return Role.TEACHER;
+        } else {
+            return Role.STUDENT;
+        }
     }
+
 
     public void outAllByCourse(int courseId, Role role) {
         personRepository.getByCourseId(courseId, role);
@@ -89,11 +94,18 @@ public class PersonService {
 
     public void backupPerson(Role role) {
         personRepository.serializePerson(role);
-
     }
 
     public void deserialize(Role role) {
         personRepository.deserializePerson(role);
+    }
+
+    public void outputBeforeN() {
+        personRepository.printLastNameOfTeachersBeforeN();
+    }
+
+    public Boolean checkEmail(String email) {
+        return personRepository.checkEmailForDuplicate(email);
     }
 }
 

@@ -13,14 +13,13 @@ import java.util.List;
 
 public class HomeworkView {
 
-    private final LectureService lectureService;
     private static final Logger logger = LoggerFactory.getLogger(HomeworkView.class);
+    private static String userChoice = "Y";
+    private final LectureService lectureService;
 
     public HomeworkView(LectureService lectureService) {
         this.lectureService = lectureService;
     }
-
-    private static String userChoice = "Y";
 
     public void workWithHomework(HomeworkService homeworkService) {
         logger.info("work with homework section");

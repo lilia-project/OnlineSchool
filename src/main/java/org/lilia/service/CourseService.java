@@ -16,13 +16,13 @@ public class CourseService {
     private final CourseRepository courseRepository;
     private final LectureService lectureService;
 
-    public void sortByName() {
-        courseRepository.sortByName();
-    }
-
     public CourseService(CourseRepository courseRepository, LectureService lectureService) {
         this.courseRepository = courseRepository;
         this.lectureService = lectureService;
+    }
+
+    public void sortByName() {
+        courseRepository.sortByName();
     }
 
     public void createNewCourse(String courseName) {
@@ -89,6 +89,6 @@ public class CourseService {
     }
 
     public void deserialize() {
-        courseRepository.deserialize();
+        courseRepository.deserializeCourses();
     }
 }

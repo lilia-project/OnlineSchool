@@ -11,18 +11,18 @@ import java.util.List;
 import java.util.Optional;
 
 public class CourseRepository {
-    private static final List<Course> list = new ArrayList<>();
+    private static final List<Course> courseList = new ArrayList<>();
 
     public void add(Course course) {
-        list.add(course);
+        courseList.add(course);
     }
 
     public void remove(Course course) {
-        list.remove(course);
+        courseList.remove(course);
     }
 
     public Optional<Course> getById(int courseId) {
-        for (Course course : list) {
+        for (Course course : courseList) {
             if (course.getId() == courseId) {
                 return Optional.of(course);
             }
@@ -31,35 +31,28 @@ public class CourseRepository {
     }
 
     public void getAll() {
-        for (Course course : list) {
+        for (Course course : courseList) {
             System.out.println(course);
         }
     }
 
     public void sortByName() {
-        list.sort(new Course.CourseIDComparator());
-        System.out.println(list);
+        courseList.sort(new Course.CourseIDComparator());
+        System.out.println(courseList);
     }
 
     public void serializeCourses() {
-        Serializer.serialize(list, FilePath.FILE_PATH_COURSE);
+        Serializer.serialize(courseList, FilePath.FILE_PATH_COURSE);
         ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
-    public void deserialize() {
+    public void deserializeCourses() {
         String filePath = FilePath.FILE_PATH_COURSE.getPath();
         Object deserialize = Serializer.deserialize(filePath);
         List<Course> courses = (List<Course>) deserialize;
         ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
-
-        for (Course course : courses) {
-            saveCourse(course);
-        }
-    }
-
-    private void saveCourse(Course course) {
-        if (!list.contains(course.getId())) {
-            list.add(course);
-        }
+        courseList.addAll(courses);
     }
 }
+
+
