@@ -38,16 +38,9 @@ public class LectureRepository {
 
 
     public Optional<Lecture> getById(int id) {
-        for (Lecture lecture : list) {
-            if (lecture.getId() == id) {
-                return Optional.of(lecture);
-            }
-        }
-        return Optional.empty();
-    }
-
-    public int size() {
-        return list.size();
+        return list.stream()
+                .filter(i -> i.getId() == id)
+                .findFirst();
     }
 
     public void getAll() {

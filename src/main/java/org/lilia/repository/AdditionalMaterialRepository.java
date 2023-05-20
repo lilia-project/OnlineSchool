@@ -26,6 +26,7 @@ public class AdditionalMaterialRepository {
 
     public void add(AdditionalMaterial additionalMaterial) {
         List<AdditionalMaterial> value = data.get(additionalMaterial.getLectureId());
+
         if (value == null) {
             value = new ArrayList<>();
             value.add(additionalMaterial);
@@ -40,18 +41,10 @@ public class AdditionalMaterialRepository {
     }
 
     public Optional<AdditionalMaterial> getById(int id) {
-        Collection<List<AdditionalMaterial>> values = data.values();
-
-        for (List<AdditionalMaterial> additionalMaterials : values) {
-
-            for (AdditionalMaterial additionalMaterial : additionalMaterials) {
-
-                if (additionalMaterial.getId() == id) {
-                    return Optional.of(additionalMaterial);
-                }
-            }
-        }
-        return Optional.empty();
+        return data.values().stream()
+                .flatMap(Collection::stream)
+                .filter(r -> r.getId() == id)
+                .findFirst();
     }
 
     public void remove(AdditionalMaterial additionalMaterial) {
@@ -60,12 +53,9 @@ public class AdditionalMaterialRepository {
             return;
         }
         value.remove(additionalMaterial);
+        ConsoleUtils.print(Constants.ELEMENT_DELETED);
     }
 
-    /* public Optional<List<AdditionalMaterial>> getByLectureId(int lectureId) {
-         List<AdditionalMaterial> list = data.get(lectureId);
-         return Optional.ofNullable(list);
-     }*/
     public Optional<List<AdditionalMaterial>> getByLectureId(int lectureId) {
         List<AdditionalMaterial> list = data.get(lectureId);
         return Optional.ofNullable(list);
@@ -73,24 +63,23 @@ public class AdditionalMaterialRepository {
 
     public List<AdditionalMaterial> getAll() {
         List<AdditionalMaterial> list = new ArrayList<>();
-        for (List<AdditionalMaterial> additionalMaterials : data.values()) {
-            list.addAll(additionalMaterials);
-        }
-        return list;
+        data.values().stream()
+                .flatMap(Collection::stream)
+                .forEach(list::add);
+        return Optional.of(list).orElse(Collections.emptyList());
     }
 
     public void getAll(AdditionalMaterial.SortField sortField, int lectureId) {
 
         Optional<List<AdditionalMaterial>> list = getByLectureId(lectureId);
+
         if (list.isEmpty()) {
             System.out.println("in lecture " + lectureId + "additionMaterial not exist");
         } else {
             Comparator<AdditionalMaterial> comparator = getAdditionalMaterialComparator(sortField);
-            List<AdditionalMaterial> resList = list.get();
-            resList.sort(comparator);
-            for (AdditionalMaterial additionalMaterial : resList) {
-                System.out.println(additionalMaterial);
-            }
+            list.get().stream()
+                    .sorted(comparator)
+                    .forEach(System.out::println);
         }
     }
 

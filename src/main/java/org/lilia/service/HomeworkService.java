@@ -7,7 +7,6 @@ import org.lilia.exception.NoSuchHomeworkException;
 import org.lilia.model.Homework;
 import org.lilia.repository.HomeworkRepository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,9 +45,8 @@ public class HomeworkService {
         return homework.get();
     }
 
-    public List<Homework> findAllByLectureId(int lectureId) {
-        Optional<List<Homework>> byLectureId = homeworkRepository.getByLectureId(lectureId);
-        return byLectureId.orElse(Collections.emptyList());
+    public Optional<List<Homework>> findAllByLectureId(int lectureId) {
+        return homeworkRepository.getByLectureId(lectureId);
     }
 
     public void deleteById(int homeworkId) {
@@ -58,8 +56,8 @@ public class HomeworkService {
             throw new NoSuchHomeworkException(homeworkId);
         } else {
             homeworkRepository.remove(homework.get());
+            ConsoleUtils.print(Constants.ELEMENT_DELETED);
         }
-        ConsoleUtils.print(Constants.ELEMENT_DELETED);
     }
 
     public int homeworkIdIsValid() {
@@ -75,12 +73,10 @@ public class HomeworkService {
 
     public void backupHomework() {
         homeworkRepository.serializeHomework();
-
     }
 
     public void deserialization() {
         homeworkRepository.deserialize();
-
     }
 }
 

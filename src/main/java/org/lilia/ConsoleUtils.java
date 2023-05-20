@@ -96,7 +96,6 @@ public class ConsoleUtils {
             boolean matches = data.matches(pattern);
             if (!matches) {
                 logger.error("unexpected input");
-
             } else {
                 return data;
             }

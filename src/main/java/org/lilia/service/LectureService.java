@@ -6,7 +6,6 @@ import org.lilia.dto.LectureDto;
 import org.lilia.exception.NoSuchLectureIdException;
 import org.lilia.log.Logger;
 import org.lilia.log.LoggerFactory;
-import org.lilia.model.Homework;
 import org.lilia.model.Lecture;
 import org.lilia.repository.LectureRepository;
 
@@ -71,8 +70,7 @@ public class LectureService {
     }
 
     private void addHomeworkIntoLecture(Lecture lecture) {
-        List<Homework> list = homeworkService.findAllByLectureId(lecture.getId());
-        lecture.setHomeworkList(list);
+        lecture.setHomeworkList(homeworkService.findAllByLectureId(lecture.getId()).orElse(Collections.emptyList()));
     }
 
     public List<Lecture> findAllByCourseId(int courseId) {

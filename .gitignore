@@ -5,11 +5,12 @@ target/
 src/main/java/org/lilia/log/LogStorageFile
 
 ### IntelliJ IDEA ###
-.idea/
+.idea
 .idea/workspace.xml
 *.iws
 *.iml
 *.ipr
+*.log
 
 
 

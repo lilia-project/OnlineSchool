@@ -55,7 +55,7 @@ public class AdditionalMaterialView {
                         case 3:
                             sortMaterial(additionalMaterialService, lectureId);
                             break;
-                        case 4:
+                        case 0:
                             break;
                         default:
                             ConsoleUtils.print(Constants.ERROR);
@@ -156,8 +156,6 @@ public class AdditionalMaterialView {
         String additionalMaterialName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
         additionalMaterialService.createAdditionalMaterial(additionalMaterialName, lectureId);
-
-
     }
 
     private void print(AdditionalMaterial additionalMaterial) {

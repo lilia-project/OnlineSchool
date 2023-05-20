@@ -46,7 +46,6 @@ public class AdditionalMaterialService {
             throw new NoSuchMaterialIdException(additionalMaterialId);
         }
         additionalMaterialRepository.remove(additionalMaterial.get());
-        ConsoleUtils.print(Constants.ELEMENT_DELETED);
     }
 
     public int additionalMaterialIdIsValid() {
@@ -66,6 +65,7 @@ public class AdditionalMaterialService {
             throw new NoSuchMaterialIdException(additionalMaterialId);
         }
         return additionalMaterial.get();
+        // return Optional.of(additionalMaterialRepository.getById(additionalMaterialId)).orElse(Optional.empty());
     }
 
     public int size() {
@@ -86,9 +86,7 @@ public class AdditionalMaterialService {
     }
 
     public List<AdditionalMaterial> findAllByLectureId(int lectureId) {
-        if (additionalMaterialRepository.getByLectureId(lectureId).isPresent()) {
-            return additionalMaterialRepository.getByLectureId(lectureId).get();
-        } else return Collections.emptyList();
+        return additionalMaterialRepository.getByLectureId(lectureId).orElse(Collections.emptyList());
     }
 
     public void backupMaterial() {
