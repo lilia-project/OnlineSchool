@@ -1,10 +1,10 @@
 package org.lilia.view;
 
-import org.lilia.ConsoleUtils;
-import org.lilia.Constants;
+import org.lilia.constant.Constants;
 import org.lilia.dto.CourseDto;
 import org.lilia.model.Course;
 import org.lilia.service.CourseService;
+import org.lilia.util.ConsoleUtils;
 
 public class CourseView {
 

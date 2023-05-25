@@ -1,13 +1,13 @@
 package org.lilia.service;
 
-import org.lilia.ConsoleUtils;
-import org.lilia.Constants;
+import org.lilia.constant.Constants;
 import org.lilia.dto.PersonDto;
 import org.lilia.exception.NoSuchPersonException;
 import org.lilia.model.Person;
 import org.lilia.model.Role;
 import org.lilia.repository.PersonRepository;
 import org.lilia.serialization.FilePath;
+import org.lilia.util.ConsoleUtils;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

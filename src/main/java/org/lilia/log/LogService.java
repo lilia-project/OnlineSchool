@@ -1,7 +1,7 @@
 package org.lilia.log;
 
-import org.lilia.ConsoleUtils;
 import org.lilia.serialization.FilePath;
+import org.lilia.util.ConsoleUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

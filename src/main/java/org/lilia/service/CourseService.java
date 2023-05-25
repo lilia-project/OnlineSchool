@@ -1,12 +1,12 @@
 package org.lilia.service;
 
-import org.lilia.ConsoleUtils;
-import org.lilia.Constants;
+import org.lilia.constant.Constants;
 import org.lilia.dto.CourseDto;
 import org.lilia.exception.NoSuchCourseIdException;
 import org.lilia.model.Course;
 import org.lilia.model.Lecture;
 import org.lilia.repository.CourseRepository;
+import org.lilia.util.ConsoleUtils;
 
 import java.util.List;
 import java.util.Optional;

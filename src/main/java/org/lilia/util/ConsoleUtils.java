@@ -1,5 +1,6 @@
-package org.lilia;
+package org.lilia.util;
 
+import org.lilia.constant.Constants;
 import org.lilia.exception.InvalidUserInputException;
 import org.lilia.log.Logger;
 import org.lilia.log.LoggerFactory;
