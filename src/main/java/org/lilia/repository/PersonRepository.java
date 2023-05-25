@@ -41,30 +41,21 @@ public class PersonRepository {
     }
 
     public Optional<Person> getById(int id) {
-
-        for (Person person : personList) {
-            if (person.getId() == id) {
-                return Optional.of(person);
-            }
-        }
-        return Optional.empty();
+        return personList.stream()
+                .filter(i -> i.getId() == id)
+                .findFirst();
     }
 
     public void getByCourseId(int courseId, Role role) {
-        for (Person person : personList) {
-            if (person.getCourseId() == courseId & person.getRole().equals(role)) {
-                System.out.println(person);
-            }
-        }
+        personList.stream()
+                .filter(i -> i.getCourseId() == courseId & i.getRole().equals(role))
+                .forEach(System.out::println);
     }
 
     public Optional<Person> getByLastName(String personLastName) {
-        for (Person person : personList) {
-            if (person.getLastName().equals(personLastName)) {
-                return Optional.of(person);
-            }
-        }
-        return Optional.empty();
+        return personList.stream()
+                .filter(p -> p.getLastName().equals(personLastName))
+                .findFirst();
     }
 
     public void sortByLastName() {

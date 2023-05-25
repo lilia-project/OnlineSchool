@@ -1,6 +1,7 @@
 package org.lilia.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Homework implements Serializable {
@@ -10,6 +11,7 @@ public class Homework implements Serializable {
 
     private int lectureId;
     private String task;
+    transient private LocalDate deadline;
 
     public Homework(int lectureId, String task) {
         this.lectureId = lectureId;
@@ -45,6 +47,7 @@ public class Homework implements Serializable {
     @Override
     public String toString() {
         return "\n homeworkId = " + id +
+                "\n homeworkDeadline = " + deadline +
                 "\n lecture's id = " + lectureId +
                 "\n homework's name = '" + task + "'";
     }

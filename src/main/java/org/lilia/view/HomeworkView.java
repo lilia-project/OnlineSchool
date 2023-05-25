@@ -9,8 +9,6 @@ import org.lilia.model.Homework;
 import org.lilia.service.HomeworkService;
 import org.lilia.service.LectureService;
 
-import java.util.List;
-
 public class HomeworkView {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeworkView.class);
@@ -26,7 +24,7 @@ public class HomeworkView {
         String userChoice = "Y";
         while (userChoice.equalsIgnoreCase("Y")) {
             switch (ConsoleUtils.choiceAction()) {
-                case 1:
+                case 1 -> {
                     while (userChoice.equalsIgnoreCase("Y")) {
 
                         logger.info("selected to create homework");
@@ -34,19 +32,13 @@ public class HomeworkView {
                         createNewHomework(homeworkService);
 
                         logger.info("homework created successful");
-
-                        ConsoleUtils.print(Constants.CREATE_NEW);
-                        userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     logger.info("selected to get homework by id");
-
                     Homework homework = getHomeworkById(homeworkService);
-
                     ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-
                     while (userChoice.equalsIgnoreCase("Y")) {
 
                         editHomework(homeworkService, homework);
@@ -54,15 +46,12 @@ public class HomeworkView {
                         ConsoleUtils.print(Constants.ELEMENT_EDIT);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     logger.info("selected to get all homeworks by lecture id");
-
                     int lectureId = outputAllByLectureId(homeworkService);
-
                     ConsoleUtils.print(Constants.ACTION);
                     int action = ConsoleUtils.workWithListHomework();
-
                     switch (action) {
                         case 1 -> addNewHomework(homeworkService, lectureId);
                         case 2 -> deleteHomework(homeworkService);
@@ -72,26 +61,22 @@ public class HomeworkView {
                             ConsoleUtils.print(Constants.ERROR);
                         }
                     }
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     logger.info("selected delete homework");
                     deleteHomework(homeworkService);
                     logger.info("homework deleted successful");
-                    break;
-                case 5:
-                    homeworkService.backupHomework();
-                    break;
-                case 6:
-                    homeworkService.deserialization();
-                    break;
-                case 7:
+                }
+                case 5 -> homeworkService.backupHomework();
+                case 6 -> homeworkService.deserialization();
+                case 7 -> {
                     logger.info("selected EXIT");
                     ConsoleUtils.print(Constants.EXIT);
-                    break;
-                default:
+                }
+                default -> {
                     logger.error(Constants.ERROR);
                     ConsoleUtils.print(Constants.ERROR);
-                    break;
+                }
             }
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
@@ -101,8 +86,7 @@ public class HomeworkView {
     private int outputAllByLectureId(HomeworkService homeworkService) {
         ConsoleUtils.print(Constants.LECTURE_ID);
         int lectureId = lectureService.lectureIdIsValid();
-        List<Homework> allByLectureId = homeworkService.findAllByLectureId(lectureId);
-        System.out.println(allByLectureId);
+        homeworkService.findAllByLectureId(lectureId).ifPresent(i -> System.out.println());
         return lectureId;
     }
 

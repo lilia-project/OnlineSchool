@@ -1,24 +1,27 @@
 package org.lilia.log;
 
-import java.io.File;
-import java.io.FileWriter;
+import org.lilia.serialization.FilePath;
+
 import java.io.IOException;
-import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 
 public class FileSaver implements LogWriter {
-
-    public static final String LOG_STORAGE_FILE = "src/main/java/org/lilia/log/LogStorageFile";
-
-    private final File file = new File(LOG_STORAGE_FILE);
 
     @Override
     public void write(Log log) {
 
         String stringLog = log.toString();
-        try (Writer writer = new FileWriter(file, true)) {
-            writer.append(stringLog).append("\n");
+        try {
+            final Path path = Path.of(FilePath.FILE_PATH_LOG_STORAGE_FILE.getPath());
+            if (!Files.exists(path)) {
+                throw new IllegalStateException();
+            }
+            Files.write(path, System.getProperty("line.separator").getBytes(), StandardOpenOption.APPEND);
+            Files.write(path, stringLog.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }

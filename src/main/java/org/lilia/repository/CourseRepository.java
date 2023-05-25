@@ -22,12 +22,16 @@ public class CourseRepository {
     }
 
     public Optional<Course> getById(int courseId) {
-        for (Course course : courseList) {
+        return courseList.stream()
+                .filter(i -> i.getId() == courseId)
+                .findFirst();
+
+        /*for (Course course : courseList) {
             if (course.getId() == courseId) {
                 return Optional.of(course);
             }
         }
-        return Optional.empty();
+        return Optional.empty();*/
     }
 
     public void getAll() {

@@ -10,7 +10,7 @@ public class Log {
 
     private final String message;
     private final LocalDateTime createdAt;
-    DateTimeFormatter dTF = DateTimeFormatter.ofPattern("d-MM-yyyy HH:mm:ss:SSS");
+    private final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("d-MM-yyyy HH:mm:ss:SSS");
     private String stackTrace;
 
     protected Log(String name, String logLevel, String message, String stackTrace) {
@@ -30,7 +30,7 @@ public class Log {
 
     @Override
     public String toString() {
-        String log = createdAt.format(dTF) +
+        String log = createdAt.format(DTF) +
                 " " + logLevel +
                 " " + name +
                 " " + message;

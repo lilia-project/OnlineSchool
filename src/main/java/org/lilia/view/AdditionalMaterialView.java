@@ -24,7 +24,7 @@ public class AdditionalMaterialView {
         while (userChoice.equalsIgnoreCase("Y")) {
 
             switch (ConsoleUtils.choiceActionForAddMaterial()) {
-                case 1:
+                case 1 -> {
                     while (userChoice.equalsIgnoreCase("Y")) {
 
                         createNew(additionalMaterialService);
@@ -32,18 +32,15 @@ public class AdditionalMaterialView {
                         ConsoleUtils.print(Constants.CREATE_NEW);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     }
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     AdditionalMaterial additionalMaterial = getAdditionalMaterial(additionalMaterialService);
-
                     ConsoleUtils.print(Constants.ELEMENT_EDIT);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-
                     editAdditionMaterial(additionalMaterialService, additionalMaterial);
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     int lectureId = getAllByLectureId(additionalMaterialService);
-
                     ConsoleUtils.print(Constants.ACTION);
                     int action = ConsoleUtils.workWithListAddMaterial();
                     switch (action) {
@@ -58,32 +55,22 @@ public class AdditionalMaterialView {
                         case 3:
                             sortMaterial(additionalMaterialService, lectureId);
                             break;
-                        case 4:
+                        case 0:
                             break;
                         default:
                             ConsoleUtils.print(Constants.ERROR);
                             break;
                     }
-                    break;
-                case 4:
-                    deleteAdditionalMaterial(additionalMaterialService);
-                    break;
-                case 5:
+                }
+                case 4 -> deleteAdditionalMaterial(additionalMaterialService);
+                case 5 -> {
                     additionalMaterialService.backupMaterial();
                     System.out.println("Backup created");
-                    break;
-                case 6:
-                    additionalMaterialService.deserialize();
-                    break;
-                case 7:
-                    additionalMaterialService.printAllWithGroupingByLectureId();
-                    break;
-                case 8:
-                    ConsoleUtils.print(Constants.EXIT);
-                    break;
-                default:
-                    ConsoleUtils.print(Constants.ERROR);
-                    break;
+                }
+                case 6 -> additionalMaterialService.deserialize();
+                case 7 -> additionalMaterialService.printAllWithGroupingByLectureId();
+                case 8 -> ConsoleUtils.print(Constants.EXIT);
+                default -> ConsoleUtils.print(Constants.ERROR);
             }
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
@@ -169,8 +156,6 @@ public class AdditionalMaterialView {
         String additionalMaterialName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
         additionalMaterialService.createAdditionalMaterial(additionalMaterialName, lectureId);
-
-
     }
 
     private void print(AdditionalMaterial additionalMaterial) {

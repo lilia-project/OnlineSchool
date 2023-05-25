@@ -6,12 +6,11 @@ import org.lilia.dto.LectureDto;
 import org.lilia.exception.NoSuchLectureIdException;
 import org.lilia.log.Logger;
 import org.lilia.log.LoggerFactory;
-import org.lilia.model.Homework;
 import org.lilia.model.Lecture;
 import org.lilia.repository.LectureRepository;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +29,7 @@ public class LectureService {
             throw new IllegalArgumentException("lecture name is null");
         }
         Lecture lecture = new Lecture(lectureName);
-        lectureRepository.add(lecture);
+        lectureRepository.addNewLecture(lecture);
         ConsoleUtils.print(Constants.ELEMENT_CREATED + lecture);
         return lecture;
     }
@@ -71,22 +70,11 @@ public class LectureService {
     }
 
     private void addHomeworkIntoLecture(Lecture lecture) {
-        List<Homework> list = homeworkService.findAllByLectureId(lecture.getId());
-        lecture.setHomeworkList(list);
+        lecture.setHomeworkList(homeworkService.findAllByLectureId(lecture.getId()).orElse(Collections.emptyList()));
     }
 
     public List<Lecture> findAllByCourseId(int courseId) {
-
-        List<Lecture> resList = new ArrayList<>();
-        Optional<Lecture> lecture;
-
-        for (int i = 0; i < lectureRepository.size(); i++) {
-            if (lectureRepository.getByCourseId(courseId).isPresent()) {
-                lecture = lectureRepository.getByCourseId(courseId);
-                resList.add(lecture.get());
-            }
-        }
-        return resList;
+        return Optional.of(lectureRepository.getByCourseId(courseId)).orElse(Collections.emptyList());
     }
 
     public void deleteById(int lectureId) {
@@ -117,15 +105,15 @@ public class LectureService {
     }
 
 
-    public void isBeforeDate(LocalDate localDate) {
+    public void isBeforeDate(LocalDateTime localDate) {
         lectureRepository.isBeforeDate(localDate);
     }
 
-    public void isAfterDate(LocalDate localDate) {
+    public void isAfterDate(LocalDateTime localDate) {
         lectureRepository.isAfterDate(localDate);
     }
 
-    public void isBetweenDates(LocalDate localDate, LocalDate localDateSecond) {
+    public void isBetweenDates(LocalDateTime localDate, LocalDateTime localDateSecond) {
         lectureRepository.isBetweenDate(localDate, localDateSecond);
     }
 

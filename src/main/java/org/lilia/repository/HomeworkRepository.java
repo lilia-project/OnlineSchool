@@ -24,11 +24,10 @@ public class HomeworkRepository {
     }
 
     public List<Homework> getAll() {
-        List<Homework> list = new ArrayList<>();
-        for (List<Homework> homeworks : data.values()) {
-            list.addAll(homeworks);
-        }
-        return Optional.of(list).orElse(Collections.emptyList());
+        List<Homework> homeworks = data.values().stream()
+                .flatMap(Collection::stream)
+                .toList();
+        return Optional.of(homeworks).orElse(Collections.emptyList());
     }
 
     public void remove(Homework homework) {
@@ -41,16 +40,10 @@ public class HomeworkRepository {
 
     public Optional<Homework> getById(int id) {
         Collection<List<Homework>> values = data.values();
-        for (List<Homework> homeworks : values) {
-
-            for (Homework homework : homeworks) {
-
-                if (homework.getId() == id) {
-                    return Optional.of(homework);
-                }
-            }
-        }
-        return Optional.empty();
+        return values.stream()
+                .flatMap(Collection::stream)
+                .filter(homework -> homework.getId() == id)
+                .findFirst();
     }
 
     public Optional<List<Homework>> getByLectureId(int lectureId) {
