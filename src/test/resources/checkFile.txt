@@ -1,0 +1,3 @@
+18-05-2023 22:30:06:482 ERROR org.lilia.ConsoleUtils invalid user input
+18-05-2023 22:30:06:486 WARNING org.lilia.ConsoleUtils unexpected input org.lilia.exception.InvalidUserInputException: expected String that matches pattern: [y|Y|n|N] , got: ooo
+18-05-2023 22:30:21:622 INFO org.lilia.view.HomeworkView selected to create homework

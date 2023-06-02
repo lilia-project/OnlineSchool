@@ -15,6 +15,7 @@ public class AdditionalMaterial implements Serializable {
     private int lectureId;
     private ResourceType resourceType;
 
+
     public AdditionalMaterial(String name, int lectureId) {
         this.name = name;
         this.lectureId = lectureId;
