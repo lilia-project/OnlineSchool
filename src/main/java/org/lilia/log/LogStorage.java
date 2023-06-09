@@ -9,6 +9,7 @@ public class LogStorage {
     private final List<LogWriter> logWriters;
 
     public LogStorage(List<LogWriter> logWriters) {
+
         this.logWriters = logWriters;
     }
 

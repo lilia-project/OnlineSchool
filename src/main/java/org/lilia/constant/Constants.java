@@ -1,4 +1,4 @@
-package org.lilia;
+package org.lilia.constant;
 
 public final class Constants {
     public static final String ACTION = "\nselect the action";

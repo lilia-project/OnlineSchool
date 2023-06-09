@@ -1,8 +1,13 @@
 package org.lilia.log;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@EqualsAndHashCode
+@Getter
 public class Log {
     private final String name;
 
@@ -40,8 +45,5 @@ public class Log {
         return log;
     }
 
-    public String getLogLevel() {
-        return logLevel;
-    }
 }
 

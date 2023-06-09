@@ -1,10 +1,10 @@
 package org.lilia.repository;
 
-import org.lilia.ConsoleUtils;
-import org.lilia.Constants;
+import org.lilia.constant.Constants;
 import org.lilia.model.Lecture;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
+import org.lilia.util.ConsoleUtils;
 
 import java.time.LocalDateTime;
 import java.util.*;

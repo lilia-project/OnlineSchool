@@ -1,12 +1,12 @@
 package org.lilia.view;
 
-import org.lilia.ConsoleUtils;
-import org.lilia.Constants;
+import org.lilia.constant.Constants;
 import org.lilia.dto.AdditionalMaterialDto;
 import org.lilia.model.AdditionalMaterial;
 import org.lilia.model.ResourceType;
 import org.lilia.service.AdditionalMaterialService;
 import org.lilia.service.LectureService;
+import org.lilia.util.ConsoleUtils;
 
 import java.util.List;
 

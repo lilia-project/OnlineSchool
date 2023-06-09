@@ -13,6 +13,7 @@ public class Homework implements Serializable {
     private String task;
     transient private LocalDate deadline;
 
+
     public Homework(int lectureId, String task) {
         this.lectureId = lectureId;
         this.task = task;

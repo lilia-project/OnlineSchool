@@ -1,13 +1,13 @@
 package org.lilia.view;
 
-import org.lilia.ConsoleUtils;
-import org.lilia.Constants;
+import org.lilia.constant.Constants;
 import org.lilia.dto.HomeworkDto;
 import org.lilia.log.Logger;
 import org.lilia.log.LoggerFactory;
 import org.lilia.model.Homework;
 import org.lilia.service.HomeworkService;
 import org.lilia.service.LectureService;
+import org.lilia.util.ConsoleUtils;
 
 public class HomeworkView {
 

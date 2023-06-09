@@ -1,6 +1,6 @@
 package org.lilia.log;
 
-import org.lilia.ConsoleUtils;
+import org.lilia.util.ConsoleUtils;
 
 import java.io.IOException;
 import java.nio.file.*;
