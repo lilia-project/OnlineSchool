@@ -36,10 +36,6 @@ public class AdditionalMaterialRepository {
         }
     }
 
-    public int size() {
-        return data.size();
-    }
-
     public Optional<AdditionalMaterial> getById(int id) {
         return data.values().stream()
                 .flatMap(Collection::stream)

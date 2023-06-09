@@ -1,10 +1,13 @@
 package org.lilia.model;
 
+import lombok.Getter;
+
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
+@Getter
 public class AdditionalMaterial implements Serializable {
     private static int counter = 0;
 
@@ -27,20 +30,8 @@ public class AdditionalMaterial implements Serializable {
         this.resourceType = resourceType;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getLectureId() {
-        return lectureId;
     }
 
     public void setLectureId(int lectureId) {
