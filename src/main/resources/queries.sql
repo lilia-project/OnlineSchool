@@ -13,18 +13,8 @@ SELECT *, (SELECT count(*) FROM public.homework where lecture_id = lec.id) AS hw
     ORDER BY create_at ASC, hw_count DESC
     LIMIT 1;
 4)
-SELECT COUNT(resource_type)
-    FROM public.addition_material
-    WHERE resource_type='URL' ;
-
-SELECT resource_type, COUNT(resource_type) AS count
+SELECT resource_type, COUNT(resource_type) AS count_type
 	FROM public.addition_material
-	WHERE resource_type='BOOK'
-	GROUP BY resource_type;
-
-SELECT resource_type, COUNT(resource_type) AS count
-	FROM public.addition_material
-	WHERE resource_type='VIDEO'
 	GROUP BY resource_type;
 5)
 SELECT role, last_name
