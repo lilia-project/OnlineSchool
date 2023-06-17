@@ -22,7 +22,6 @@ public class AdditionalMaterialService {
     public void createAdditionalMaterial(String name, int lectureId) {
         AdditionalMaterial additionalMaterial = new AdditionalMaterial(name, lectureId);
         additionalMaterialRepository.add(additionalMaterial);
-        ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
     public AdditionalMaterialDto createAdditionalMaterialDto(int lectureId, String name, ResourceType resourceType) {
@@ -65,18 +64,13 @@ public class AdditionalMaterialService {
             throw new NoSuchMaterialIdException(additionalMaterialId);
         }
         return additionalMaterial.get();
-        // return Optional.of(additionalMaterialRepository.getById(additionalMaterialId)).orElse(Optional.empty());
-    }
-
-    public int size() {
-        return additionalMaterialRepository.size();
     }
 
     public AdditionalMaterial updateAdditionalMaterial(AdditionalMaterial additionalMaterial, AdditionalMaterialDto additionalMaterialDto) {
-        if ((additionalMaterialDto.getName()) != null) {
+        if (!(additionalMaterialDto.getName()).isEmpty()) {
             additionalMaterial.setName(additionalMaterialDto.getName());
         }
-        if (additionalMaterialDto.getResourceType() != null) {
+        if (!(additionalMaterialDto.getResourceType()).equals(additionalMaterial.getResourceType())) {
             additionalMaterial.setResourceType(additionalMaterialDto.getResourceType());
         }
         if (additionalMaterialDto.getLectureId() != 0) {

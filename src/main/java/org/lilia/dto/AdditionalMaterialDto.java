@@ -1,7 +1,9 @@
 package org.lilia.dto;
 
+import lombok.EqualsAndHashCode;
 import org.lilia.model.ResourceType;
 
+@EqualsAndHashCode
 public class AdditionalMaterialDto {
     private final int lectureId;
     private final String name;
