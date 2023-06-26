@@ -46,6 +46,9 @@ public class Main {
         configurationWatcher.setDaemon(true);
         configurationWatcher.start();
 
+        courseRepository.createTableOfCourse(); // todo process exception
+
+
         ConsoleUtils.print(Constants.CONTINUE);
         String userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 

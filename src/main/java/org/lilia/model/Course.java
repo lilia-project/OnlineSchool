@@ -6,17 +6,22 @@ import java.util.List;
 import java.util.Objects;
 
 public class Course implements Serializable {
-    private static int counter = 0;
+//    private static int counter = 0;
 
     private final Integer id;
     private String name;
 
     private List<Lecture> list;
 
-    public Course(String name) {
+//    public Course(String name) {
+//        this.name = name;
+//        counter++;
+//        id = counter;
+//    }
+
+    public Course(Integer id, String name) {
+        this.id = id;
         this.name = name;
-        counter++;
-        id = counter;
     }
 
 

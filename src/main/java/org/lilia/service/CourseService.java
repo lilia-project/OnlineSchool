@@ -29,9 +29,9 @@ public class CourseService {
         if (courseName == null) {
             throw new IllegalArgumentException("course name is null");
         }
-        Course course = new Course(courseName);
-        courseRepository.add(course);
-        ConsoleUtils.print(Constants.ELEMENT_CREATED + course);
+        int courseId = courseRepository.insertValue(courseName);
+        courseRepository.getById(courseId);
+        ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
     public CourseDto createCourseDto(String courseName) {
@@ -46,7 +46,7 @@ public class CourseService {
     }
 
     public void outputAll() {
-        courseRepository.getAll();
+        courseRepository.getAllCourses();
     }
 
     public Course getRequireById(int courseId) {

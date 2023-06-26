@@ -1,10 +1,10 @@
-INSERT INTO public.course(id, name)
+insert into public.course(id, name)
 	VALUES (1, 'Math'),
            (2, 'Informatics'),
            (3, 'Biology'),
            (4,'Literature');
 
-INSERT INTO public.person(id, role, last_name, first_name, phone, email, course_id)
+insert into public.person(id, role, last_name, first_name, phone, email, course_id)
 	VALUES (1, 'STUDENT','Leonov','Leon','0963459203','0963459203@gmail.com',1),
 	       (2, 'STUDENT','Makarova','Marina','0917159203','0917159203@gmail.com',1),
 	       (3, 'STUDENT','Markov','Mark','0967159203','0967159203@gmail.com',2),
@@ -15,13 +15,13 @@ INSERT INTO public.person(id, role, last_name, first_name, phone, email, course_
 	       (8, 'STUDENT','Nazarenko','Nazar','0963459999','0963459999@gmail.com',1),
 	       (9, 'STUDENT','Azarova','Lina','0963459977','0963459977@gmail.com',3);
 
-INSERT INTO public.person(id, role, last_name, first_name, phone, email, course_id)
+insert into public.person(id, role, last_name, first_name, phone, email, course_id)
 	VALUES (10, 'TEACHER','Altov','Alex','0953459999','0953459999@gmail.com',1),
 	       (11, 'TEACHER','Mohov','Evgen','0953459993','0953459993@gmail.com',2),
            (12, 'TEACHER','Ilster','Vlad','0353459993','0353459993@gmail.com',3),
 	       (13, 'TEACHER','Baranov','Ilia','0353450993','0353450993@gmail.com',4);
 
-INSERT INTO public.lecture(id, name, course_id, person_id, create_at, lecture_date)
+insert into public.lecture(id, name, course_id, person_id, create_at, lecture_date)
 	VALUES (1, 'Introduction2', 2,	11,	'2023-06-11 00:00:00', '2023-06-14 00:00:00'),
     	   (2, 'First lecture', 1, 10, '2023-06-08 00:00:00', '2023-06-17 00:00:00'),
     	   (3, 'Introduction', 1, 10, '2023-06-10 00:00:00', '2023-06-19 00:00:00'),
@@ -38,7 +38,7 @@ INSERT INTO public.lecture(id, name, course_id, person_id, create_at, lecture_da
     	   (14, 'Lecture 5.4', 4, 13, '2022-06-18 00:00:00', '2022-06-24 00:00:00');
 
 
-INSERT INTO public.addition_material(id, name, lecture_id, resource_type)
+insert into public.addition_material(id, name, lecture_id, resource_type)
 	VALUES (1, 'Material 1', 1,	'URL'),
            (2, 'Material 1', 1,	'BOOK'),
            (3, 'Material 2', 2, 'BOOK'),
@@ -57,7 +57,7 @@ INSERT INTO public.addition_material(id, name, lecture_id, resource_type)
            (16,	'Material 5', 5, 'BOOK'),
            (17,	'Material 3', 3, 'URL');
 
-INSERT INTO public.homework(id, task, lecture_id)
+insert into public.homework(id, task, lecture_id)
 	VALUES (1,	'Task 11', 1),
            (2,	'Task 21', 1),
            (3,	'Task 12', 2),
@@ -84,7 +84,7 @@ INSERT INTO public.homework(id, task, lecture_id)
            (24, 'Task 51', 14),
            (25, 'Task 52', 14);
 
-INSERT INTO public.student_course(
+insert into public.student_course(
 	student_id, course_id)
 	VALUES (1, 1),
            (1, 4),

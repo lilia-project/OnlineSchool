@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+
 @Data
 public class Lecture implements Serializable {
     private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("MMM d, EEE HH:mm:ss", Locale.ENGLISH);
