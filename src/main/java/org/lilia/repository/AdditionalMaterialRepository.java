@@ -9,7 +9,7 @@ import org.lilia.util.ConsoleUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class AdditionalMaterialRepository extends AbstractRepository {
+public class AdditionalMaterialRepository extends ConnectionFactory {
 
     private final Map<Integer, List<AdditionalMaterial>> data = new HashMap<>();
 

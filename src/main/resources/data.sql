@@ -99,7 +99,11 @@ insert into public.student_course(
            (9, 1),
            (9, 2),
            (9, 3);
-
+select setval((select pg_get_serial_sequence('public.course', 'id')), (select max(id) from public.course));
+select setval((select pg_get_serial_sequence('public.person', 'id')), (select max(id) from public.person));
+select setval((select pg_get_serial_sequence('public.lecture', 'id')), (select max(id) from public.lecture));
+select setval((select pg_get_serial_sequence('public.addition_material', 'id')), (select max(id) from public.addition_material));
+select setval((select pg_get_serial_sequence('public.homework', 'id')), (select max(id) from public.homework));
 
 
 

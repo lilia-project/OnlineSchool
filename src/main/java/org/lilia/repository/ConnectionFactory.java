@@ -5,7 +5,7 @@ import lombok.SneakyThrows;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class AbstractRepository {
+public class ConnectionFactory {
     @SneakyThrows
     public static Connection createConnection() {
         final String url = "jdbc:postgresql://localhost:5432/online_school";

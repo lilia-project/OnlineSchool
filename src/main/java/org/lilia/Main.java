@@ -21,6 +21,10 @@ public class Main {
 
     public static void main(String[] args) throws NoSuchMaterialIdException, InterruptedException {
 
+        DataBaseInitializer.createTables();
+
+        DataBaseInitializer.fillTables();
+
         LectureRepository lectureRepository = new LectureRepository();
         HomeworkRepository homeworkRepository = new HomeworkRepository();
         HomeworkService homeworkService = new HomeworkService(homeworkRepository);
@@ -45,9 +49,6 @@ public class Main {
 
         configurationWatcher.setDaemon(true);
         configurationWatcher.start();
-
-        courseRepository.createTableOfCourse(); // todo process exception
-
 
         ConsoleUtils.print(Constants.CONTINUE);
         String userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
