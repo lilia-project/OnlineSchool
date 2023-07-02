@@ -6,17 +6,132 @@ import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class CourseRepository extends ConnectionFactory {
 
-    public static void sortByName() {
+    public int insertValue(String name) {
+        try {
+            final String sql = """
+                    INSERT INTO public.course(
+                    \tname)
+                    \tVALUES (?);""";
+
+            try (Connection connection = createConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+                preparedStatement.setString(1, name);
+                preparedStatement.executeUpdate();
+
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    final int anInt = generatedKeys.getInt(1);
+                    return anInt;
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Connection failed..." + ex);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public Optional<Course> getById(final int id) {
+        try {
+            String sql = "SELECT * FROM public.course WHERE id = ?";
+            try (Connection connection = createConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+                preparedStatement.setInt(1, id);
+                final ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    Course course = new Course(resultSet.getInt("id"), resultSet.getString("name"));
+
+                    return Optional.of(course);
+                }
+            } catch (SQLException ex) {
+                System.out.println("Connection failed..." + ex);
+            }
+        } catch (Exception ex) {
+            System.out.println("Illegal argument" + ex);
+            throw new IllegalArgumentException();
+        }
+        return Optional.empty();
+    }
+
+    public Optional<List<Course>> getAllCourses() {
+        try {
+            final String sql = "SELECT * FROM public.course";
+            try (Connection connection = createConnection();
+                 Statement statement = connection.createStatement()) {
+
+                final ResultSet resultSet = statement.executeQuery(sql);
+
+                final List<Course> courses = new ArrayList<>();
+
+                while (resultSet.next()) {
+                    Course course = new Course(resultSet.getInt("id"), resultSet.getString("name"));
+                    courses.add(course);
+                }
+                return Optional.of(courses);
+            } catch (SQLException ex) {
+                System.out.println("Connection failed..." + ex);
+            }
+        } catch (Exception ex) {
+            System.out.println("Illegal argument" + ex);
+            throw new IllegalArgumentException();
+        }
+        return Optional.empty();
+    }
+
+    public void updateCourse(int id, String name) {
+        try {
+            final String sql = """
+                    UPDATE public.course
+                    SET name = ?
+                    WHERE id = ?;""";
+
+            try (Connection connection = createConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+                preparedStatement.setInt(1, id);
+                preparedStatement.setString(2, name);
+                preparedStatement.executeQuery();
+
+            } catch (SQLException ex) {
+                System.out.println("Connection failed..." + ex);
+            }
+        } catch (Exception ex) {
+            System.out.println("Illegal argument" + ex);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void remove(Course course) {
+        try {
+            final String sql = "DELETE FROM public.course\n" +
+                    "WHERE id = ?";
+            try (Connection connection = createConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+                preparedStatement.setInt(1, course.getId());
+                preparedStatement.executeQuery();
+
+            } catch (SQLException ex) {
+                System.out.println("Connection failed..." + ex);
+            }
+        } catch (Exception ex) {
+            System.out.println("Illegal argument" + ex);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void sortByName() {
         final String sql = "SELECT name FROM public.course ORDER BY name";
         try (Connection connection = createConnection();
              Statement statement = connection.createStatement()) {
@@ -34,100 +149,6 @@ public class CourseRepository extends ConnectionFactory {
         }
     }
 
-    public void remove(Course course) {
-        try {
-            final String sql = "DELETE FROM public.course\n" +
-                    "WHERE id = " + course.getId();
-            try (Connection connection = createConnection();
-                 Statement statement = connection.createStatement()) {
-                statement.executeQuery(sql);
-
-            } catch (SQLException ex) {
-                System.out.println("Connection failed..." + ex);
-            }
-        } catch (Exception ex) {
-            System.out.println("Illegal argument" + ex);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    public int insertValue(String name) {
-        try {
-            final String sql = "INSERT INTO public.course(\n" +
-                    "\tname)\n" +
-                    "\tVALUES " + "('" + name + "')";
-
-            try (Connection connection = createConnection();
-                 Statement statement = connection.createStatement()) {
-                final int i = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-
-                if (i > 0) {
-                    final ResultSet generatedKeys = statement.getGeneratedKeys();
-                    if (generatedKeys.next()) {
-                        final int anInt = generatedKeys.getInt(1);
-                        System.out.println(anInt);
-                    }
-                }
-                return i;
-            }
-        } catch (Exception ex) {
-            System.out.println("Connection failed..." + ex);
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public Optional<Course> getById(final int id) {
-        try {
-            String sql = "SELECT * FROM course WHERE id = " + id;
-            try (Connection connection = createConnection();
-                 Statement statement = connection.createStatement()) {
-                final ResultSet resultSet = statement.executeQuery(sql);
-
-                if (resultSet.next()) {
-                    Course course = new Course(resultSet.getInt("id"), resultSet.getString("name"));
-                    return Optional.of(course);
-                }
-            }
-        } catch (Exception ex) {
-            throw new IllegalArgumentException();
-        }
-        return Optional.empty();
-    }
-
-    public Optional<List<Course>> getAllCourses() {
-        try {
-            final String sql = "SELECT * FROM course";
-            try (Connection connection = createConnection();
-                 Statement statement = connection.createStatement()) {
-                final ResultSet resultSet = statement.executeQuery(sql);
-
-                final List<Course> courses = new ArrayList<>();
-
-                while (resultSet.next()) {
-                    Course course = new Course(resultSet.getInt("id"), resultSet.getString("name"));
-                    courses.add(course);
-                }
-                return Optional.of(courses);
-            }
-        } catch (SQLException ex) {
-            System.out.println("Connection failed..." + ex);
-        }
-        return Optional.empty();
-    }
-
-    public void updateCourse(int id, String name) {
-
-        final String sql = "UPDATE course\n SET name = " + "('" + name + "')" + "WHERE id = " + "('" + id + "')";
-
-        try (Connection connection = createConnection();
-             Statement statement = connection.createStatement()) {
-            statement.executeQuery(sql);
-
-        } catch (SQLException ex) {
-            System.out.println("Connection failed..." + ex);
-        }
-    }
-
     public void serializeCourses() {
         List<Course> courseList = getAllCourses().get();
         Serializer.serialize(courseList, FilePath.FILE_PATH_COURSE);
@@ -139,6 +160,7 @@ public class CourseRepository extends ConnectionFactory {
         Serializer.deserialize(filePath);
         ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
     }
+
 }
 
 

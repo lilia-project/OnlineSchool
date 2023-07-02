@@ -30,6 +30,7 @@ public class Person implements Serializable {
     public String toString() {
         return "\n Person{" +
                 "\n id = " + id +
+                "\n role = " + role +
                 "\n Last name = " + lastName +
                 "\n First name = " + firstName +
                 "\n courseId = " + courseId +

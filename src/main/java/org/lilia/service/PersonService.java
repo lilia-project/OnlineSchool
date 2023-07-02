@@ -68,14 +68,13 @@ public class PersonService {
     }
 
     public void delete(String lastName) {
-//        Person person = getByLastName(lastName);
-        PersonRepository.remove(lastName);
+        personRepository.remove(lastName);
 
     }
 
     public String lastNameIsValid() {
         String lastName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
-        Optional<Person> person = PersonRepository.getByLastName(lastName);
+        Optional<Person> person = personRepository.getByLastName(lastName);
         if (person.isEmpty()) {
             throw new NoSuchPersonException(lastName);
 
@@ -84,7 +83,7 @@ public class PersonService {
     }
 
     public Person getByLastName(String lastName) {
-        Optional<Person> person = PersonRepository.getByLastName(lastName);
+        Optional<Person> person = personRepository.getByLastName(lastName);
         if (person.isEmpty()) {
             throw new NoSuchPersonException(lastName);
         }
