@@ -9,6 +9,8 @@ import org.lilia.service.HomeworkService;
 import org.lilia.service.LectureService;
 import org.lilia.util.ConsoleUtils;
 
+import java.util.List;
+
 public class HomeworkView {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeworkView.class);
@@ -86,7 +88,10 @@ public class HomeworkView {
     private int outputAllByLectureId(HomeworkService homeworkService) {
         ConsoleUtils.print(Constants.LECTURE_ID);
         int lectureId = lectureService.lectureIdIsValid();
-        homeworkService.findAllByLectureId(lectureId).ifPresent(i -> System.out.println());
+        if (homeworkService.findAllByLectureId(lectureId).isPresent()) {
+            List<Homework> allByLectureId = homeworkService.findAllByLectureId(lectureId).get();
+            allByLectureId.forEach(System.out::println);
+        }
         return lectureId;
     }
 

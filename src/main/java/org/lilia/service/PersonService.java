@@ -24,14 +24,11 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public Person createPerson(String lastName, Role role) {
+    public void createNewPerson(Role role, String lastName) {
         if (lastName == null | role == null) {
             throw new IllegalArgumentException("last name or role is null");
         }
-        Person person = Person.createPerson(lastName, role);
-        ConsoleUtils.print(Constants.ELEMENT_CREATED + person);
-        personRepository.add(person);
-        return person;
+        personRepository.insertValue(role, lastName);
     }
 
     public PersonDto createPersonDto(String lastName, String firstName, String phone, String email, int courseId) {
@@ -71,14 +68,14 @@ public class PersonService {
     }
 
     public void delete(String lastName) {
-        Person person = getByLastName(lastName);
-        personRepository.remove(person);
+//        Person person = getByLastName(lastName);
+        PersonRepository.remove(lastName);
 
     }
 
     public String lastNameIsValid() {
         String lastName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
-        Optional<Person> person = personRepository.getByLastName(lastName);
+        Optional<Person> person = PersonRepository.getByLastName(lastName);
         if (person.isEmpty()) {
             throw new NoSuchPersonException(lastName);
 
@@ -87,7 +84,7 @@ public class PersonService {
     }
 
     public Person getByLastName(String lastName) {
-        Optional<Person> person = personRepository.getByLastName(lastName);
+        Optional<Person> person = PersonRepository.getByLastName(lastName);
         if (person.isEmpty()) {
             throw new NoSuchPersonException(lastName);
         }

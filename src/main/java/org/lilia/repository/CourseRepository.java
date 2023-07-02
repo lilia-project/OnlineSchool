@@ -16,6 +16,24 @@ import java.util.Optional;
 
 public class CourseRepository extends ConnectionFactory {
 
+    public static void sortByName() {
+        final String sql = "SELECT name FROM public.course ORDER BY name";
+        try (Connection connection = createConnection();
+             Statement statement = connection.createStatement()) {
+            final ResultSet resultSet = statement.executeQuery(sql);
+
+            final List<String> names = new ArrayList<>();
+
+            while (resultSet.next()) {
+                String courseName = resultSet.getString("name");
+                names.add(courseName);
+            }
+            names.forEach(System.out::println);
+        } catch (Exception ex) {
+            System.out.println("Connection failed..." + ex);
+        }
+    }
+
     public void remove(Course course) {
         try {
             final String sql = "DELETE FROM public.course\n" +
@@ -30,26 +48,6 @@ public class CourseRepository extends ConnectionFactory {
         } catch (Exception ex) {
             System.out.println("Illegal argument" + ex);
             throw new IllegalArgumentException();
-        }
-    }
-
-    public void sortByName() {
-        final String sql = "SELECT name FROM public.course ORDER BY name";
-        try (Connection connection = createConnection();
-             Statement statement = connection.createStatement()) {
-            final ResultSet resultSet = statement.executeQuery(sql);
-
-            final List<String> names = new ArrayList<>();
-
-            while (resultSet.next()) {
-                String courseName = resultSet.getString("name");
-                names.add(courseName);
-            }
-            names.stream()
-                    .sorted()
-                    .forEach(System.out::println);
-        } catch (Exception ex) {
-            System.out.println("Connection failed..." + ex);
         }
     }
 

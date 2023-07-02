@@ -6,16 +6,45 @@ import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class LectureRepository {
+public class LectureRepository extends ConnectionFactory {
 
     private final List<Lecture> list = new ArrayList<>();
 
-    public void addNewLecture(Lecture lecture) {
-        list.add(lecture);
+    private static void setFields(ResultSet resultSet, Lecture lecture) throws SQLException {
+        lecture.setId(resultSet.getInt("id"));
+        lecture.setCreatedAt(LocalDateTime.parse(resultSet.getString("create_at"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        lecture.setLectureDate(LocalDateTime.parse(resultSet.getString("lecture_date"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        lecture.setName(resultSet.getString("name"));
+        lecture.setCourseId(resultSet.getInt("course_id"));
+        lecture.setPersonId(resultSet.getInt("person_id"));
+        lecture.setDescription(resultSet.getString("description"));
+    }
+
+    public void insertValue(String name) {
+        try {
+            final String sql = "INSERT INTO public.lecture(\n" +
+                    "\tname)\n" +
+                    "\tVALUES " + "('" + name + "')";
+
+            try (Connection connection = createConnection();
+                 Statement statement = connection.createStatement()) {
+                statement.executeUpdate(sql);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Connection failed..." + ex);
+        } catch (Exception ex) {
+            System.out.println("Illegal argument" + ex);
+            throw new IllegalArgumentException();
+        }
     }
 
     public void serializeLecture() {
@@ -33,18 +62,68 @@ public class LectureRepository {
     }
 
     public void remove(Lecture lecture) {
-        list.remove(lecture);
-    }
+        try {
+            final String sql = "DELETE FROM public.lecture\n" +
+                    "WHERE id = " + lecture.getId();
+            try (Connection connection = createConnection();
+                 Statement statement = connection.createStatement()) {
+                statement.executeQuery(sql);
 
+            } catch (SQLException ex) {
+                System.out.println("Connection failed..." + ex);
+            }
+        } catch (Exception ex) {
+            System.out.println("Illegal argument" + ex);
+            throw new IllegalArgumentException();
+        }
+    }
 
     public Optional<Lecture> getById(int id) {
-        return list.stream()
-                .filter(i -> i.getId() == id)
-                .findFirst();
+        try {
+            String sql = "SELECT * FROM lecture WHERE id = " + id;
+            try (Connection connection = createConnection();
+                 Statement statement = connection.createStatement()) {
+                final ResultSet resultSet = statement.executeQuery(sql);
+
+                if (resultSet.next()) {
+                    Lecture lecture = new Lecture();
+                    setFields(resultSet, lecture);
+                    return Optional.of(lecture);
+                }
+            } catch (SQLException ex) {
+                System.out.println("Connection failed..." + ex);
+            }
+        } catch (Exception ex) {
+            System.out.println("Illegal argument" + ex);
+            throw new IllegalArgumentException();
+
+        }
+        return Optional.empty();
     }
 
-    public void getAll() {
-        list.forEach(System.out::println);
+    public void getAllLecture() {
+        try {
+            final String sql = "SELECT * FROM lecture";
+            try (Connection connection = createConnection();
+                 Statement statement = connection.createStatement()) {
+                final ResultSet resultSet = statement.executeQuery(sql);
+
+                final List<Lecture> lectures = new ArrayList<>();
+
+                while (resultSet.next()) {
+                    Lecture lecture = new Lecture();
+                    setFields(resultSet, lecture);
+
+                    lectures.add(lecture);
+                }
+                lectures.forEach(System.out::println);
+            } catch (SQLException ex) {
+                System.out.println("Connection failed..." + ex);
+            }
+        } catch (Exception ex) {
+            System.out.println("Illegal argument" + ex);
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Lecture> getByCourseId(int courseId) {
@@ -74,15 +153,30 @@ public class LectureRepository {
                 .forEach(System.out::println);
     }
 
-    public Optional<Lecture> getLectureByEarlyTime() {
-        return list.stream()
-                .min(Comparator.comparing(Lecture::getLectureDate)
-                        .thenComparing(lecture -> {
-                            if (lecture.getHomeworkList() != null) {
-                                return lecture.getHomeworkList().size();
-                            }
-                            return null;
-                        }, Comparator.nullsLast(Comparator.naturalOrder())));
+    public void getLectureByEarlyTime() {
+        try {
+            final String sql = """
+                    SELECT *
+                    \tFROM public.lecture
+                    \tORDER BY create_at;""";
+
+            try (Connection connection = createConnection();
+                 Statement statement = connection.createStatement()) {
+                ResultSet resultSet = statement.executeQuery(sql);
+                List<Lecture> lectures = new ArrayList<>();
+                while (resultSet.next()) {
+                    Lecture lecture = new Lecture();
+                    setFields(resultSet, lecture);
+                    lectures.add(lecture);
+                }
+                lectures.forEach(System.out::println);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Connection failed..." + ex);
+        } catch (Exception ex) {
+            System.out.println("Illegal argument" + ex);
+            throw new IllegalArgumentException();
+        }
     }
 
     public void printLecturesGroupingByTeacher() {

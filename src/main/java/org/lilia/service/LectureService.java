@@ -24,14 +24,12 @@ public class LectureService {
         this.homeworkService = homeworkService;
     }
 
-    public Lecture createLecture(String lectureName) {
+    public void createLecture(String lectureName) {
         if (lectureName == null) {
             throw new IllegalArgumentException("lecture name is null");
         }
-        Lecture lecture = new Lecture(lectureName);
-        lectureRepository.addNewLecture(lecture);
-        ConsoleUtils.print(Constants.ELEMENT_CREATED + lecture);
-        return lecture;
+        lectureRepository.insertValue(lectureName);
+        ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
     public LectureDto createLectureDto(int courseId, String lectureName, String description, int personId) {
@@ -55,7 +53,7 @@ public class LectureService {
     }
 
     public void outputAll() {
-        lectureRepository.getAll();
+        lectureRepository.getAllLecture();
     }
 
 
@@ -118,8 +116,8 @@ public class LectureService {
     }
 
     public void getLectureInEarlyTime() {
-        lectureRepository.getLectureByEarlyTime().
-                ifPresentOrElse(System.out::println, () -> System.out.println("No lecture"));
+        lectureRepository.getLectureByEarlyTime();
+
     }
 
     public void printLecturesGrouping() {

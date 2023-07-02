@@ -85,10 +85,10 @@ public class LectureView {
         return lectureService.getRequireById(lectureId);
     }
 
-    private static Lecture createNewLecture(LectureService lectureService) {
+    private static void createNewLecture(LectureService lectureService) {
         ConsoleUtils.print(Constants.NAME);
         String lectureName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
-        return lectureService.createLecture(lectureName);
+        lectureService.createLecture(lectureName);
     }
 
     private static void deleteLecture(LectureService lectureService) {
@@ -107,8 +107,8 @@ public class LectureView {
                     logger.info("selected to create lecture");
                     while (userChoice.equalsIgnoreCase("Y")) {
 
-                        Lecture lecture = createNewLecture(lectureService);
-                        logger.info("lecture created successful" + lecture.getId());
+                        createNewLecture(lectureService);
+                        logger.info("lecture created successful");
 
                         ConsoleUtils.print(Constants.CREATE_NEW);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
