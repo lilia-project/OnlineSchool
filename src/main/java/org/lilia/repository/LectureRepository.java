@@ -14,7 +14,15 @@ import java.util.stream.Collectors;
 
 public class LectureRepository extends ConnectionFactory {
 
-    private final List<Lecture> list = new ArrayList<>();
+    private static final List<Lecture> list = new ArrayList<>();
+
+    public static List<Lecture> getByCourseId(int courseId) {
+        List<Lecture> resList = list.stream()
+                .filter(r -> r.getCourseId() == courseId)
+                .collect(Collectors.toList());
+
+        return Optional.of(resList).orElse(Collections.emptyList());
+    }
 
     public void insertValue(String name) {
         try {
@@ -75,7 +83,7 @@ public class LectureRepository extends ConnectionFactory {
         return Optional.empty();
     }
 
-    public void getAllLecture() {
+    public List<Lecture> getAllLecture() {
         try {
             final String sql = "SELECT * FROM public.lecture";
             try (Connection connection = createConnection();
@@ -91,6 +99,7 @@ public class LectureRepository extends ConnectionFactory {
                     lectures.add(lecture);
                 }
                 lectures.forEach(System.out::println);
+                return lectures;
             } catch (SQLException ex) {
                 System.out.println("Connection failed..." + ex);
             }
@@ -98,6 +107,7 @@ public class LectureRepository extends ConnectionFactory {
             System.out.println("Illegal argument" + ex);
             throw new IllegalArgumentException();
         }
+        return Collections.emptyList();
     }
 
     public void getLectureByEarlyTime() {
@@ -148,14 +158,6 @@ public class LectureRepository extends ConnectionFactory {
             System.out.println("Illegal argument" + ex);
             throw new IllegalArgumentException();
         }
-    }
-
-    public List<Lecture> getByCourseId(int courseId) {
-        List<Lecture> resList = list.stream()
-                .filter(r -> r.getCourseId() == courseId)
-                .collect(Collectors.toList());
-
-        return Optional.of(resList).orElse(Collections.emptyList());
     }
 
     public void serializeLecture() {

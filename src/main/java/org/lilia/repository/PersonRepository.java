@@ -89,7 +89,7 @@ public class PersonRepository extends ConnectionFactory {
         return Optional.empty();
     }
 
-    public void getByCourseId(int courseId, Role role) {
+    public List<Person> getByCourseId(int courseId, Role role) {
         try {
             String sql = """
                     SELECT * FROM public.person
@@ -110,6 +110,7 @@ public class PersonRepository extends ConnectionFactory {
                     setFields(resultSet, person);
                     people.add(person);
                 }
+                return people;
 
             } catch (SQLException ex) {
                 System.out.println("Connection failed..." + ex);
@@ -118,6 +119,7 @@ public class PersonRepository extends ConnectionFactory {
             System.out.println("Illegal argument" + ex);
             throw new IllegalArgumentException();
         }
+        return Collections.emptyList();
     }
 
     public List<Person> getAllPerson() {

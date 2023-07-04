@@ -96,7 +96,7 @@ public class PersonView {
                 }
                 case 3 -> {
                     logger.info("selected output person");
-                    outputAll(personService);
+                    outputAllByCourse(personService);
                     sortOrMapPersons(personService);
                 }
                 case 4 -> {
@@ -174,13 +174,13 @@ public class PersonView {
         }
     }
 
-    private void outputAll(PersonService personService) {
+    private void outputAllByCourse(PersonService personService) {
         ConsoleUtils.print(Constants.COURSE_ID);
         int courseId = courseService.courseIdIsValid();
 
         Role role = personService.getRole(selectRole());
 
-        personService.outAllByCourse(courseId, role);
+        personService.outAllByCourseId(courseId, role);
     }
 
     private void print(Person person) {

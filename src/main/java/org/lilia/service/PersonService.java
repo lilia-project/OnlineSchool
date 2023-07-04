@@ -63,8 +63,9 @@ public class PersonService {
         }
     }
 
-    public void outAllByCourse(int courseId, Role role) {
-        personRepository.getByCourseId(courseId, role);
+    public Optional<List<Person>> outAllByCourseId(int courseId, Role role) {
+//        personRepository.getByCourseId(courseId, role);
+        return Optional.ofNullable(personRepository.getByCourseId(courseId, role));
     }
 
     public void delete(String lastName) {
