@@ -6,13 +6,14 @@ import org.lilia.exception.NoSuchMaterialIdException;
 import org.lilia.model.AdditionalMaterial;
 import org.lilia.model.ResourceType;
 import org.lilia.repository.AdditionalMaterialRepository;
+import org.lilia.repository.ConnectionFactory;
 import org.lilia.util.ConsoleUtils;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class AdditionalMaterialService {
+public class AdditionalMaterialService extends ConnectionFactory {
     private final AdditionalMaterialRepository additionalMaterialRepository;
 
     public AdditionalMaterialService(AdditionalMaterialRepository additionalMaterialRepository) {
@@ -23,6 +24,7 @@ public class AdditionalMaterialService {
         AdditionalMaterial additionalMaterial = new AdditionalMaterial(name, lectureId);
         additionalMaterialRepository.add(additionalMaterial);
     }
+
 
     public AdditionalMaterialDto createAdditionalMaterialDto(int lectureId, String name, ResourceType resourceType) {
 

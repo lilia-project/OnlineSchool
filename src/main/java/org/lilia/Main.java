@@ -21,6 +21,10 @@ public class Main {
 
     public static void main(String[] args) throws NoSuchMaterialIdException, InterruptedException {
 
+        DataBaseInitializer.createTables();
+
+        DataBaseInitializer.fillTables();
+
         LectureRepository lectureRepository = new LectureRepository();
         HomeworkRepository homeworkRepository = new HomeworkRepository();
         HomeworkService homeworkService = new HomeworkService(homeworkRepository);

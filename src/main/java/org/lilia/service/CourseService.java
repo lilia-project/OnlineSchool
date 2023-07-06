@@ -1,7 +1,6 @@
 package org.lilia.service;
 
 import org.lilia.constant.Constants;
-import org.lilia.dto.CourseDto;
 import org.lilia.exception.NoSuchCourseIdException;
 import org.lilia.model.Course;
 import org.lilia.model.Lecture;
@@ -29,24 +28,17 @@ public class CourseService {
         if (courseName == null) {
             throw new IllegalArgumentException("course name is null");
         }
-        Course course = new Course(courseName);
-        courseRepository.add(course);
-        ConsoleUtils.print(Constants.ELEMENT_CREATED + course);
+        int courseId = courseRepository.insertValue(courseName);
+        courseRepository.getById(courseId);
+        ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
-    public CourseDto createCourseDto(String courseName) {
-        return new CourseDto(courseName);
+    public void updateCourse(int id, String name) {
+        courseRepository.updateCourse(id, name);
     }
 
-    public Course updateCourse(Course course, CourseDto courseDto) {
-        if ((courseDto.getName()) != null) {
-            course.setName(courseDto.getName());
-        }
-        return course;
-    }
-
-    public void outputAll() {
-        courseRepository.getAll();
+    public List<Course> outputAll() {
+        return courseRepository.getAllCourses().get();
     }
 
     public Course getRequireById(int courseId) {

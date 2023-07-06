@@ -47,6 +47,7 @@ public final class Constants {
     public static final String REPEAT_INPUT = "repeat input";
     public static final String DESERIALIZATION_COMPLETED = "deserialization completed";
     public static final String SERIALIZATION_COMPLETED = "serialization completed";
+    public static final String ELEMENTS_NOT_EXIST = "list of homework is empty";
 
     private Constants() {
     }

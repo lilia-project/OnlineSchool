@@ -1,10 +1,11 @@
 package org.lilia.view;
 
 import org.lilia.constant.Constants;
-import org.lilia.dto.CourseDto;
 import org.lilia.model.Course;
 import org.lilia.service.CourseService;
 import org.lilia.util.ConsoleUtils;
+
+import java.util.List;
 
 public class CourseView {
 
@@ -21,10 +22,7 @@ public class CourseView {
             ConsoleUtils.print(Constants.NAME);
             String courseName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-            CourseDto courseDto = courseService.createCourseDto(courseName);
-
-            Course courseUpdate = courseService.updateCourse(course, courseDto);
-            System.out.println(courseUpdate);
+            courseService.updateCourse(course.getId(), courseName);
 
             ConsoleUtils.print(Constants.ELEMENT_EDIT);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
@@ -65,7 +63,8 @@ public class CourseView {
                     editCourse(courseService, userChoice, course);
                 }
                 case 3 -> {
-                    courseService.outputAll();
+                    List<Course> courseList = courseService.outputAll();
+                    System.out.println(courseList);
                     ConsoleUtils.print(Constants.SORT_BY_NAME);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     if (userChoice.equalsIgnoreCase("Y")) {

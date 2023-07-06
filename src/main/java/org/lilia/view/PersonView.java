@@ -49,13 +49,12 @@ public class PersonView {
         }
     }
 
-    private static Person createNewPerson(PersonService personService) {
+    private static void createNewPerson(PersonService personService) {
+        Role role = personService.getRole(selectRole());
         ConsoleUtils.print(Constants.NAME);
         String personName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-        Role role = personService.getRole(selectRole());
-
-        return personService.createPerson(personName, role);
+        personService.createNewPerson(role, personName);
     }
 
     private static int selectRole() {
@@ -79,8 +78,8 @@ public class PersonView {
                     logger.info("selected to create person");
                     while (userChoice.equalsIgnoreCase("Y")) {
 
-                        Person person = createNewPerson(personService);
-                        logger.info("person created successful " + person.getRole() + " " + person.getLastName());
+                        createNewPerson(personService);
+                        logger.info("person created successful ");
 
                         ConsoleUtils.print(Constants.CREATE_NEW);
                         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
@@ -126,7 +125,6 @@ public class PersonView {
             }
             ConsoleUtils.print(Constants.STAY_IN);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
-
         }
     }
 
