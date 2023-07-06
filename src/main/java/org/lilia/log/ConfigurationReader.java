@@ -2,23 +2,19 @@ package org.lilia.log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ConfigurationReader {
-    private static final String FILE_DATA_PATH = "src/main/resources/valueLogLevel.properties";
+    private static final String FILE_DATA_PATH = "valueLogLevel.properties";
 
     public Map<String, String> readConfiguration() {
 
         Map<String, String> mapConfiguration = new HashMap<>();
 
-        Path path = Paths.get(FILE_DATA_PATH);
-
-        try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+        try (BufferedReader reader = Files.newBufferedReader(Path.of(getClass().getClassLoader().getResource(FILE_DATA_PATH).getPath()))) {
             String currentLine;
             while ((currentLine = reader.readLine()) != null) {
                 Pair pair = parseLine(currentLine);

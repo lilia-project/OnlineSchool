@@ -20,6 +20,11 @@ public class CourseService {
         this.lectureService = lectureService;
     }
 
+    private static void addLectureIntoCourse(Course course) {
+        List<Lecture> list = LectureService.findAllByCourseId(course.getId());
+        course.setList(list);
+    }
+
     public void sortByName() {
         courseRepository.sortByName();
     }
@@ -48,11 +53,6 @@ public class CourseService {
         }
         addLectureIntoCourse(course.get());
         return course.get();
-    }
-
-    private void addLectureIntoCourse(Course course) {
-        List<Lecture> list = lectureService.findAllByCourseId(course.getId());
-        course.setList(list);
     }
 
     public void deleteById(int courseId) {

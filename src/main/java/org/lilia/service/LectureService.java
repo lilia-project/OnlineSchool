@@ -24,6 +24,10 @@ public class LectureService {
         this.homeworkService = homeworkService;
     }
 
+    public static List<Lecture> findAllByCourseId(int courseId) {
+        return Optional.of(LectureRepository.getByCourseId(courseId)).orElse(Collections.emptyList());
+    }
+
     public void createLecture(String lectureName) {
         if (lectureName == null) {
             throw new IllegalArgumentException("lecture name is null");
@@ -52,10 +56,9 @@ public class LectureService {
         return lecture;
     }
 
-    public void outputAll() {
-        lectureRepository.getAllLecture();
+    public Optional<List<Lecture>> outputAll() {
+        return Optional.ofNullable(lectureRepository.getAllLecture());
     }
-
 
     public Lecture getRequireById(int lectureId) {
         Optional<Lecture> lecture = lectureRepository.getById(lectureId);
@@ -69,10 +72,6 @@ public class LectureService {
 
     private void addHomeworkIntoLecture(Lecture lecture) {
         lecture.setHomeworkList(homeworkService.findAllByLectureId(lecture.getId()).orElse(Collections.emptyList()));
-    }
-
-    public List<Lecture> findAllByCourseId(int courseId) {
-        return Optional.of(lectureRepository.getByCourseId(courseId)).orElse(Collections.emptyList());
     }
 
     public void deleteById(int lectureId) {
