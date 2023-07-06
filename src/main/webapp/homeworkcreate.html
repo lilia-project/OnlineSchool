@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>homework create</title>
+</head>
+<body>
+<h1>Enter the date of homework</h1>
+
+<form action="/homework/create" method="post">
+
+    <label for="task">Name:</label>
+    <input id="task" name="task" required type="text"><br><br>
+
+    <label for="lectureid">Lecture id:</label>
+    <input id="lectureid" name="lectureid" required type="number"><br><br>
+
+    <label for="deadline">Deadline:</label>
+    <input id="deadline" name="deadline" required type="datetime-local"><br><br>
+
+    <input type="submit" value="Send">
+</form>
+</body>
+</html>
