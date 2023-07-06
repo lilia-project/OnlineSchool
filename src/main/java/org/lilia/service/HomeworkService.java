@@ -21,7 +21,7 @@ public class HomeworkService {
         if (task == null) {
             throw new IllegalArgumentException("homework name is null");
         }
-        HomeworkRepository.insertValue(lectureId, task);
+        homeworkRepository.insertValue(lectureId, task);
     }
 
     public HomeworkDto createHomeworkDto(String task) {
@@ -45,8 +45,8 @@ public class HomeworkService {
     }
 
     public Optional<List<Homework>> findAllByLectureId(int lectureId) {
-        List<Homework> byLectureId = homeworkRepository.getByLectureId(lectureId);
-        return Optional.ofNullable(byLectureId);
+        List<Homework> homeworkList = homeworkRepository.getByLectureId(lectureId);
+        return Optional.ofNullable(homeworkList);
     }
 
     public void deleteById(int homeworkId) {
