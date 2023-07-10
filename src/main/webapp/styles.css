@@ -1,0 +1,100 @@
+      html,
+      body {
+      height: 100%;
+          width: 100%;
+          max-width: 1200px;
+          font-family: montserrat;
+          font-size: 16px;
+          padding: 0;
+          margin: 0;
+      }
+
+      body {
+         display: flex;
+         flex-direction: column;
+      }
+
+      main {
+         display: flex;
+         flex 0 0 auto;
+         h1, h2 {
+         text-align: center;
+         }
+      }
+
+      article {
+         background-color: lightgrey;
+         flex: 0 0 500px;
+         padding: 30px;
+
+      }
+
+      nav,
+      aside {
+         flex: 3 ;
+         background-color: #455a64;
+         text-align: center;
+      }
+
+      aside {
+         margin-left: 5px;
+         padding 0;
+      }
+
+      nav {
+         order: -1;
+         font-size: 18px;
+         margin-right: 5px;
+         padding: 30px;
+      }
+
+      header,
+      footer {
+          flex: 0 0 auto;
+          background-color: lightgreen;
+          text-align: center;
+      }
+
+      header {
+          margin: 0 0 5px;
+          padding: 20px;
+      }
+
+      footer {
+         margin: 5px 0;
+         padding: 5px;
+      }
+
+
+      @media screen and (min-width: 500px) {
+
+         main {
+             min-width: 50%;
+             max-width: 100%;
+             flex: 1 0 auto;
+         }
+      }
+
+
+      a:link {
+         color: blue;
+         text-decoration: none
+      }
+
+      a:visited {
+         color: pink;
+         text-decoration: none
+      }
+
+      a:hover {
+         color: red;
+         text-decoration: underline
+      }
+
+      a:active {
+         color: yellow;
+         text-decoration: underline
+      }
+
+
+
