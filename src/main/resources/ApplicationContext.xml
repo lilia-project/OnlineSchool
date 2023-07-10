@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="lectureRepository"
+          class="org.lilia.repository.LectureRepository">
+    </bean>
+
+    <bean id="homeworkRepository"
+          class="org.lilia.repository.HomeworkRepository">
+    </bean>
+
+    <bean id="homeworkService"
+          class="org.lilia.service.HomeworkService">
+        <constructor-arg ref="homeworkRepository"/>
+    </bean>
+
+    <bean id="additionalMaterialRepository"
+          class="org.lilia.repository.AdditionalMaterialRepository">
+    </bean>
+
+    <bean id="additionalMaterialService"
+          class="org.lilia.service.AdditionalMaterialService">
+        <constructor-arg ref="additionalMaterialRepository"/>
+    </bean>
+
+    <bean id="lectureService"
+          class="org.lilia.service.LectureService">
+        <constructor-arg ref="lectureRepository"/>
+        <constructor-arg ref="homeworkService"/>
+    </bean>
+
+    <bean id="courseRepository"
+          class="org.lilia.repository.CourseRepository">
+    </bean>
+
+    <bean id="courseService"
+          class="org.lilia.service.CourseService">
+        <constructor-arg ref="courseRepository"/>
+        <constructor-arg ref="lectureService"/>
+    </bean>
+
+    <bean id="personRepository"
+          class="org.lilia.repository.PersonRepository">
+    </bean>
+
+    <bean id="personService"
+          class="org.lilia.service.PersonService">
+        <constructor-arg ref="personRepository"/>
+    </bean>
+
+    <bean id="lectureView"
+          class="org.lilia.view.LectureView">
+    </bean>
+
+    <bean id="homeworkView"
+          class="org.lilia.view.HomeworkView">
+        <constructor-arg ref="lectureService"/>
+    </bean>
+
+    <bean id="additionalMaterialView"
+          class="org.lilia.view.AdditionalMaterialView">
+        <constructor-arg ref="lectureService"/>
+    </bean>
+
+    <bean id="courseView"
+          class="org.lilia.view.CourseView">
+    </bean>
+
+    <bean id="personView"
+          class="org.lilia.view.PersonView">
+        <constructor-arg ref="courseService"/>
+    </bean>
+    <bean id="controlWorkService"
+          class="org.lilia.service.ControlWorkService">
+    </bean>
+
+    <bean id="configurationReader"
+          class="org.lilia.log.ConfigurationReader">
+    </bean>
+
+    <bean id="consoleWriter"
+          class="org.lilia.log.ConsoleWriter">
+    </bean>
+
+    <bean id="configurationWatcher"
+          class="org.lilia.log.ConfigurationWatcher">
+        <constructor-arg ref="consoleWriter"/>
+        <constructor-arg ref="configurationReader"/>
+    </bean>
+
+</beans>

@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.ApplicationContext;
+import org.lilia.ApplicationContextFile;
 import org.lilia.model.Homework;
 import org.lilia.service.HomeworkService;
 
@@ -17,7 +17,7 @@ import java.util.List;
 @WebServlet(value = "/homework", initParams = @WebInitParam(name = "id", value = "-1"))
 
 public class HomeworkServlet extends HttpServlet {
-    private final HomeworkService homeworkService = ApplicationContext.get(HomeworkService.class);
+    private final HomeworkService homeworkService = ApplicationContextFile.get(HomeworkService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

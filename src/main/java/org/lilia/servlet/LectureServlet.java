@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.ApplicationContext;
+import org.lilia.ApplicationContextFile;
 import org.lilia.model.Lecture;
 import org.lilia.service.LectureService;
 
@@ -16,7 +16,7 @@ import java.util.List;
 @WebServlet("/lectures")
 
 public class LectureServlet extends HttpServlet {
-    private final LectureService lectureService = ApplicationContext.get(LectureService.class);
+    private final LectureService lectureService = ApplicationContextFile.get(LectureService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

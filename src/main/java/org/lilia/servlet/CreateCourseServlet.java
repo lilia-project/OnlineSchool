@@ -7,7 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.ApplicationContext;
+import org.lilia.ApplicationContextFile;
 import org.lilia.service.CourseService;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 @WebServlet(value = "/courses/create", initParams = @WebInitParam(name = "name", value = "-1"))
 
 public class CreateCourseServlet extends HttpServlet {
-    private final CourseService courseService = ApplicationContext.get(CourseService.class);
+    private final CourseService courseService = ApplicationContextFile.get(CourseService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
