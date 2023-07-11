@@ -2,10 +2,7 @@ package org.lilia;
 
 import org.lilia.constant.Constants;
 import org.lilia.exception.NoSuchMaterialIdException;
-import org.lilia.log.ConfigurationReader;
-import org.lilia.log.ConfigurationWatcher;
-import org.lilia.log.LogService;
-import org.lilia.log.LoggerFactory;
+import org.lilia.log.*;
 import org.lilia.network.SelectorClient;
 import org.lilia.network.SelectorServer;
 import org.lilia.repository.DataBaseInitializer;
@@ -39,9 +36,8 @@ public class Main {
         CourseView courseView = context.getBean("courseView", CourseView.class);
         PersonView personView = context.getBean("personView", PersonView.class);
         ControlWorkService controlWorkService = context.getBean("controlWorkService", ControlWorkService.class);
-        ConfigurationReader configurationReader = context.getBean("configurationReader", ConfigurationReader.class);
 
-        ConfigurationWatcher configurationWatcher = new ConfigurationWatcher(LoggerFactory.CONSOLE_WRITER, configurationReader);
+        ConfigurationWatcher configurationWatcher = context.getBean("configurationWatcher", ConfigurationWatcher.class);
 
         ConsoleUtils.print("\nWelcome to Online school!");
 
