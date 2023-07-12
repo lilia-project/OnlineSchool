@@ -7,14 +7,18 @@ import org.lilia.model.ResourceType;
 import org.lilia.service.AdditionalMaterialService;
 import org.lilia.service.LectureService;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class AdditionalMaterialView {
 
     private final LectureService lectureService;
     String userChoice = "Y";
 
+    @Autowired
     public AdditionalMaterialView(LectureService lectureService) {
         this.lectureService = lectureService;
     }

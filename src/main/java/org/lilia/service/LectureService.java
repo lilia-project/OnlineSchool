@@ -8,17 +8,21 @@ import org.lilia.log.LoggerFactory;
 import org.lilia.model.Lecture;
 import org.lilia.repository.LectureRepository;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class LectureService {
     private static final Logger logger = LoggerFactory.getLogger(LectureService.class);
     private final LectureRepository lectureRepository;
     private final HomeworkService homeworkService;
 
+    @Autowired
     public LectureService(LectureRepository lectureRepository, HomeworkService homeworkService) {
         this.lectureRepository = lectureRepository;
         this.homeworkService = homeworkService;

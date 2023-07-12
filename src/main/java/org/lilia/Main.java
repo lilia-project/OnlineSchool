@@ -12,7 +12,7 @@ import org.lilia.repository.DataBaseInitializer;
 import org.lilia.service.*;
 import org.lilia.util.ConsoleUtils;
 import org.lilia.view.*;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -26,7 +26,7 @@ public class Main {
 
         DataBaseInitializer.fillTables();
 
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 
         HomeworkService homeworkService = context.getBean("homeworkService", HomeworkService.class);
         AdditionalMaterialService additionalMaterialService = context.getBean("additionalMaterialService", AdditionalMaterialService.class);

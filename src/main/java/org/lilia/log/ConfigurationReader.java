@@ -1,5 +1,7 @@
 package org.lilia.log;
 
+import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,6 +9,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class ConfigurationReader {
     private static final String FILE_DATA_PATH = "valueLogLevel.properties";
 

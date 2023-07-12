@@ -5,12 +5,14 @@ import org.lilia.model.Course;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class CourseRepository extends ConnectionFactory {
 
     public int insertValue(String name) {

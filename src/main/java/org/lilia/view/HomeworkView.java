@@ -8,15 +8,19 @@ import org.lilia.model.Homework;
 import org.lilia.service.HomeworkService;
 import org.lilia.service.LectureService;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class HomeworkView {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeworkView.class);
     private static String userChoice = "Y";
     private final LectureService lectureService;
 
+    @Autowired
     public HomeworkView(LectureService lectureService) {
         this.lectureService = lectureService;
     }

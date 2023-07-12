@@ -9,12 +9,16 @@ import org.lilia.model.Role;
 import org.lilia.service.CourseService;
 import org.lilia.service.PersonService;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PersonView {
 
     private static final Logger logger = LoggerFactory.getLogger(PersonView.class);
     private final CourseService courseService;
 
+    @Autowired
     public PersonView(CourseService courseService) {
         this.courseService = courseService;
     }

@@ -7,9 +7,11 @@ import org.lilia.log.LoggerFactory;
 import org.lilia.model.Lecture;
 import org.lilia.service.LectureService;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Component
 public class LectureView {
     private static final Logger logger = LoggerFactory.getLogger(LectureView.class);
 

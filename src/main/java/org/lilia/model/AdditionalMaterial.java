@@ -1,28 +1,30 @@
 package org.lilia.model;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
+@Component
 @Data
 public class AdditionalMaterial implements Serializable {
-    private static int counter = 0;
-
-    private final int id;
-
+    int counter = 0;
+    private int id;
     private String name;
 
     private int lectureId;
     private ResourceType resourceType;
-
 
     public AdditionalMaterial(String name, int lectureId) {
         this.name = name;
         this.lectureId = lectureId;
         counter++;
         id = counter;
+    }
+
+    public AdditionalMaterial() {
     }
 
     @Override

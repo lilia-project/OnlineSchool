@@ -8,6 +8,8 @@ import org.lilia.model.Role;
 import org.lilia.repository.PersonRepository;
 import org.lilia.serialization.FilePath;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -17,9 +19,11 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class PersonService {
     private final PersonRepository personRepository;
 
+    @Autowired
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
