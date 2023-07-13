@@ -6,9 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.ApplicationContextFile;
 import org.lilia.model.Homework;
 import org.lilia.service.HomeworkService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +17,8 @@ import java.util.List;
 @WebServlet(value = "/homework", initParams = @WebInitParam(name = "id", value = "-1"))
 
 public class HomeworkServlet extends HttpServlet {
-    private final HomeworkService homeworkService = ApplicationContextFile.get(HomeworkService.class);
+    @Autowired
+    private HomeworkService homeworkService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,10 +43,8 @@ public class HomeworkServlet extends HttpServlet {
             String lectureId = request.getParameter("lectureid");
             homeworkService.createHomework(Integer.parseInt(lectureId), task);
 
-//            response.sendRedirect();
             writer.println("<p>Name: " + task + "</p>");
             writer.println("<p>lectureid: " + lectureId + "</p>");
-//                writer.println("<p>deadline: " + deadline + "</p>");
         } finally {
             writer.close();
         }

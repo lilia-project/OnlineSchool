@@ -1,13 +1,11 @@
 package org.lilia.model;
 
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
-@Component
 @Data
 public class AdditionalMaterial implements Serializable {
     int counter = 0;

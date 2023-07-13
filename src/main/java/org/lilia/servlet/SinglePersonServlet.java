@@ -6,16 +6,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.ApplicationContextFile;
 import org.lilia.model.Person;
 import org.lilia.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(value = "/person/one", initParams = @WebInitParam(name = "lastname", value = "-1"))
 public class SinglePersonServlet extends HttpServlet {
-    private final PersonService personService = ApplicationContextFile.get(PersonService.class);
+    @Autowired
+    private PersonService personService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

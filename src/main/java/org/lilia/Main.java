@@ -22,11 +22,12 @@ public class Main {
 
     public static void main(String[] args) throws NoSuchMaterialIdException, InterruptedException {
 
-        DataBaseInitializer.createTables();
-
-        DataBaseInitializer.fillTables();
-
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+
+        DataBaseInitializer dataBaseInitializer = context.getBean(DataBaseInitializer.class);
+
+        dataBaseInitializer.createTables();
+        dataBaseInitializer.fillTables();
 
         HomeworkService homeworkService = context.getBean("homeworkService", HomeworkService.class);
         AdditionalMaterialService additionalMaterialService = context.getBean("additionalMaterialService", AdditionalMaterialService.class);

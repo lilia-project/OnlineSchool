@@ -1,12 +1,10 @@
 package org.lilia.model;
 
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-@Component
 @Data
 public class Homework implements Serializable {
 

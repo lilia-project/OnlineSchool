@@ -6,16 +6,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.ApplicationContextFile;
 import org.lilia.model.Lecture;
 import org.lilia.service.LectureService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(value = "/lecture/one", initParams = @WebInitParam(name = "id", value = "-1"))
 public class SingleLectureServlet extends HttpServlet {
-    private final LectureService lectureService = ApplicationContextFile.get(LectureService.class);
+    @Autowired
+    private LectureService lectureService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

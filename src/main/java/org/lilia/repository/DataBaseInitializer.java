@@ -1,5 +1,8 @@
 package org.lilia.repository;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,14 +12,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Objects;
 
+@RequiredArgsConstructor
+@Component
 public class DataBaseInitializer {
+    private final ConnectionFactory connectionFactory;
 
-    public static void createTables() {
+    public void createTables() {
         Connection connection = null;
         Statement statement = null;
 
         try {
-            connection = ConnectionFactory.createConnection();
+            connection = connectionFactory.createConnection();
             statement = connection.createStatement();
 
             final String sql = """
@@ -107,8 +113,9 @@ public class DataBaseInitializer {
 //        throw new IllegalArgumentException();
     }
 
-    public static void fillTables() {
-        try (Connection connection = ConnectionFactory.createConnection();
+    public void fillTables() {
+
+        try (Connection connection = connectionFactory.createConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM COURSE LIMIT 1");
             if (resultSet.next()) {
@@ -129,7 +136,7 @@ public class DataBaseInitializer {
             throw new RuntimeException(ex);
         }
 
-        try (Connection connection = ConnectionFactory.createConnection();
+        try (Connection connection = connectionFactory.createConnection();
              Statement statement = connection.createStatement()) {
             statement.execute(fileContent);
 
