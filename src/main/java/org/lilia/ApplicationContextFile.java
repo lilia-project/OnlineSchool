@@ -6,7 +6,7 @@ import org.lilia.service.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ApplicationContext {
+public class ApplicationContextFile {
 
     public static Map<Class, Object> objectMap = new HashMap<>();
 

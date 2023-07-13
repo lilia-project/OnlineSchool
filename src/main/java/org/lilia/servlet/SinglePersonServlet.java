@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.ApplicationContext;
+import org.lilia.ApplicationContextFile;
 import org.lilia.model.Person;
 import org.lilia.service.PersonService;
 
@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 
 @WebServlet(value = "/person/one", initParams = @WebInitParam(name = "lastname", value = "-1"))
 public class SinglePersonServlet extends HttpServlet {
-    private final PersonService personService = ApplicationContext.get(PersonService.class);
+    private final PersonService personService = ApplicationContextFile.get(PersonService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

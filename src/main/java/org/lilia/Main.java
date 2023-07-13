@@ -2,16 +2,14 @@ package org.lilia;
 
 import org.lilia.constant.Constants;
 import org.lilia.exception.NoSuchMaterialIdException;
-import org.lilia.log.ConfigurationReader;
-import org.lilia.log.ConfigurationWatcher;
-import org.lilia.log.LogService;
-import org.lilia.log.LoggerFactory;
+import org.lilia.log.*;
 import org.lilia.network.SelectorClient;
 import org.lilia.network.SelectorServer;
-import org.lilia.repository.*;
+import org.lilia.repository.DataBaseInitializer;
 import org.lilia.service.*;
 import org.lilia.util.ConsoleUtils;
 import org.lilia.view.*;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -25,25 +23,21 @@ public class Main {
 
         DataBaseInitializer.fillTables();
 
-        LectureRepository lectureRepository = new LectureRepository();
-        HomeworkRepository homeworkRepository = new HomeworkRepository();
-        HomeworkService homeworkService = new HomeworkService(homeworkRepository);
-        AdditionalMaterialRepository additionalMaterialRepository = new AdditionalMaterialRepository();
-        AdditionalMaterialService additionalMaterialService = new AdditionalMaterialService(additionalMaterialRepository);
-        LectureService lectureService = new LectureService(lectureRepository, homeworkService);
-        CourseRepository courseRepository = new CourseRepository();
-        CourseService courseService = new CourseService(courseRepository, lectureService);
-        PersonRepository personRepository = new PersonRepository();
-        PersonService personService = new PersonService(personRepository);
-        LectureView lectureView = new LectureView();
-        HomeworkView homeworkView = new HomeworkView(lectureService);
-        AdditionalMaterialView additionalMaterialView = new AdditionalMaterialView(lectureService);
-        CourseView courseView = new CourseView();
-        PersonView personView = new PersonView(courseService);
-        ControlWorkService controlWorkService = new ControlWorkService();
-        ConfigurationReader configurationReader = new ConfigurationReader();
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
 
-        ConfigurationWatcher configurationWatcher = new ConfigurationWatcher(LoggerFactory.CONSOLE_WRITER, configurationReader);
+        HomeworkService homeworkService = context.getBean("homeworkService", HomeworkService.class);
+        AdditionalMaterialService additionalMaterialService = context.getBean("additionalMaterialService", AdditionalMaterialService.class);
+        LectureService lectureService = context.getBean("lectureService", LectureService.class);
+        CourseService courseService = context.getBean("courseService", CourseService.class);
+        PersonService personService = context.getBean("personService", PersonService.class);
+        LectureView lectureView = context.getBean("lectureView", LectureView.class);
+        HomeworkView homeworkView = context.getBean("homeworkView", HomeworkView.class);
+        AdditionalMaterialView additionalMaterialView = context.getBean("additionalMaterialView", AdditionalMaterialView.class);
+        CourseView courseView = context.getBean("courseView", CourseView.class);
+        PersonView personView = context.getBean("personView", PersonView.class);
+        ControlWorkService controlWorkService = context.getBean("controlWorkService", ControlWorkService.class);
+
+        ConfigurationWatcher configurationWatcher = context.getBean("configurationWatcher", ConfigurationWatcher.class);
 
         ConsoleUtils.print("\nWelcome to Online school!");
 
@@ -92,6 +86,8 @@ public class Main {
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
         }
         SCANNER.close();
+        context.close();
+
     }
 
     private static void startServer() {
