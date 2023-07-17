@@ -47,7 +47,7 @@ public class Main {
         ConsoleUtils.print("\nWelcome to Online school!");
 
         CourseRepository courseRepository = context.getBean("courseRepository", CourseRepository.class);
-        courseRepository.select1();
+        courseRepository.getAllCourses();
 
         configurationWatcher.setDaemon(true);
         configurationWatcher.start();
