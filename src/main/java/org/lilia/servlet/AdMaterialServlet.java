@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.model.AdditionalMaterial;
+import org.lilia.entity.AdditionalMaterial;
 import org.lilia.service.AdditionalMaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 

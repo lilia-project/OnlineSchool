@@ -1,7 +1,7 @@
 package org.lilia.view;
 
 import org.lilia.constant.Constants;
-import org.lilia.model.Course;
+import org.lilia.entity.Course;
 import org.lilia.service.CourseService;
 import org.lilia.util.ConsoleUtils;
 import org.springframework.stereotype.Component;

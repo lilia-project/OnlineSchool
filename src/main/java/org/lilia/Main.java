@@ -8,7 +8,7 @@ import org.lilia.log.LogService;
 import org.lilia.log.LoggerFactory;
 import org.lilia.network.SelectorClient;
 import org.lilia.network.SelectorServer;
-import org.lilia.repository.DataBaseInitializer;
+import org.lilia.repository.CourseRepository;
 import org.lilia.service.*;
 import org.lilia.util.ConsoleUtils;
 import org.lilia.view.*;
@@ -24,10 +24,10 @@ public class Main {
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 
-        DataBaseInitializer dataBaseInitializer = context.getBean(DataBaseInitializer.class);
+//        DataBaseInitializer dataBaseInitializer = context.getBean(DataBaseInitializer.class);
 
-        dataBaseInitializer.createTables();
-        dataBaseInitializer.fillTables();
+//        dataBaseInitializer.createTables();
+//        dataBaseInitializer.fillTables();
 
         HomeworkService homeworkService = context.getBean("homeworkService", HomeworkService.class);
         AdditionalMaterialService additionalMaterialService = context.getBean("additionalMaterialService", AdditionalMaterialService.class);
@@ -45,6 +45,9 @@ public class Main {
         ConfigurationWatcher configurationWatcher = new ConfigurationWatcher(LoggerFactory.CONSOLE_WRITER, configurationReader);
 
         ConsoleUtils.print("\nWelcome to Online school!");
+
+        CourseRepository courseRepository = context.getBean("courseRepository", CourseRepository.class);
+        courseRepository.select1();
 
         configurationWatcher.setDaemon(true);
         configurationWatcher.start();

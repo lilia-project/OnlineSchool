@@ -2,8 +2,8 @@ package org.lilia.view;
 
 import org.lilia.constant.Constants;
 import org.lilia.dto.AdditionalMaterialDto;
-import org.lilia.model.AdditionalMaterial;
-import org.lilia.model.ResourceType;
+import org.lilia.entity.AdditionalMaterial;
+import org.lilia.entity.ResourceType;
 import org.lilia.service.AdditionalMaterialService;
 import org.lilia.service.LectureService;
 import org.lilia.util.ConsoleUtils;
@@ -159,7 +159,7 @@ public class AdditionalMaterialView {
         ConsoleUtils.print(Constants.NAME);
         String additionalMaterialName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-        additionalMaterialService.createAdditionalMaterial(additionalMaterialName, lectureId);
+        additionalMaterialService.isCreateAdditionalMaterial(additionalMaterialName, lectureId);
     }
 
     private void print(AdditionalMaterial additionalMaterial) {

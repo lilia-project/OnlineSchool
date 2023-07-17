@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.model.Person;
+import org.lilia.entity.Person;
 import org.lilia.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 

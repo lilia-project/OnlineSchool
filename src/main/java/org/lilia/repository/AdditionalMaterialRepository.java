@@ -1,10 +1,13 @@
 package org.lilia.repository;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.lilia.constant.Constants;
-import org.lilia.model.AdditionalMaterial;
+import org.lilia.entity.AdditionalMaterial;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
+import org.lilia.util.HibernateUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -26,32 +29,37 @@ public class AdditionalMaterialRepository extends ConnectionFactory {
         return comparator;
     }
 
-    public void add(AdditionalMaterial additionalMaterial) {
-        List<AdditionalMaterial> value = data.get(additionalMaterial.getLectureId());
-
-        if (value == null) {
-            value = new ArrayList<>();
-            value.add(additionalMaterial);
-            data.put(additionalMaterial.getLectureId(), value);
-        } else {
-            value.add(additionalMaterial);
+    public static Boolean save(final AdditionalMaterial material) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.save(material);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
         }
     }
 
-    public Optional<AdditionalMaterial> getById(int id) {
-        return data.values().stream()
-                .flatMap(Collection::stream)
-                .filter(r -> r.getId() == id)
-                .findFirst();
+    public Optional<AdditionalMaterial> get(final Integer id) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final javax.persistence.Query usersQuery = session.createQuery("from AdditionalMaterial where id =:id", AdditionalMaterial.class);
+            usersQuery.setParameter("id", id);
+            final AdditionalMaterial singleResult = (AdditionalMaterial) usersQuery.getSingleResult();
+            return Optional.of(singleResult);
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
 
-    public void remove(AdditionalMaterial additionalMaterial) {
-        List<AdditionalMaterial> value = data.get(additionalMaterial.getLectureId());
-        if (value == null) {
-            return;
+    public Boolean delete(final AdditionalMaterial material) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.delete(material);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
         }
-        value.remove(additionalMaterial);
-        ConsoleUtils.print(Constants.ELEMENT_DELETED);
     }
 
     public Optional<List<AdditionalMaterial>> getByLectureId(int lectureId) {

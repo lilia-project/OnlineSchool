@@ -6,9 +6,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.lilia.dto.AdditionalMaterialDto;
+import org.lilia.entity.AdditionalMaterial;
+import org.lilia.entity.ResourceType;
 import org.lilia.exception.NoSuchMaterialIdException;
-import org.lilia.model.AdditionalMaterial;
-import org.lilia.model.ResourceType;
 import org.lilia.repository.AdditionalMaterialRepository;
 import org.lilia.util.ConsoleUtils;
 import org.mockito.InjectMocks;
@@ -32,11 +32,11 @@ class AdditionalMaterialServiceTest {
 
     @Test
     void createAdditionalMaterial() {
-        target.createAdditionalMaterial("Name", 1);
+        target.isCreateAdditionalMaterial("Name", 1);
 
         AdditionalMaterial expected = new AdditionalMaterial("Name", 1);
         setInternalField(expected, "id", 1);
-        Mockito.verify(materialRepository).add(expected);
+        Mockito.verify(materialRepository).save(expected);
     }
 
     private void setInternalField(Object object, String fieldName, int value) {
@@ -61,17 +61,17 @@ class AdditionalMaterialServiceTest {
     @Test
     void shouldDeleteById() {
         Optional<AdditionalMaterial> expected = Optional.of(new AdditionalMaterial("Name", 1));
-        Mockito.when(materialRepository.getById(1)).thenReturn(expected);
+        Mockito.when(materialRepository.get(1)).thenReturn(expected);
 
         target.deleteById(1);
 
-        Mockito.verify(materialRepository).remove(expected.get());
+        Mockito.verify(materialRepository).delete(expected.get());
     }
 
     @Test
     void shouldThrowExceptionWhenDeleteById() {
         Optional<AdditionalMaterial> expected = Optional.empty();
-        Mockito.when(materialRepository.getById(3)).thenReturn(expected);
+        Mockito.when(materialRepository.get(3)).thenReturn(expected);
 
         NoSuchMaterialIdException exception = Assertions.assertThrows(NoSuchMaterialIdException.class, () -> target.deleteById(3));
         assertEquals("no such materialId exist 3", exception.getMessage());
@@ -84,7 +84,7 @@ class AdditionalMaterialServiceTest {
         try (MockedStatic<ConsoleUtils> theMock = Mockito.mockStatic(ConsoleUtils.class)) {
             theMock.when(ConsoleUtils::readInteger).thenReturn(1);
 
-            Mockito.when(materialRepository.getById(1)).thenReturn(expected);
+            Mockito.when(materialRepository.get(1)).thenReturn(expected);
 
             int actual = target.additionalMaterialIdIsValid();
 
@@ -100,11 +100,11 @@ class AdditionalMaterialServiceTest {
         try (MockedStatic<ConsoleUtils> theMock = Mockito.mockStatic(ConsoleUtils.class)) {
             theMock.when(ConsoleUtils::readInteger).thenReturn(2);
 
-            Mockito.when(materialRepository.getById(1)).thenReturn(Optional.empty());
+            Mockito.when(materialRepository.get(1)).thenReturn(Optional.empty());
 
             theMock.when(ConsoleUtils::readInteger).thenReturn(1);
 
-            Mockito.when(materialRepository.getById(1)).thenReturn(expected);
+            Mockito.when(materialRepository.get(1)).thenReturn(expected);
 
             int actual = target.additionalMaterialIdIsValid();
 
@@ -116,17 +116,17 @@ class AdditionalMaterialServiceTest {
     @Test
     void shouldGetRequireById() {
         Optional<AdditionalMaterial> expected = Optional.of(new AdditionalMaterial("Name", 2));
-        Mockito.when(materialRepository.getById(1)).thenReturn(expected);
+        Mockito.when(materialRepository.get(1)).thenReturn(expected);
 
         target.getRequireById(1);
 
-        Mockito.verify(materialRepository).getById(expected.get().getId());
+        Mockito.verify(materialRepository).get(expected.get().getId());
     }
 
     @Test
     void shouldTrowExceptionWhenGetRequireById() {
         Optional<AdditionalMaterial> expected = Optional.empty();
-        Mockito.when(materialRepository.getById(3)).thenReturn(expected);
+        Mockito.when(materialRepository.get(3)).thenReturn(expected);
 
         NoSuchMaterialIdException exception;
         exception = Assertions.assertThrows(NoSuchMaterialIdException.class, () -> target.getRequireById(3));
