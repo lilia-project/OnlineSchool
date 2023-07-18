@@ -9,7 +9,7 @@ import org.lilia.repository.DataBaseInitializer;
 import org.lilia.service.*;
 import org.lilia.util.ConsoleUtils;
 import org.lilia.view.*;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -19,11 +19,12 @@ public class Main {
 
     public static void main(String[] args) throws NoSuchMaterialIdException, InterruptedException {
 
-        DataBaseInitializer.createTables();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 
-        DataBaseInitializer.fillTables();
+        DataBaseInitializer dataBaseInitializer = context.getBean(DataBaseInitializer.class);
 
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+        dataBaseInitializer.createTables();
+        dataBaseInitializer.fillTables();
 
         HomeworkService homeworkService = context.getBean("homeworkService", HomeworkService.class);
         AdditionalMaterialService additionalMaterialService = context.getBean("additionalMaterialService", AdditionalMaterialService.class);

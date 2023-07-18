@@ -1,17 +1,28 @@
 package org.lilia.repository;
 
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+@Component
 public class ConnectionFactory {
+    @Value("${database.connectionUrl}")
+    private String url;
+    @Value("${database.user}")
+    private String username;
+    @Value("${database.password}")
+    private String password;
+
+    @Value("${database.driver}")
+    private String dataBaseDriver;
+
     @SneakyThrows
-    public static Connection createConnection() {
-        final String url = "jdbc:postgresql://localhost:5432/online_school";
-        final String username = "postgres";
-        final String password = "admin";
-        Class.forName("org.postgresql.Driver").getDeclaredConstructor().newInstance();
+    public Connection createConnection() {
+
+        Class.forName(dataBaseDriver).getDeclaredConstructor().newInstance();
         return DriverManager.getConnection(url, username, password);
     }
 }

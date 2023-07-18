@@ -6,9 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.ApplicationContextFile;
 import org.lilia.model.Homework;
 import org.lilia.service.HomeworkService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,8 +16,8 @@ import java.io.PrintWriter;
 @WebServlet(value = "/homework/one", initParams = @WebInitParam(name = "id", value = "-1"))
 
 public class SingleHomeworkServlet extends HttpServlet {
-
-    private final HomeworkService homeworkService = ApplicationContextFile.get(HomeworkService.class);
+    @Autowired
+    private HomeworkService homeworkService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

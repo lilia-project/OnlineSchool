@@ -5,6 +5,7 @@ import org.lilia.model.Lecture;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class LectureRepository extends ConnectionFactory {
 
     private static final List<Lecture> list = new ArrayList<>();

@@ -5,10 +5,12 @@ import org.lilia.model.AdditionalMaterial;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class AdditionalMaterialRepository extends ConnectionFactory {
 
     private final Map<Integer, List<AdditionalMaterial>> data = new HashMap<>();

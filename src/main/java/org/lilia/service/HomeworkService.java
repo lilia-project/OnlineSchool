@@ -6,13 +6,17 @@ import org.lilia.exception.NoSuchHomeworkException;
 import org.lilia.model.Homework;
 import org.lilia.repository.HomeworkRepository;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class HomeworkService {
     private final HomeworkRepository homeworkRepository;
 
+    @Autowired
     public HomeworkService(HomeworkRepository homeworkRepository) {
         this.homeworkRepository = homeworkRepository;
     }

@@ -6,11 +6,13 @@ import org.lilia.model.Role;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class PersonRepository extends ConnectionFactory {
 
     private static FilePath getPath(Role role) {

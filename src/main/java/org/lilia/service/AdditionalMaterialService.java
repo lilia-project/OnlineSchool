@@ -8,14 +8,18 @@ import org.lilia.model.ResourceType;
 import org.lilia.repository.AdditionalMaterialRepository;
 import org.lilia.repository.ConnectionFactory;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class AdditionalMaterialService extends ConnectionFactory {
     private final AdditionalMaterialRepository additionalMaterialRepository;
 
+    @Autowired
     public AdditionalMaterialService(AdditionalMaterialRepository additionalMaterialRepository) {
         this.additionalMaterialRepository = additionalMaterialRepository;
     }

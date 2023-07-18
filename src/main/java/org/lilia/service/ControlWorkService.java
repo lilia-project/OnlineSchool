@@ -1,10 +1,13 @@
 package org.lilia.service;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class ControlWorkService {
 
     private static void fillMapTimesOfWork(Map<Integer, Integer> timesOfWork) {
@@ -18,14 +21,14 @@ public class ControlWorkService {
 
     private static void searchBestTime(Map<Integer, Integer> timesOfWork) {
 
-        int bestTime = 12;
+        int limitTime = 12;
         for (int i = 0; i < timesOfWork.size(); i++) {
-            if (timesOfWork.get(i) < bestTime) {
-                bestTime = timesOfWork.get(i);
+            if (timesOfWork.get(i) < limitTime) {
+                limitTime = timesOfWork.get(i);
             }
         }
         for (int i = 0; i < timesOfWork.size(); i++) {
-            if (timesOfWork.get(i) == bestTime) {
+            if (timesOfWork.get(i) == limitTime) {
                 System.out.println("Student " + (i + 1) + " has the best time = " + timesOfWork.get(i));
             }
         }

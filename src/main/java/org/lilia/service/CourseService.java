@@ -6,15 +6,19 @@ import org.lilia.model.Course;
 import org.lilia.model.Lecture;
 import org.lilia.repository.CourseRepository;
 import org.lilia.util.ConsoleUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class CourseService {
 
     private final CourseRepository courseRepository;
     private final LectureService lectureService;
 
+    @Autowired
     public CourseService(CourseRepository courseRepository, LectureService lectureService) {
         this.courseRepository = courseRepository;
         this.lectureService = lectureService;
