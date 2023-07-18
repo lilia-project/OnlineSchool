@@ -14,20 +14,25 @@ public class AdditionalMaterial implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
 
+    private String name;
     private int lectureId;
+
     @Enumerated
     private ResourceType resourceType;
+
+    @ManyToOne
+    @JoinColumn(name = "lecture_id")
+    private Lecture lecture;
+
+    public AdditionalMaterial() {
+    }
 
     public AdditionalMaterial(String name, int lectureId) {
         this.name = name;
         this.lectureId = lectureId;
         counter++;
         id = counter;
-    }
-
-    public AdditionalMaterial() {
     }
 
     @Override

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,14 +16,20 @@ public class Lecture implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private LocalDateTime createdAt;
     private LocalDateTime lectureDate;
     private String name;
     private int courseId;
     private int personId;
     private String description;
-    @Transient
-    private List<Homework> homeworkList;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
+
+    @OneToMany(mappedBy = "lecture")
+    private List<Homework> homeworkList = new ArrayList<>();
 
     public Lecture() {
     }

@@ -26,7 +26,7 @@ public class CourseService {
 
     private static void addLectureIntoCourse(Course course) {
         List<Lecture> list = LectureService.findAllByCourseId(course.getId());
-        course.setList(list);
+        course.setLectures(list);
     }
 
     public void sortByName() {
