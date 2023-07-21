@@ -30,6 +30,12 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">jcache</property>
+        <property name="hibernate.javax.cache.provider">
+            org.ehcache.jsr107.EhcacheCachingProvider
+        </property>
+
         <mapping class="org.lilia.entity.AdditionalMaterial"/>
         <mapping class="org.lilia.entity.Course"/>
         <mapping class="org.lilia.entity.Homework"/>
