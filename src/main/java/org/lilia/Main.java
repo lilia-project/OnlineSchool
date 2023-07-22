@@ -9,6 +9,7 @@ import org.lilia.log.LoggerFactory;
 import org.lilia.network.SelectorClient;
 import org.lilia.network.SelectorServer;
 import org.lilia.repository.CourseRepository;
+import org.lilia.repository.DataBaseInitializer;
 import org.lilia.service.*;
 import org.lilia.util.ConsoleUtils;
 import org.lilia.view.*;
@@ -23,11 +24,6 @@ public class Main {
     public static void main(String[] args) throws NoSuchMaterialIdException, InterruptedException {
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-
-//        DataBaseInitializer dataBaseInitializer = context.getBean(DataBaseInitializer.class);
-
-//        dataBaseInitializer.createTables();
-//        dataBaseInitializer.fillTables();
 
         HomeworkService homeworkService = context.getBean("homeworkService", HomeworkService.class);
         AdditionalMaterialService additionalMaterialService = context.getBean("additionalMaterialService", AdditionalMaterialService.class);
@@ -48,6 +44,10 @@ public class Main {
 
         CourseRepository courseRepository = context.getBean("courseRepository", CourseRepository.class);
         courseRepository.getAllCourses();
+        DataBaseInitializer dataBaseInitializer = context.getBean(DataBaseInitializer.class);
+
+//        dataBaseInitializer.createTables();
+        dataBaseInitializer.fillTables();
 
         configurationWatcher.setDaemon(true);
         configurationWatcher.start();

@@ -1,7 +1,6 @@
 package org.lilia.entity;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -31,7 +30,6 @@ public class Course implements Serializable {
     public Course() {
     }
 
-    @Autowired
     public Course(Integer id, String name) {
         this.id = id;
         this.name = name;

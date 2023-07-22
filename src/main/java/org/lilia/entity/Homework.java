@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Embeddable
+//@Embeddable
 public class Homework implements Serializable {
     private int lectureId;
     private String task;
