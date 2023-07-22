@@ -25,7 +25,7 @@ public class Lecture implements Serializable {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "course_id")
+    @JoinColumn(name = "courseid")
     private Course course;
 
     @OneToMany(mappedBy = "lecture")

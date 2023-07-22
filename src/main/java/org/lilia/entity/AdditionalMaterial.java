@@ -17,11 +17,12 @@ public class AdditionalMaterial implements Serializable {
     private String name;
     private int lectureId;
 
-    @Enumerated
+    @Column(columnDefinition = "text")
+    @Enumerated(EnumType.STRING)
     private ResourceType resourceType;
 
     @ManyToOne
-    @JoinColumn(name = "lecture_id")
+    @JoinColumn(name = "lectureid")
     private Lecture lecture;
 
     public AdditionalMaterial() {

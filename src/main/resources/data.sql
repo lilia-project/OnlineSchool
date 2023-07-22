@@ -21,7 +21,7 @@ INSERT INTO public.person(id, role, last_name, first_name, phone, email, course_
            (12, 'TEACHER','Ilster','Vlad','0353459993','0353459993@gmail.com',3),
 	       (13, 'TEACHER','Baranov','Ilia','0353450993','0353450993@gmail.com',4);
 
-INSERT INTO public.lecture(id, name, course_id, person_id, create_at, lecture_date)
+INSERT INTO public.lecture(id, name, course_id, person_id, created_at, lecture_date)
 	VALUES (1, 'Introduction2', 2,	11,	'2023-06-10 22:00:00', '2023-06-13 22:00:00'),
     	   (2, 'First lecture', 1, 10,  '2023-06-07 22:00:00', '2023-06-16 22:00:00'),
     	   (3, 'Introduction', 1, 10,   '2023-06-09 22:00:00', '2023-06-18 22:00:00'),

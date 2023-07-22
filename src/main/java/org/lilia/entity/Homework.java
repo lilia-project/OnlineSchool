@@ -19,7 +19,7 @@ public class Homework implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "lecture_id")
+    @JoinColumn(name = "lectureid")
     private Lecture lecture;
 
     public Homework() {
