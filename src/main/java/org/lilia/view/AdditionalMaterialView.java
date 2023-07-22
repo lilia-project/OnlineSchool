@@ -159,7 +159,7 @@ public class AdditionalMaterialView {
         ConsoleUtils.print(Constants.NAME);
         String additionalMaterialName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-        additionalMaterialService.isCreateAdditionalMaterial(additionalMaterialName, lectureId);
+        additionalMaterialService.createNewAddMaterial(additionalMaterialName, lectureId);
     }
 
     private void print(AdditionalMaterial additionalMaterial) {

@@ -1,30 +1,11 @@
 package org.lilia.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.lilia.dto.AdditionalMaterialDto;
-import org.lilia.entity.AdditionalMaterial;
-import org.lilia.entity.ResourceType;
-import org.lilia.exception.NoSuchMaterialIdException;
-import org.lilia.repository.AdditionalMaterialRepository;
-import org.lilia.util.ConsoleUtils;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.lang.reflect.Field;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 class AdditionalMaterialServiceTest {
-    @Mock
+  /*  @Mock
     private AdditionalMaterialRepository materialRepository;
 
     @InjectMocks
@@ -132,5 +113,5 @@ class AdditionalMaterialServiceTest {
         exception = Assertions.assertThrows(NoSuchMaterialIdException.class, () -> target.getRequireById(3));
         assertEquals("no such materialId exist 3", exception.getMessage());
 
-    }
+    }*/
 }

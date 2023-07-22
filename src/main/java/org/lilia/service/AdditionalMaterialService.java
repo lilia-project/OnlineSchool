@@ -24,11 +24,16 @@ public class AdditionalMaterialService extends ConnectionFactory {
         this.additionalMaterialRepository = additionalMaterialRepository;
     }
 
-    public Boolean isCreateAdditionalMaterial(String name, int lectureId) {
-        AdditionalMaterial additionalMaterial = new AdditionalMaterial(name, lectureId);
-        return AdditionalMaterialRepository.save(additionalMaterial);
+    public void createNewAddMaterial(String name, int lectureId) {
+        if (name == null | lectureId == 0) {
+            throw new IllegalArgumentException("material name or lectureId is null");
+        }
+        AdditionalMaterial additionalMaterial = new AdditionalMaterial();
+        additionalMaterial.setName(name);
+        additionalMaterial.setLectureId(lectureId);
+        additionalMaterialRepository.save(additionalMaterial);
+        ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
-
 
     public AdditionalMaterialDto createAdditionalMaterialDto(int lectureId, String name, ResourceType resourceType) {
 

@@ -10,10 +10,9 @@ import java.util.NoSuchElementException;
 @Entity
 @Data
 public class AdditionalMaterial implements Serializable {
-    int counter = 0;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
     private int lectureId;
@@ -28,11 +27,10 @@ public class AdditionalMaterial implements Serializable {
     public AdditionalMaterial() {
     }
 
-    public AdditionalMaterial(String name, int lectureId) {
+    public AdditionalMaterial(Integer id, String name, int lectureId) {
         this.name = name;
         this.lectureId = lectureId;
-        counter++;
-        id = counter;
+        this.id = id;
     }
 
     @Override
