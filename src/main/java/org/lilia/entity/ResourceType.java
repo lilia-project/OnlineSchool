@@ -1,4 +1,4 @@
-package org.lilia.model;
+package org.lilia.entity;
 
 public enum ResourceType {
     URL(1),

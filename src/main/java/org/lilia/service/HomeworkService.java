@@ -2,8 +2,8 @@ package org.lilia.service;
 
 import org.lilia.constant.Constants;
 import org.lilia.dto.HomeworkDto;
+import org.lilia.entity.Homework;
 import org.lilia.exception.NoSuchHomeworkException;
-import org.lilia.model.Homework;
 import org.lilia.repository.HomeworkRepository;
 import org.lilia.util.ConsoleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,10 @@ public class HomeworkService {
         if (task == null) {
             throw new IllegalArgumentException("homework name is null");
         }
-        homeworkRepository.insertValue(lectureId, task);
+        Homework homework = new Homework();
+        homework.setLectureId(lectureId);
+        homework.setTask(task);
+        homeworkRepository.save(homework);
     }
 
     public HomeworkDto createHomeworkDto(String task) {
@@ -41,7 +44,7 @@ public class HomeworkService {
 
     public Homework getRequireById(int homeworkId) {
 
-        Optional<Homework> homework = homeworkRepository.getById(homeworkId);
+        Optional<Homework> homework = homeworkRepository.get(homeworkId);
         if (homework.isEmpty()) {
             throw new NoSuchHomeworkException(homeworkId);
         }
@@ -54,23 +57,23 @@ public class HomeworkService {
     }
 
     public void deleteById(int homeworkId) {
-        Optional<Homework> homework = homeworkRepository.getById(homeworkId);
+        Optional<Homework> homework = homeworkRepository.get(homeworkId);
         if (homework.isEmpty()) {
             ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
             throw new NoSuchHomeworkException(homeworkId);
         } else {
-            homeworkRepository.remove(homework.get());
+            homeworkRepository.delete(homework.get());
             ConsoleUtils.print(Constants.ELEMENT_DELETED);
         }
     }
 
     public int homeworkIdIsValid() {
         int homeworkId = ConsoleUtils.readInteger();
-        Optional<Homework> homework = homeworkRepository.getById(homeworkId);
+        Optional<Homework> homework = homeworkRepository.get(homeworkId);
         while (homework.isEmpty()) {
             ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
             homeworkId = ConsoleUtils.readInteger();
-            homework = homeworkRepository.getById(homeworkId);
+            homework = homeworkRepository.get(homeworkId);
         }
         return homeworkId;
     }

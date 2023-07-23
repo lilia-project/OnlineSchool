@@ -1,29 +1,38 @@
-package org.lilia.model;
+package org.lilia.entity;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "person")
 @Data
 public class Person implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
+    @Enumerated
     private Role role;
-
+    @Column(name = "lastName")
     private String lastName;
-
+    @Column(name = "firstName")
     private String firstName;
-
+    @Column(name = "phone")
     private String phone;
+    @Column(name = "email")
     private String email;
+    @Column(name = "courseId")
     private int courseId;
+
+    public Person() {
+    }
 
     public Person(final Integer id, final Role role, String lastName) {
         this.id = id;
         this.role = role;
         this.lastName = lastName;
-    }
-
-    public Person() {
     }
 
     @Override

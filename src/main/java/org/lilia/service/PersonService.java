@@ -2,9 +2,9 @@ package org.lilia.service;
 
 import org.lilia.constant.Constants;
 import org.lilia.dto.PersonDto;
+import org.lilia.entity.Person;
+import org.lilia.entity.Role;
 import org.lilia.exception.NoSuchPersonException;
-import org.lilia.model.Person;
-import org.lilia.model.Role;
 import org.lilia.repository.PersonRepository;
 import org.lilia.serialization.FilePath;
 import org.lilia.util.ConsoleUtils;
@@ -32,7 +32,10 @@ public class PersonService {
         if (lastName == null | role == null) {
             throw new IllegalArgumentException("last name or role is null");
         }
-        personRepository.insertValue(role, lastName);
+        Person person = new Person();
+        person.setRole(role);
+        person.setLastName(lastName);
+        personRepository.save(person);
     }
 
     public PersonDto createPersonDto(String lastName, String firstName, String phone, String email, int courseId) {
@@ -68,12 +71,13 @@ public class PersonService {
     }
 
     public Optional<List<Person>> outAllByCourseId(int courseId, Role role) {
-//        personRepository.getByCourseId(courseId, role);
         return Optional.ofNullable(personRepository.getByCourseId(courseId, role));
     }
 
     public void delete(String lastName) {
-        personRepository.remove(lastName);
+        Person person = new Person();
+        person.setLastName(lastName);
+        personRepository.delete(person);
 
     }
 

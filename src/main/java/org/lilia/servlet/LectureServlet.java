@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.model.Lecture;
+import org.lilia.entity.Lecture;
 import org.lilia.service.LectureService;
 import org.springframework.beans.factory.annotation.Autowired;
 

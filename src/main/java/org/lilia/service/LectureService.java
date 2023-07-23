@@ -2,10 +2,10 @@ package org.lilia.service;
 
 import org.lilia.constant.Constants;
 import org.lilia.dto.LectureDto;
+import org.lilia.entity.Lecture;
 import org.lilia.exception.NoSuchLectureIdException;
 import org.lilia.log.Logger;
 import org.lilia.log.LoggerFactory;
-import org.lilia.model.Lecture;
 import org.lilia.repository.LectureRepository;
 import org.lilia.util.ConsoleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,11 @@ public class LectureService {
         if (lectureName == null) {
             throw new IllegalArgumentException("lecture name is null");
         }
-        lectureRepository.insertValue(lectureName);
+        Lecture lecture = new Lecture();
+        lecture.setName(lectureName);
+        lecture.setCreatedAt(LocalDateTime.now());
+        lecture.setLectureDate(LocalDateTime.now().plusDays((int) (Math.random() * 10)));
+        lectureRepository.save(lecture);
         ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
@@ -65,7 +69,7 @@ public class LectureService {
     }
 
     public Lecture getRequireById(int lectureId) {
-        Optional<Lecture> lecture = lectureRepository.getById(lectureId);
+        Optional<Lecture> lecture = lectureRepository.get(lectureId);
         if (lecture.isEmpty()) {
             throw new NoSuchLectureIdException(lectureId);
         }
@@ -80,19 +84,19 @@ public class LectureService {
 
     public void deleteById(int lectureId) {
         Lecture lecture = getRequireById(lectureId);
-        lectureRepository.remove(lecture);
+        lectureRepository.delete(lecture);
         ConsoleUtils.print(Constants.ELEMENT_DELETED);
     }
 
     public int lectureIdIsValid() {
         int lectureId = Integer.parseInt(ConsoleUtils.readAndValidationInput(Constants.NUMBER));
 
-        Optional<Lecture> lecture = lectureRepository.getById(lectureId);
+        Optional<Lecture> lecture = lectureRepository.get(lectureId);
         while (lecture.isEmpty()) {
             logger.error("lecture not found by this lectureId");
             logger.info("repeat input");
             lectureId = Integer.parseInt(ConsoleUtils.readAndValidationInput(Constants.NUMBER));
-            lecture = lectureRepository.getById(lectureId);
+            lecture = lectureRepository.get(lectureId);
         }
         return lectureId;
     }

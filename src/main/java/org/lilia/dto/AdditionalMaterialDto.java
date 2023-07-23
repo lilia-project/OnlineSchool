@@ -1,7 +1,7 @@
 package org.lilia.dto;
 
 import lombok.EqualsAndHashCode;
-import org.lilia.model.ResourceType;
+import org.lilia.entity.ResourceType;
 
 @EqualsAndHashCode
 public class AdditionalMaterialDto {

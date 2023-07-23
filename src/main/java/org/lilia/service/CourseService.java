@@ -1,9 +1,9 @@
 package org.lilia.service;
 
 import org.lilia.constant.Constants;
+import org.lilia.entity.Course;
+import org.lilia.entity.Lecture;
 import org.lilia.exception.NoSuchCourseIdException;
-import org.lilia.model.Course;
-import org.lilia.model.Lecture;
 import org.lilia.repository.CourseRepository;
 import org.lilia.util.ConsoleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +37,16 @@ public class CourseService {
         if (courseName == null) {
             throw new IllegalArgumentException("course name is null");
         }
-        int courseId = courseRepository.insertValue(courseName);
-        courseRepository.getById(courseId);
+        Course course = new Course();
+        course.setName(courseName);
+        courseRepository.save(course);
         ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
     public void updateCourse(int id, String name) {
-        courseRepository.updateCourse(id, name);
+        Course course = new Course();
+        course.setName(name);
+        courseRepository.update(course);
     }
 
     public List<Course> outputAll() {
@@ -51,7 +54,7 @@ public class CourseService {
     }
 
     public Course getRequireById(int courseId) {
-        Optional<Course> course = courseRepository.getById(courseId);
+        Optional<Course> course = courseRepository.get(courseId);
         if (course.isEmpty()) {
             throw new NoSuchCourseIdException(courseId);
         }
@@ -61,17 +64,17 @@ public class CourseService {
 
     public void deleteById(int courseId) {
         Course course = getRequireById(courseId);
-        courseRepository.remove(course);
+        courseRepository.delete(course);
         ConsoleUtils.print(Constants.ELEMENT_DELETED);
     }
 
     public int courseIdIsValid() {
         int courseId = ConsoleUtils.readInteger();
-        Optional<Course> course = courseRepository.getById(courseId);
+        Optional<Course> course = courseRepository.get(courseId);
         while (course.isEmpty()) {
             System.out.println("input valid course's id");
             courseId = ConsoleUtils.readInteger();
-            course = courseRepository.getById(courseId);
+            course = courseRepository.get(courseId);
         }
         return courseId;
     }

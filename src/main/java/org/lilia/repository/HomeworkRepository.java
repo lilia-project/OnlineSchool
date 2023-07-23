@@ -1,10 +1,13 @@
 package org.lilia.repository;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.lilia.constant.Constants;
-import org.lilia.model.Homework;
+import org.lilia.entity.Homework;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
+import org.lilia.util.HibernateUtil;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -16,28 +19,25 @@ import java.util.Optional;
 @Component
 public class HomeworkRepository extends ConnectionFactory {
 
-    public void insertValue(int lectureId, String task) {
-        try {
-            final String sql = """
-                    INSERT INTO public.homework(
-                    \ttask, lecture_id)
-                    \tVALUES (?,?);""";
+    public Boolean save(final Homework homework) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.save(homework);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
-            try (Connection connection = createConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-                preparedStatement.setString(1, task);
-                preparedStatement.setInt(2, lectureId);
-
-                int rows = preparedStatement.executeUpdate();
-                System.out.println("add Lines Device: " + rows);
-
-            } catch (SQLException ex) {
-                System.out.println("Connection failed..." + ex);
-            }
-        } catch (Exception ex) {
-            System.out.println("Illegal argument" + ex);
-            throw new IllegalArgumentException();
+    public Optional<Homework> get(final Integer id) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final javax.persistence.Query usersQuery = session.createQuery("from Homework where id =:id", Homework.class);
+            usersQuery.setParameter("id", id);
+            final Homework singleResult = (Homework) usersQuery.getSingleResult();
+            return Optional.of(singleResult);
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
         }
     }
 
@@ -79,31 +79,6 @@ public class HomeworkRepository extends ConnectionFactory {
         return Collections.emptyList();
     }
 
-    public Optional<Homework> getById(int id) {
-        try {
-            String sql = "SELECT * FROM public.homework WHERE id = ? ";
-            try (Connection connection = createConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-                preparedStatement.setInt(1, id);
-                final ResultSet resultSet = preparedStatement.executeQuery();
-
-                if (resultSet.next()) {
-                    Homework homework = new Homework();
-                    setFields(resultSet, homework);
-
-                    return Optional.of(homework);
-                }
-
-            } catch (SQLException ex) {
-                System.out.println("Connection failed..." + ex);
-            }
-        } catch (Exception ex) {
-            throw new IllegalArgumentException();
-        }
-        return Optional.empty();
-    }
-
     public Optional<List<Homework>> getAll() {
         try {
             final String sql = "SELECT * FROM public.homework";
@@ -127,22 +102,14 @@ public class HomeworkRepository extends ConnectionFactory {
         return Optional.empty();
     }
 
-    public void remove(Homework homework) {
-        try {
-            final String sql = "DELETE FROM public.homework\n " +
-                    "WHERE id = ?";
-            try (Connection connection = createConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-                preparedStatement.setInt(1, homework.getId());
-                preparedStatement.execute();
-
-            } catch (SQLException ex) {
-                System.out.println("Connection failed..." + ex);
-            }
-        } catch (Exception ex) {
-            System.out.println("Illegal argument" + ex);
-            throw new IllegalArgumentException();
+    public Boolean delete(final Homework homework) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.delete(homework);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
         }
     }
 

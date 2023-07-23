@@ -1,13 +1,19 @@
 package org.lilia.repository;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.lilia.constant.Constants;
-import org.lilia.model.Lecture;
+import org.lilia.entity.Lecture;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
+import org.lilia.util.HibernateUtil;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -26,30 +32,6 @@ public class LectureRepository extends ConnectionFactory {
         return Optional.of(resList).orElse(Collections.emptyList());
     }
 
-    public void insertValue(String name) {
-        try {
-            final String sql = """
-                    INSERT INTO public.lecture(
-                    \tname)
-                    VALUES(?);""";
-
-            try (Connection connection = createConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-                preparedStatement.setString(1, name);
-                preparedStatement.executeUpdate(sql);
-
-                int rows = preparedStatement.executeUpdate();
-                System.out.println("add Lines Device: " + rows);
-            }
-        } catch (SQLException ex) {
-            System.out.println("Connection failed..." + ex);
-        } catch (Exception ex) {
-            System.out.println("Illegal argument" + ex);
-            throw new IllegalArgumentException();
-        }
-    }
-
     private void setFields(ResultSet resultSet, Lecture lecture) throws SQLException {
         lecture.setId(resultSet.getInt("id"));
         lecture.setCreatedAt(LocalDateTime.parse(resultSet.getString("create_at"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
@@ -60,29 +42,26 @@ public class LectureRepository extends ConnectionFactory {
         lecture.setDescription(resultSet.getString("description"));
     }
 
-    public Optional<Lecture> getById(int id) {
-        try {
-            String sql = "SELECT * FROM public.lecture WHERE id = ?";
-            try (Connection connection = createConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-                preparedStatement.setInt(1, id);
-                final ResultSet resultSet = preparedStatement.executeQuery();
-
-                if (resultSet.next()) {
-                    Lecture lecture = new Lecture();
-                    setFields(resultSet, lecture);
-                    return Optional.of(lecture);
-                }
-            } catch (SQLException ex) {
-                System.out.println("Connection failed..." + ex);
-            }
-        } catch (Exception ex) {
-            System.out.println("Illegal argument" + ex);
-            throw new IllegalArgumentException();
-
+    public Boolean save(final Lecture lecture) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.save(lecture);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
         }
-        return Optional.empty();
+    }
+
+    public Optional<Lecture> get(final Integer id) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final javax.persistence.Query usersQuery = session.createQuery("from Lecture where id =:id", Lecture.class);
+            usersQuery.setParameter("id", id);
+            final Lecture singleResult = (Lecture) usersQuery.getSingleResult();
+            return Optional.of(singleResult);
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     public List<Lecture> getAllLecture() {
@@ -141,24 +120,14 @@ public class LectureRepository extends ConnectionFactory {
         }
     }
 
-    public void remove(Lecture lecture) {
-        try {
-            final String sql = """
-                    DELETE FROM public.lecture
-                    \tWHERE id = ?;""";
-
-            try (Connection connection = createConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-                preparedStatement.setInt(1, lecture.getId());
-                preparedStatement.executeQuery();
-
-            } catch (SQLException ex) {
-                System.out.println("Connection failed..." + ex);
-            }
-        } catch (Exception ex) {
-            System.out.println("Illegal argument" + ex);
-            throw new IllegalArgumentException();
+    public Boolean delete(final Lecture lecture) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.delete(lecture);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
         }
     }
 

@@ -1,18 +1,23 @@
-package org.lilia.model;
+package org.lilia.entity;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 
+@Entity
 @Data
 public class AdditionalMaterial implements Serializable {
     int counter = 0;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
     private int lectureId;
+    @Enumerated
     private ResourceType resourceType;
 
     public AdditionalMaterial(String name, int lectureId) {

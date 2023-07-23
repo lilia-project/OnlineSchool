@@ -1,11 +1,14 @@
 package org.lilia.repository;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.lilia.constant.Constants;
-import org.lilia.model.Person;
-import org.lilia.model.Role;
+import org.lilia.entity.Person;
+import org.lilia.entity.Role;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
+import org.lilia.util.HibernateUtil;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -34,26 +37,25 @@ public class PersonRepository extends ConnectionFactory {
         return Optional.of(splitList).orElse(Collections.emptyList());
     }
 
-    public void insertValue(Role role, String last_name) {
-        try {
-            final String sql = """
-                    INSERT INTO public.person(
-                    role, last_name)
-                    VALUES (?,?);""";
+    public Boolean save(final Person person) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.save(person);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
-            try (Connection connection = createConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, String.valueOf(role));
-                preparedStatement.setString(2, last_name);
-
-                preparedStatement.executeUpdate();
-
-            } catch (Exception ex) {
-                System.out.println("Connection failed..." + ex);
-            }
-        } catch (Exception ex) {
-            System.out.println("Illegal argument" + ex);
-            throw new IllegalArgumentException();
+    public Optional<Person> get(final Integer id) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final javax.persistence.Query usersQuery = session.createQuery("from Person where id =:id", Person.class);
+            usersQuery.setParameter("id", id);
+            final Person singleResult = (Person) usersQuery.getSingleResult();
+            return Optional.of(singleResult);
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
         }
     }
 
@@ -65,30 +67,6 @@ public class PersonRepository extends ConnectionFactory {
         person.setPhone(resultSet.getString("phone"));
         person.setEmail(resultSet.getString("email"));
         person.setCourseId(resultSet.getInt("course_id"));
-    }
-
-    public Optional<Person> getById(final int id) {
-        try {
-            String sql = "SELECT * FROM public.person WHERE id = ?";
-            try (Connection connection = createConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setInt(1, id);
-                final ResultSet resultSet = preparedStatement.executeQuery();
-
-                if (resultSet.next()) {
-                    Person person = new Person();
-                    setFields(resultSet, person);
-
-                    return Optional.of(person);
-                }
-            } catch (SQLException ex) {
-                System.out.println("Connection failed..." + ex);
-            }
-        } catch (Exception ex) {
-            System.out.println("Illegal argument" + ex);
-            throw new IllegalArgumentException();
-        }
-        return Optional.empty();
     }
 
     public List<Person> getByCourseId(int courseId, Role role) {
@@ -150,24 +128,14 @@ public class PersonRepository extends ConnectionFactory {
         return Collections.emptyList();
     }
 
-    public void remove(String lastName) {
-        try {
-            final String sql = """
-                    DELETE FROM public.person
-                    WHERE last_name = ?;""";
-
-            try (Connection connection = createConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-                preparedStatement.setString(1, lastName);
-                preparedStatement.execute(sql);
-
-            } catch (SQLException ex) {
-                System.out.println("Connection failed..." + ex);
-            }
-        } catch (Exception ex) {
-            System.out.println("Illegal argument" + ex);
-            throw new IllegalArgumentException();
+    public Boolean delete(final Person person) {
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            final Transaction transaction = session.beginTransaction();
+            session.delete(person);
+            transaction.commit();
+            return true;
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
         }
     }
 

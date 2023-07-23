@@ -2,9 +2,9 @@ package org.lilia.service;
 
 import org.lilia.constant.Constants;
 import org.lilia.dto.AdditionalMaterialDto;
+import org.lilia.entity.AdditionalMaterial;
+import org.lilia.entity.ResourceType;
 import org.lilia.exception.NoSuchMaterialIdException;
-import org.lilia.model.AdditionalMaterial;
-import org.lilia.model.ResourceType;
 import org.lilia.repository.AdditionalMaterialRepository;
 import org.lilia.repository.ConnectionFactory;
 import org.lilia.util.ConsoleUtils;
@@ -24,9 +24,9 @@ public class AdditionalMaterialService extends ConnectionFactory {
         this.additionalMaterialRepository = additionalMaterialRepository;
     }
 
-    public void createAdditionalMaterial(String name, int lectureId) {
+    public Boolean isCreateAdditionalMaterial(String name, int lectureId) {
         AdditionalMaterial additionalMaterial = new AdditionalMaterial(name, lectureId);
-        additionalMaterialRepository.add(additionalMaterial);
+        return AdditionalMaterialRepository.save(additionalMaterial);
     }
 
 
@@ -46,26 +46,26 @@ public class AdditionalMaterialService extends ConnectionFactory {
     }
 
     public void deleteById(int additionalMaterialId) {
-        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
+        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.get(additionalMaterialId);
         if (additionalMaterial.isEmpty()) {
             throw new NoSuchMaterialIdException(additionalMaterialId);
         }
-        additionalMaterialRepository.remove(additionalMaterial.get());
+        additionalMaterialRepository.delete(additionalMaterial.get());
     }
 
     public int additionalMaterialIdIsValid() {
         int additionalMaterialId = ConsoleUtils.readInteger();
-        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
+        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.get(additionalMaterialId);
         while (additionalMaterial.isEmpty()) {
             ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
             additionalMaterialId = ConsoleUtils.readInteger();
-            additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
+            additionalMaterial = additionalMaterialRepository.get(additionalMaterialId);
         }
         return additionalMaterialId;
     }
 
     public AdditionalMaterial getRequireById(int additionalMaterialId) {
-        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.getById(additionalMaterialId);
+        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.get(additionalMaterialId);
         if (additionalMaterial.isEmpty()) {
             throw new NoSuchMaterialIdException(additionalMaterialId);
         }

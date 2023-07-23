@@ -2,10 +2,10 @@ package org.lilia.view;
 
 import org.lilia.constant.Constants;
 import org.lilia.dto.PersonDto;
+import org.lilia.entity.Person;
+import org.lilia.entity.Role;
 import org.lilia.log.Logger;
 import org.lilia.log.LoggerFactory;
-import org.lilia.model.Person;
-import org.lilia.model.Role;
 import org.lilia.service.CourseService;
 import org.lilia.service.PersonService;
 import org.lilia.util.ConsoleUtils;
