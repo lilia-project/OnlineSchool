@@ -21,7 +21,7 @@ INSERT INTO public.person(id, role, last_name, first_name, phone, email, course_
            (12, 'TEACHER','Ilster','Vlad','0353459993','0353459993@gmail.com',3),
 	       (13, 'TEACHER','Baranov','Ilia','0353450993','0353450993@gmail.com',4);
 
-INSERT INTO public.lecture(id, name, courseid, personid, createdat, lecturedate)
+INSERT INTO public.lecture(id, name, courseid, personid, created_at, lecture_date)
 	VALUES (1, 'Introduction2', 2,	11,	'2023-06-10 22:00:00', '2023-06-13 22:00:00'),
     	   (2, 'First lecture', 1, 10,  '2023-06-07 22:00:00', '2023-06-16 22:00:00'),
     	   (3, 'Introduction', 1, 10,   '2023-06-09 22:00:00', '2023-06-18 22:00:00'),
@@ -39,7 +39,7 @@ INSERT INTO public.lecture(id, name, courseid, personid, createdat, lecturedate)
 
 
 
-INSERT INTO public.additionalmaterial(id, name, lectureid, resourcetype)
+INSERT INTO public.additional_material(id, name, lectureid, resource_type)
 	VALUES (1, 'Material 1', 1,	'URL'),
            (2, 'Material 1', 1,	'BOOK'),
            (3, 'Material 2', 2, 'BOOK'),
@@ -103,7 +103,7 @@ INSERT INTO public.student_course(
 SELECT setval((SELECT pg_get_serial_sequence('public.course', 'id')), (SELECT max(id) FROM public.course));
 SELECT setval((SELECT pg_get_serial_sequence('public.person', 'id')), (SELECT max(id) FROM public.person));
 SELECT setval((SELECT pg_get_serial_sequence('public.lecture', 'id')), (SELECT max(id) FROM public.lecture));
-SELECT setval((SELECT pg_get_serial_sequence('public.additionalmaterial', 'id')), (SELECT max(id) FROM public.additionalmaterial));
+SELECT setval((SELECT pg_get_serial_sequence('public.additional_material', 'id')), (SELECT max(id) FROM public.additional_material));
 SELECT setval((SELECT pg_get_serial_sequence('public.homework', 'id')), (SELECT max(id) FROM public.homework));
 
 

@@ -46,7 +46,6 @@ public class Main {
         courseRepository.getAllCourses();
         DataBaseInitializer dataBaseInitializer = context.getBean(DataBaseInitializer.class);
 
-//        dataBaseInitializer.createTables();
         dataBaseInitializer.fillTables();
 
         configurationWatcher.setDaemon(true);

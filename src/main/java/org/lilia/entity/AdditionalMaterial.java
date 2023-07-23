@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 @Entity
+@Table(name = "additional_material")
 @Data
 public class AdditionalMaterial implements Serializable {
     @Id
@@ -17,7 +18,7 @@ public class AdditionalMaterial implements Serializable {
     private String name;
     private int lectureId;
 
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text", name = "resource_type")
     @Enumerated(EnumType.STRING)
     private ResourceType resourceType;
 
