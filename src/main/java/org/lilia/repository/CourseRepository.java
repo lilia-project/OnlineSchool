@@ -1,11 +1,8 @@
 package org.lilia.repository;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.lilia.constant.Constants;
-import org.lilia.entity.AdditionalMaterial;
 import org.lilia.entity.Course;
 import org.lilia.serialization.FilePath;
 import org.lilia.serialization.Serializer;
@@ -15,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +19,14 @@ import java.util.Optional;
 
 @Component
 public class CourseRepository extends ConnectionFactory {
-    public void select1() {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        Query fromCourse = session.createQuery("from Course");
-        System.out.println(fromCourse);
-        session.close();
-        System.out.println(fromCourse);
-
-
-    }
-
+    /*   public void select1() {
+           SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+           Session session = sessionFactory.openSession();
+           Query fromCourse = session.createQuery("from Course");
+           System.out.println(fromCourse);
+           session.close();
+       }
+   */
     public Boolean save(final Course course) {
         try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
             final Transaction transaction = session.beginTransaction();
@@ -47,7 +40,7 @@ public class CourseRepository extends ConnectionFactory {
 
     public Optional<Course> get(final Integer id) {
         try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
-            final javax.persistence.Query usersQuery = session.createQuery("from Course where id =:id", AdditionalMaterial.class);
+            final javax.persistence.Query usersQuery = session.createQuery("from Course where id =:id", Course.class);
             usersQuery.setParameter("id", id);
             final Course singleResult = (Course) usersQuery.getSingleResult();
             return Optional.of(singleResult);
@@ -57,28 +50,12 @@ public class CourseRepository extends ConnectionFactory {
     }
 
     public Optional<List<Course>> getAllCourses() {
-        try {
-            final String sql = "SELECT * FROM public.course";
-            try (Connection connection = createConnection();
-                 Statement statement = connection.createStatement()) {
-
-                final ResultSet resultSet = statement.executeQuery(sql);
-
-                final List<Course> courses = new ArrayList<>();
-
-                while (resultSet.next()) {
-                    Course course = new Course(resultSet.getInt("id"), resultSet.getString("name"));
-                    courses.add(course);
-                }
-                return Optional.of(courses);
-            } catch (SQLException ex) {
-                System.out.println("Connection failed..." + ex);
-            }
-        } catch (Exception ex) {
-            System.out.println("Illegal argument" + ex);
-            throw new IllegalArgumentException();
+        try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Course> courseList = session.createQuery("from Course", Course.class).list();
+            return Optional.ofNullable(courseList);
+        } catch (final Exception e) {
+            throw new IllegalStateException(e);
         }
-        return Optional.empty();
     }
 
     public Boolean update(final Course course) {

@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -15,10 +18,18 @@ public class Course implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Value("${course.id}")
     private Integer id;
+
     @Value("${course.name}")
     private String name;
-    @Transient
-    private List<Lecture> list;
+
+    @OneToMany(mappedBy = "course")
+    private List<Lecture> lectures = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "courses")
+    private Set<Person> people = new HashSet<>();
+
+    public Course() {
+    }
 
     @Autowired
     public Course(Integer id, String name) {
@@ -26,14 +37,12 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    public Course() {
-    }
-
     @Override
     public String toString() {
         return " course id = " + id +
                 " course name = " + name +
-                " lectures = " + list;
+                " lectures = " + lectures
+                ;
     }
 
 }
