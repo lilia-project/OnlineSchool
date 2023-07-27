@@ -15,7 +15,7 @@ import java.util.Optional;
 public interface PersonRepo extends JpaRepository<Person, Integer> {
     @Modifying
     @Transactional
-    @Query("UPDATE Person person SET person.lastName = :#{#updatedPerson.lastName}, " +// todo fields
+    @Query("UPDATE Person person SET person.lastName = :#{#updatedPerson.lastName}, " +
             "person.firstName = :#{#updatedPerson.firstName}," +
             "person.role = :#{#updatedPerson.role}," +
             "person.phone = :#{#updatedPerson.phone}," +
