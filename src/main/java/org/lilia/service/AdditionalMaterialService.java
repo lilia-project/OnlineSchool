@@ -5,23 +5,23 @@ import org.lilia.dto.AdditionalMaterialDto;
 import org.lilia.entity.AdditionalMaterial;
 import org.lilia.entity.ResourceType;
 import org.lilia.exception.NoSuchMaterialIdException;
-import org.lilia.repository.AdditionalMaterialRepository;
-import org.lilia.repository.ConnectionFactory;
+import org.lilia.repository.AdditionalMaterialRepo;
+import org.lilia.serialization.FilePath;
+import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Component
-public class AdditionalMaterialService extends ConnectionFactory {
-    private final AdditionalMaterialRepository additionalMaterialRepository;
+@Service
+public class AdditionalMaterialService {
+    private final AdditionalMaterialRepo additionalMaterialRepo;
 
     @Autowired
-    public AdditionalMaterialService(AdditionalMaterialRepository additionalMaterialRepository) {
-        this.additionalMaterialRepository = additionalMaterialRepository;
+    public AdditionalMaterialService(AdditionalMaterialRepo additionalMaterialRepo) {
+        this.additionalMaterialRepo = additionalMaterialRepo;
     }
 
     public void createNewAddMaterial(String name, int lectureId) {
@@ -31,8 +31,7 @@ public class AdditionalMaterialService extends ConnectionFactory {
         AdditionalMaterial additionalMaterial = new AdditionalMaterial();
         additionalMaterial.setName(name);
         additionalMaterial.setLectureId(lectureId);
-        additionalMaterialRepository.save(additionalMaterial);
-        ConsoleUtils.print(Constants.ELEMENT_CREATED);
+        additionalMaterialRepo.save(additionalMaterial);
     }
 
     public AdditionalMaterialDto createAdditionalMaterialDto(int lectureId, String name, ResourceType resourceType) {
@@ -46,38 +45,29 @@ public class AdditionalMaterialService extends ConnectionFactory {
             return new AdditionalMaterialDto(lectureId, name, ResourceType.BOOK);
     }
 
-    public void getAll(AdditionalMaterial.SortField sortField, int lectureId) {
-        additionalMaterialRepository.getAll(sortField, lectureId);
+    public List<AdditionalMaterial> getAllBySortFieldAndLectureId(AdditionalMaterial.SortField sortField, int lectureId) {
+        return additionalMaterialRepo.getAllBySortFieldAndLectureId(sortField, lectureId);
     }
 
-    public void deleteById(int additionalMaterialId) {
-        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.get(additionalMaterialId);
-        if (additionalMaterial.isEmpty()) {
-            throw new NoSuchMaterialIdException(additionalMaterialId);
-        }
-        additionalMaterialRepository.delete(additionalMaterial.get());
+
+    public void deleteById(Integer id) {
+        additionalMaterialRepo.deleteById(id);
     }
 
     public int additionalMaterialIdIsValid() {
         int additionalMaterialId = ConsoleUtils.readInteger();
-        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.get(additionalMaterialId);
-        while (additionalMaterial.isEmpty()) {
-            ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
-            additionalMaterialId = ConsoleUtils.readInteger();
-            additionalMaterial = additionalMaterialRepository.get(additionalMaterialId);
-        }
-        return additionalMaterialId;
+        return getRequireById(additionalMaterialId).getId();
     }
 
     public AdditionalMaterial getRequireById(int additionalMaterialId) {
-        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepository.get(additionalMaterialId);
+        Optional<AdditionalMaterial> additionalMaterial = additionalMaterialRepo.findById(additionalMaterialId);
         if (additionalMaterial.isEmpty()) {
             throw new NoSuchMaterialIdException(additionalMaterialId);
         }
         return additionalMaterial.get();
     }
 
-    public AdditionalMaterial updateAdditionalMaterial(AdditionalMaterial additionalMaterial, AdditionalMaterialDto additionalMaterialDto) {
+    public void updateAdditionalMaterial(AdditionalMaterial additionalMaterial, AdditionalMaterialDto additionalMaterialDto) {
         if (!(additionalMaterialDto.getName()).isEmpty()) {
             additionalMaterial.setName(additionalMaterialDto.getName());
         }
@@ -87,22 +77,34 @@ public class AdditionalMaterialService extends ConnectionFactory {
         if (additionalMaterialDto.getLectureId() != 0) {
             additionalMaterial.setLectureId(additionalMaterialDto.getLectureId());
         }
-        return additionalMaterial;
+        additionalMaterialRepo.updateMaterial(additionalMaterial);
     }
 
-    public List<AdditionalMaterial> findAllByLectureId(int lectureId) {
-        return additionalMaterialRepository.getByLectureId(lectureId).orElse(Collections.emptyList());
+    public Optional<List<AdditionalMaterial>> findAllByLectureId(int lectureId) {
+        return additionalMaterialRepo.getByLectureId(lectureId);
     }
 
-    public void backupMaterial() {
-        additionalMaterialRepository.serializeMaterial();
+    public void serializeMaterial() {
+        List<AdditionalMaterial> materials = additionalMaterialRepo.findAll();
+        Serializer.serialize(materials, FilePath.FILE_PATH_ADDITION_MATERIAL);
+        ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
-    public void deserialize() {
-        additionalMaterialRepository.deserializeMaterial();
+
+    public void deserializeMaterial() {
+        String filePath = FilePath.FILE_PATH_ADDITION_MATERIAL.getPath();
+        Object deserialize = Serializer.deserialize(filePath);
+        List<AdditionalMaterial> additionalMaterials = (List<AdditionalMaterial>) deserialize;
+
+        additionalMaterials.forEach(System.out::println);
+        for (AdditionalMaterial additionalMaterial : additionalMaterials) {
+            additionalMaterialRepo.save(additionalMaterial);
+        }
+        ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
     }
 
-    public void printAllWithGroupingByLectureId() {
-        additionalMaterialRepository.printAddMaterialsGroupingByLectureId();
+    public List<AdditionalMaterial> printAllWithGroupingByLectureId() {
+        return additionalMaterialRepo.printAddMaterialsGroupingByLectureId();
     }
+
 }

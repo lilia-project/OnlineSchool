@@ -4,33 +4,35 @@ import org.lilia.constant.Constants;
 import org.lilia.entity.Course;
 import org.lilia.entity.Lecture;
 import org.lilia.exception.NoSuchCourseIdException;
-import org.lilia.repository.CourseRepository;
+import org.lilia.repository.CourseRepo;
+import org.lilia.serialization.FilePath;
+import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class CourseService {
 
-    private final CourseRepository courseRepository;
+    private final CourseRepo courseRepo;
     private final LectureService lectureService;
 
     @Autowired
-    public CourseService(CourseRepository courseRepository, LectureService lectureService) {
-        this.courseRepository = courseRepository;
+    public CourseService(CourseRepo courseRepo, LectureService lectureService) {
+        this.courseRepo = courseRepo;
         this.lectureService = lectureService;
     }
 
-    private static void addLectureIntoCourse(Course course) {
-        List<Lecture> list = LectureService.findAllByCourseId(course.getId());
+    private void addLectureIntoCourse(Course course) {
+        List<Lecture> list = lectureService.findAllByCourseId(course.getId());
         course.setLectures(list);
     }
 
-    public void sortByName() {
-        courseRepository.sortByName();
+    public List<Course> sortByName() {
+        return courseRepo.sortByName();
     }
 
     public void createNewCourse(String courseName) {
@@ -39,22 +41,21 @@ public class CourseService {
         }
         Course course = new Course();
         course.setName(courseName);
-        courseRepository.save(course);
-        ConsoleUtils.print(Constants.ELEMENT_CREATED);
+        courseRepo.save(course);
     }
 
-    public void updateCourse(int id, String name) {
-        Course course = new Course();
+    public void updateCourse(Course course, String name) {
         course.setName(name);
-        courseRepository.update(course);
+        courseRepo.updateCourse(course);
     }
+
 
     public List<Course> outputAll() {
-        return courseRepository.getAllCourses().get();
+        return courseRepo.findAll();
     }
 
     public Course getRequireById(int courseId) {
-        Optional<Course> course = courseRepository.get(courseId);
+        Optional<Course> course = courseRepo.findById(courseId);
         if (course.isEmpty()) {
             throw new NoSuchCourseIdException(courseId);
         }
@@ -63,31 +64,35 @@ public class CourseService {
     }
 
     public void deleteById(int courseId) {
-        Course course = getRequireById(courseId);
-        courseRepository.delete(course);
-        ConsoleUtils.print(Constants.ELEMENT_DELETED);
+        courseRepo.deleteById(courseId);
     }
 
     public int courseIdIsValid() {
         int courseId = ConsoleUtils.readInteger();
-        Optional<Course> course = courseRepository.get(courseId);
+        Optional<Course> course = courseRepo.findById(courseId);
         while (course.isEmpty()) {
             System.out.println("input valid course's id");
             courseId = ConsoleUtils.readInteger();
-            course = courseRepository.get(courseId);
+            course = courseRepo.findById(courseId);
         }
         return courseId;
     }
 
-    public void print(Course course) {
-        System.out.println(course);
-    }
-
     public void backupCourses() {
-        courseRepository.serializeCourses();
+        List<Course> courses = courseRepo.findAll();
+        Serializer.serialize(courses, FilePath.FILE_PATH_COURSE);
+        ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
-    public void deserialize() {
-        courseRepository.deserializeCourses();
+
+    public void deserializeCourse() {
+        String filePath = FilePath.FILE_PATH_COURSE.getPath();
+        Object deserialize = Serializer.deserialize(filePath);
+        List<Course> courses = (List<Course>) deserialize;
+        ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
+        courses.forEach(System.out::println);
+        for (Course course : courses) {
+            courseRepo.save(course);
+        }
     }
 }

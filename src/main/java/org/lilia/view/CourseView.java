@@ -24,7 +24,7 @@ public class CourseView {
             ConsoleUtils.print(Constants.NAME);
             String courseName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
-            courseService.updateCourse(course.getId(), courseName);
+            courseService.updateCourse(course, courseName);
 
             ConsoleUtils.print(Constants.ELEMENT_EDIT);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
@@ -35,9 +35,7 @@ public class CourseView {
         ConsoleUtils.print(Constants.COURSE_ID);
         int courseId = ConsoleUtils.readInteger();
 
-        Course course = courseService.getRequireById(courseId);
-        courseService.print(course);
-        return course;
+        return courseService.getRequireById(courseId);
     }
 
     public void workWithCourse(CourseService courseService) {
@@ -53,6 +51,8 @@ public class CourseView {
                         String courseName = ConsoleUtils.readAndValidationInput(Constants.NAME_OR_DESCRIPTION);
 
                         courseService.createNewCourse(courseName);
+                        ConsoleUtils.print(Constants.ELEMENT_CREATED);
+
 
                         ConsoleUtils.print(Constants.CREATE_NEW);
                         userChoice1 = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
@@ -66,16 +66,17 @@ public class CourseView {
                 }
                 case 3 -> {
                     List<Course> courseList = courseService.outputAll();
-                    System.out.println(courseList);
+                    courseList.forEach(System.out::println);
                     ConsoleUtils.print(Constants.SORT_BY_NAME);
                     userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
                     if (userChoice.equalsIgnoreCase("Y")) {
-                        courseService.sortByName();
+                        List<Course> sortList = courseService.sortByName();
+                        sortList.forEach(System.out::println);
                     }
                 }
                 case 4 -> deleteCourse(courseService);
                 case 5 -> courseService.backupCourses();
-                case 6 -> courseService.deserialize();
+                case 6 -> courseService.deserializeCourse();
                 case 7 -> ConsoleUtils.print(Constants.EXIT);
                 default -> ConsoleUtils.print(Constants.ERROR);
             }

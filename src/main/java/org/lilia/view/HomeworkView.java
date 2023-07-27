@@ -74,7 +74,7 @@ public class HomeworkView {
                     logger.info("homework deleted successful");
                 }
                 case 5 -> homeworkService.backupHomework();
-                case 6 -> homeworkService.deserialization();
+                case 6 -> homeworkService.deserialize();
                 case 7 -> {
                     logger.info("selected EXIT");
                     ConsoleUtils.print(Constants.EXIT);
@@ -92,10 +92,10 @@ public class HomeworkView {
     private int outputAllByLectureId(HomeworkService homeworkService) {
         ConsoleUtils.print(Constants.LECTURE_ID);
         int lectureId = lectureService.lectureIdIsValid();
-        if (homeworkService.findAllByLectureId(lectureId).isPresent()) {
-            List<Homework> allByLectureId = homeworkService.findAllByLectureId(lectureId).get();
-            allByLectureId.forEach(System.out::println);
-        }
+
+        List<Homework> allByLectureId = homeworkService.findAllByLectureId(lectureId);
+        allByLectureId.forEach(System.out::println);
+
         return lectureId;
     }
 
@@ -135,8 +135,7 @@ public class HomeworkView {
             HomeworkDto homeworkDto = homeworkService.createHomeworkDto(task);
             System.out.println(homeworkDto);
 
-            Homework homeworkUpdate = homeworkService.updateHomework(homework, homeworkDto);
-            System.out.println(homeworkUpdate);
+            homeworkService.updateHomework(homework, homeworkDto);
 
             ConsoleUtils.print(Constants.ELEMENT_EDIT);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);

@@ -8,7 +8,7 @@ import org.lilia.log.LogService;
 import org.lilia.log.LoggerFactory;
 import org.lilia.network.SelectorClient;
 import org.lilia.network.SelectorServer;
-import org.lilia.repository.CourseRepository;
+import org.lilia.repository.CourseRepo;
 import org.lilia.repository.DataBaseInitializer;
 import org.lilia.service.*;
 import org.lilia.util.ConsoleUtils;
@@ -23,7 +23,7 @@ public class Main {
 
     public static void main(String[] args) throws NoSuchMaterialIdException, InterruptedException {
 
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JpaConfig.class);
 
         HomeworkService homeworkService = context.getBean("homeworkService", HomeworkService.class);
         AdditionalMaterialService additionalMaterialService = context.getBean("additionalMaterialService", AdditionalMaterialService.class);
@@ -42,8 +42,8 @@ public class Main {
 
         ConsoleUtils.print("\nWelcome to Online school!");
 
-        CourseRepository courseRepository = context.getBean("courseRepository", CourseRepository.class);
-        courseRepository.getAllCourses();
+        CourseRepo courseRepository = context.getBean("courseRepository", CourseRepo.class);
+        courseRepository.findAll();
         DataBaseInitializer dataBaseInitializer = context.getBean(DataBaseInitializer.class);
 
         dataBaseInitializer.fillTables();

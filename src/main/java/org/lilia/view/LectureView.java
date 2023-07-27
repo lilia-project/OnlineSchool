@@ -37,11 +37,11 @@ public class LectureView {
 
     private static void outputByDateParameter(LectureService lectureService, LocalDateTime localDate) {
         switch (ConsoleUtils.choiceDisplayType()) {
-            case 1 -> lectureService.isBeforeDate(LocalDateTime.from(localDate));
-            case 2 -> lectureService.isAfterDate(LocalDateTime.from(localDate));
+            case 1 -> lectureService.isBeforeDate(LocalDateTime.from(localDate)).forEach(System.out::println);
+            case 2 -> lectureService.isAfterDate(LocalDateTime.from(localDate)).forEach(System.out::println);
             case 3 -> {
                 LocalDateTime localDateSecond = getLocalDateSecond();
-                lectureService.isBetweenDates(localDate, localDateSecond);
+                lectureService.isBetweenDates(localDate, localDateSecond).forEach(System.out::println);
             }
         }
     }
@@ -77,8 +77,7 @@ public class LectureView {
 
         LectureDto lectureDto = lectureService.createLectureDto(Integer.parseInt(courseId), lectureName, lectureDescription, Integer.parseInt(personId));
 
-        Lecture lectureUpdate = lectureService.updateLecture(lecture, lectureDto);
-        System.out.println(lectureUpdate);
+        lectureService.updateLecture(lecture, lectureDto);
     }
 
     private static Lecture getLectureById(LectureService lectureService) {
@@ -140,8 +139,8 @@ public class LectureView {
                             LocalDateTime localDate = getLocalDate();
                             outputByDateParameter(lectureService, localDate);
                         }
-                        case 3 -> lectureService.getLectureInEarlyTime();
-                        case 4 -> lectureService.printLecturesGrouping();
+                        case 3 -> lectureService.getLectureInEarlyTime().forEach(System.out::println);
+                        case 4 -> lectureService.printLecturesGrouping().forEach(System.out::println);
                         case 0 -> ConsoleUtils.print(Constants.EXIT);
                         default -> {
                             logger.error(Constants.ERROR);

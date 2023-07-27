@@ -27,7 +27,7 @@ public class HomeworkServlet extends HttpServlet {
 
         PrintWriter printWriter = resp.getWriter();
         int lectureId = Integer.parseInt(id);
-        List<Homework> homeworkList = homeworkService.findAllByLectureId(lectureId).get();
+        List<Homework> homeworkList = homeworkService.findAllByLectureId(lectureId);
         printWriter.write(homeworkList.toString());
         printWriter.close();
 
