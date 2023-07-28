@@ -4,21 +4,23 @@ import org.lilia.constant.Constants;
 import org.lilia.dto.HomeworkDto;
 import org.lilia.entity.Homework;
 import org.lilia.exception.NoSuchHomeworkException;
-import org.lilia.repository.HomeworkRepository;
+import org.lilia.repository.HomeworkRepo;
+import org.lilia.serialization.FilePath;
+import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class HomeworkService {
-    private final HomeworkRepository homeworkRepository;
+    private final HomeworkRepo homeworkRepo;
 
     @Autowired
-    public HomeworkService(HomeworkRepository homeworkRepository) {
-        this.homeworkRepository = homeworkRepository;
+    public HomeworkService(HomeworkRepo homeworkRepo) {
+        this.homeworkRepo = homeworkRepo;
     }
 
     public void createHomework(int lectureId, String task) {
@@ -28,63 +30,69 @@ public class HomeworkService {
         Homework homework = new Homework();
         homework.setLectureId(lectureId);
         homework.setTask(task);
-        homeworkRepository.save(homework);
+        homeworkRepo.save(homework);
     }
 
     public HomeworkDto createHomeworkDto(String task) {
         return new HomeworkDto(task);
     }
 
-    public Homework updateHomework(Homework homework, HomeworkDto homeworkDto) {
+    public void updateHomework(Homework homework, HomeworkDto homeworkDto) {
         if ((homeworkDto.getTask()) != null) {
             homework.setTask(homeworkDto.getTask());
         }
-        return homework;
+        homeworkRepo.updateHomework(homework);
     }
 
     public Homework getRequireById(int homeworkId) {
 
-        Optional<Homework> homework = homeworkRepository.get(homeworkId);
+        Optional<Homework> homework = homeworkRepo.findById(homeworkId);
         if (homework.isEmpty()) {
             throw new NoSuchHomeworkException(homeworkId);
         }
         return homework.get();
     }
 
-    public Optional<List<Homework>> findAllByLectureId(int lectureId) {
-        List<Homework> homeworkList = homeworkRepository.getByLectureId(lectureId);
-        return Optional.ofNullable(homeworkList);
+    public List<Homework> findAllByLectureId(int lectureId) {
+        return homeworkRepo.getByLectureId(lectureId);
     }
 
     public void deleteById(int homeworkId) {
-        Optional<Homework> homework = homeworkRepository.get(homeworkId);
+        Optional<Homework> homework = homeworkRepo.findById(homeworkId);
         if (homework.isEmpty()) {
             ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
             throw new NoSuchHomeworkException(homeworkId);
         } else {
-            homeworkRepository.delete(homework.get());
+            homeworkRepo.delete(homework.get());
             ConsoleUtils.print(Constants.ELEMENT_DELETED);
         }
     }
 
     public int homeworkIdIsValid() {
         int homeworkId = ConsoleUtils.readInteger();
-        Optional<Homework> homework = homeworkRepository.get(homeworkId);
+        Optional<Homework> homework = homeworkRepo.findById(homeworkId);
         while (homework.isEmpty()) {
             ConsoleUtils.print(Constants.ELEMENT_NOT_EXIST);
             homeworkId = ConsoleUtils.readInteger();
-            homework = homeworkRepository.get(homeworkId);
+            homework = homeworkRepo.findById(homeworkId);
         }
         return homeworkId;
     }
 
     public void backupHomework() {
-        homeworkRepository.serializeHomework();
+        List<Homework> homeworkList = homeworkRepo.findAll();
+        Serializer.serialize(homeworkList, FilePath.FILE_PATH_HOMEWORK);
+        ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
-    public void deserialization() {
-        homeworkRepository.deserialize();
+    public void deserialize() {
+        String filePath = FilePath.FILE_PATH_HOMEWORK.getPath();
+        Object deserialize = Serializer.deserialize(filePath);
+        List<Homework> homeworks = (List<Homework>) deserialize;
+        ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
+        homeworks.forEach(System.out::println);
     }
+
 }
 
 

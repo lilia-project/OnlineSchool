@@ -6,30 +6,32 @@ import org.lilia.entity.Lecture;
 import org.lilia.exception.NoSuchLectureIdException;
 import org.lilia.log.Logger;
 import org.lilia.log.LoggerFactory;
-import org.lilia.repository.LectureRepository;
+import org.lilia.repository.LectureRepo;
+import org.lilia.serialization.FilePath;
+import org.lilia.serialization.Serializer;
 import org.lilia.util.ConsoleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class LectureService {
     private static final Logger logger = LoggerFactory.getLogger(LectureService.class);
-    private final LectureRepository lectureRepository;
+    private final LectureRepo lectureRepo;
     private final HomeworkService homeworkService;
 
     @Autowired
-    public LectureService(LectureRepository lectureRepository, HomeworkService homeworkService) {
-        this.lectureRepository = lectureRepository;
+    public LectureService(LectureRepo lectureRepo, HomeworkService homeworkService) {
+        this.lectureRepo = lectureRepo;
         this.homeworkService = homeworkService;
     }
 
-    public static List<Lecture> findAllByCourseId(int courseId) {
-        return Optional.of(LectureRepository.getByCourseId(courseId)).orElse(Collections.emptyList());
+    public List<Lecture> findAllByCourseId(int courseId) {
+        return lectureRepo.getByCourseId(courseId);
+
     }
 
     public void createLecture(String lectureName) {
@@ -40,7 +42,7 @@ public class LectureService {
         lecture.setName(lectureName);
         lecture.setCreatedAt(LocalDateTime.now());
         lecture.setLectureDate(LocalDateTime.now().plusDays((int) (Math.random() * 10)));
-        lectureRepository.save(lecture);
+        lectureRepo.save(lecture);
         ConsoleUtils.print(Constants.ELEMENT_CREATED);
     }
 
@@ -48,7 +50,7 @@ public class LectureService {
         return new LectureDto(courseId, lectureName, description, personId);
     }
 
-    public Lecture updateLecture(Lecture lecture, LectureDto lectureDto) {
+    public void updateLecture(Lecture lecture, LectureDto lectureDto) {
         if ((lectureDto.getName()) != null) {
             lecture.setName(lectureDto.getName());
         }
@@ -61,15 +63,15 @@ public class LectureService {
         if (lectureDto.getTeacherId() != 0) {
             lecture.setPersonId(lectureDto.getTeacherId());
         }
-        return lecture;
+        lectureRepo.updateLecture(lecture);
     }
 
     public Optional<List<Lecture>> outputAll() {
-        return Optional.ofNullable(lectureRepository.getAllLecture());
+        return Optional.of(lectureRepo.findAll());
     }
 
     public Lecture getRequireById(int lectureId) {
-        Optional<Lecture> lecture = lectureRepository.get(lectureId);
+        Optional<Lecture> lecture = lectureRepo.findById(lectureId);
         if (lecture.isEmpty()) {
             throw new NoSuchLectureIdException(lectureId);
         }
@@ -79,55 +81,65 @@ public class LectureService {
     }
 
     private void addHomeworkIntoLecture(Lecture lecture) {
-        lecture.setHomeworkList(homeworkService.findAllByLectureId(lecture.getId()).orElse(Collections.emptyList()));
+        lecture.setHomeworkList(homeworkService.findAllByLectureId(lecture.getId()));
     }
 
     public void deleteById(int lectureId) {
         Lecture lecture = getRequireById(lectureId);
-        lectureRepository.delete(lecture);
+        lectureRepo.delete(lecture);
         ConsoleUtils.print(Constants.ELEMENT_DELETED);
     }
 
     public int lectureIdIsValid() {
         int lectureId = Integer.parseInt(ConsoleUtils.readAndValidationInput(Constants.NUMBER));
 
-        Optional<Lecture> lecture = lectureRepository.get(lectureId);
+        Optional<Lecture> lecture = lectureRepo.findById(lectureId);
         while (lecture.isEmpty()) {
             logger.error("lecture not found by this lectureId");
             logger.info("repeat input");
             lectureId = Integer.parseInt(ConsoleUtils.readAndValidationInput(Constants.NUMBER));
-            lecture = lectureRepository.get(lectureId);
+            lecture = lectureRepo.findById(lectureId);
         }
         return lectureId;
     }
 
     public void backupLecture() {
-        lectureRepository.serializeLecture();
+        List<Lecture> lecture = lectureRepo.findAll();
+        Serializer.serialize(lecture, FilePath.FILE_PATH_LECTURE);
+        ConsoleUtils.print(Constants.SERIALIZATION_COMPLETED);
     }
 
     public void deserialize() {
-        lectureRepository.deserializeLecture();
+        String filePath = FilePath.FILE_PATH_LECTURE.getPath();
+        Object deserialize = Serializer.deserialize(filePath);
+        List<Lecture> lectures = (List<Lecture>) deserialize;
+
+        lectures.forEach(System.out::println);
+        for (Lecture lecture : lectures) {
+            lectureRepo.save(lecture);
+        }
+        ConsoleUtils.print(Constants.DESERIALIZATION_COMPLETED);
     }
 
 
-    public void isBeforeDate(LocalDateTime localDate) {
-        lectureRepository.isBeforeDate(localDate);
+    public List<Lecture> isBeforeDate(LocalDateTime localDate) {
+        return lectureRepo.isBeforeDate(localDate);
     }
 
-    public void isAfterDate(LocalDateTime localDate) {
-        lectureRepository.isAfterDate(localDate);
+    public List<Lecture> isAfterDate(LocalDateTime localDate) {
+        return lectureRepo.isAfterDate(localDate);
     }
 
-    public void isBetweenDates(LocalDateTime localDate, LocalDateTime localDateSecond) {
-        lectureRepository.isBetweenDate(localDate, localDateSecond);
+    public List<Lecture> isBetweenDates(LocalDateTime localDate, LocalDateTime localDateSecond) {
+        return lectureRepo.isBetweenDate(localDate, localDateSecond);
     }
 
-    public void getLectureInEarlyTime() {
-        lectureRepository.getLectureByEarlyTime();
+    public List<Lecture> getLectureInEarlyTime() {
+        return lectureRepo.getLectureByEarlyTime();
 
     }
 
-    public void printLecturesGrouping() {
-        lectureRepository.printLecturesGroupingByTeacher();
+    public List<Lecture> printLecturesGrouping() {
+        return lectureRepo.getLecturesGroupingByTeacher();
     }
 }

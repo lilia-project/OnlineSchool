@@ -1,23 +1,13 @@
 package org.lilia.servlet;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.lilia.entity.AdditionalMaterial;
-import org.lilia.service.AdditionalMaterialService;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 @WebServlet(value = "/additionalmaterial", initParams = @WebInitParam(name = "lectureid", value = "-1"))
 
 public class AdMaterialServlet extends HttpServlet {
-    @Autowired
+  /*  @Autowired
     private AdditionalMaterialService materialService;
 
     @Override
@@ -31,5 +21,5 @@ public class AdMaterialServlet extends HttpServlet {
         List<AdditionalMaterial> materials = materialService.findAllByLectureId(lectureId);
         printWriter.write(materials.toString());
         printWriter.close();
-    }
+    }*/
 }

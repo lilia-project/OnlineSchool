@@ -29,20 +29,21 @@ public class PersonView {
         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
         if (userChoice.equalsIgnoreCase("Y")) {
-            personService.sortByLastName();
+            personService.sortByLastName().forEach(System.out::println);
+
         }
         ConsoleUtils.print(Constants.PRINT_LAST_NAME_TEACHERS_BEFORE_N);
         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
         if (userChoice.equalsIgnoreCase("Y")) {
-            personService.outputBeforeN();
+            personService.outputBeforeN().forEach(System.out::println);
         }
 
         ConsoleUtils.print(Constants.CREATE_MAP_PERSONS);
         userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
 
         if (userChoice.equalsIgnoreCase("Y")) {
-            personService.printMap();
+            personService.printMap().forEach(System.out::println);
         }
 
         ConsoleUtils.print(Constants.SORT_STUDENTS_BY_EMAIL);
@@ -170,8 +171,7 @@ public class PersonView {
 
             PersonDto personDto = personService.createPersonDto(personLastName, personName, phone, emailChecked, Integer.parseInt(courseId));
 
-            Person personUpdate = personService.updatePerson(person, personDto);
-            System.out.println(personUpdate);
+            personService.updatePerson(person, personDto);
 
             ConsoleUtils.print(Constants.ELEMENT_EDIT);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);

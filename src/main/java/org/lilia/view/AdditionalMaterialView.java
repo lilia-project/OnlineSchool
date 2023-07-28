@@ -68,11 +68,11 @@ public class AdditionalMaterialView {
                 }
                 case 4 -> deleteAdditionalMaterial(additionalMaterialService);
                 case 5 -> {
-                    additionalMaterialService.backupMaterial();
+                    additionalMaterialService.serializeMaterial();
                     System.out.println("Backup created");
                 }
-                case 6 -> additionalMaterialService.deserialize();
-                case 7 -> additionalMaterialService.printAllWithGroupingByLectureId();
+                case 6 -> additionalMaterialService.deserializeMaterial();
+                case 7 -> additionalMaterialService.printAllWithGroupingByLectureId().forEach(System.out::println);
                 case 8 -> ConsoleUtils.print(Constants.EXIT);
                 default -> ConsoleUtils.print(Constants.ERROR);
             }
@@ -84,9 +84,9 @@ public class AdditionalMaterialView {
     private int getAllByLectureId(AdditionalMaterialService additionalMaterialService) {
         ConsoleUtils.print(Constants.LECTURE_ID);
         int lectureId = lectureService.lectureIdIsValid();
-
-        List<AdditionalMaterial> allByLectureId = additionalMaterialService.findAllByLectureId(lectureId);
-        allByLectureId.forEach((System.out::println));
+        if (additionalMaterialService.findAllByLectureId(lectureId).isPresent()) {
+            additionalMaterialService.findAllByLectureId(lectureId).get();
+        }
         return lectureId;
     }
 
@@ -119,8 +119,7 @@ public class AdditionalMaterialView {
             ResourceType resourceType = ResourceType.valueOf(parameter);
 
             AdditionalMaterialDto additionalMaterialDto = additionalMaterialService.createAdditionalMaterialDto(lectureId, name, resourceType);
-            AdditionalMaterial additionalMaterialUpdate = additionalMaterialService.updateAdditionalMaterial(additionalMaterial, additionalMaterialDto);
-            System.out.println(additionalMaterialUpdate);
+            additionalMaterialService.updateAdditionalMaterial(additionalMaterial, additionalMaterialDto);
 
             ConsoleUtils.print(Constants.ELEMENT_EDIT);
             userChoice = ConsoleUtils.readAndValidationInput(Constants.YES_OR_NO);
@@ -135,7 +134,8 @@ public class AdditionalMaterialView {
 
     private void sortMaterial(AdditionalMaterialService additionalMaterialService, int lectureId) {
 
-        additionalMaterialService.getAll(AdditionalMaterial.SortField.ID, lectureId);
+        List<AdditionalMaterial> materials = additionalMaterialService.getAllBySortFieldAndLectureId(AdditionalMaterial.SortField.ID, lectureId);
+        materials.forEach(System.out::println);
 
         userChoice = "Y";
         while (userChoice.equalsIgnoreCase("Y")) {
@@ -149,7 +149,7 @@ public class AdditionalMaterialView {
                 int sortChoice = ConsoleUtils.choiceParameterSort();
                 AdditionalMaterial.SortField field = AdditionalMaterial.SortField.getById(sortChoice);
 
-                additionalMaterialService.getAll(field, lectureId);
+                additionalMaterialService.getAllBySortFieldAndLectureId(field, lectureId);
             }
         }
     }
