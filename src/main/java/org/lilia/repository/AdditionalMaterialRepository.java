@@ -29,7 +29,7 @@ public class AdditionalMaterialRepository extends ConnectionFactory {
         return comparator;
     }
 
-    public static Boolean save(final AdditionalMaterial material) {
+    public Boolean save(final AdditionalMaterial material) {
         try (final Session session = HibernateUtil.getSessionFactory().openSession()) {
             final Transaction transaction = session.beginTransaction();
             session.save(material);

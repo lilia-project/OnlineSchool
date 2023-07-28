@@ -8,31 +8,31 @@ import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 @Entity
+@Table(name = "additional_material")
 @Data
 public class AdditionalMaterial implements Serializable {
-    int counter = 0;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
     private int lectureId;
 
-    @Enumerated
+    @Column(columnDefinition = "text", name = "resource_type")
+    @Enumerated(EnumType.STRING)
     private ResourceType resourceType;
 
     @ManyToOne
-    @JoinColumn(name = "lecture_id")
+    @JoinColumn(name = "lectureid")
     private Lecture lecture;
 
     public AdditionalMaterial() {
     }
 
-    public AdditionalMaterial(String name, int lectureId) {
+    public AdditionalMaterial(Integer id, String name, int lectureId) {
         this.name = name;
         this.lectureId = lectureId;
-        counter++;
-        id = counter;
+        this.id = id;
     }
 
     @Override

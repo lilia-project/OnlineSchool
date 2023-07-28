@@ -1,7 +1,7 @@
 package org.lilia.entity;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -13,6 +13,9 @@ import java.util.Set;
 
 @Entity
 @Data
+@Cacheable
+@org.hibernate.annotations.Cache(
+        usage = CacheConcurrencyStrategy.READ_WRITE, region = "course")
 public class Course implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +34,6 @@ public class Course implements Serializable {
     public Course() {
     }
 
-    @Autowired
     public Course(Integer id, String name) {
         this.id = id;
         this.name = name;

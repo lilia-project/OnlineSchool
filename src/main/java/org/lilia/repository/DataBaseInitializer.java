@@ -110,7 +110,6 @@ public class DataBaseInitializer {
                 System.out.println("Connection failed..." + ex);
             }
         }
-//        throw new IllegalArgumentException();
     }
 
     public void fillTables() {

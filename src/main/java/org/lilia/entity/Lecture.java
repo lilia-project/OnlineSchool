@@ -1,6 +1,7 @@
 package org.lilia.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,13 +12,17 @@ import java.util.List;
 
 @Entity
 @Data
+@Cacheable
+@org.hibernate.annotations.Cache(
+        usage = CacheConcurrencyStrategy.READ_WRITE, region = "lecture")
 public class Lecture implements Serializable {
     private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
+    @Column(name = "lecture_date")
     private LocalDateTime lectureDate;
     private String name;
     private int courseId;
@@ -25,7 +30,7 @@ public class Lecture implements Serializable {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "course_id")
+    @JoinColumn(name = "courseid")
     private Course course;
 
     @OneToMany(mappedBy = "lecture")

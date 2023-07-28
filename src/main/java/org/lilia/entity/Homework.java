@@ -8,7 +8,6 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Embeddable
 public class Homework implements Serializable {
     private int lectureId;
     private String task;
@@ -19,7 +18,7 @@ public class Homework implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "lecture_id")
+    @JoinColumn(name = "lectureid")
     private Lecture lecture;
 
     public Homework() {

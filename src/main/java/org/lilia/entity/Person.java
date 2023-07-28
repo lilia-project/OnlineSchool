@@ -16,13 +16,14 @@ public class Person implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Enumerated
+    @Column(columnDefinition = "text")
+    @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "phone")
@@ -31,7 +32,7 @@ public class Person implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "courseId")
+    @Column(name = "course_id")
     private int courseId;
 
     @ManyToMany(fetch = FetchType.LAZY)
